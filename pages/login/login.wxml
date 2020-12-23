@@ -1,0 +1,25 @@
+<!--pages/login/login.wxml-->
+<navbar params="{{params}}" />
+<view class="header" style="margin-top:{{navH}}rpx">
+  <text>请输入您的手机号</text>
+</view>
+<view class="content">
+  <view class="iconfont icon-shouji hua"></view>
+  <input placeholder="请输入手机号" maxlength="11" placeholder-style="color:#999" bindinput="userpho" value="{{dianhua}}"/>
+  <view wx:if="{{guanIf}}" class="iconfont icon-guanbi guan" bindtap="phoguanFn"></view>
+</view>
+<view class="footer">
+  <navigator url="/pages/verifica/verifica?mobile={{mobile}}" wx:if="{{btn}}">
+    <view class="btn btnhuang">
+      <text>下一步</text>
+    </view>
+  </navigator>
+  <view class="btn" wx:else>
+    <text>下一步</text>
+  </view>
+  <view class="tiaoyue">
+    <view wx:if="{{dian}}" class="dian hdian" bindtap="dianbian"></view>
+    <view wx:else class="dian" bindtap="colorFn"></view>
+    <view class="zhiti"><text class="hui">已阅读并同意</text><text class="huang">《服务协议》</text><text class="hui">和</text><text class="huang">《隐私政策》</text></view>
+  </view>
+</view>

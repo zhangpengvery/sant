@@ -1,0 +1,94 @@
+<!--pages/home/home.wxml-->
+<navbar params="{{params}}" />
+<scroll-view scroll-y="true" style="height:{{winH}}px" >
+  <view class="header" style="margin-top:{{navH}}rpx">
+    <text>服务创造价值!</text>
+  </view>
+  <view class="home-navimg">
+    <image src="/assets/images/sybj.png"></image>
+  </view>
+  <!-- 轮播图 -->
+  <!-- <swiper class="home-swiper" indicator-dots="true" autoplay="true" style="margin-top:{{-366+navH}}rpx">
+    <swiper-item>
+      <view class="home-conent">
+        <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-18/5fdbf9683332b.jpg"></image>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="home-conent">
+        <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-18/5fdbf9825fd74.jpg"></image>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="home-conent">
+        <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-18/5fdbf98dd1fe1.jpg"></image>
+      </view>
+    </swiper-item>
+  </swiper> -->
+  <!-- 小图标 -->
+  <view class="icon-fater">
+    <block wx:for="{{getIndexIcons}}" wx:key="index">
+      <view class="icon-conent">
+        <view class="icon-img">
+          <image src="{{item.icon}}"></image>
+        </view>
+        <text>{{item.text}}</text>
+      </view>
+    </block>
+  </view>
+  <!-- 保养服务 -->
+  <view class="home-options">
+    <view class="zuo"></view>
+    <text>保养服务</text>
+  </view>
+  <!-- 蓝粉双图 -->
+  <view class="bp-fater">
+    <view class="bp-img">
+      <image src="/assets/images/pinkt.png"></image>
+    </view>
+    <view class="bp-img">
+      <image src="/assets/images/bluet.png"></image>
+    </view>
+  </view>
+  <!-- 热卖配件 -->
+  <view class="home-options">
+    <view class="zuo"></view>
+    <text>热卖配件</text>
+  </view>
+  <scroll-view scroll-x="true" style="height: 332rpx">
+    <view class="options-fater">
+      <block wx:for="{{getSwiperImages}}" wx:key="index">
+        <view class="options-child">
+          <image src="{{item.good_image}}"></image>
+          <text class="options-price">{{item.good_price}}</text>
+          <view class="options-rm">热卖</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <!-- 限时促销 -->
+  <view class="home-options">
+    <view class="zuo"></view>
+    <text>限时促销</text>
+  </view>
+  <!-- 红黄蓝三图 -->
+  <view class="hhl-fater">
+    <view class="h-img">
+      <image src="/assets/images/20201221165446.png"></image>
+    </view>
+    <view class="hl-img">
+      <view class="huang-img">
+        <image src="/assets/images/20201221165508.png"></image>
+      </view>
+      <view class="huang-img">
+        <image src="/assets/images/20201221165531.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 二手车推荐 -->
+  <view class="home-options">
+    <view class="zuo"></view>
+    <text>二手车推荐</text>
+  </view>
+  <list listData="{{listData}}"></list>
+</scroll-view>

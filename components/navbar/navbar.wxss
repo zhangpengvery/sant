@@ -1,0 +1,45 @@
+/* components/navber/navber.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.search-wipe{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+.search-wipe .nav-fater{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.search-wipe .nav-fater .back{
+  font-size: 36rpx;
+  font-weight: 600;
+  position: absolute;
+  bottom: 25rpx;
+  left: 20rpx;
+  color: #666;
+}
+.search-wipe .nav-fater .navber-content{
+  position: absolute;
+  bottom: 17rpx;
+  left: 105rpx;
+  line-height: 55rpx;
+}
+.search-wipe .navber-content .input{
+  height: 55rpx;
+  font-size: 26rpx;
+  background:rgba(54, 52, 52, 0.3);
+  border-radius: 15px;
+  color: #fff;
+  padding: 0 2%;
+}
+.search-wipe .navber-content .search-icon{
+  position: absolute;
+  right: 20rpx;
+}
+.search-wipe .nav-title{
+  position: absolute;
+  bottom: 4rpx;
+  transform: translate(-50%,-50%);
+}

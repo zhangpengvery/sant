@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "navbar":"/components/navbar/navbar",
+    "list":"/components/list/list"
+  },
+  "navigationStyle":"custom"
+}
