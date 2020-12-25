@@ -1,4 +1,4 @@
-<view class="search-wipe" style="background:rgba({{params.r}},{{params.g}},{{params.b}},{{params.navColor}});height:{{navH}}rpx"> 
+<view class="search-wipe" style="background:rgba({{params.r}},{{params.g}},{{params.b}},{{params.navColor}});height:{{navH}}rpx;color:{{params.col}}"> 
   <view class="nav-fater">
     <!-- 返回 -->
     <view class="iconfont icon-ziyuan2 back" bindtap="back" wx:if="{{params.showBack}}"></view>
@@ -12,6 +12,6 @@
       <view class="input"><text class="iconfont icon-lujing46 search-icon"></text></view>
     </view>
     <!-- 网站名 -->
-    <view class="nav-title" wx:if="{{params.navTitle}}" style="left:{{params.l}}%;font-size:{{params.fz}}rpx;font-weight:{{params.fw}};color:{{params.col}}">{{params.title}}</view>
+    <view class="nav-title" wx:if="{{params.navTitle}}" style="left:{{params.l}}%;font-size:{{params.fz}}rpx;font-weight:{{params.fw}}">{{params.title}}</view>
   </view>
 </view>

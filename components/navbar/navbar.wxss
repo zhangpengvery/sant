@@ -18,7 +18,6 @@
   position: absolute;
   bottom: 25rpx;
   left: 20rpx;
-  color: #666;
 }
 .search-wipe .nav-fater .navber-content{
   position: absolute;
@@ -29,9 +28,7 @@
 .search-wipe .navber-content .input{
   height: 55rpx;
   font-size: 26rpx;
-  background:rgba(54, 52, 52, 0.3);
   border-radius: 15px;
-  color: #fff;
   padding: 0 2%;
 }
 .search-wipe .navber-content .search-icon{

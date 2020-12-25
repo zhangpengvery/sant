@@ -1,2 +1,49 @@
 <!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<navbar params="{{params}}" />
+<view class="category" style="margin-top:{{navH}}rpx">
+  <view class="left" style="height:{{scrollH}}rpx">
+    <view data-num="1" class="left-text {{num==1?'xuanz':''}}" bindtap="qiehuan">搅拌车</view>
+    <view data-num="2" class="left-text {{num==2?'xuanz':''}}" bindtap="qiehuan">配件</view>
+  </view>
+  <view class="right" hidden="{{jiaoban}}">
+    <view class="title">车型分类</view>
+    <view class="th-img">
+      <image src="/assets/images/flth.png"></image>
+    </view>
+    <view class="ytsq-img">
+      <view class="yt-img">
+        <image src="/assets/images/flyt.png"></image>
+      </view>
+      <view class="yt-img">
+        <image src="/assets/images/flsq.png"></image>
+      </view>
+    </view>
+    <view class="title">全部车辆</view>
+    <view class="quan">
+      <image src="/assets/images/qbcl.png"></image>
+      <view>全部车辆</view>
+    </view>
+  </view>
+  <view class="right" hidden="{{peijian}}">
+    <view class="title">配件分类</view>
+    <view class="ytsq-img">
+      <view class="yt-img flpj">
+        <image src="/assets/images/pjyp.png"></image>
+      </view>
+      <view class="yt-img">
+        <image src="/assets/images/pjsz.png"></image>
+      </view>
+      <view class="yt-img">
+        <image src="/assets/images/dppj.png"></image>
+      </view>
+      <view class="yt-img">
+        <image src="/assets/images/pjlt.png"></image>
+      </view>
+    </view>
+    <view class="title">全部配件</view>
+    <view class="quan">
+      <image src="/assets/images/qbpj.png"></image>
+      <view>全部配件</view>
+    </view>
+  </view>
+</view>

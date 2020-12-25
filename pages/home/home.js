@@ -26,12 +26,14 @@ Page({
     },
     navH:0,
     city:"",
-    winH:"",
+    winH:0,
     page:1,
+    hidden:false,
     getIndexIcons:[],
     getSwiperImages:[],
     listData:[]
   },
+  //获取用户地址
   getProvinceName(latitude, longitude){
     wx.request({
       url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=ZXJBZ-3FVRP-6BYD2-VAAXH-5GHMS-LHFHR',   
@@ -71,6 +73,23 @@ Page({
       
     })
   },
+  loadMore(){
+    this.setData({
+      page:++this.data.page
+    })
+    this.postHomeBestList(this.data.page)
+  },
+  scrollPage:function(e){
+    if(e.detail.scrollTop>50){
+      this.setData({
+        hidden:true
+      })
+    }else{
+      this.setData({
+        hidden:false
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -79,10 +98,12 @@ Page({
     this.getSwiperImages(),
     this.postHomeBestList(this.data.page)
     //获取高度
+    this.setData({
+      winH:app.globalData.windowHeigtn
+    })
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
-          widH:result.windowHeight-app.globalData.navbarHeight,
           navH:app.globalData.navbarHeight
          })
          console.log(this.data.navH);

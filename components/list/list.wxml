@@ -5,7 +5,7 @@
       <image src="http://www.jbccs.com{{item.image_url}}"></image>
       <text class="list-name">{{item.sale_title}}</text>
       <text class="list-price">{{item.sale_price}}</text>
-      <view class="list-xin"></view>
+      <view class="iconfont {{active==item.sale_id?'icon-xin-xuanzhong':'icon-xin-moren'}} list-xin" bindtap="qiehuanFn" data-index="{{index}}" data-id="{{item.sale_id}}"></view>
     </view>
   </block>
 </view>

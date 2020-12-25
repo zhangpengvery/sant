@@ -1,2 +1,57 @@
 <!--pages/stores/stores.wxml-->
-<text>pages/stores/stores.wxml</text>
+<navbar params="{{params}}" />
+<view class="aui-content" style="top:{{navH}}rpx">
+    <view class="juli-left" bindtap="juli">
+      <text>距离</text>
+      <view class="iconfont icon-zu261 xiabiao"></view>
+    </view>
+    <view class="juli-left juli-right" bindtap="juli">
+      <text>城市</text>
+      <view class="iconfont icon-zu261 xiabiao"></view>
+    </view>
+</view>
+<!-- <view class="mask"></view> -->
+<view class="content" style="margin-top:{{mgH}}rpx">
+  <view class="fater">
+    <view class="stores-img">
+      <image src="/assets/images/qbcl.png"></image>
+    </view>
+    <view class="stores-text">
+      <view class="stores-title">三泰汽车总部</view>
+      <view class="stores-pho">
+        <text class="iconfont icon-dianhua stores-icon"></text>
+        <text class="text-fz text-dianhua text-margin">电话：17550970313</text>
+      </view>
+      <view class="stores-pho">
+        <text class="iconfont icon-weizhi stores-icon"></text>
+        <text class="text-fz text-margin">地址：北京大学</text>
+      </view>
+      <view class="mapgo">
+        <text class="iconfont icon-lijichufa mapgo-icon"></text>
+        <text class="text-margin">立即出发</text>
+      </view>
+      <view class="text-fz length">3.66KM</view>
+    </view>
+  </view>
+  <view class="fater">
+    <view class="stores-img">
+      <image src="/assets/images/qbcl.png"></image>
+    </view>
+    <view class="stores-text">
+      <view class="stores-title">三泰汽车总部</view>
+      <view class="stores-pho">
+        <text class="iconfont icon-dianhua stores-icon"></text>
+        <text class="text-fz text-dianhua text-margin">电话：17550970313</text>
+      </view>
+      <view class="stores-pho">
+        <text class="iconfont icon-weizhi stores-icon"></text>
+        <text class="text-fz text-margin">地址：北京大学</text>
+      </view>
+      <view class="mapgo">
+        <text class="iconfont icon-lijichufa mapgo-icon"></text>
+        <text class="text-margin">立即出发</text>
+      </view>
+      <view class="text-fz length">3.66KM</view>
+    </view>
+  </view>
+</view>

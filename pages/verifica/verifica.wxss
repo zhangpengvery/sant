@@ -1,6 +1,62 @@
 /* pages/verifica/verifica.wxss */
 @import "/assets/fonts/iconfont.wxss";
 .header{
+  width: 92%;
+  margin: 0 4%;
+}
+.header .dazi{
+  color: #333;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.header .xiaozi{
+  color: #999;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+}
+.content{
+  position: relative;
+  width: 92%;
+  margin: 0 4%;
+  height: 130rpx;
+  margin-top: 50rpx;
+}
+.content .content-inp{
+  width: 92%;
+  margin: 0 4%;
+  position: absolute;
+  left: -150rpx;
+}
+.content .heng{
+  position: absolute;
+  width: 94rpx;
+  border-bottom: 2rpx solid #8d8d8d;
+}
+.content .hengOne{
+  left: 16rpx;
+}
+.content .hengTow{
+  left: 200rpx;
+}
+.content .hengThree{
+  left: 400rpx;
+}
+.content .hengFour{
+  right: 16rpx;
+}
+.cheshi{
+  font-size: 50rpx;
+  padding-left: 6%;
+  width: 100%;
+  height: 90rpx;
+  letter-spacing: 162rpx;
+}
+.footer{
   width: 94%;
   margin: 0 3%;
+}
+.person_info_down{
+  color: #F9B236;
+  font-size: 24rpx;
+  float: right;
 }

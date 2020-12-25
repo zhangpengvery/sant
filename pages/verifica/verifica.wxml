@@ -1,7 +1,18 @@
 <!--pages/verifica/verifica.wxml-->
 <navbar params="{{params}}" />
-<view style="margin-top:{{navH}};height:1rpx"></view>
+<view style="margin-top:{{navH}}rpx;height:1rpx"></view>
 <view class="header">
   <view class="dazi">请输入验证码</view>
   <view class="xiaozi">验证码已发送至{{mobile}}</view>
+</view>
+<view class="content">
+  <input class="content-inp" maxlength="4" focus="{{focus}}" bindinput="verificaFn" />
+  <view class="cheshi" bindtap="dianji">{{code}}</view>
+  <view hidden="{{one}}" class="heng hengOne"></view>
+  <view hidden="{{tow}}" class="heng hengTow"></view>
+  <view hidden="{{three}}" class="heng hengThree"></view>
+  <view hidden="{{four}}" class="heng hengFour"></view>
+</view>
+<view class="footer">
+  <view class="person_info_down" bindtap="getCode">{{codetext}}</view>
 </view>

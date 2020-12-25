@@ -1,2 +1,41 @@
 <!--pages/mind/mind.wxml-->
-<text>pages/mind/mind.wxml</text>
+<navbar params="{{params}}" />
+<scroll-view scroll-y="true" bindscroll="scrollPage" style="height:{{winH}}px">
+  <view class="mind-navimg" hidden="{{hidden}}">
+    <image src="/assets/images/sybj.png"></image>
+  </view>
+  <view style="margin-top:{{navH}}rpx" class="header" hidden="true">
+    <navigator url="/pages/login/login">
+      <image class="weideng" src="/assets/images/mrdltx.png"></image>
+    </navigator>
+    <text>未登录</text>
+    <view class="iconfont icon-shezhi shezhi"></view>
+  </view>
+  <view style="margin-top:{{navH}}rpx" class="header">
+    <image class="weideng" src="https://thirdwx.qlogo.cn/mmopen/vi_32/JJNEztkFUvI74LZ94YYMqWicSEib8mpoa95ib64DibawfUKYQiaLJaJmhc1MkZB7j3ZVw8L71buTicgibnkVGhwQuW2Cg/132"></image>
+    <text>张鹏</text>
+    <view class="iconfont icon-shezhi shezhi"></view>
+    <view class="vip">
+      <image src="/assets/images/ptvip.png"></image>
+      <text>V1普通会员</text>
+    </view>
+    <!-- <view class="jdt-img">
+      <image src="/assets/images/jdt.png"></image>
+    </view> -->
+  </view>
+  <view class="mindbody">
+    <block wx:for="{{getMindText}}" wx:key="index">
+      <view class="fater">
+        <view class="title">{{item.title}}</view>
+          <view class="content">
+            <block wx:for="{{item.items}}" wx:key="index">
+              <view class="content-img">
+                <image src="{{item.icon}}"></image>
+                <view class="content-text">{{item.text}}</view>
+              </view>
+            </block>
+          </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

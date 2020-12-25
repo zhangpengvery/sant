@@ -1,15 +1,16 @@
 {
   "pages":[
+    "pages/home/home",
+    "pages/stores/stores",
+    "pages/category/category",
+    "pages/mind/mind",
+    "pages/login2/login2",
+    
     "pages/login/login",
     "pages/verifica/verifica",
-    "pages/login2/login2",
-    "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/category/category",
-    "pages/maps/maps",
-    "pages/mind/mind",
-    "pages/stores/stores"
+    "pages/maps/maps"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -34,8 +35,8 @@
     },
     {
       "pagePath": "pages/maps/maps",
-      "text":"三泰小哥",
-      "iconPath":"/assets/images/xg.png",
+      "text":"“泰式”服务",
+      "iconPath":"/assets/images/xgwx.png",
       "selectedIconPath":"/assets/images/xg.png"
     },{
       "pagePath": "pages/stores/stores",

@@ -1,4 +1,2 @@
 <!--pages/login2/login2.wxml-->
-<view class="btn-submit">
-        <button class="btn-block btn-green" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信用户快速登录</button>
-</view>
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" >{{mobile||"获得电话号码"}}</button>

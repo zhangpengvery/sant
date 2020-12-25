@@ -1,1 +1,106 @@
 /* pages/mind/mind.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.mind-navimg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 366rpx;
+  z-index: -1;
+}
+.mind-navimg image{
+  width: 100%;
+  height: 100%;
+}
+.header{
+  position: relative;
+  width: 94%;
+  margin: 0 3%;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  text-align: center;
+  color: #fff;
+}
+.header .weideng{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.header text{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.header .shezhi{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.vip{
+  position: absolute;
+  top: 40rpx;
+  left: 116rpx;
+  width: 80rpx;
+  height: 22rpx;
+}
+.vip image{
+  width: 100%;
+  height: 100%;
+}
+.vip text{
+  position: absolute;
+  top: 2rpx;
+  left: 4rpx;
+  color: #fff;
+  font-size: 14rpx;
+  font-weight: 400;
+}
+.jdt-img{
+  width: 100%;
+  /* margin: 0 15%; */
+}
+.jdt-img image{
+  width: 100%;
+  height: 100%;
+}
+.mindbody{
+  width: 94%;
+  margin: 0 3%;
+}
+.fater{
+  margin-top: 20rpx;
+  height: 272rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+}
+.title{
+  padding-top: 20rpx;
+  font-weight: bold;
+  margin: 0 0 0 20rpx;
+  height: 98rpx;
+  color: #343232;
+  font-size: 32rpx;
+}
+.content{
+  display: flex;
+  justify-content: space-around;
+}
+.content-img{
+  position: relative;
+  width: 37px;
+  height: 37px;
+}
+.content-img image{
+  width: 100%;
+  height: 100%;
+}
+.content-img .content-text{
+  text-align: center;
+  font-size: 26rpx;
+  width: 140rpx;
+  position: absolute;
+  bottom: -44rpx;
+  left: -30rpx;
+}

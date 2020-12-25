@@ -1,1 +1,71 @@
 /* pages/category/category.wxss */
+.category{
+  display: flex;
+  border-top: 1rpx solid #000;
+
+}
+.category .left{
+  width: 25%;
+  height: 100%;
+  background: #F6F6F6;
+}
+.category .left .left-text{
+  font-size: 24rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color: #999;
+}
+.category .left .xuanz{
+  background: #fff;
+  color: #F9B236;
+  border-left: 4rpx solid #F9B236;
+}
+.right{
+  width: 69%;
+  margin: 0 3%;
+  height: 100%;
+}
+.title{
+  margin: 20rpx 0;
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.th-img{
+  width: 100%;
+  height: 262rpx;
+  margin-bottom: 20rpx;
+}
+.th-img image{
+  width: 100%;
+  height: 100%;
+}
+.ytsq-img{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.ytsq-img .yt-img{
+  width: 48%;
+  height: 172rpx;
+}
+.ytsq-img .yt-img image{
+  width: 100%;
+  height: 100%;
+}
+.quan{
+  color: #333;
+  font-size: 24rpx;
+  text-align: center;
+  width: 260rpx;
+  height: 172rpx;
+}
+.quan image{
+  width: 100%;
+  height: 100%;
+}
+.flpj{
+  margin-bottom: 20rpx;
+}
