@@ -1,0 +1,89 @@
+<!--pages/trad/trad.wxml-->
+<navbar params="{{params}}" />
+<view class="header" style="margin-top:{{navH}}rpx">
+  <view class="box {{leftActive==true?'box-left':''}}" bindtap="recruitFn">出售列表</view>
+  <view class="box {{rightActive==true?'box-right':''}}" bindtap="jobFn">求购列表</view>
+</view>
+<view class="aui-content">
+    <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
+      <text>综合排序</text>
+      <view class="iconfont icon-zu261 xiabiao"></view>
+    </view>
+    <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="cityFn">
+      <text>筛选</text>
+      <view class="iconfont icon-zu261 xiabiao"></view>
+    </view>
+</view>
+<!-- 距离选择 -->
+<view class="showjuli" wx:if="{{showJuli}}">
+  <view bindtap="juliFn" data-id="0">综合排序</view>
+  <view bindtap="juliFn" data-id="1">价格由高到低</view>
+  <view bindtap="juliFn" data-id="2">价格由低到高</view>
+  <view bindtap="juliFn" data-id="3">车龄由高到低</view>
+  <view bindtap="juliFn" data-id="4">车龄由低到高</view>
+</view>
+<!-- 城市选择 -->
+<view class="showchengs" wx:if="{{showcity}}">
+  <scroll-view scroll-y="true" style="height:260rpx;">
+    <view class="showcity-box">
+      <view class="city-select {{cityCss==0?'city-xuanz':''}}" data-id="0" bindtap="cityXuanzFn">全部</view>
+      <block wx:for="{{postCityList}}" wx:key="index">
+        <view class="city-select {{cityCss==item.area_id?'city-xuanz':''}}" data-id="{{item.area_id}}" bindtap="cityXuanzFn">{{item.area_name}}</view>
+      </block>
+    </view>
+  </scroll-view>
+</view>
+<!-- mask -->
+<view class="mask" wx:if="{{showMask}}" bindtap="maskFn"></view>
+<view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
+<!-- 加号 -->
+<view class="jiahao" bindtap="jiahaoFn">+</view>
+<view class="mask-jiahao" wx:if="{{showJiahao}}">
+  <view class="mask-title">发布</view>
+  <view class="mask-icon">
+    <view>
+      <view class="iconfont icon-quanminjingjiren icon-left"></view>
+      <text>我要买车</text>
+    </view>
+    <view>
+      <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+      <text>我要卖车</text>
+    </view>
+  </view>
+</view>
+<!-- 乘号 -->
+<view class="chahao" bindtap="chahaoFn" wx:if="{{showChahao}}">x</view>
+<!-- 商品列表 -->
+<view class="list" wx:if="{{listLeft}}">
+  <block>
+    <view class="list-content">
+      <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
+      <text class="list-name">出售12年5月份，德龙F3000</text>
+      <view class="list-city">位置：河南驻马店市</view>
+      <text class="list-price">面议</text>
+    </view>
+  </block>
+  <block>
+    <view class="list-content">
+      <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
+      <text class="list-name">出售12年5月份，德龙F3000</text>
+      <view class="list-city">位置：河南驻马店市</view>
+      <text class="list-price">面议</text>
+    </view>
+  </block>
+</view>
+<view class="list-right" wx:if="{{listRight}}">
+  <view class="right-content">
+    <view class="right-title">求购国五搅拌车
+      <view class="right-jg">25.00</view>
+    </view>
+    <view class="right-name">
+      <text class="iconfont icon-quanminjingjiren"></text>
+      <text>求购人：张兵</text>
+    </view>
+    <view class="right-name">
+      <text class="iconfont icon-dingwei"></text>
+      <text>位置：郑州市</text>
+    </view>
+  </view>
+</view>

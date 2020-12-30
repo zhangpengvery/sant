@@ -13,10 +13,12 @@ Page({
       showBack:false,
       navTitle:true,
       navInput:true,
+      navAddress:true,
       r:249,
       g:176,
       b:49,
       w:20,
+      inpLeft:105,
       l:50,
       fz:34,
       fw:"bold",
@@ -39,7 +41,7 @@ Page({
       url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=ZXJBZ-3FVRP-6BYD2-VAAXH-5GHMS-LHFHR',   
       data:{},
       success: (res)=> {
-        // console.log(res)
+        console.log(res)
         this.setData({
           city:res.data.result.address_component.city
         })

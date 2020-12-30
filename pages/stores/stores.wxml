@@ -1,57 +1,62 @@
 <!--pages/stores/stores.wxml-->
 <navbar params="{{params}}" />
 <view class="aui-content" style="top:{{navH}}rpx">
-    <view class="juli-left" bindtap="juli">
+    <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
       <text>距离</text>
       <view class="iconfont icon-zu261 xiabiao"></view>
     </view>
-    <view class="juli-left juli-right" bindtap="juli">
+    <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="cityFn">
       <text>城市</text>
       <view class="iconfont icon-zu261 xiabiao"></view>
     </view>
 </view>
-<!-- <view class="mask"></view> -->
+<!-- mask -->
+<view class="mask" wx:if="{{showMask}}" bindtap="maskFn"></view>
+<!-- 距离选择 -->
+<view class="showjuli" wx:if="{{showJuli}}">
+  <view bindtap="juliFn" data-id="0">全部</view>
+  <view bindtap="juliFn" data-id="1">0-50km</view>
+  <view bindtap="juliFn" data-id="2">50-100km</view>
+  <view bindtap="juliFn" data-id="3">100-200km</view>
+  <view bindtap="juliFn" data-id="4">200km以上</view>
+</view>
+<!-- 城市选择 -->
+<view class="showcity" wx:if="{{showCity}}">
+  <scroll-view scroll-y="true" style="height:500rpx;width:30%">
+    <view class="city-content">
+      <block wx:for="{{getCityList}}" wx:key="index">
+        <view class="city-box {{cityActive==item.area_id?'cityac':''}}" bindtap="SaveFn" data-id="{{item.area_id}}">{{item.area_name}}</view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="cityright">
+    <block wx:for="{{getRecruitList}}" wx:key="index">
+      <view class="right-box" bindtap="rightBoxFn" data-id="{{item.area_id}}">{{item.area_name}}</view>
+    </block>
+  </view>
+</view>
 <view class="content" style="margin-top:{{mgH}}rpx">
-  <view class="fater">
-    <view class="stores-img">
-      <image src="/assets/images/qbcl.png"></image>
+  <block wx:for="{{postStoresList}}" wx:key="index">
+    <view class="fater">
+      <view class="stores-img">
+        <image src="http://www.jbccs.com{{item.shop_image}}"></image>
+      </view>
+      <view class="stores-text">
+        <view class="stores-title">{{item.shop_name}}</view>
+        <view class="stores-pho">
+          <text class="iconfont icon-dianhua stores-icon"></text>
+          <text class="text-fz text-dianhua text-margin">电话：{{item.shop_tel}}</text>
+        </view>
+        <view class="stores-pho">
+          <text class="iconfont icon-weizhi stores-icon"></text>
+          <text class="text-fz text-margin">地址：{{item.shop_name}}</text>
+        </view>
+        <view class="mapgo">
+          <text class="iconfont icon-lijichufa mapgo-icon"></text>
+          <text class="text-margin">立即出发</text>
+        </view>
+        <view class="text-fz length">3.66KM</view>
+      </view>
     </view>
-    <view class="stores-text">
-      <view class="stores-title">三泰汽车总部</view>
-      <view class="stores-pho">
-        <text class="iconfont icon-dianhua stores-icon"></text>
-        <text class="text-fz text-dianhua text-margin">电话：17550970313</text>
-      </view>
-      <view class="stores-pho">
-        <text class="iconfont icon-weizhi stores-icon"></text>
-        <text class="text-fz text-margin">地址：北京大学</text>
-      </view>
-      <view class="mapgo">
-        <text class="iconfont icon-lijichufa mapgo-icon"></text>
-        <text class="text-margin">立即出发</text>
-      </view>
-      <view class="text-fz length">3.66KM</view>
-    </view>
-  </view>
-  <view class="fater">
-    <view class="stores-img">
-      <image src="/assets/images/qbcl.png"></image>
-    </view>
-    <view class="stores-text">
-      <view class="stores-title">三泰汽车总部</view>
-      <view class="stores-pho">
-        <text class="iconfont icon-dianhua stores-icon"></text>
-        <text class="text-fz text-dianhua text-margin">电话：17550970313</text>
-      </view>
-      <view class="stores-pho">
-        <text class="iconfont icon-weizhi stores-icon"></text>
-        <text class="text-fz text-margin">地址：北京大学</text>
-      </view>
-      <view class="mapgo">
-        <text class="iconfont icon-lijichufa mapgo-icon"></text>
-        <text class="text-margin">立即出发</text>
-      </view>
-      <view class="text-fz length">3.66KM</view>
-    </view>
-  </view>
+  </block>
 </view>

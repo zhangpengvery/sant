@@ -3,13 +3,16 @@
     <!-- 返回 -->
     <view class="iconfont icon-ziyuan2 back" bindtap="back" wx:if="{{params.showBack}}"></view>
     <!-- 地址 -->
-    <view class="address">
-      <text></text>
+    <view class="address" wx:if="{{params.navAddress}}">
+      <text class="iconfont icon-dingwei"></text>
+      <text>郑州市</text>
     </view>
     <!-- 输入框父盒子 -->
-    <view class="navber-content" wx:if="{{params.navInput}}" style="width:{{params.w}}%">
+    <view class="navber-content" wx:if="{{params.navInput}}" style="width:{{params.w}}%;left:{{params.inpLeft}}rpx">
       <!-- 输入框 -->
-      <view class="input"><text class="iconfont icon-lujing46 search-icon"></text></view>
+      <navigator url="/pages/search/search">
+        <view class="input {{params.bg==true?'input-color':''}}"><text class="iconfont icon-lujing46 search-icon"></text></view>
+      </navigator>
     </view>
     <!-- 网站名 -->
     <view class="nav-title" wx:if="{{params.navTitle}}" style="left:{{params.l}}%;font-size:{{params.fz}}rpx;font-weight:{{params.fw}}">{{params.title}}</view>

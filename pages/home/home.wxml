@@ -7,31 +7,15 @@
   <view class="home-navimg" hidden="{{hidden}}">
     <image src="/assets/images/sybj.png"></image>
   </view>
-  <!-- 轮播图 -->
-  <!-- <swiper class="home-swiper" indicator-dots="true" autoplay="true" style="margin-top:{{-366+navH}}rpx">
-    <swiper-item>
-      <view class="home-conent">
-        <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-18/5fdbf9683332b.jpg"></image>
-      </view>
-    </swiper-item>
-    <swiper-item>
-      <view class="home-conent">
-        <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-18/5fdbf9825fd74.jpg"></image>
-      </view>
-    </swiper-item>
-    <swiper-item>
-      <view class="home-conent">
-        <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-18/5fdbf98dd1fe1.jpg"></image>
-      </view>
-    </swiper-item>
-  </swiper> -->
   <!-- 小图标 -->
   <view class="icon-fater">
     <block wx:for="{{getIndexIcons}}" wx:key="index">
       <view class="icon-conent">
-        <view class="icon-img">
-          <image src="{{item.icon}}"></image>
-        </view>
+        <navigator url="/pages/recruit/recruit">
+          <view class="icon-img">
+            <image src="{{item.icon}}"></image>
+          </view>
+        </navigator>
         <text>{{item.text}}</text>
       </view>
     </block>

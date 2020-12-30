@@ -1,5 +1,8 @@
-// pages/category/category.js
+// pages/details/details.js
 const app=getApp()
+let{
+  requestApi, requestApi1
+}=require("../../utils/request")
 Page({
 
   /**
@@ -7,64 +10,57 @@ Page({
    */
   data: {
     params:{
-      showBack:false,
+      showBack:true,
       navTitle:true,
-      navInput:true,
-      navAddress:true,
+      navInput:false,
+      navAddress:false,
       r:255,
       g:255,
       b:255,
-      w:20,
       l:50,
-      inpLeft:105,
       fz:34,
       fw:"bold",
       navColor:1,
       col:"#000",
-      title:"分类"
+      title:"招聘详情"
     },
     navH:0,
-    scrollH:0,
-    num:1,
-    jiaoban:false,
-    peijian:true
+    phone:'',
+    getApplyInfo:[],
+    getTjList:[]
   },
-  qiehuan:function(e){
-    this.setData({
-      num:e.target.dataset.num
+  bddhFn:function(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
     })
-    if(this.data.num==1){
-      this.setData({
-        jiaoban:false,
-        peijian:true
-      })
-    }else{
-      this.setData({
-        jiaoban:true,
-        peijian:false
-      })
+  },
+  async getApplyInfo(ja_id){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    let result=await requestApi(app.globalData.base_url+"/getApplyInfo",{
+      ja_id:ja_id
+    })
+    if(result.statusCode==200){
+      wx.hideLoading()
     }
+    this.setData({
+      getApplyInfo:result.data.data.apply_info,
+      getTjList:result.data.data.new_3,
+      phone:result.data.data.apply_info.contact_tel
+    })
+    console.log(this.data.getTjList);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //获取高度
+    this.getApplyInfo(options.ja_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
           navH:app.globalData.navbarHeight
          })
-         console.log(this.data.navH);
-         
-      },
-    })
-    wx.getSystemInfo({
-      success: (result) => {
-        this.setData({
-          scrollH:result.windowHeight*(750/result.windowWidth)-app.globalData.navbarHeight
-        })
-        console.log(this.data.scrollH);
       },
     })
   },

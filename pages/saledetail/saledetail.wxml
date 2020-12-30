@@ -1,0 +1,25 @@
+<!--pages/saledetail/saledetail.wxml-->
+<navbar params="{{params}}" />
+<view class="content" style="margin-top:{{navH}}rpx">
+  <view class="header-img">
+    <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
+  </view>
+  <view class="content-detail">
+    <view class="detail-title">出售12年5月份，德龙F3000</view>
+    <view class="detail-jg">6.80</view>
+    <view class="detail-xq">详情：出售12年5月份搅拌车，保险100万，车在搅拌站干活，个人户，可提档，保险2021年8详情：出售12年5月</view>
+  </view>
+  <view class="content-user">
+    <view class="user-name">姓名：张兵</view>
+    <view class="user-name">手机：158****3986</view>
+    <view class="user-name">地址：河南驻马店市平舆县</view>
+    <view class="user-name">发布时间：2020-12-12  09：50：32</view>
+  </view>
+</view>
+<view class="footer">
+  <view class="footer-left">
+    <view class="iconfont icon-wodeshoucang"></view>
+    <view>收藏</view>
+  </view>
+  <view class="footer-right">拨打电话</view>
+</view>
