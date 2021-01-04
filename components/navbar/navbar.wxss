@@ -44,6 +44,6 @@
 }
 .address{
   position: absolute;
-  top: 60rpx;
+  bottom: 22rpx;
   left: 20rpx;
 }

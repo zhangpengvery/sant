@@ -110,20 +110,13 @@
    border-radius: 60rpx 60rpx 0px 0px;
  }
  .chahao{
-   position: fixed;
-   bottom: 40rpx;
-   left: 50%;
-   margin-left: -46rpx;
-   width: 92rpx;
-   height: 92rpx;
-   border-radius: 50%;
-   background: #fff;
-   color: #F9B236;
-   text-align: center;
-   line-height: 82rpx;
-   font-size: 60rpx;
-   border: 4rpx solid #F9B236;
-   z-index: 30;
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translate(-50%);
+  color: #F9B236;
+  font-size: 90rpx;
+  z-index: 30;
  }
  .mask-title{
    text-align: center;

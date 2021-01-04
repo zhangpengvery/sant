@@ -1,0 +1,55 @@
+<!--pages/details/details.wxml-->
+<navbar params="{{params}}" />
+<view class="header" style="margin-top:{{navH}}rpx">
+  <view class="content">
+    <view class="content-box">
+      <view class="content-title">{{getRecruitInfo.recruit_title}}</view>
+      <view class="content-gs"><text class="iconfont icon-weixiuzhan"></text> {{getRecruitInfo.contact_name}}</view>
+      <view class="content-jg">{{getRecruitInfo.salary_name}}</view>
+      <view class="content-time">{{getRecruitInfo.add_time}}</view>
+      <view class="content-dizhi"><text class="iconfont icon-dingwei"></text> {{getRecruitInfo.area_info}}</view>
+      <view class="content-dz">
+        <view class="content-dz-box">{{getRecruitInfo.province_name}}</view>
+        <view class="content-dz-box">{{getRecruitInfo.city_name}}</view>
+        <view class="content-dz-box">{{getRecruitInfo.area_name}}</view>
+      </view>
+    </view>
+    <view class="content-user">
+      <view class="user-tx">
+        <image src="{{getRecruitInfo.user_avatar}}"></image>
+      </view>
+      <view class="user-zl">
+        <view class="user-name">{{getRecruitInfo.contact_name}}</view>
+        <view class="user-img">
+          <image src="/assets/images/ptvip.png"></image>
+          <text class="vip-text">v1普通会员</text>
+        </view>
+        <view class="user-pho">手机：<text>{{getRecruitInfo.contact_tel}}</text></view>
+      </view>
+    </view>
+    <view class="content-zhiwei">
+      <view class="zhiwei-title">职位描述</view>
+      <view class="zhiwei-nr">{{getRecruitInfo.recruit_message}}</view>
+    </view>
+  </view>
+  <view class="tjzw">推荐职位</view>
+</view>
+<view class="recruit-content">
+  <block wx:for="{{getTjList}}" wx:key="index">
+    <navigator url="/pages/qzdetails/qzdetails?jr_id={{item.jr_id}}">
+      <view class="content-box">
+        <view class="content-title">{{item.recruit_title}}</view>
+        <view class="content-gs">{{item.contact_name}}</view>
+        <view class="content-jg">{{item.salary_name}}</view>
+        <view class="content-time">{{item.add_time_text}}</view>
+        <view class="content-dz">
+          <view class="content-dz-box">{{item.province_name}}</view>
+          <view class="content-dz-box">{{item.city_name}}</view>
+          <view class="content-dz-box">{{item.area_name}}</view>
+          <view class="content-dz-box">{{item.ex_name}}</view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+</view>
+<view class="bddh" bindtap="bddhFn">拨打电话</view>

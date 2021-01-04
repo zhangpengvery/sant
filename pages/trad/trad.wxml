@@ -52,7 +52,7 @@
   </view>
 </view>
 <!-- 乘号 -->
-<view class="chahao" bindtap="chahaoFn" wx:if="{{showChahao}}">x</view>
+<view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 商品列表 -->
 <view class="list" wx:if="{{listLeft}}">
   <block>

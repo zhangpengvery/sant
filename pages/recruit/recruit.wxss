@@ -116,16 +116,9 @@
    position: fixed;
    bottom: 40rpx;
    left: 50%;
-   margin-left: -46rpx;
-   width: 92rpx;
-   height: 92rpx;
-   border-radius: 50%;
-   background: #fff;
+   transform: translate(-50%);
    color: #F9B236;
-   text-align: center;
-   line-height: 82rpx;
-   font-size: 60rpx;
-   border: 4rpx solid #F9B236;
+   font-size: 90rpx;
    z-index: 30;
  }
  .mask-title{
@@ -317,7 +310,7 @@
 }
 .content-box .content-dz{
   display: flex;
-  width: 300rpx;
+  width: 450rpx;
   height: 50rpx;
 }
 .content-dz-box{

@@ -41,15 +41,15 @@
   <view class="showyaoqiu-text">经验</view>
   <view class="showyaoqiu-fater">
     <view class="showyaoqiu-box {{exCss==0?'exxuanz':''}}" data-id="0" bindtap="excssFn">全部</view>
-    <block wx:for="{{postSalaryList}}" wx:key="index">
-      <view class="showyaoqiu-box {{exCss==item.je_id?'exxuanz':''}}" data-id="{{item.je_id}}" bindtap="excssFn">{{item.salary_name}}</view>
+    <block wx:for="{{postExList}}" wx:key="index">
+      <view class="showyaoqiu-box {{exCss==item.je_id?'exxuanz':''}}" data-id="{{item.je_id}}" bindtap="excssFn">{{item.ex_name}}</view>
     </block>
   </view>
   <view class="showyaoqiu-text">薪资</view>
   <view class="showyaoqiu-fater">
     <view class="showyaoqiu-box {{salaryCss==0?'salaxuanz':''}}" data-id="0" bindtap="salacssFn">全部</view>
-    <block wx:for="{{postExList}}" wx:key="index">
-      <view class="showyaoqiu-box {{salaryCss==item.js_id?'salaxuanz':''}}" data-id="{{item.js_id}}" bindtap="salacssFn">{{item.ex_name}}</view>
+    <block wx:for="{{postSalaryList}}" wx:key="index">
+      <view class="showyaoqiu-box {{salaryCss==item.js_id?'salaxuanz':''}}" data-id="{{item.js_id}}" bindtap="salacssFn">{{item.salary_name}}</view>
     </block>
   </view>
   <view class="hbtn" bindtap="showBtnFn">确定</view>
@@ -63,18 +63,23 @@
   <view class="mask-title">发布</view>
   <view class="mask-icon">
     <view>
-      <view class="iconfont icon-quanminjingjiren icon-left"></view>
-      <text>我要招募</text>
+      <navigator url="/pages/postoffer/postoffer">
+        <view class="iconfont icon-quanminjingjiren icon-left"></view>
+        <text>我要招募</text>
+      </navigator>
     </view>
     <view>
-      <view class="iconfont icon-qiuzhiguanli icon-right"></view>
-      <text>我要求职</text>
+      <navigator url="/pages/postjob/postjob">
+        <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+        <text>我要求职</text>
+      </navigator>
     </view>
   </view>
 </view>
-<!-- 加号 -->
-<view class="chahao" bindtap="chahaoFn" wx:if="{{showChahao}}">x</view>
-<view class="recruit-content">
+<!-- 叉号 -->
+<view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
+<!-- 招聘 -->
+<view class="recruit-content" wx:if="{{leftActive}}">
   <block wx:for="{{postRecruitList}}" wx:key="index">
     <navigator url="/pages/details/details?ja_id={{item.ja_id}}">
       <view class="content-box">
@@ -86,6 +91,25 @@
           <view class="content-dz-box">{{item.province_name}}</view>
           <view class="content-dz-box">{{item.city_name}}</view>
           <view class="content-dz-box">{{item.area_name}}</view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+</view>
+<!-- 求职 -->
+<view class="recruit-content" wx:if="{{rightActive}}">
+  <block wx:for="{{getJobRecruitLists}}" wx:key="index">
+    <navigator url="/pages/qzdetails/qzdetails?jr_id={{item.jr_id}}">
+      <view class="content-box">
+        <view class="content-title">{{item.recruit_title}}</view>
+        <view class="content-gs">{{item.contact_name}}</view>
+        <view class="content-jg">{{item.salary_name}}</view>
+        <view class="content-time">{{item.add_time_text}}</view>
+        <view class="content-dz">
+          <view class="content-dz-box">{{item.province_name}}</view>
+          <view class="content-dz-box">{{item.city_name}}</view>
+          <view class="content-dz-box">{{item.area_name}}</view>
+          <view class="content-dz-box">{{item.ex_name}}</view>
         </view>
       </view>
     </navigator>

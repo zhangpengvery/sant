@@ -1,0 +1,48 @@
+<!--pages/maintain/maintain.wxml-->
+<navbar params="{{params}}" />
+<view class="header-img" style="margin-top:{{navH}}rpx">
+  <image src="/assets/images/20201221165446.png"></image>
+</view>
+<view class="title">
+  <view class="dian"></view>
+  <view class="title-text">请选择套餐</view>
+</view>
+<view class="content">
+  <view class="con-fater">
+    <view class="con-img">
+      <image src="/assets/images/20201221165446.png"></image>
+    </view>
+    <view class="con-text">
+      <view class="con-title">上装保养</view>
+      <view class="con-jg">￥800</view>
+      <view class="con-pj">液压油+齿轮油+液压滤芯</view>
+    </view>
+    <view class="xuanz {{activeTop==true?'bgxuanz':''}}" bindtap="xuanzTopFn">√</view>
+  </view>
+  <view class="con-fater">
+    <view class="con-img">
+      <image src="/assets/images/20201221165446.png"></image>
+    </view>
+    <view class="con-text">
+      <view class="con-title">底盘基础保养</view>
+      <view class="con-jg">￥800</view>
+      <view class="con-pj">1个18L机油+2个4L机油+2个机油滤芯</view>
+    </view>
+    <view class="xuanz {{activeBtm==true?'bgxuanz':''}}" bindtap="xuanzBtmFn">√</view>
+  </view>
+</view>
+<view class="title">
+  <view class="dian"></view>
+  <view class="title-text">请输入个人信息</view>
+</view>
+<view class="footer">
+  <view class="footer-con">
+    <view class="name">姓名：</view>
+    <input class="name-inp" type="text" />
+    <view class="phone">电话：</view>
+    <input class="phone-inp" type="text" />
+  </view>
+</view>
+<view class="lxdh">联系电话：400 900 7819</view>
+<view class="ljzf" bindtap="ljzfFn">立即支付</view>
+

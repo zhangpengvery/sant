@@ -67,12 +67,9 @@ Page({
       page:page,
       user_id:1
     }).then(res=>{
-      console.log(res);
       this.setData({
         listData:this.data.listData.concat(res.data.data)
       })
-      console.log(this.data.listData);
-      
     })
   },
   loadMore(){
