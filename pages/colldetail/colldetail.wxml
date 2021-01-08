@@ -4,13 +4,13 @@
   <view class="box">
     <view class="box-title">收货人</view>
     <view class="box-inp">
-      <input bindinput="bindBoard" type="text" placeholder="请输入收货人姓名" />
+      <input bindinput="bindBoard" type="text" placeholder="请输入收货人姓名" value="{{getAddressInfo.true_name}}" />
     </view>
   </view>
   <view class="box"> 
     <view class="box-title">手机</view>
     <view class="box-inp">
-      <input type="number" bindinput="bindPho" maxlength="11" placeholder="请输入您的手机号" />
+      <input type="number" bindinput="bindPho" maxlength="11" placeholder="请输入您的手机号" value="{{getAddressInfo.phone}}" />
     </view>
   </view>
   <view class="box">
@@ -27,14 +27,14 @@
   <view class="box box2">
     <view class="box-title">详细地址</view>
     <view class="box-inp box-da">
-      <textarea bindinput="bindaddress" type="text" class="da-inp" placeholder="请输入详细地址" maxlength="50" />
+      <textarea bindinput="bindaddress" type="text" class="da-inp" placeholder="请输入详细地址" maxlength="50" value="{{getAddressInfo.address}}" />
     </view>
   </view>
 </view>
 <view class="content" style="margin-top:20rpx">
   <view class="box-footer">
     <view class="footer-text">设为默认地址</view>
-    <switch class="switchcss" color="#F9B236" bindchange="switchFn"></switch>
+    <switch class="switchcss" color="#F9B236" bindchange="switchFn" checked="{{is_def==1?true:false}}"     disabled="{{is_def==1?true:false}}"></switch>
   </view>
 </view>
 <navigator url="/pages/address/address">

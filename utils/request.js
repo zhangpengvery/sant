@@ -6,7 +6,8 @@ function requestApi(url, data = {}, method = "get") {
       data: data,
       method: method,
       header: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        'XX-Token':wx.getStorageSync('token'),
       },
       success: function (res) {
         if (res.statusCode == 200) {

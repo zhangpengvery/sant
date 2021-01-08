@@ -22,7 +22,7 @@ Page({
       fw:"bold",
       navColor:1,
       col:"#000",
-      title:"新建收货地址"
+      title:"修改收货地址"
     },
     navH:0,
     province_list:null,
@@ -41,16 +41,15 @@ Page({
     phone:0,
     address:"",
     is_def:0,
+    getAddressInfo:[],
+    address_id:0,
   },
   //切换按钮
   switchFn:function(e){
     if(e.detail.value){
+      this.setDefaultress(this.data.address_id)
       this.setData({
         is_def:1
-      })
-    }else{
-      this.setData({
-        is_def:0
       })
     }
   },
@@ -181,7 +180,7 @@ Page({
   },
 
   bddhFn:function(){
-    this.postaddAddress(this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone,this.data.is_def)
+    this.editAddress(this.data.address_id,this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone)
   },
   bindBoard:function(e){
     this.setData({
@@ -198,20 +197,53 @@ Page({
       address:e.detail.value
     })
   },
-  postaddAddress(area_id,true_name,address,phone,is_def){
-    requestApi1(app.globalData.base_url+"/addAddress",{
+  async getAddressInfo(address_id){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    let result=await requestApi(app.globalData.base_url+"/getAddressInfo",{
+      address_id:address_id
+    })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
+    this.setData({
+      getAddressInfo:result.data.data.address_info,
+      is_def:result.data.data.address_info.is_def,
+      selectAreaId:result.data.data.address_info.area_id,
+      true_name:result.data.data.address_info.true_name,
+      address:result.data.data.address_info.address
+    })
+    console.log(this.data.getAddressInfo);
+  },
+  //设置默认
+  setDefaultress(address_id){
+    requestApi1(app.globalData.base_url+"/setDefaultAddress",{
+      address_id:address_id
+    })
+  },
+  //修改地址
+  editAddress(address_id,area_id,true_name,address,phone){
+    requestApi1(app.globalData.base_url+"/editAddress",{
+      address_id:address_id,
       area_id:area_id,
       true_name:true_name,
       address:address,
-      phone:phone,
-      is_def:is_def
+      phone:phone
+    }).then(res=>{
+      console.log(res);
+      
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      address_id:options.address_id
+    })
     this.getProvince()
+    this.getAddressInfo(options.address_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

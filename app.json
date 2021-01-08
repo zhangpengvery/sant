@@ -1,7 +1,9 @@
 {
   "pages":[
-    "pages/newress/newress",
     "pages/address/address",
+    "pages/colldetail/colldetail",
+    "pages/newress/newress",
+    "pages/demo/demo",
     "pages/second/second",
     "pages/peijdetail/peijdetail",
     "pages/accedetail/accedetail",

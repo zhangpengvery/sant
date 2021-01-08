@@ -1,30 +1,10 @@
-// pages/newress/newress.js
-const app=getApp()
-let{
-  requestApi, requestApi1
-}=require("../../utils/request")
+// pages/demo/demo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"新建收货地址"
-    },
-    navH:0,
     province_list:null,
     province_name:null,
     city_list:null,
@@ -37,22 +17,6 @@ Page({
     selectProvinceId:null,
     selectCityId:null,
     selectAreaId:null,
-    true_name:"",
-    phone:0,
-    address:"",
-    is_def:0,
-  },
-  //切换按钮
-  switchFn:function(e){
-    if(e.detail.value){
-      this.setData({
-        is_def:1
-      })
-    }else{
-      this.setData({
-        is_def:0
-      })
-    }
   },
   //获取省份列表
   getProvince:function(){
@@ -117,13 +81,14 @@ Page({
         area_parent_id:id
       },
       success(res){
-        // console.log(res.data.datas.area_list)
+        // console.log(res.data.data)
         let areaList = [...res.data.datas.area_list]
         let areaArr = res.data.datas.area_list.map((item)=>{return item.area_name}) //区域名
         that.setData({
           multiArray:[that.data.province_name,that.data.city_name,areaArr],
           area_list:areaList, //区列表
-          area_name:areaArr   //区名字
+          area_name:areaArr,   //区名字
+          
         })
         
       }
@@ -149,7 +114,7 @@ Page({
         selectAreaId: this.data.area_list[e.detail.value[2]].area_id
       })
     }
-    console.log(this.data.selectAreaId)
+    // console.log(this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId)
   },
   //滑动地区组件
   bindRegionColumnChange:function(e){
@@ -179,46 +144,11 @@ Page({
     }
     that.setData(data)  //更新数据
   },
-
-  bddhFn:function(){
-    this.postaddAddress(this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone,this.data.is_def)
-  },
-  bindBoard:function(e){
-    this.setData({
-      true_name:e.detail.value
-    })
-  },
-  bindPho:function(e){
-    this.setData({
-      phone:e.detail.value
-    })
-  },
-  bindaddress:function(e){
-    this.setData({
-      address:e.detail.value
-    })
-  },
-  postaddAddress(area_id,true_name,address,phone,is_def){
-    requestApi1(app.globalData.base_url+"/addAddress",{
-      area_id:area_id,
-      true_name:true_name,
-      address:address,
-      phone:phone,
-      is_def:is_def
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getProvince()
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**
