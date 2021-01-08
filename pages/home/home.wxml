@@ -26,14 +26,16 @@
     <text>保养服务</text>
   </view>
   <!-- 蓝粉双图 -->
-  <view class="bp-fater">
-    <view class="bp-img">
-      <image src="/assets/images/pinkt.png"></image>
+  <navigator url="/pages/maintain/maintain">
+    <view class="bp-fater">
+      <view class="bp-img">
+        <image src="/assets/images/pinkt.png"></image>
+      </view>
+      <view class="bp-img">
+        <image src="/assets/images/bluet.png"></image>
+      </view>
     </view>
-    <view class="bp-img">
-      <image src="/assets/images/bluet.png"></image>
-    </view>
-  </view>
+  </navigator>
   <!-- 热卖配件 -->
   <view class="home-options">
     <view class="zuo"></view>

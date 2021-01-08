@@ -1,15 +1,15 @@
 <!--pages/trad/trad.wxml-->
 <navbar params="{{params}}" />
-<view class="header" style="margin-top:{{navH}}rpx">
+<view class="header" style="top:{{navH}}rpx">
   <view class="box {{leftActive==true?'box-left':''}}" bindtap="recruitFn">出售列表</view>
-  <view class="box {{rightActive==true?'box-right':''}}" bindtap="jobFn">求购列表</view>
+  <view class="box2 {{rightActive==true?'box-right':''}}" bindtap="jobFn">求购列表</view>
 </view>
-<view class="aui-content">
+<view class="aui-content" style="top:{{posH}}rpx">
     <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
       <text>综合排序</text>
       <view class="iconfont icon-zu261 xiabiao"></view>
     </view>
-    <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="cityFn">
+    <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="screenFn">
       <text>筛选</text>
       <view class="iconfont icon-zu261 xiabiao"></view>
     </view>
@@ -17,24 +17,60 @@
 <!-- 距离选择 -->
 <view class="showjuli" wx:if="{{showJuli}}">
   <view bindtap="juliFn" data-id="0">综合排序</view>
-  <view bindtap="juliFn" data-id="1">价格由高到低</view>
-  <view bindtap="juliFn" data-id="2">价格由低到高</view>
-  <view bindtap="juliFn" data-id="3">车龄由高到低</view>
-  <view bindtap="juliFn" data-id="4">车龄由低到高</view>
+  <view bindtap="juliFn" data-id="1" data-price_up="1">价格由高到低</view>
+  <view bindtap="juliFn" data-id="2" data-price_up="0">价格由低到高</view>
+  <view bindtap="juliFn" data-id="3" data-leng_up="1">车龄由高到低</view>
+  <view bindtap="juliFn" data-id="4" data-leng_up="0">车龄由低到高</view>
 </view>
-<!-- 城市选择 -->
+<!-- 车型选择 -->
 <view class="showchengs" wx:if="{{showcity}}">
-  <scroll-view scroll-y="true" style="height:260rpx;">
-    <view class="showcity-box">
-      <view class="city-select {{cityCss==0?'city-xuanz':''}}" data-id="0" bindtap="cityXuanzFn">全部</view>
-      <block wx:for="{{postCityList}}" wx:key="index">
-        <view class="city-select {{cityCss==item.area_id?'city-xuanz':''}}" data-id="{{item.area_id}}" bindtap="cityXuanzFn">{{item.area_name}}</view>
+  <scroll-view scroll-y="true" style="height:500rpx;">
+    <view class="showyaoqiu-text">品牌</view>
+    <view class="showyaoqiu-fater">
+      <view class="showyaoqiu-box {{brandCss==0?'brandxz':''}}" data-id="0" bindtap="brandcssFn">全部</view>
+      <block wx:for="{{getBrandList}}" wx:key="index">
+        <view class="showyaoqiu-box {{brandCss==item.brand_id?'brandxz':''}}" data-id="{{item.brand_id}}" bindtap="brandcssFn">{{item.brand_name}}</view>
+      </block>
+    </view>
+    <view class="showyaoqiu-text">底盘</view>
+    <view class="showyaoqiu-fater">
+      <view class="showyaoqiu-box {{chassisCss==0?'chassis':''}}" data-id="0" bindtap="chassisFn">全部</view>
+      <block wx:for="{{getChassisList}}" wx:key="index">
+        <view class="showyaoqiu-box {{chassisCss==item.brand_id?'chassis':''}}" data-id="{{item.brand_id}}" bindtap="chassisFn">{{item.brand_name}}</view>
+      </block>
+    </view>
+    <view class="showyaoqiu-text">驱动</view>
+    <view class="showyaoqiu-fater">
+      <view class="showyaoqiu-box {{driveCss==0?'drivexz':''}}" data-id="0" bindtap="driveFn">全部</view>
+      <block wx:for="{{getDriveList}}" wx:key="index">
+        <view class="showyaoqiu-box {{driveCss==item.drive_id?'drivexz':''}}" data-id="{{item.drive_id}}" bindtap="driveFn">{{item.drive_name}}</view>
+      </block>
+    </view>
+    <view class="showyaoqiu-text">车龄</view>
+    <view class="showyaoqiu-fater">
+      <view class="showyaoqiu-box {{ageCss==0?'Agexz':''}}" data-id="0" bindtap="agecssFn">全部</view>
+      <block wx:for="{{getAgeList}}" wx:key="index">
+        <view class="showyaoqiu-box {{ageCss==item.age_id?'Agexz':''}}" data-id="{{item.age_id}}" bindtap="agecssFn">{{item.age_name}}</view>
+      </block>
+    </view>
+    <view class="showyaoqiu-text">来源</view>
+    <view class="showyaoqiu-fater">
+      <view class="showyaoqiu-box {{sourceCss==0?'sourcexz':''}}" data-id="0" bindtap="sourceFn">全部</view>
+      <block wx:for="{{getSourceList}}" wx:key="index">
+        <view class="showyaoqiu-box {{sourceCss==item.source_id?'sourcexz':''}}" data-id="{{item.source_id}}" bindtap="sourceFn">{{item.source_name}}</view>
+      </block>
+    </view>
+    <view class="showyaoqiu-text">排放</view>
+    <view class="showyaoqiu-fater">
+      <view class="showyaoqiu-box {{dischargeCss==0?'dischargexz':''}}" data-id="0" bindtap="dischargeFn">全部</view>
+      <block wx:for="{{getDischargeList}}" wx:key="index">
+        <view class="showyaoqiu-box {{dischargeCss==item.discharge_id?'dischargexz':''}}" data-id="{{item.discharge_id}}" bindtap="dischargeFn">{{item.discharge_name}}</view>
       </block>
     </view>
   </scroll-view>
+  <view class="hbtn" bindtap="showBtnFn">确定</view>
 </view>
 <!-- mask -->
-<view class="mask" wx:if="{{showMask}}" bindtap="maskFn"></view>
 <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
 <!-- 加号 -->
 <view class="jiahao" bindtap="jiahaoFn">+</view>
@@ -54,36 +90,36 @@
 <!-- 乘号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 商品列表 -->
-<view class="list" wx:if="{{listLeft}}">
-  <block>
-    <view class="list-content">
-      <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
-      <text class="list-name">出售12年5月份，德龙F3000</text>
-      <view class="list-city">位置：河南驻马店市</view>
-      <text class="list-price">面议</text>
-    </view>
-  </block>
-  <block>
-    <view class="list-content">
-      <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
-      <text class="list-name">出售12年5月份，德龙F3000</text>
-      <view class="list-city">位置：河南驻马店市</view>
-      <text class="list-price">面议</text>
-    </view>
-  </block>
-</view>
-<view class="list-right" wx:if="{{listRight}}">
-  <view class="right-content">
-    <view class="right-title">求购国五搅拌车
-      <view class="right-jg">25.00</view>
-    </view>
-    <view class="right-name">
-      <text class="iconfont icon-quanminjingjiren"></text>
-      <text>求购人：张兵</text>
-    </view>
-    <view class="right-name">
-      <text class="iconfont icon-dingwei"></text>
-      <text>位置：郑州市</text>
-    </view>
+<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx;margin-top:250rpx" wx:if="{{listLeft}}">
+  <view class="list">
+    <block wx:for="{{getAllSaleList}}" wx:key="index">
+      <view class="list-content">
+        <navigator url="/pages/saledetail/saledetail?sale_id={{item.sale_id}}">
+          <image mode="aspectFill" src="{{item.image_url}}"></image>
+          <text class="list-name">{{item.sale_title}}</text>
+          <view class="list-city">位置：<text>{{item.province_name}}</text><text>{{item.city_name}}</text></view>
+          <text class="list-price">{{item.sale_price}}</text>
+        </navigator>
+      </view>
+    </block>
   </view>
+</scroll-view>
+<view class="list-right" wx:if="{{listRight}}" style="margin-top:250rpx">
+  <block wx:for="{{getSaleforLists}}" wx:key="index">
+    <navigator url="/pages/reqdetail/reqdetail?sf_id={{item.sf_id}}">
+      <view class="right-content">
+        <view class="right-title">{{item.safe_title}}
+          <view class="right-jg">{{item.price}}</view>
+        </view>
+        <view class="right-name">
+          <text class="iconfont icon-quanminjingjiren"></text>
+          <text>求购人：{{item.contact_name}}</text>
+        </view>
+        <view class="right-name">
+          <text class="iconfont icon-dingwei"></text>
+          <text>位置：{{item.city_name}}</text>
+        </view>
+      </view>
+    </navigator>
+  </block>
 </view>

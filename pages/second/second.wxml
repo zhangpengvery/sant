@@ -1,0 +1,107 @@
+<!--pages/second/second.wxml-->
+<navbar params="{{params}}" />
+<view class="header" style="margin-top:{{navH}}rpx">
+  <block wx:for="{{tabNavlists}}" wx:key="index">
+    <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
+      {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
+    </view>
+  </block>
+</view>
+<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
+  <swiper-item>
+    <view class="content">
+      <view class="con-fater">
+        <view class="con-img">
+          <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
+        </view>
+        <view class="con-text">
+          <view class="con-title">12年德龙，车况精品，共六台</view>
+          <view class="con-jg">￥360.00</view>
+        </view>
+        <view class="delete">删除</view>
+        <view class="editor">编辑</view>
+      </view>
+      <view class="con-fater">
+        <view class="con-img">
+          <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
+        </view>
+        <view class="con-text">
+          <view class="con-title">12年德龙，车况精品，共六台</view>
+          <view class="con-jg">￥360.00</view>
+        </view>
+        <view class="delete">删除</view>
+        <view class="editor">编辑</view>
+      </view>
+    </view>
+    <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
+    <!-- 加号 -->
+    <view class="jiahao" bindtap="jiahaoFn">+</view>
+    <view class="mask-jiahao" wx:if="{{showJiahao}}">
+      <view class="mask-title">发布</view>
+      <view class="mask-icon">
+        <view>
+          <view class="iconfont icon-quanminjingjiren icon-left"></view>
+          <text>我要买车</text>
+        </view>
+        <view>
+          <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+          <text>我要卖车</text>
+        </view>
+      </view>
+    </view>
+    <!-- 乘号 -->
+    <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
+  </swiper-item>
+  <swiper-item>
+    <view class="right-list">
+      <view class="right-content">
+        <view class="right-title">求购国五搅拌车
+          <view class="right-jg">￥25.00</view>
+        </view>
+        <view class="right-name">
+          <text class="iconfont icon-quanminjingjiren"></text>
+          <text>求购人：张兵</text>
+        </view>
+        <view class="right-name">
+          <text class="iconfont icon-dingwei"></text>
+          <text>位置：河南郑州市</text>
+        </view>
+        <view class="delete">删除</view>
+        <view class="editor">编辑</view>
+      </view>
+      <view class="right-content">
+        <view class="right-title">求购国五搅拌车
+          <view class="right-jg">￥25.00</view>
+        </view>
+        <view class="right-name">
+          <text class="iconfont icon-quanminjingjiren"></text>
+          <text>求购人：张兵</text>
+        </view>
+        <view class="right-name">
+          <text class="iconfont icon-dingwei"></text>
+          <text>位置：河南郑州市</text>
+        </view>
+        <view class="delete">删除</view>
+        <view class="editor">编辑</view>
+      </view>
+    </view>
+    <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
+    <!-- 加号 -->
+    <view class="jiahao" bindtap="jiahaoFn">+</view>
+    <view class="mask-jiahao" wx:if="{{showJiahao}}">
+      <view class="mask-title">发布</view>
+      <view class="mask-icon">
+        <view>
+          <view class="iconfont icon-quanminjingjiren icon-left"></view>
+          <text>我要买车</text>
+        </view>
+        <view>
+          <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+          <text>我要卖车</text>
+        </view>
+      </view>
+    </view>
+    <!-- 乘号 -->
+    <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
+  </swiper-item>
+</swiper>

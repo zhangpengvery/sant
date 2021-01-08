@@ -25,12 +25,38 @@ Page({
       title:"出售详情"
     },
     navH:0,
+    phone:'',
+    getSaleInfo:[],
+    getSaleImg:[]
   },
-
+  bddhFn:function(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
+    })
+  },
+  async getSaleInfo(sale_id){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    let result=await requestApi(app.globalData.base_url+"/getSaleInfo",{
+      sale_id:sale_id
+    })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
+    this.setData({
+      getSaleInfo:result.data.data,
+      getSaleImg:result.data.data.pics,
+      phone:result.data.data.contact_tel
+    })
+    console.log(this.data.getSaleInfo);
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getSaleInfo(options.sale_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

@@ -1,4 +1,4 @@
-// pages/reqdetail/reqdetail.js
+// pages/accedetail/accedetail.js
 const app=getApp()
 let{
   requestApi, requestApi1
@@ -22,40 +22,15 @@ Page({
       fw:"bold",
       navColor:1,
       col:"#000",
-      title:"求购详情"
+      title:"商品详情"
     },
     navH:0,
-    phone:'17550970313',
-    getSaleInfo:[],
-    getSaleList:[]
   },
-  bddhFn:function(){
-    wx.makePhoneCall({
-      phoneNumber: this.data.phone,
-    })
-  },
-  async getSaleforInfo(sf_id){
-    wx.showLoading({
-      title: '加载中...',
-    })
-    let result=await requestApi(app.globalData.base_url+"/getSaleforInfo",{
-      sf_id:sf_id
-    })
-    if(result.statusCode==200){
-      wx.hideLoading()
-    }
-    this.setData({
-      getSaleInfo:result.data.data.info,
-      getSaleList:result.data.data.new_3
-    })
-    console.log(this.data.getSaleList);
-    
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSaleforInfo(options.sf_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

@@ -1,0 +1,125 @@
+/* pages/order/order.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.header{
+  width: 94%;
+  height: 100rpx;
+  margin: 0 3%;
+  display: flex;
+  justify-content: space-around;
+  line-height: 100rpx;
+}
+.nav-box{
+  position: relative;
+  font-size: 28rpx;
+}
+.active{
+  color: #F9B236;
+}
+.nav-xian{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translate(-50%);
+  width: 28rpx;
+  height: 4rpx;
+}
+.bgactive{
+  background: #F9B236;
+}
+.content{
+  width: 94%;
+  margin: 0 3%;
+}
+.content .box{
+  width: 94%;
+  height: 360rpx;
+  padding: 20rpx 3%;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+}
+.box-header{
+  display: flex;
+  font-size: 26rpx;
+  height: 60rpx;
+}
+.box-header .iconfont{
+  color: #F9B236;
+}
+.box-header .bianh{
+  color: #6E6E6E;
+  margin: 0 115rpx 0 20rpx;
+}
+.box-header .zhuangt{
+  color: #F9B236;
+  font-size: 24rpx;
+}
+.box-body{
+  display: flex;
+}
+.box-body .body-img{
+  width: 200rpx;
+  margin-right: 20rpx;
+  height: 200rpx;
+}
+.body-img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx 0 0 20rpx;
+}
+.body-text .body-title{
+  color: #333;
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.body-jg{
+  position: relative;
+  width: 415rpx;
+  font-size: 34rpx;
+  color: #BA1515;
+  margin-top: 50rpx;
+}
+.body-text .body-pj{
+  color: #999;
+  font-size: 26rpx;
+}
+.body-sl{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #999;
+  font-size: 26rpx;
+}
+.box-footer{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+.footer-left{
+  font-size: 28rpx;
+  color: #333333;
+}
+.footer-right{
+  display: flex;
+  text-align: center;
+}
+.footer-right .cancella{
+  width: 140rpx;
+  height: 52rpx;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  border: 2rpx solid #707070;
+  border-radius: 84rpx;
+  margin-right: 20rpx;
+}
+.footer-right .payment{
+  width: 140rpx;
+  height: 52rpx;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  color: #fff;
+  background: #F9B236;
+  border: 2rpx solid #F9B236;
+  border-radius: 84rpx;
+}

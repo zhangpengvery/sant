@@ -38,7 +38,11 @@ Page({
     color:false,
     cityColor:false,
     showCity:false,
-    rigthUrl:"https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=16"
+    rigthUrl:"https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=16",
+    lat1:0,
+    lng1:0,
+    lat2:0,
+    lng2:0
   },
   //获取用户地址
   getProvinceName(latitude, longitude){
@@ -46,9 +50,9 @@ Page({
       url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=ZXJBZ-3FVRP-6BYD2-VAAXH-5GHMS-LHFHR',   
       data:{},
       success: (res)=> {
-        console.log(res)
         this.setData({
-          city:res.data.result.address_component.city
+          lat1:res.data.result.location.lat,
+          lng1:res.data.result.location.lng
         })
         },
     })
@@ -104,8 +108,9 @@ Page({
       p:1,
       city:this.data.city
     }).then(res=>{
+      console.log(res);
       this.setData({
-        postStoresList:res.data.datas.list
+        postStoresList:res.data.datas.list,
       })
     })
   },
@@ -137,12 +142,31 @@ Page({
     })
     this.postStoresList(this.data.city)
   },
+  //计算两点位置距离
+  getDistance: function (lat1, lng1, lat2, lng2) {
+    lat1 = lat1 || 0;
+    lng1 = lng1 || 0;
+    lat2 = lat2 || 0;
+    lng2 = lng2 || 0;   
+    var rad1 = lat1 * Math.PI / 180.0;   
+    var rad2 = lat2 * Math.PI / 180.0;   
+    var a = rad1 - rad2;   
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;   
+    var r = 6378137;  //地球半径
+    var distance = r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)));   
+    /*
+    if (distance > 1000){
+      distance = Math.round(distance / 1000);
+    }*/
+    return distance;
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getCityList()
     this.getChengFn()
+    this.getDistance()
     this.postStoresList(this.data.city)
     wx.getSystemInfo({
       success: (result) => {
@@ -171,7 +195,7 @@ Page({
       }
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面显示
    */

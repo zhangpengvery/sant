@@ -21,8 +21,9 @@
       <view class="user-zl">
         <view class="user-name">{{getApplyInfo.contact_name}}</view>
         <view class="user-img">
-          <image src="/assets/images/ptvip.png"></image>
-          <text class="vip-text">v1普通会员</text>
+          <image src="/assets/images/ptvip.png">
+            <text class="vip-text">v1普通会员</text>
+          </image>
         </view>
         <view class="user-pho">手机：<text>{{getApplyInfo.contact_tel}}</text></view>
       </view>

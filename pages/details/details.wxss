@@ -88,19 +88,19 @@
   margin-top: 10rpx ;
 }
 .content-user .user-zl .user-img{
-  position: relative;
   width: 80rpx;
   height: 22rpx;
   margin-bottom: 30rpx;
 }
 .content-user .user-zl .user-img image{
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 88rpx;
+  height: 22rpx;
 }
 .content-user .user-zl .user-img .vip-text{
   position: absolute;
-  top: 12rpx;
-  left: 4rpx;
+  top: 0;
+  left: 8rpx;
   font-size: 14rpx;
   color: #fff;
 }

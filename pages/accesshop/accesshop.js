@@ -1,4 +1,4 @@
-// pages/reqdetail/reqdetail.js
+// pages/accesshop/accesshop.js
 const app=getApp()
 let{
   requestApi, requestApi1
@@ -10,56 +10,57 @@ Page({
    */
   data: {
     params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
+      showBack:false,
+      navTitle:false,
+      navInput:true,
+      navAddress:true,
+      bg:true,
+      r:246,
+      g:246,
+      b:246,
+      w:50,
       l:50,
+      inpLeft:160,
       fz:34,
-      fw:"bold",
       navColor:1,
       col:"#000",
-      title:"求购详情"
     },
+    getCataegoryNavList:[
+      {
+        id:0,
+        name:"油品"
+      },
+      {
+        id:1,
+        name:"上装"
+      },
+      {
+        id:2,
+        name:"底盘"
+      },
+      {
+        id:3,
+        name:"轮胎"
+      },
+    ],
     navH:0,
-    phone:'17550970313',
-    getSaleInfo:[],
-    getSaleList:[]
+    scrollH:0,
+    activeIndex:0
   },
-  bddhFn:function(){
-    wx.makePhoneCall({
-      phoneNumber: this.data.phone,
-    })
-  },
-  async getSaleforInfo(sf_id){
-    wx.showLoading({
-      title: '加载中...',
-    })
-    let result=await requestApi(app.globalData.base_url+"/getSaleforInfo",{
-      sf_id:sf_id
-    })
-    if(result.statusCode==200){
-      wx.hideLoading()
-    }
+  leftNavFn:function(e){
     this.setData({
-      getSaleInfo:result.data.data.info,
-      getSaleList:result.data.data.new_3
+      activeIndex:e.target.dataset.id
     })
-    console.log(this.data.getSaleList);
-    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSaleforInfo(options.sf_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
-          navH:app.globalData.navbarHeight
+          navH:app.globalData.navbarHeight,
+          scrollH:result.windowHeight*(750/result.windowWidth)-app.globalData.navbarHeight
          })
       },
     })

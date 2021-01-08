@@ -1,0 +1,34 @@
+<!--pages/accesshop/accesshop.wxml-->
+<navbar params="{{params}}" />
+<view class="category" style="margin-top:{{navH}}rpx">
+  <!-- 左边 -->
+  <view class="category-left" style="height:{{scrollH}}rpx">
+    <block wx:for="{{getCataegoryNavList}}" wx:key="index">
+      <view class="category-nav {{item.id==activeIndex?'active':''}}" bindtap="leftNavFn" data-id="{{item.id}}">{{item.name}}</view>
+    </block>
+  </view>
+  <!-- 右边 -->
+  <view class="category-right">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx">
+      <view class="right-text">油品</view>
+      <block>
+        <!-- 内容 -->
+        <view class="content">
+          <view class="right-content">
+            <view class="con-rb">
+              <view class="sanj"></view>
+            </view>
+            <view class="con-bottom"></view>
+            <image mode="aspectFit" src="http://www.jbccs.com/Upload//Pictures/2021-01-04/5ff2b6dbb28f7.png"></image>
+            <view class="con-name">唐鸿拉线</view>
+            <view class="con-price">￥260.00</view>
+          </view>
+          <view class="right-content">
+          </view>
+          <view class="right-content">
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

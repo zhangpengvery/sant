@@ -1,0 +1,81 @@
+<!--pages/accedetail/accedetail.wxml-->
+<navbar params="{{params}}" />
+<swiper class="detail-swp" indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true" style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#F9B236">
+  <swiper-item> 
+    <image mode="aspectFit" src="http://www.jbccs.com/Upload//Pictures/2017-10-23/59edbbdc5be8a.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image mode="aspectFit" src="http://www.jbccs.com/Upload//Pictures/2017-10-23/59edbbdc5be8a.jpg"></image>
+  </swiper-item>
+</swiper>
+<view class="details">
+  <view class="details-text">唐鸿牌水泥搅拌车10方<view class="iconfont icon-qiuzhiguanli"></view></view>
+  <view class="details-jg">￥45.00万</view>
+  <view class="details-bzd">
+    <view>累计销量：10</view>
+    <view>库存：272</view>
+    <view>地区：郑州市</view>
+  </view>
+</view>
+<view class="details-fw">
+  <view style="font-weight: bold">服务</view>
+  <view>全正品</view>
+  <view>价格优</view>
+  <view>放心购</view>
+  <view>极速达</view>
+</view>
+<view class="reviews">
+  <view class="reviews-title">
+    <view class="title-left">全部评价（29+）</view>
+    <view class="title-right">好评率98.88%></view>
+  </view>
+  <block>
+    <view class="pinglun">
+      <view class="user">
+        <view class="user-tx"></view>
+        <view class="user-name">啦啦***啦啦</view>
+      </view>
+      <view class="user-text">非常好用，买第二个了，大家要多多回购哦，一定会非常合适的！</view>
+      <view class="time">2020-12-20</view>
+    </view>
+    <view class="xian"></view>
+    <view class="pinglun">
+      <view class="user">
+        <view class="user-tx"></view>
+        <view class="user-name">啦啦***啦啦</view>
+      </view>
+      <view class="user-text">非常好用，买第二个了，大家要多多回购哦，一定会非常合适的！</view>
+      <view class="time">2020-12-20</view>
+    </view>
+  </block>
+  <view class="allreviews">
+    <view class="allreviews-box">查看全部评论</view>
+  </view>
+</view>
+<view class="cpxq-text">产品详情</view>
+<view class="footer">
+  <view class="footer-box">
+    <image mode="scaleToFill" src="http://www.jbccs.com/Upload/image/20201123/1606124814700515.png"></image>
+  </view>
+  <view class="footer-box">
+    <image mode="scaleToFill" src="http://www.jbccs.com/Upload/image/20201211/1607656585277983.jpg"></image>
+  </view>
+</view>
+<view class="footer-dw">
+  <view class="footer-left">
+    <view class="iconfont icon-shoucang"></view>
+    <view>收藏</view>
+  </view>
+  <view class="footer-left">
+    <view class="iconfont icon-dacheshifu"></view>
+    <view>购物车</view>
+  </view>
+  <view class="footer-left">
+    <view class="iconfont icon-dianhua"></view>
+    <view>电话</view>
+  </view>
+  <view class="footer-right">
+    <view class="left-car">加入购物车</view>
+    <view class="ljgm">立即购买</view>
+  </view>
+</view>

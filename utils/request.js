@@ -26,7 +26,8 @@ function requestApi1(url, data = {}, method = "post") {
       data: data,
       method: method,
       header: {
-        "content-type": "application/x-www-form-urlencoded"
+        "content-type": "application/x-www-form-urlencoded",
+        'XX-Token':wx.getStorageSync('token'),
       },
       success: function (res) {
         if (res.statusCode == 200) {

@@ -1,39 +1,46 @@
 /* pages/trad/trad.wxss */
 @import "/assets/fonts/iconfont.wxss";
 .header{
-  position: relative;
+  position: fixed;
   width: 40%;
   height: 50rpx;
-  margin: 0 30%;
+  padding: 0 30%;
   display: flex;
   justify-content: center;
-  border: 2rpx solid #F9B236;
-  border-radius: 52rpx;
   line-height: 50rpx;
   color: #F9B236;
   font-size: 26rpx;
-  z-index: 2;
+  z-index: 3;
+  background: #fff;
 }
 .box{
   width: 50%;
   text-align: center;
+  border: 2rpx solid #F9B236;
+  border-radius: 52rpx 0 0 52rpx;
+}
+.box2{
+  width: 50%;
+  text-align: center;
+  border: 2rpx solid #F9B236;
+  border-radius: 0 52rpx 52rpx 0 ;
 }
 .box-left{
   color: #fff;
   background: #F9B236;
-  border-radius: 52rpx 0 0 52rpx;
 }
 .box-right{
   color: #fff;
   background: #F9B236;
-  border-radius: 0 52rpx 52rpx 0 ;
 }
 .aui-content{
+  position: fixed;
   display: flex;
   width: 100%;
   height: 74rpx;
   box-shadow: 0 4rpx 4px  rgba(0, 0, 0, 0.14);
   background: #fff;
+  z-index: 2;
 }
 .aui-content .juli-left{
   display: flex;
@@ -146,24 +153,93 @@
  }
  .showjuli{
   position: fixed;
-  top: 260rpx;
+  top: 250rpx;
   left: 0;
   width: 92%;
-  height: 260rpx;
-  padding: 50rpx 4%;
+  height: 350rpx;
+  padding: 40rpx 4%;
   background: #fff;
   z-index: 100;
 }
+.showjuli view{
+  font-size: 26rpx;
+  color: #333;
+  height: 70rpx;
+  line-height: 70rpx;
+}
 .showchengs{
   position: fixed;
-  top: 260rpx;
+  top: 250rpx;
   left: 0;
   width: 92%;
-  height: 260rpx;
-  padding: 50rpx 4%;
+  height: 600rpx;
+  padding: 10rpx 4% 30rpx 4%;
   background: #fff;
   z-index: 100;
   text-align: center;
+}
+.showyaoqiu-text{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 20rpx 0;
+}
+.showyaoqiu-fater{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  text-align: center;
+  align-items: center;
+}
+.showyaoqiu-fater .showyaoqiu-box{
+  width: 132rpx;
+  height: 44rpx;
+  background: #f4f4f4;
+  color: #333;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+  line-height: 44rpx;
+  margin: 10rpx 20rpx;
+}
+.showyaoqiu-fater .brandxz{
+  border: 1rpx solid #F9B236;
+  background: #FDF6EC;
+  color: #F9B236;
+}
+.showyaoqiu-fater .chassis{
+  border: 1rpx solid #F9B236;
+  background: #FDF6EC;
+  color: #F9B236;
+}
+.showyaoqiu-fater .drivexz{
+  border: 1rpx solid #F9B236;
+  background: #FDF6EC;
+  color: #F9B236;
+}
+.showyaoqiu-fater .Agexz{
+  border: 1rpx solid #F9B236;
+  background: #FDF6EC;
+  color: #F9B236;
+}
+.showyaoqiu-fater .sourcexz{
+  border: 1rpx solid #F9B236;
+  background: #FDF6EC;
+  color: #F9B236;
+}
+.showyaoqiu-fater .dischargexz{
+  border: 1rpx solid #F9B236;
+  background: #FDF6EC;
+  color: #F9B236;
+}
+.hbtn{
+  width: 100%;
+  height: 88rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  margin-top: 20rpx;
 }
  .list{
   width: 94%;
@@ -173,6 +249,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   text-align: center;
+  overflow: hidden;
 }
 .list .list-content{
   position: relative;
@@ -225,6 +302,7 @@
   width: 94%;
   height: auto;
   margin: 0 3%;
+  overflow: hidden;
 }
 .list-right .right-content{
   width: 94%;

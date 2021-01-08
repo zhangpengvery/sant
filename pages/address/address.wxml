@@ -1,0 +1,20 @@
+<!--pages/address/address.wxml-->
+<navbar params="{{params}}" />
+<view class="content" style="margin-top:{{navH}}rpx">
+  <block wx:for="{{getUserList}}" wx:key="index">
+    <view class="con-list" bindlongpress="longPressFn" data-addres_id="{{item.address_id}}" data-is_def="{{item.is_def}}">
+      <view class="con-left" wx:if="{{item.is_def==1?true:false}}">√</view>
+      <view class="dizhi">
+        <view>{{item.area_info}}{{item.address}}</view>
+        <view class="user">
+          <view class="user-name">{{item.true_name}}</view>
+          <view>{{item.phone}}</view>
+        </view>
+      </view>
+      <view class="iconfont icon-shezhi xiugai"></view>
+    </view>
+  </block>
+</view>
+<navigator url="">
+  <view class="ljzf" bindtap="ljzfFn">添加收货地址</view>
+</navigator>

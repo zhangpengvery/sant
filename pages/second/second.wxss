@@ -1,0 +1,202 @@
+/* pages/second/second.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #F6F6F6;
+}
+.header{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  line-height: 100rpx;
+  background: #fff;
+}
+.nav-box{
+  position: relative;
+  font-size: 28rpx;
+}
+.active{
+  color: #F9B236;
+}
+.nav-xian{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translate(-50%);
+  width: 28rpx;
+  height: 4rpx;
+}
+.bgactive{
+  background: #F9B236;
+}
+.content{
+  width: 94%;
+  margin: 0 3%;
+}
+.content .con-fater{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 94%;
+  padding: 3% 20rpx;
+  height: 210rpx;
+  border-radius: 20rpx;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+  margin-top: 20rpx;
+  background: #fff;
+}
+.con-img{
+  width: 200rpx;
+  margin-right: 20rpx;
+  height: 200rpx;
+}
+.con-img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx ;
+}
+.con-text{
+  height: 180rpx;
+}
+.con-text .con-title{
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.con-text .con-jg{
+  font-size: 34rpx;
+  color: #BA1515;
+  margin: 20rpx 0;
+}
+.delete{
+  width: 74rpx;
+  height: 36rpx;
+  position: absolute;
+  bottom: 20rpx;
+  right: 150rpx;
+  border: 2rpx solid #BA1515;
+  border-radius: 128rpx;
+  color: #BA1515;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 36rpx;
+}
+.editor{
+  width: 74rpx;
+  height: 36rpx;
+  position: absolute;
+  bottom: 20rpx;
+  right: 40rpx;
+  border: 2rpx solid #333;
+  border-radius: 128rpx;
+  font-size: 20rpx;
+  color: #333;
+  text-align: center;
+  line-height: 36rpx;
+}
+.max-mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  z-index: 3;
+  opacity: 0.7;
+ }
+ /* 加号 */
+ .jiahao{
+   position: fixed;
+   bottom: 40rpx;
+   left: 50%;
+   margin-left: -46rpx;
+   width: 92rpx;
+   height: 92rpx;
+   border-radius: 50%;
+   background: #F9B236;
+   color: #fff;
+   text-align: center;
+   line-height: 82rpx;
+   font-size: 60rpx;
+   z-index: 10;
+ }
+ .mask-jiahao{
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 450rpx;
+   background: #fff;
+   z-index: 20;
+   border-radius: 60rpx 60rpx 0px 0px;
+ }
+ .chahao{
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translate(-50%);
+  color: #F9B236;
+  font-size: 90rpx;
+  z-index: 30;
+ }
+ .mask-title{
+  text-align: center;
+  font-size: 36rpx;
+  color: #333;
+  margin: 20rpx 0;
+}
+.mask-icon{
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.mask-icon .iconfont{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #F9B236;
+  color: #fff;
+  line-height: 120rpx;
+  font-size: 50rpx;
+  margin-bottom: 20rpx;
+}
+.mask-icon text{
+  font-size: 28rpx;
+}
+.right-list{
+  width: 94%;
+  height: auto;
+  margin: 0 3%;
+}
+.right-content{
+  position: relative;
+  width: 94%;
+  padding: 0 3%;
+  height: 200rpx;
+  border-left: 10rpx solid #F9B236;
+  border-radius: 20rpx;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.14);
+  margin-top: 20rpx;
+  background: #fff;
+}
+.right-content .right-title{
+  position: relative;
+  line-height: 80rpx;
+  height: 80rpx;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.right-content .right-name{
+  color: #999;
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
+}
+.right-content .right-title .right-jg{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #BA1515;
+}
