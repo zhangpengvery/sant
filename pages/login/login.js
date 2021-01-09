@@ -27,20 +27,6 @@ Page({
     btn:false,
     guanIf:false
   },
-  colorFn:function(e){
-    this.setData({
-        dian:true
-    })
-    if(this.data.mobile.length>10&&this.data.dian){
-      this.setData({
-        btn:true
-      })
-    }else{
-      this.setData({
-        btn:false
-      })
-    }
-  },
   //获取input框的内容
   userpho:function(e){
     this.setData({
@@ -74,10 +60,17 @@ Page({
     })
   },
   dianbian:function(e){
-    this.setData({
-      dian:false,
-      btn:false
-    })
+    if(e.detail.value&&this.data.mobile.length>10){
+      this.setData({
+        btn:true,
+        dian:true
+      })
+    }
+    if(e.detail.value==false){
+      this.setData({
+        btn:false
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

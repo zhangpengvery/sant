@@ -1,0 +1,2 @@
+<!--pages/rental/rental.wxml-->
+<navbar params="{{params}}" />

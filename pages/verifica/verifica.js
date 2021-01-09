@@ -54,7 +54,7 @@ Page({
           data:this.data.loginData.data.user,
           key:'user',
         })
-        wx.switchTab({
+        wx.reLaunch({
           url: '/pages/home/home',
         })
       }else{
@@ -152,12 +152,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.getCode(),
     //传递的手机号
     this.setData({
       mobile:options.mobile
     })
     // this.postverification(this.data.mobile)
+    this.getCode()
     //获取高度
     wx.getSystemInfo({
       success: (result) => {

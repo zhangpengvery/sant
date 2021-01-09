@@ -28,7 +28,10 @@
   border-radius: 50%;
   margin-right: 20rpx;
 }
-.header text{
+.header .dl-text{
+  position: absolute;
+  bottom: 0;
+  left: 120rpx;
   font-size: 32rpx;
   font-weight: bold;
 }

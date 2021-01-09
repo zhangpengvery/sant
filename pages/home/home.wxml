@@ -11,7 +11,7 @@
   <view class="icon-fater">
     <block wx:for="{{getIndexIcons}}" wx:key="index">
       <view class="icon-conent">
-        <navigator url="/pages/recruit/recruit">
+        <navigator url="{{item.url}}">
           <view class="icon-img">
             <image src="{{item.icon}}"></image>
           </view>

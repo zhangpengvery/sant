@@ -1,4 +1,4 @@
-// pages/mind/mind.js
+// pages/rental/rental.js
 const app=getApp()
 let{
   requestApi, requestApi1
@@ -10,77 +10,36 @@ Page({
    */
   data: {
     params:{
-      showBack:false,
+      showBack:true,
       navTitle:true,
       navInput:false,
-      r:249,
-      g:176,
-      b:49,
-      w:20,
+      navAddress:false,
+      r:255,
+      g:255,
+      b:255,
       l:50,
       fz:34,
       fw:"bold",
       navColor:1,
-      col:"#fff",
-      title:"我的"
+      col:"#000",
+      title:"出租页面"
     },
     navH:0,
-    winH:0,
-    hidden:false,
-    login:true,
-    userInfor:false,
-    loginData:[],
-    getMindText:[],
-    user:[]
   },
-  async getMindIcons(){
-    let result=await requestApi(app.globalData.base_url+"/getMyIcons")
-    this.setData({
-      getMindText:result.data.data,
-      getMindIcons:result.data.data[0].items
-    })
-  },
-  
-  scrollPage:function(e){
-    if(e.detail.scrollTop>50){
-      this.setData({
-        hidden:true
-      })
-    }else{
-      this.setData({
-        hidden:false
-      })
-    }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMindIcons()
-    this.setData({
-      user:wx.getStorageSync('user')
-    })
-    if(this.data.user==[]){
-      this.setData({
-        login:false,
-        userInfor:true
-      })
-    }else{
-      this.setData({
-        login:true,
-        userInfor:false
-      })
-    }
-    //获取高度
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
-          navH:app.globalData.navbarHeight,
-          winH:app.globalData.windowHeigtn
+          navH:app.globalData.navbarHeight
          })
       },
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
