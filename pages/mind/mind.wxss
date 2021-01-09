@@ -35,6 +35,9 @@
   font-size: 32rpx;
   font-weight: bold;
 }
+.header .user-name{
+  font-weight: bold;
+}
 .header .shezhi{
   position: absolute;
   top: 0;

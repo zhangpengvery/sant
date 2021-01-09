@@ -1,0 +1,97 @@
+/* pages/hiredetail/hiredetail.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.content{
+  width: 94%;
+  height: auto;
+  margin: 0 3%;
+}
+.header-img{
+  width: 100%;
+  height: 326rpx;
+}
+.header-img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.content-detail{
+  width: 94%;
+  height: 285rpx;
+  padding: 0 3%;
+  margin-top: 20rpx;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.14);
+  border-radius: 20rpx;
+  font-size: 34rpx;
+  overflow: hidden;
+}
+.content-detail .detail-title{
+  color: #333;
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+.content-detail .detail-jg{
+  height: 50rpx;
+  line-height: 40rpx;
+  margin: 20rpx 0;
+  color: #BA1515;
+  font-weight: bold;
+}
+.content-detail .detail-jg::before{
+  content: "￥";
+}
+.content-detail .detail-xq{
+  height: 70rpx;
+  font-size: 26rpx;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.content-user{
+  margin-top: 20rpx;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.14);
+  border-radius: 20rpx;
+  width: 94%;
+  height: 326rpx;
+  padding: 0 3%;
+}
+.content-user .user-name{
+  color: #333;
+  font-size: 26rpx;
+  height: 81rpx;
+  line-height: 81rpx;
+  width: 100%;
+  border-bottom: 2rpx solid #f4f4f4;
+}
+.footer{
+  width: 94%;
+  margin: 0 3%;
+  position: fixed;
+  display: flex;
+  bottom: 20rpx;
+  left: 0;
+  height: 100rpx;
+  align-items: center;
+}
+.footer .footer-left{
+  flex: 1;
+  text-align: center;
+  color: #F9B236;
+  font-size: 22rpx;
+}
+.footer .footer-left .iconfont{
+  font-size: 60rpx;
+}
+.footer .footer-right{
+  height: 100rpx;
+  flex: 3;
+  background: #F9B236;
+  border-radius: 94rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+}

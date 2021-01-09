@@ -170,10 +170,17 @@ Page({
         showcity:false,
       })
     },
+    //出售列表
     async getAllSaleList(page){
+      wx.showLoading({
+        title: '加载中...',
+      })
       let result=await requestApi(app.globalData.base_url+"/getAllSaleLists",{
         page:page
       })
+      if(result.statusCode==200){
+        wx.hideLoading()
+      }
       this.setData({
         getAllSaleList:result.data.data.list,
         getBrandList:result.data.data.brand_list,

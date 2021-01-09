@@ -1,4 +1,5 @@
 /* pages/home/home.wxss */
+@import "/assets/fonts/iconfont.wxss";
 .home-navimg{
   position: fixed;
   top: 0;
@@ -180,4 +181,43 @@
   font-size: 19rpx;
   line-height: 32rpx;
   text-align: center;
+}
+.urgent{
+  position: fixed;
+  display: flex;
+  right: 0;
+  bottom: 200rpx;
+  height: 90rpx;
+  width: 120rpx;
+  border-radius: 50rpx 0 0 50rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  align-items: center;
+}
+.urgent .iconfont{
+  width: 60%;
+  margin-left: 10%;
+  font-size: 40rpx;
+}
+.urgent-text{
+  font-size: 20rpx;
+}
+.service{
+  position: fixed;
+  display: flex;
+  right: 0;
+  bottom: 100rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 120rpx;
+  border-radius: 50rpx 0 0 50rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+}
+.service .iconfont{
+  width: 50%;
+  margin-left: 10%;
+  font-size: 40rpx;
 }

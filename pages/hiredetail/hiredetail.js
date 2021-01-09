@@ -1,4 +1,4 @@
-// pages/saledetail/saledetail.js
+// pages/hiredetail/hiredetail.js
 const app=getApp()
 let{
   requestApi, requestApi1
@@ -26,7 +26,7 @@ Page({
     },
     navH:0,
     phone:'',
-    getSaleInfo:[],
+    getHireInfo:[],
     getSaleImg:[]
   },
   bddhFn:function(){
@@ -34,12 +34,12 @@ Page({
       phoneNumber: this.data.phone,
     })
   },
-  async getSaleInfo(sale_id){
+  async getHireInfo(hire_id){
     wx.showLoading({
       title: '加载中...',
     })
-    let result=await requestApi(app.globalData.base_url+"/getSaleInfo",{
-      sale_id:sale_id
+    let result=await requestApi(app.globalData.base_url+"/getHireInfo",{
+      hire_id:hire_id
     })
     if(result.statusCode==200){
       wx.hideLoading()
@@ -50,14 +50,12 @@ Page({
       phone:result.data.data.contact_tel
     })
     console.log(this.data.getSaleInfo);
-    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.sale_id);
-    this.getSaleInfo(options.sale_id)
+    this.getHireInfo(options.hire_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

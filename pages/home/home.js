@@ -31,6 +31,8 @@ Page({
     winH:0,
     page:1,
     hidden:false,
+    urgentphone:'10010',
+    servicephone:'10086',
     getIndexIcons:[],
     getSwiperImages:[],
     listData:[]
@@ -88,6 +90,16 @@ Page({
         hidden:false
       })
     }
+  },
+  urgentFn:function(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.urgentphone,
+    })
+  },
+  serviceFn:function(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.servicephone,
+    })
   },
   /**
    * 生命周期函数--监听页面加载

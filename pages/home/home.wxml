@@ -78,3 +78,11 @@
   </view>
   <list listData="{{listData}}"></list>
 </scroll-view>
+<view class="urgent" bindtap="urgentFn">
+  <view class="iconfont icon-dianhua"></view>
+  <view class="urgent-text">紧急救援</view>
+</view>
+<view class="service" bindtap="serviceFn">
+  <view class="iconfont icon-quanminjingjiren"></view>
+  <view class="urgent-text">客服</view>
+</view>

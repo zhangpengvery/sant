@@ -30,13 +30,11 @@
       </block>
     </view>
   </scroll-view>
-  <scroll-view scroll-y="true" style="height:500rpx;width:30%">
-    <view class="cityright">
-      <block wx:for="{{getRecruitList}}" wx:key="index">
-        <view class="right-box" bindtap="rightBoxFn" data-id="{{item.area_id}}">{{item.area_name}}</view>
-      </block>
-    </view>
-  </scroll-view>
+  <view class="cityright">
+    <block wx:for="{{getRecruitList}}" wx:key="index">
+      <view class="right-box" bindtap="rightBoxFn" data-id="{{item.area_id}}">{{item.area_name}}</view>
+    </block>
+  </view>
 </view>
 <view class="content" style="margin-top:{{mgH}}rpx">
   <block wx:for="{{postStoresList}}" wx:key="index">

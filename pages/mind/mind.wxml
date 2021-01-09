@@ -13,7 +13,7 @@
   </view>
   <view style="margin-top:{{navH}}rpx" class="header" hidden="{{userInfor}}">
     <image class="weideng" src="{{user.wechat_img}}"></image>
-    <text>{{user.user_name}}</text>
+    <text class="user-name">{{user.user_name}}</text>
     <view class="iconfont icon-shezhi shezhi"></view>
     <view class="vip">
       <image src="/assets/images/ptvip.png"></image>
@@ -30,7 +30,7 @@
           <view class="content">
             <block wx:for="{{item.items}}" wx:key="index">
               <view class="content-img">
-                <image src="{{item.icon}}"></image>
+                <image mode="aspectFit" src="{{item.icon}}"></image>
                 <view class="content-text">{{item.text}}</view>
               </view>
             </block>
