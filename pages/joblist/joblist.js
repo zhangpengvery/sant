@@ -1,4 +1,4 @@
-// pages/order/order.js
+// pages/joblist/joblist.js
 const app=getApp()
 let{
   requestApi, requestApi1
@@ -11,59 +11,30 @@ Page({
   data: {
     params:{
       showBack:true,
-      navTitle:false,
-      navInput:true,
+      navTitle:true,
+      navInput:false,
       navAddress:false,
-      bg:true,
       r:255,
       g:255,
       b:255,
-      w:10,
       l:50,
-      inpLeft:160,
       fz:34,
+      fw:"bold",
       navColor:1,
       col:"#000",
+      title:"二手管理"
     },
     tabNavlists:[{
       id:1,
-      title:"全部"
+      title:"我的求职"
     },{
       id:2,
-      title:"待付款"
-    },{
-      id:3,
-      title:"待发货"
-    },{
-      id:4,
-      title:"待收货"
-    },{
-      id:5,
-      title:"已完成"
+      title:"我的招聘"
     }],
     navH:0,
     scrollH:0,
     currentIndex:0,
-    leftCss:true,
-    rightCss:false,
-    left_content:true,
-    left_header:true
-  },
-  navLeftFn:function(){
-    this.setData({
-      leftCss:true,
-      rightCss:false,
-      left_content:true,
-      left_header:true
-    })
-  },
-  navRightFn:function(){
-    this.setData({
-      leftCss:false,
-      rightCss:true,
-      left_header:false,
-      left_content:false
-    })
+    myRecruitList:[]
   },
   changeTab:function(e){
     this.setData({
@@ -75,10 +46,43 @@ Page({
       currentIndex:e.currentTarget.dataset.current
     })
   },
+  //底部加号
+  jiahaoFn:function(){
+    this.setData({
+      showJiahao:true,
+      showChahao:true,
+      showMaxmaks:true
+    })
+  },
+  //底部叉号
+  chahaoFn:function(){
+    this.setData({
+      showMaxmaks:false,
+      showChahao:false,
+      showJiahao:false
+    })
+  },
+  //大蒙版
+  maxmaskFn:function(){
+    this.setData({
+      showJiahao:false,
+      showMaxmaks:false,
+      showChahao:false
+    })
+  },
+  //求职列表
+  async myRecruitList(){
+    let result=await requestApi(app.globalData.base_url+"/myRecruitList")
+    this.setData({
+      myRecruitList:result.data.data
+    })
+    console.log(this.data.myRecruitList);
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.myRecruitList()
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

@@ -1,4 +1,4 @@
-// pages/order/order.js
+// pages/rendetail/rendetail.js
 const app=getApp()
 let{
   requestApi, requestApi1
@@ -11,79 +11,54 @@ Page({
   data: {
     params:{
       showBack:true,
-      navTitle:false,
-      navInput:true,
+      navTitle:true,
+      navInput:false,
       navAddress:false,
-      bg:true,
       r:255,
       g:255,
       b:255,
-      w:10,
       l:50,
-      inpLeft:160,
       fz:34,
+      fw:"bold",
       navColor:1,
       col:"#000",
+      title:"求购详情"
     },
-    tabNavlists:[{
-      id:1,
-      title:"全部"
-    },{
-      id:2,
-      title:"待付款"
-    },{
-      id:3,
-      title:"待发货"
-    },{
-      id:4,
-      title:"待收货"
-    },{
-      id:5,
-      title:"已完成"
-    }],
     navH:0,
-    scrollH:0,
-    currentIndex:0,
-    leftCss:true,
-    rightCss:false,
-    left_content:true,
-    left_header:true
+    phone:'17550970313',
+    getSaleInfo:[],
+    getSaleList:[]
   },
-  navLeftFn:function(){
-    this.setData({
-      leftCss:true,
-      rightCss:false,
-      left_content:true,
-      left_header:true
+  bddhFn:function(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
     })
   },
-  navRightFn:function(){
-    this.setData({
-      leftCss:false,
-      rightCss:true,
-      left_header:false,
-      left_content:false
+  async getHireforInfo(hf_id){
+    wx.showLoading({
+      title: '加载中...',
     })
-  },
-  changeTab:function(e){
-    this.setData({
-      currentIndex:e.detail.current
+    let result=await requestApi(app.globalData.base_url+"/getHireforInfo",{
+      hf_id:hf_id
     })
-  },
-  changeSwiper:function(e){
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
     this.setData({
-      currentIndex:e.currentTarget.dataset.current
+      getSaleInfo:result.data.data.info,
+      getSaleList:result.data.data.new_3
     })
+    console.log(this.data.getSaleList);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getHireforInfo(options.hf_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
-          navH:app.globalData.navbarHeight,
-          scrollH:result.windowHeight*(750/result.windowWidth)-100-app.globalData.navbarHeight
+          navH:app.globalData.navbarHeight
          })
       },
     })

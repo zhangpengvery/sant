@@ -348,3 +348,39 @@ page{
 .right-content .right-title .right-jg::before{
   content: "￥";
 }
+.showcity{
+  display: flex;
+  position: fixed;
+  top: 250rpx;
+  left: 0;
+  width: 94%;
+  height: 500rpx;
+  padding: 0 3%;
+  background: #fff;
+  z-index: 60;
+}
+.showcity .city-content{
+  width: 100%;
+  height: 100%;
+}
+.city-content .city-box{
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+.city-content .cityac{
+  color: #F9B236;
+}
+.showcity .cityright{
+  width: 70%;
+  height: auto;
+}
+.showcity .cityright .right-box{
+  float: left;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  margin: 0 10rpx;
+}

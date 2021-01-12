@@ -4,14 +4,14 @@
   <view class="box">
     <view class="box-title">招聘标题</view>
     <view class="box-inp">
-      <input type="text" placeholder="20字以内，必填" />
+      <input type="text" bindinput="bindTitle" placeholder="20字以内，必填" />
     </view>
   </view>
   <view class="box">
     <view  class="box-title">招聘职位</view>
     <view class="box-inp">
-      <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{typeList}}">
-        <view class="picker">{{typeList[typeIndex]}}</view>
+      <picker bindchange="bindTypeChange" value="{{typeList['typeIndex']}}" range="{{typeList}}" range-key="{{'job_name'}}">
+        <view class="picker">{{typeList[typeIndex].job_name}}</view>
         <view class="iconfont icon-tubiao2-14"></view>
       </picker>
     </view>
@@ -19,20 +19,20 @@
   <view class="box">
     <view class="box-title">姓名</view>
     <view class="box-inp">
-      <input type="text" placeholder="10个字以内，必填" />
+      <input type="text" bindinput="bindName" placeholder="10个字以内，必填" />
     </view>
   </view>
   <view class="box">
     <view class="box-title">手机</view>
     <view class="box-inp">
-      <input type="text" placeholder="11位数字，必填" />
+      <input type="number" bindinput="bindPho" placeholder="11位数字，必填" />
     </view>
   </view>
   <view class="box">
     <view  class="box-title">所在地区</view>
     <view class="box-inp">
-      <picker bindchange="changeRegin" mode = "region" value="{{region}}">
-        <view class="picker">{{region[0]}} - {{region[1]}} - {{region[2]}}</view>
+      <picker bindchange="changeRegin" bindcolumnchange="bindRegionColumnChange" mode = "multiSelector" value="{{region}}" range='{{multiArray}}'>
+        <view class="picker" wx:if="{{addressCity}}">{{addressCity[0]}} - {{addressCity[1]}} - {{addressCity[2]}}</view>
         <view class="iconfont icon-tubiao2-14"></view>
       </picker>
     </view>
@@ -40,14 +40,14 @@
   <view class="box">
     <view class="box-title">公司名字</view>
     <view class="box-inp">
-      <input type="text" placeholder="请输入你的公司名称" />
+      <input type="text" bindinput="bindCompany" placeholder="请输入你的公司名称" />
     </view>
   </view>
   <view class="box">
     <view class="box-title">薪资区间</view>
     <view class="box-inp">
-      <picker bindchange="bindSalaryChange" value="{{salaryIindex}}" range="{{salaryList}}">
-        <view class="picker">{{salaryList[salaryIindex]}}</view>
+      <picker bindchange="bindSalaryChange" value="{{salaryList['salaryIndex']}}" range="{{salaryList}}" range-key="{{'salary_name'}}">
+        <view class="picker">{{salaryList[salaryIndex].salary_name}}</view>
         <view class="iconfont icon-tubiao2-14"></view>
       </picker>
     </view>
@@ -55,8 +55,8 @@
   <view class="box">
     <view  class="box-title">经验要求</view>
     <view class="box-inp">
-      <picker bindchange="bindExChange" value="{{exIindex}}" range="{{exList}}">
-        <view class="picker">{{exList[exIindex]}}</view>
+      <picker bindchange="bindExChange" value="{{exList['exIndex']}}" range="{{exList}}" range-key="{{'ex_name'}}">
+        <view class="picker">{{exList[exIndex].ex_name}}</view>
         <view class="iconfont icon-tubiao2-14"></view>
       </picker>
     </view>
@@ -64,7 +64,7 @@
   <view class="box box2">
     <view class="box-title">招聘留言</view>
     <view class="box-inp box-da">
-      <textarea type="text" class="da-inp" placeholder="200字以内" maxlength="200" />
+      <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" />
     </view>
   </view>
 </view>

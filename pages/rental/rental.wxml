@@ -9,7 +9,7 @@
     <text>综合排序</text>
     <view class="iconfont icon-zu261 xiabiao"></view>
   </view>
-  <view class="juli-left {{color==true?'suanactive':''}}" bindtap="cityFn">
+  <view class="juli-left {{chshiColor==true?'suanactive':''}}" bindtap="cityFn">
     <text>城市</text>
     <view class="iconfont icon-zu261 xiabiao"></view>
   </view>
@@ -81,7 +81,7 @@
   <view class="hbtn" bindtap="showBtnFn">确定</view>
 </view>
 <!-- 城市选择 -->
-<view class="showcity" wx:if="{{showCity}}">
+<view class="showcity" wx:if="{{showChshi}}">
   <scroll-view scroll-y="true" style="height:500rpx;width:30%">
     <view class="city-content">
       <block wx:for="{{getCityList}}" wx:key="index">
@@ -136,9 +136,10 @@
     </block>
   </view>
 </scroll-view>
+<!-- 求租列表 -->
 <view class="list-right" wx:if="{{listRight}}" style="margin-top:250rpx">
   <block wx:for="{{getAllHireforLists}}" wx:key="index">
-    <navigator url="/pages/reqdetail/reqdetail?hf_id={{item.hf_id}}">
+    <navigator url="/pages/rendetail/rendetail?hf_id={{item.hf_id}}">
       <view class="right-content">
         <view class="right-title">{{item.for_title}}
           <view class="right-jg">{{item.price}}</view>

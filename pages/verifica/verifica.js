@@ -54,6 +54,10 @@ Page({
           data:this.data.loginData.data.user,
           key:'user',
         })
+        wx.setStorage({
+          data: this.data.loginData.data.user.user_id,
+          key: 'user_id',
+        })
         wx.reLaunch({
           url: '/pages/home/home',
         })

@@ -30,6 +30,8 @@ Page({
     city:"",
     winH:0,
     page:1,
+    user_id:0,
+    type:'sale',
     hidden:false,
     urgentphone:'10010',
     servicephone:'10086',
@@ -62,23 +64,23 @@ Page({
     this.setData({
       getSwiperImages:result.data.data.pj_list
     })
-    console.log(this.data.getSwiperImages);
   },
   postHomeBestList(page,user_id){
     requestApi1(app.globalData.base_url+"/getSaleLists",{
       page:page,
-      user_id:1
+      user_id:user_id
     }).then(res=>{
       this.setData({
         listData:this.data.listData.concat(res.data.data)
       })
+      console.log(this.data.listData);
     })
   },
   loadMore(){
     this.setData({
       page:++this.data.page
     })
-    this.postHomeBestList(this.data.page)
+    this.postHomeBestList(this.data.page,this.data.user_id)
   },
   scrollPage:function(e){
     if(e.detail.scrollTop>50){
@@ -101,13 +103,32 @@ Page({
       phoneNumber: this.data.servicephone,
     })
   },
+  //收藏点击
+  qiehuanFn:function(e){
+    var sale_id=e.target.dataset.id
+    wx.request({
+      url: 'https://api.jbccs.com/api/favor_add',
+      data:{
+        type:this.data.type,
+        favor_data:sale_id,
+      },
+      method:"post",
+      header:{
+        "content-type": "application/x-www-form-urlencoded",
+        'XX-Token':wx.getStorageSync('token'),
+      },
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      user_id:wx.getStorageSync('user_id')
+    })
     this.getIndexIcons(),
     this.getSwiperImages(),
-    this.postHomeBestList(this.data.page)
+    this.postHomeBestList(this.data.page,this.data.user_id)
     //获取高度
     this.setData({
       winH:app.globalData.windowHeigtn

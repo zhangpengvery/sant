@@ -1,4 +1,4 @@
-// pages/order/order.js
+// pages/releases/releases.js
 const app=getApp()
 let{
   requestApi, requestApi1
@@ -11,68 +11,39 @@ Page({
   data: {
     params:{
       showBack:true,
-      navTitle:false,
-      navInput:true,
+      navTitle:true,
+      navInput:false,
       navAddress:false,
-      bg:true,
       r:255,
       g:255,
       b:255,
-      w:10,
       l:50,
-      inpLeft:160,
       fz:34,
+      fw:"bold",
       navColor:1,
       col:"#000",
+      title:"发布出售"
     },
-    tabNavlists:[{
-      id:1,
-      title:"全部"
-    },{
-      id:2,
-      title:"待付款"
-    },{
-      id:3,
-      title:"待发货"
-    },{
-      id:4,
-      title:"待收货"
-    },{
-      id:5,
-      title:"已完成"
-    }],
     navH:0,
-    scrollH:0,
-    currentIndex:0,
-    leftCss:true,
-    rightCss:false,
-    left_content:true,
-    left_header:true
+    imageList: [],
   },
-  navLeftFn:function(){
-    this.setData({
-      leftCss:true,
-      rightCss:false,
-      left_content:true,
-      left_header:true
+  chooseImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count:6,
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          imageList: res.tempFilePaths
+        })
+      }
     })
   },
-  navRightFn:function(){
-    this.setData({
-      leftCss:false,
-      rightCss:true,
-      left_header:false,
-      left_content:false
-    })
-  },
-  changeTab:function(e){
-    this.setData({
-      currentIndex:e.detail.current
-    })
-  },
-  changeSwiper:function(e){
-    this.setData({
-      currentIndex:e.currentTarget.dataset.current
+  previewImage: function (e) {
+    var current = e.target.dataset.src
+    wx.previewImage({
+      current: current,
+      urls: this.data.imageList
     })
   },
   /**
@@ -82,8 +53,7 @@ Page({
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
-          navH:app.globalData.navbarHeight,
-          scrollH:result.windowHeight*(750/result.windowWidth)-100-app.globalData.navbarHeight
+          navH:app.globalData.navbarHeight
          })
       },
     })

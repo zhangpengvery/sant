@@ -38,6 +38,7 @@ Page({
     leftActive:true,
     rightActive:false,
     color:false,
+    chshiColor:false,
     cityColor:false,
     showMask:false,
     showJiahao:false,
@@ -45,6 +46,7 @@ Page({
     showMaxmaks:false,
     showjuli:false,
     showcity:false,
+    showChshi:false,
     listLeft:true,
     listRight:false,
     getAllHireLists:[],
@@ -54,8 +56,12 @@ Page({
     getAgeList:[],
     getSourceList:[],
     getDischargeList:[],
-    getAllHireforLists:[]
+    getAllHireforLists:[],
+    getCityList:[],
+    getRecruitList:[],
+    rigthUrl:"https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=16",
   },
+  //出租列表
   recruitFn:function(e){
     this.setData({
       leftActive:true,
@@ -64,6 +70,7 @@ Page({
       listRight:false
     })
   },
+  //求租列表
   jobFn:function(){
     this.setData({
       leftActive:false,
@@ -94,8 +101,10 @@ Page({
         showMask:false,
         color:false,
         cityColor:false,
+        chshiColor:false,
         showJuli:false,
         showcity:false,
+        showChshi:false
       })
     },
     //大蒙版
@@ -106,12 +115,26 @@ Page({
         showChahao:false
       })
     },
-    //排序点击
+    //综合排序点击
     distanceFn:function(){
       this.setData({
         showMask:true,
         showJuli:true,
         color:true,
+        cityColor:false,
+        showcity:false,
+        chshiColor:false,
+        showChshi:false,
+      })
+    },
+    //城市点击
+    cityFn:function(){
+      this.setData({
+        chshiColor:true,
+        showChshi:true,
+        showMask:true,
+        showJuli:false,
+        color:false,
         cityColor:false,
         showcity:false
       })
@@ -123,7 +146,9 @@ Page({
         showJuli:false,
         color:false,
         cityColor:true,
-        showcity:true
+        showcity:true,
+        chshiColor:false,
+        showChshi:false,
       })
     },
     //品牌点击
@@ -170,7 +195,7 @@ Page({
         showcity:false,
       })
     },
-    //出售列表
+    //出租列表
     async getAllHireLists(page){
       wx.showLoading({
         title: '加载中...',
@@ -192,8 +217,8 @@ Page({
       })
       console.log(this.data.getAllHireLists);
     },
-    //求购列表
-    async getAllHireforLists(page){
+  //求租列表
+  async getAllHireforLists(page){
       let result=await requestApi(app.globalData.base_url+"/getAllHireforLists",{
         page:page
       })
@@ -201,7 +226,33 @@ Page({
         getAllHireforLists:result.data.data.list
       })
       console.log(this.data.getAllHireforLists);
-    },
+  },
+  //城市请求
+  async getCityList(){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Public/get_area")
+    this.setData({
+      getCityList:result.data.datas.area_list
+    })
+  },
+  //城市每项点击
+  SaveFn:function(e){
+    this.setData({
+      cityActive:e.target.dataset.id,
+      rigthUrl:`https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=${e.target.dataset.id}`
+    })
+    this.getChengFn()
+  },
+  //点击每个城市切换内容
+  getChengFn(){
+    wx.request({
+      url: this.data.rigthUrl,
+      success:(res)=>{
+        this.setData({
+          getRecruitList:res.data.datas.area_list
+        })
+      }
+    })
+  },
     //滑动到底部
     bindLanFn:function(){
     },
@@ -209,6 +260,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCityList()
+    this.getChengFn()
     this.getAllHireLists(this.data.page)
     this.getAllHireforLists(this.data.page)
     wx.getSystemInfo({

@@ -221,3 +221,59 @@
   margin-left: 10%;
   font-size: 40rpx;
 }
+@import "/assets/fonts/iconfont.wxss";
+.list{
+  width: 94%;
+  height: auto;
+  margin: 0 3%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.list .list-content{
+  position: relative;
+  width: 44%;
+  height: 295rpx;
+  padding: 2%;
+  border-radius: 20rpx;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+  margin-bottom: 20rpx;
+}
+.list .list-content image{
+  width: 284rpx;
+  height: 175rpx;
+  border-radius: 10rpx 10rpx 0 0;
+  margin-top: 10rpx;
+}
+.list .list-content .list-name{
+  text-align: left;
+  padding-left: 3%;
+  width: 93%;
+  font-size: 28rpx;
+  color: #343232;
+  height: 40rpx;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 10rpx 0 5rpx 0;
+}
+.list .list-content .list-price{
+  display: block;
+  padding-left: 3%;
+  width: 93%;
+  text-align: left;
+  font-size: 28rpx;
+  color: #D90F0F;
+}
+.list .list-content .list-price ::before{
+  content: "￥";
+}
+.list .list-content .list-xin{
+  position: absolute;
+  font-size: 24rpx;
+  bottom: 30rpx;
+  right: 30rpx;
+  color: #F9B236;
+}

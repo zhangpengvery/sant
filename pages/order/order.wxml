@@ -1,41 +1,59 @@
 <!--pages/order/order.wxml-->
-<navbar params="{{params}}" />
-<view class="header" style="margin-top:{{navH}}rpx">
+<view class="nav-top" style="height:{{navH}}rpx">
+  <view class="iconfont icon-ziyuan2 back" bindtap="backFn"></view>
+  <view class="navber-content">
+    <!-- 输入框 -->
+    <navigator url="/pages/search/search">
+      <view class="iconfont icon-lujing46 search-icon"></view>
+    </navigator>
+  </view>
+  <view class="nav-tab">
+    <view class="nav-left {{leftCss==true?'leftactive':''}}" bindtap="navLeftFn">我的订单</view>
+    <view class="nav-right {{rightCss==true?'rightactive':''}}" bindtap="navRightFn">其他订单</view>
+  </view>
+</view>
+<view class="header" wx:if="{{left_header}}">
   <block wx:for="{{tabNavlists}}" wx:key="index">
-    <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">{{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view></view>
+    <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
+      {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
+    </view>
   </block>
 </view>
-<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
+<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx"
+  wx:if="{{left_content}}">
   <swiper-item>
     <!-- 全部 -->
     <view class="content">
-      <view class="box">
-        <view class="box-header">
-          <view class="iconfont icon-danganguanli"></view>
-          <view class="bianh">订单编号：ST203940392039499</view>
-          <view class="zhuangt">待付款</view>
+      <navigator url="/pages/orddetail/orddetail">
+        <view class="box">
+          <view class="box-header">
+            <view class="iconfont icon-dingdanbianhao1"></view>
+            <view class="bianh">订单编号：ST203940392039499</view>
+            <view class="zhuangt">待付款</view>
+          </view>
+          <view class="box-body">
+            <view class="body-img">
+              <image src="/assets/images/20201221165446.png"></image>
+            </view>
+            <view class="body-text">
+              <view class="body-title">三泰之家上装保养</view>
+              <view class="body-pj">三泰之家上装保养</view>
+              <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
+              </view>
+            </view>
+          </view>
+          <view class="box-footer">
+            <view>
+              <text class="footer-left">应付金额：</text>
+              <text class="body-jg">￥800</text>
+            </view>
+            <view class="footer-right">
+              <view class="cancella">取消订单</view>
+              <view class="payment">立即付款</view>
+            </view>
+          </view>
         </view>
-        <view class="box-body">
-          <view class="body-img">
-            <image src="/assets/images/20201221165446.png"></image>
-          </view>
-          <view class="body-text">
-            <view class="body-title">三泰之家上装保养</view>
-            <view class="body-pj">三泰之家上装保养</view>
-            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view></view>
-          </view>
-        </view>
-        <view class="box-footer">
-          <view>
-            <text class="footer-left">应付金额：</text>
-            <text class="body-jg">￥800</text>
-          </view>
-          <view class="footer-right">
-            <view class="cancella">取消订单</view>
-            <view class="payment">立即付款</view>
-          </view>
-        </view>
-      </view>
+      </navigator>
     </view>
   </swiper-item>
   <!-- 待付款 -->
@@ -43,7 +61,7 @@
     <view class="content">
       <view class="box">
         <view class="box-header">
-          <view class="iconfont icon-danganguanli"></view>
+          <view class="iconfont icon-dingdanbianhao1"></view>
           <view class="bianh">订单编号：ST203940392039499</view>
           <view class="zhuangt">待付款</view>
         </view>
@@ -54,7 +72,8 @@
           <view class="body-text">
             <view class="body-title">三泰之家上装保养</view>
             <view class="body-pj">三泰之家上装保养</view>
-            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view></view>
+            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
+            </view>
           </view>
         </view>
         <view class="box-footer">
@@ -75,7 +94,7 @@
     <view class="content">
       <view class="box">
         <view class="box-header">
-          <view class="iconfont icon-danganguanli"></view>
+          <view class="iconfont icon-dingdanbianhao1"></view>
           <view class="bianh">订单编号：ST203940392039499</view>
           <view class="zhuangt">待发货</view>
         </view>
@@ -86,7 +105,8 @@
           <view class="body-text">
             <view class="body-title">三泰之家上装保养</view>
             <view class="body-pj">三泰之家上装保养</view>
-            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view></view>
+            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
+            </view>
           </view>
         </view>
         <view class="box-footer">
@@ -95,8 +115,8 @@
             <text class="body-jg">￥800</text>
           </view>
           <view class="footer-right">
-            <view class="cancella">取消订单</view>
-            <view class="payment">立即付款</view>
+            <view class="cancella">删除订单</view>
+            <view class="payment">评价</view>
           </view>
         </view>
       </view>
@@ -106,6 +126,61 @@
     <text>待收货</text>
   </swiper-item>
   <swiper-item>
-    <text>已完成</text>
+    <view class="content">
+      <view class="box">
+        <view class="box-header">
+          <view class="iconfont icon-dingdanbianhao1"></view>
+          <view class="bianh">订单编号：ST203940392039499</view>
+          <view class="zhuangt">已完成</view>
+        </view>
+        <view class="box-body">
+          <view class="body-img">
+            <image src="/assets/images/20201221165446.png"></image>
+          </view>
+          <view class="body-text">
+            <view class="body-title">三泰之家上装保养</view>
+            <view class="body-pj">三泰之家上装保养</view>
+            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
+            </view>
+          </view>
+        </view>
+        <view class="box-footer">
+          <view>
+            <text class="footer-left">应付金额：</text>
+            <text class="body-jg">￥800</text>
+          </view>
+          <view class="footer-right">
+            <view class="cancella">删除订单</view>
+            <view class="payment">评价</view>
+          </view>
+        </view>
+      </view>
+    </view>
   </swiper-item>
 </swiper>
+<view class="right-box">
+  <view class="rders">
+    <view class="rders-title">其他订单</view>
+  </view>
+  <view class="rders">
+    <view class="rders-box">
+      <view class="iconfont icon-xinchedingdan car"></view>
+      <view class="rders-text">新车订单</view>
+    </view>
+    <view class="goback">></view>
+  </view>
+  <view class="rders">
+    <view class="rders-box">
+      <view class="iconfont icon-zixundingdan car1"></view>
+      <view class="rders-text">资讯订单</view>
+    </view>
+    <view class="goback">></view>
+  </view>
+  <view class="rders">
+    <view class="rders-box">
+      <view class="iconfont icon-baoyangdingdan car2"></view>
+      <view class="rders-text">保养订单</view>
+    </view>
+    <view class="goback">></view>
+  </view>
+</view>

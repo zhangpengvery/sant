@@ -1,12 +1,65 @@
 /* pages/order/order.wxss */
 @import "/assets/fonts/iconfont.wxss";
+page{
+  background: #f6f6f6;
+}
+.nav-top{
+  position: relative;
+  width: 94%;
+  padding: 0 3%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+.back{
+  margin: 50rpx 20rpx 0 0;
+}
+.navber-content{
+  margin-top: 50rpx;
+}
+.nav-tab{
+  display: flex;
+  justify-content: space-between;
+  width: 272rpx;
+  height: 52rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 12rpx;
+  border: 2rpx solid #F9B236;
+  text-align: center;
+  line-height: 52rpx;
+}
+.nav-tab .nav-left , .nav-right{
+  width: 50%;
+  height: 52rpx;
+  border-radius: 12rpx;
+  font-size: 24rpx;
+}
+.nav-left{
+  color: #F9B236;
+}
+.nav-right{
+  background: #fff;
+  color: #F9B236;
+}
+.leftactive{
+  background: #F9B236;
+  color: #fff;
+}
+.rightactive{
+  background: #F9B236;
+  color: #fff;
+}
 .header{
   width: 94%;
   height: 100rpx;
-  margin: 0 3%;
+  padding: 0 3%;
   display: flex;
   justify-content: space-around;
   line-height: 100rpx;
+  background: #fff;
 }
 .nav-box{
   position: relative;
@@ -29,6 +82,8 @@
 .content{
   width: 94%;
   margin: 0 3%;
+  background: #fff;
+  border-radius: 20rpx;
 }
 .content .box{
   width: 94%;
@@ -45,6 +100,7 @@
 }
 .box-header .iconfont{
   color: #F9B236;
+  font-size: 26rpx;
 }
 .box-header .bianh{
   color: #6E6E6E;
@@ -122,4 +178,48 @@
   background: #F9B236;
   border: 2rpx solid #F9B236;
   border-radius: 84rpx;
+}
+.right-box{
+  width: 94%;
+  height: 446rpx;
+  padding: 0 3%;
+  margin-top: 20rpx;
+  background: #fff;
+}
+.rders{
+  width: 100%;
+  height: 88rpx;
+  border-bottom: 2rpx solid #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  line-height: 88rpx;
+}
+.rders-title{
+  font-weight: bold;
+  font-size: 26rpx;
+  color: #333;
+}
+.rders-box{
+  display: flex;
+}
+.rders .car{
+  color: #E97C3B;
+}
+.car1{
+  color: #3279BE;
+}
+.car2{
+  color: #37A57D;
+}
+.rders .iconfont{
+  width: 50rpx;
+  margin-right: 20rpx;
+}
+.goback{
+  color: #BEBEBE;
+}
+.rders-text{
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
 }
