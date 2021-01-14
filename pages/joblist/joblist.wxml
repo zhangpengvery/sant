@@ -9,29 +9,24 @@
 </view>
 <swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
   <swiper-item>
-    <view class="content">
-      <view class="con-fater">
-        <view class="con-img">
-          <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
+    <view class="recruit-content">
+      <block wx:for="{{myRecruitList}}" wx:key="index">
+        <view class="content-box">
+          <view class="content-title">{{item.recruit_title}}</view>
+          <view class="content-mes">{{item.recruit_message}}</view>
+          <view class="content-jg">{{item.salary_name}}</view>
+          <view class="content-dz">
+            <view class="content-dz-box">{{item.ex_name}}</view>
+            <view class="content-dz-box">{{item.province_name}}</view>
+            <view class="content-dz-box">{{item.city_name}}</view>
+            <view class="content-dz-box">{{item.area_name}}</view>
+          </view>
+          <view class="delete" data-jr_id="{{item.jr_id}}" bindtap="deleteFn">删除</view>
+          <navigator url="/pages/jobmodify/jobmodify?jr_id={{item.jr_id}}">
+            <view class="editor">编辑</view>
+          </navigator>
         </view>
-        <view class="con-text">
-          <view class="con-title">12年德龙，车况精品，共六台</view>
-          <view class="con-jg">￥360.00</view>
-        </view>
-        <view class="delete">删除</view>
-        <view class="editor">编辑</view>
-      </view>
-      <view class="con-fater">
-        <view class="con-img">
-          <image src="http://www.jbccs.com/Upload/nopicimg.png"></image>
-        </view>
-        <view class="con-text">
-          <view class="con-title">12年德龙，车况精品，共六台</view>
-          <view class="con-jg">￥360.00</view>
-        </view>
-        <view class="delete">删除</view>
-        <view class="editor">编辑</view>
-      </view>
+      </block>
     </view>
     <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
     <!-- 加号 -->
@@ -39,51 +34,42 @@
     <view class="mask-jiahao" wx:if="{{showJiahao}}">
       <view class="mask-title">发布</view>
       <view class="mask-icon">
-        <view>
-          <view class="iconfont icon-quanminjingjiren icon-left"></view>
-          <text>我要买车</text>
-        </view>
-        <view>
-          <view class="iconfont icon-qiuzhiguanli icon-right"></view>
-          <text>我要卖车</text>
-        </view>
+        <navigator url="/pages/postoffer/postoffer">
+          <view>
+            <view class="iconfont icon-quanminjingjiren icon-left"></view>
+            <text>我要招聘</text>
+          </view>
+        </navigator>
+        <navigator url="/pages/postjob/postjob">
+          <view>
+            <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+            <text>我要求职</text>
+          </view>
+        </navigator>
       </view>
     </view>
     <!-- 乘号 -->
     <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
   </swiper-item>
   <swiper-item>
-    <view class="right-list">
-      <view class="right-content">
-        <view class="right-title">求购国五搅拌车
-          <view class="right-jg">￥25.00</view>
+    <view class="recruit-content">
+      <block wx:for="{{myApplyList}}" wx:key="index">
+        <view class="content-box">
+          <view class="content-title">{{item.apply_title}}</view>
+          <view class="content-gs">{{item.apply_message}}</view>
+          <view class="content-jg">{{item.salary_name}}</view>
+          <view class="content-dz">
+            <view class="content-dz-box">{{item.ex_name}}</view>
+            <view class="content-dz-box">{{item.province_name}}</view>
+            <view class="content-dz-box">{{item.city_name}}</view>
+            <view class="content-dz-box">{{item.area_name}}</view>
+          </view>
+          <view class="delete" data-ja_id="{{item.ja_id}}" bindtap="delzpFn">删除</view>
+          <navigator url="/pages/offmodify/offmodify?ja_id={{item.ja_id}}">
+            <view class="editor">编辑</view>
+          </navigator>
         </view>
-        <view class="right-name">
-          <text class="iconfont icon-quanminjingjiren"></text>
-          <text>求购人：张兵</text>
-        </view>
-        <view class="right-name">
-          <text class="iconfont icon-dingwei"></text>
-          <text>位置：河南郑州市</text>
-        </view>
-        <view class="delete">删除</view>
-        <view class="editor">编辑</view>
-      </view>
-      <view class="right-content">
-        <view class="right-title">求购国五搅拌车
-          <view class="right-jg">￥25.00</view>
-        </view>
-        <view class="right-name">
-          <text class="iconfont icon-quanminjingjiren"></text>
-          <text>求购人：张兵</text>
-        </view>
-        <view class="right-name">
-          <text class="iconfont icon-dingwei"></text>
-          <text>位置：河南郑州市</text>
-        </view>
-        <view class="delete">删除</view>
-        <view class="editor">编辑</view>
-      </view>
+      </block>
     </view>
     <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
     <!-- 加号 -->

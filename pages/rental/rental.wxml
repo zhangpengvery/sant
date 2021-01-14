@@ -104,13 +104,13 @@
 <view class="mask-jiahao" wx:if="{{showJiahao}}">
   <view class="mask-title">发布</view>
   <view class="mask-icon">
-    <navigator>
+    <navigator url="/pages/forrent/forrent">
       <view>
         <view class="iconfont icon-quanminjingjiren icon-left"></view>
         <text>我要出租</text>
       </view>
     </navigator>
-    <navigator>
+    <navigator url="/pages/seerent/seerent">
       <view>
         <view class="iconfont icon-qiuzhiguanli icon-right"></view>
         <text>我要租车</text>

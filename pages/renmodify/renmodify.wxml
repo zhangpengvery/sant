@@ -1,0 +1,45 @@
+<!--pages/renmodify/renmodify.wxml-->
+<navbar params="{{params}}" />
+<view class="content" style="margin-top:{{navH}}rpx">
+  <view class="box">
+    <view class="box-title">求租标题</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindTitle" placeholder="20字以内，必填" value="{{getSaleInfo.hire_title}}" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">姓名</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindName" placeholder="10个字以内，必填" value="{{getSaleInfo.contact_name}}" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">手机</view>
+    <view class="box-inp">
+      <input type="number" bindinput="bindPho" placeholder="11位数字，必填" value="{{getSaleInfo.contact_tel}}" />
+    </view>
+  </view>
+  <view class="box">
+    <view  class="box-title">所在地区</view>
+    <view class="box-inp">
+      <picker bindchange="changeRegin" bindcolumnchange="bindRegionColumnChange" mode = "multiSelector" value="{{region}}" range='{{multiArray}}'>
+        <view class="picker" wx:if="{{addressCity}}">{{addressCity[0]}} - {{addressCity[1]}} - {{addressCity[2]}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">价格</view>
+    <view class="box-inp">
+      <input type="number" bindinput="bindCompany" placeholder="请输入价格,面议输入0" value="{{getSaleInfo.hire_price}}" />
+    </view>
+  </view>
+  <view class="box box2">
+    <view class="box-title">自我描述</view>
+    <view class="box-inp box-da">
+      <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" value="{{getSaleInfo.hire_message}}" />
+    </view>
+  </view>
+</view>
+<view class="ljfb" bindtap="bddhFn">立即修改</view>
+

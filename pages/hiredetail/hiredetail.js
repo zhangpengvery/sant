@@ -22,7 +22,7 @@ Page({
       fw:"bold",
       navColor:1,
       col:"#000",
-      title:"出售详情"
+      title:"出租详情"
     },
     navH:0,
     phone:'',

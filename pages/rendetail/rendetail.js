@@ -22,7 +22,7 @@ Page({
       fw:"bold",
       navColor:1,
       col:"#000",
-      title:"求购详情"
+      title:"求租详情"
     },
     navH:0,
     phone:'17550970313',

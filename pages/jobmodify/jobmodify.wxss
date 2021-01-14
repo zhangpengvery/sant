@@ -1,0 +1,65 @@
+/* pages/jobmodify/jobmodify.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.content{
+  width: 90%;
+  margin: 0 5%;
+  overflow: hidden;
+}
+.box{
+  display: flex;
+  height: 60rpx;
+  margin-top: 30rpx;
+}
+.box2{
+  height: 270rpx;
+}
+.box .box-inp{
+  border-bottom: 2rpx solid #DCDCDC;
+}
+.box-title{
+  width: 22%;
+  color: #333;
+  font-size: 30rpx;
+}
+.box-inp{
+  width: 78%;
+  position: relative;
+}
+.box-da{
+  height: 260rpx;
+}
+.box-inp input{
+  font-size: 26rpx;
+}
+.da-inp{
+  font-size: 26rpx;
+  width: 520rpx;
+  height: 260rpx;
+}
+.box-inp .iconfont{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #F9B236;
+}
+.picker{
+  color: #F9B236;
+  font-size: 26rpx;
+}
+.ljfb{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+}

@@ -4,31 +4,28 @@
   <!-- 左边 -->
   <view class="category-left" style="height:{{scrollH}}rpx">
     <block wx:for="{{getCataegoryNavList}}" wx:key="index">
-      <view class="category-nav {{item.id==activeIndex?'active':''}}" bindtap="leftNavFn" data-id="{{item.id}}">{{item.name}}</view>
+      <view class="category-nav {{item.cate_id==activeIndex?'active':''}}" bindtap="leftNavFn"
+        data-id="{{item.cate_id}}" data-title="{{item.cate_name}}">{{item.cate_name}}</view>
     </block>
   </view>
   <!-- 右边 -->
   <view class="category-right">
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx">
-      <view class="right-text">油品</view>
-      <block>
-        <!-- 内容 -->
-        <view class="content">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore">
+      <view class="right-text">{{rightTitle}}</view>
+      <!-- 内容 -->
+      <view class="content">
+        <block wx:for="{{getCataegoryContent}}" wx:key="index">
           <view class="right-content">
-            <view class="con-rb">
-              <view class="sanj"></view>
-            </view>
-            <view class="con-bottom"></view>
-            <image mode="aspectFit" src="http://www.jbccs.com/Upload//Pictures/2021-01-04/5ff2b6dbb28f7.png"></image>
-            <view class="con-name">唐鸿拉线</view>
-            <view class="con-price">￥260.00</view>
+            <navigator url="/pages/peijdetail/peijdetail?good_id={{item.good_id}}">
+              <view class="con-img">
+                <image mode="aspectFit" src="{{item.good_image}}"></image>
+              </view>
+              <view class="con-name">{{item.good_name}}</view>
+              <view class="con-price">￥{{item.good_price}}</view>
+            </navigator>
           </view>
-          <view class="right-content">
-          </view>
-          <view class="right-content">
-          </view>
-        </view>
-      </block>
+        </block>
+      </view>
     </scroll-view>
   </view>
 </view>

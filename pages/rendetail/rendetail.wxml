@@ -7,9 +7,9 @@
     </view>
     <view class="header-xq">详情：{{getSaleInfo.for_message}}</view>
     <view class="header-xz">
-      <view class="xz1">{{getSaleInfo.car_new}}</view>
-      <view class="xz2">{{getSaleInfo.car_age}}</view>
-      <view class="xz3">{{getSaleInfo.car_config}}</view>
+      <view class="xz1">不限</view>
+      <view class="xz2">不限</view>
+      <view class="xz3">不限</view>
       <view class="header-time">{{getSaleInfo.add_time_text}}</view>
     </view>
   </view>

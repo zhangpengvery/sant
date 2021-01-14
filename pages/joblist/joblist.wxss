@@ -200,3 +200,97 @@ page{
   right: 0;
   color: #BA1515;
 }
+.recruit-content{
+  width: 94%;
+  margin: 0 3%;
+  margin-top: 20rpx;
+}
+.recruit-content .content-box{
+  position: relative;
+  width: 94%;
+  height: 170rpx;
+  padding:3%;
+  border-radius: 20rpx;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.14);
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+.recruit-content .content-box .content-title{
+  width: 85%;
+  height: 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 10rpx 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.recruit-content .content-box .content-gs{
+  height: 35rpx;
+  font-size: 24rpx;
+  color:#F9B236;
+  margin-bottom: 20rpx;
+  line-height: 35rpx;
+}
+.recruit-content .content-box .content-mes{
+  height: 35rpx;
+  font-size: 24rpx;
+  color:#999999;
+  margin-bottom: 20rpx;
+  line-height: 35rpx;
+}
+.recruit-content .content-box .content-jg{
+  position: absolute;
+  top: 36rpx;
+  right: 20rpx;
+  font-size: 26rpx;
+  color: #F9B236;
+}
+.recruit-content .content-box .content-time{
+  position: absolute;
+  bottom: 40rpx;
+  right: 20rpx;
+  font-size: 22rpx;
+  color: #C2C2C2;
+}
+.content-box .content-dz{
+  display: flex;
+  width: 450rpx;
+  height: 50rpx;
+}
+.content-dz-box{
+  padding: 0 10rpx;
+  height: 40rpx;
+  color: #333;
+  background: #f2f2f2;
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+  font-size: 20rpx;
+  line-height: 40rpx;
+}
+.delete{
+  width: 74rpx;
+  height: 36rpx;
+  position: absolute;
+  bottom: 20rpx;
+  right: 150rpx;
+  border: 2rpx solid #BA1515;
+  border-radius: 128rpx;
+  color: #BA1515;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 36rpx;
+}
+.editor{
+  width: 74rpx;
+  height: 36rpx;
+  position: absolute;
+  bottom: 20rpx;
+  right: 40rpx;
+  border: 2rpx solid #333;
+  border-radius: 128rpx;
+  font-size: 20rpx;
+  color: #333;
+  text-align: center;
+  line-height: 36rpx;
+}

@@ -1,0 +1,68 @@
+<!--pages/jobmodify/jobmodify.wxml-->
+<navbar params="{{params}}" />
+<view class="content" style="margin-top:{{navH}}rpx">
+  <view class="box">
+    <view class="box-title">求职标题</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindTitle" placeholder="20字以内，必填" value="{{recruit_title}}" />
+    </view>
+  </view>
+  <view class="box">
+    <view  class="box-title">求职职位</view>
+    <view class="box-inp">
+      <picker bindchange="bindTypeChange" value="{{typeList['typeIndex']}}" range="{{typeList}}" range-key="{{'job_name'}}">
+        <view class="picker">{{typeList[typeIndex].job_name}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">姓名</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindName" placeholder="10个字以内，必填" value="{{contact_name}}" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">手机</view>
+    <view class="box-inp">
+      <input type="number" bindinput="bindPho" placeholder="11位数字，必填" value="{{contact_tel}}" />
+    </view>
+  </view>
+  <view class="box">
+    <view  class="box-title">所在地区</view>
+    <view class="box-inp">
+      <picker bindchange="changeRegin" bindcolumnchange="bindRegionColumnChange" mode = "multiSelector" value="{{region}}" range='{{multiArray}}'>
+        <view class="picker" wx:if="{{addressCity}}">{{addressCity[0]}} - {{addressCity[1]}} - {{addressCity[2]}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">薪资要求</view>
+    <view class="box-inp">
+      <picker bindchange="bindSalaryChange" value="{{salaryList['salaryIndex']}}" range="{{salaryList}}" range-key="{{'salary_name'}}">
+        <view class="picker">{{salaryList[salaryIndex].salary_name}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box">
+    <view  class="box-title">我的经验</view>
+    <view class="box-inp">
+      <picker bindchange="bindExChange" value="{{exList['exIndex']}}" range="{{exList}}" range-key="{{'ex_name'}}">
+        <view class="picker">{{exList[exIndex].ex_name}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box box2">
+    <view class="box-title">我的自述</view>
+    <view class="box-inp box-da">
+      <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="请输入自我描述" maxlength="200" value="{{recruit_message}}" />
+    </view>
+  </view>
+</view>
+<navigator url="/pages/joblist/joblist">
+  <view class="ljfb" bindtap="bddhFn">立即修改</view>
+</navigator>
+

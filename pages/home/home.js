@@ -70,6 +70,7 @@ Page({
       page:page,
       user_id:user_id
     }).then(res=>{
+      console.log(res);
       this.setData({
         listData:this.data.listData.concat(res.data.data)
       })

@@ -25,37 +25,69 @@ Page({
       navColor:1,
       col:"#000",
     },
-    getCataegoryNavList:[
-      {
-        id:0,
-        name:"油品"
-      },
-      {
-        id:1,
-        name:"上装"
-      },
-      {
-        id:2,
-        name:"底盘"
-      },
-      {
-        id:3,
-        name:"轮胎"
-      },
-    ],
+    getCataegoryNavList:[],
+    getCataegoryContent:[],
     navH:0,
+    cate_id2:7,
+    p:1,
+    salenum_up:-1,
+    price_up:-1,
     scrollH:0,
-    activeIndex:0
+    activeIndex:7,
+    rigthUrl:"https://api.jbccs.com/api/getPartsList/cate_id2/7/p/1/salenum_up/-1/price_up/-1",
+    rightTitle:"油品",
   },
   leftNavFn:function(e){
     this.setData({
+      p:1,
+      rightTitle:e.target.dataset.title,
+      cate_id2:e.target.dataset.id,
+      rigthUrl:`https://api.jbccs.com/api/getPartsList/cate_id2/${e.target.dataset.id}/p/1/salenum_up/-1/price_up/-1`,
       activeIndex:e.target.dataset.id
     })
+    this.getChengFn()
+  },
+  getChengFn(){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    wx.request({
+      url: this.data.rigthUrl,
+      success:(res)=>{
+        if(res.statusCode==200){
+          wx.hideLoading()
+        }
+        this.setData({
+          getCataegoryNavList:res.data.data.cate_list,
+          getCataegoryContent:res.data.data.list
+        })
+        console.log(this.data.getCataegoryContent);
+      }
+    })
+  },
+  //懒加载数据
+  async getPartsList(cate_id2,p,salenum_up,price_up){
+    let result=await requestApi(app.globalData.base_url+"/getPartsList",{
+      cate_id2:cate_id2,
+      p:p,
+      salenum_up:salenum_up,
+      price_up:price_up
+    })
+    this.setData({
+      getCataegoryContent:this.data.getCataegoryContent.concat(result.data.data.list)
+    })
+  },
+  loadMore(){
+    this.setData({
+      p:++this.data.p
+    })
+    this.getPartsList(this.data.cate_id2,this.data.p,this.data.salenum_up,this.data.price_up)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getChengFn()
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

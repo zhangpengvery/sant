@@ -1,0 +1,93 @@
+<!--pages/renlist/renlist.wxml-->
+<navbar params="{{params}}" />
+<view class="header" style="margin-top:{{navH}}rpx">
+  <block wx:for="{{tabNavlists}}" wx:key="index">
+    <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
+      {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
+    </view>
+  </block>
+</view>
+<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
+  <swiper-item>
+    <view class="content">
+      <block wx:for="{{myHireList}}" wx:key="index">
+        <view class="con-fater">
+          <view class="con-img">
+            <image src="{{item.image_url}}"></image>
+          </view>
+          <view class="con-text">
+            <view class="con-title">{{item.hire_title}}</view>
+            <view class="con-jg">￥{{item.hire_price}}</view>
+          </view>
+          <view class="delete" data-hire_id="{{item.hire_id}}" bindtap="deleteFn">删除</view>
+          <navigator url="/pages/renmodify/renmodify?hire_id={{item.hire_id}}">
+            <view class="editor">编辑</view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+    <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
+    <!-- 加号 -->
+    <view class="jiahao" bindtap="jiahaoFn">+</view>
+    <view class="mask-jiahao" wx:if="{{showJiahao}}">
+      <view class="mask-title">发布</view>
+      <view class="mask-icon">
+        <navigator url="/pages/seerent/seerent">
+          <view>
+            <view class="iconfont icon-quanminjingjiren icon-left"></view>
+            <text>我要租车</text>
+          </view>
+        </navigator>
+        <navigator url="/pages/forrent/forrent">
+          <view>
+            <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+            <text>我要出租</text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+    <!-- 乘号 -->
+    <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
+  </swiper-item>
+  <swiper-item>
+    <view class="right-list">
+      <block wx:for="{{myHireForList}}" wx:key="index">
+        <view class="right-content">
+          <view class="right-title">{{item.for_title}}
+            <view class="right-jg">￥{{item.price}}</view>
+          </view>
+          <view class="right-name">
+            <text class="iconfont icon-quanminjingjiren"></text>
+            <text>求购人：{{item.contact_name}}</text>
+          </view>
+          <view class="right-name">
+            <text class="iconfont icon-dingwei"></text>
+            <text>位置：{{province_name}}{{item.city_name}}</text>
+          </view>
+          <view class="delete" data-hf_id="{{item.hf_id}}" bindtap="dadQgFn">删除</view>
+          <navigator url="/pages/formodify/formodify?hf_id={{item.hf_id}}">
+            <view class="editor">编辑</view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+    <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
+    <!-- 加号 -->
+    <view class="jiahao" bindtap="jiahaoFn">+</view>
+    <view class="mask-jiahao" wx:if="{{showJiahao}}">
+      <view class="mask-title">发布</view>
+      <view class="mask-icon">
+        <view>
+          <view class="iconfont icon-quanminjingjiren icon-left"></view>
+          <text>我要买车</text>
+        </view>
+        <view>
+          <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+          <text>我要卖车</text>
+        </view>
+      </view>
+    </view>
+    <!-- 乘号 -->
+    <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
+  </swiper-item>
+</swiper>

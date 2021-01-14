@@ -22,7 +22,7 @@ Page({
       fw:"bold",
       navColor:1,
       col:"#000",
-      title:"二手管理"
+      title:"求职招聘"
     },
     tabNavlists:[{
       id:1,
@@ -34,7 +34,8 @@ Page({
     navH:0,
     scrollH:0,
     currentIndex:0,
-    myRecruitList:[]
+    myRecruitList:[],
+    myApplyList:[]
   },
   changeTab:function(e){
     this.setData({
@@ -71,18 +72,97 @@ Page({
     })
   },
   //求职列表
-  async myRecruitList(){
-    let result=await requestApi(app.globalData.base_url+"/myRecruitList")
-    this.setData({
-      myRecruitList:result.data.data
+  myRecruitList(){
+    wx.showLoading({
+      title: '加载中',
     })
-    console.log(this.data.myRecruitList);
+    wx.request({
+      url: 'https://api.jbccs.com/api/myRecruitList',
+      data:{},
+      header: {
+        'content-type': 'application/json' ,
+        'XX-Token':wx.getStorageSync('token'),
+      },
+      success:(res)=>{
+        if(res.statusCode==200){
+          wx.hideLoading()
+        }
+        this.setData({
+          myRecruitList:res.data.data
+        })
+      }
+    })
+    
+  },
+  //招聘列表
+  myApplyList(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: 'https://api.jbccs.com/api/myApplyList',
+      data:{},
+      header: {
+        'content-type': 'application/json' ,
+        'XX-Token':wx.getStorageSync('token'),
+      },
+      success:(res)=>{
+        if(res.statusCode==200){
+          wx.hideLoading()
+        }
+        this.setData({
+          myApplyList:res.data.data
+        })
+      }
+    })
+  },
+  //删除求职
+  deleteFn:function(e){
+    var that=this;
+    var jr_id=e.target.dataset.jr_id;
+    console.log(e.target.dataset.jr_id);
+    wx.showModal({
+      title: '是否删除',
+      success(res){
+        if (res.confirm){
+          that.deleteRecuit(jr_id)
+          that.myRecruitList()
+        }
+      }
+    })
+  },
+  //招聘删除点击
+  delzpFn:function(e){
+    var that=this;
+    var ja_id=e.target.dataset.ja_id;
+    wx.showModal({
+      title: '是否删除',
+      success(res){
+        if (res.confirm){
+          that.deleteApply(ja_id)
+          that.myApplyList()
+        }
+      }
+    })
+  },
+  //求职删除
+  deleteRecuit(jr_id){
+    requestApi1(app.globalData.base_url+"/deleteRecuit",{
+      jr_id:jr_id
+    })
+  },
+  //招聘删除
+  deleteApply(ja_id){
+    requestApi1(app.globalData.base_url+"/deleteApply",{
+      ja_id:ja_id
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.myRecruitList()
+    this.myApplyList()
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

@@ -1,19 +1,18 @@
 <!--pages/accedetail/accedetail.wxml-->
 <navbar params="{{params}}" />
 <swiper class="detail-swp" indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true" style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#F9B236">
-  <swiper-item> 
-    <image mode="aspectFit" src="http://www.jbccs.com/Upload//Pictures/2017-10-23/59edbbdc5be8a.jpg"></image>
-  </swiper-item>
-  <swiper-item>
-    <image mode="aspectFit" src="http://www.jbccs.com/Upload//Pictures/2017-10-23/59edbbdc5be8a.jpg"></image>
-  </swiper-item>
+  <block wx:for="{{imageList}}" wx:key="index">
+    <swiper-item>
+      <image mode="aspectFit" src="{{item.image_src}}"></image>
+    </swiper-item>
+  </block>
 </swiper>
 <view class="details">
-  <view class="details-text">唐鸿牌水泥搅拌车10方<view class="iconfont icon-qiuzhiguanli"></view></view>
-  <view class="details-jg">￥45.00万</view>
+  <view class="details-text">{{getPartsInfo.good_name}}<view class="iconfont icon-qiuzhiguanli"></view></view>
+  <view class="details-jg">￥{{getPartsInfo.good_price}}</view>
   <view class="details-bzd">
-    <view>累计销量：10</view>
-    <view>库存：272</view>
+    <view>累计销量：{{getPartsInfo.good_sort}}</view>
+    <view>库存：{{getPartsInfo.good_stock}}</view>
     <view>地区：郑州市</view>
   </view>
 </view>
@@ -63,7 +62,9 @@
 </view>
 <view class="footer-dw">
   <view class="footer-left">
-    <view class="iconfont icon-shoucang"></view>
+    <view class="iconfont icon-shoucang" wx:if="{{getPartsInfo.is_favor==1}}"></view>
+    <view class="iconfont icon-dacheshifu" wx:else></view>
+    <view class=""></view>
     <view>收藏</view>
   </view>
   <view class="footer-left">

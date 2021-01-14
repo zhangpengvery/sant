@@ -114,7 +114,7 @@ page{
 .xian{
   width: 86%;
   margin: 42rpx 7% 30rpx 7%;
-  border-bottom: 1rpx solid #707070;
+  border-bottom: 1rpx solid #d8d8d8;
 }
 .allreviews{
   margin-top: 50rpx;

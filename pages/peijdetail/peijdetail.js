@@ -25,12 +25,30 @@ Page({
       title:"商品详情"
     },
     navH:0,
+    getPartsInfo:[],
+    imageList:[]
   },
-
+  async getPartsInfo(good_id){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    let result=await requestApi(app.globalData.base_url+"/getPartsInfo",{
+      good_id:good_id
+    })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
+    this.setData({
+      getPartsInfo:result.data.data,
+      imageList:result.data.data.pic
+    })
+    console.log(this.data.getPartsInfo);
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getPartsInfo(options.good_id)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
