@@ -3,6 +3,7 @@ const app=getApp()
 let{
   requestApi, requestApi1
 }=require("../../utils/request")
+let wxParse = require("../../wxParse/wxParse.js")
 Page({
 
   /**
@@ -25,6 +26,8 @@ Page({
       title:"商品详情"
     },
     navH:0,
+    good_id:0,
+    num:1,
     getPartsInfo:[],
     imageList:[]
   },
@@ -42,12 +45,37 @@ Page({
       getPartsInfo:result.data.data,
       imageList:result.data.data.pic
     })
-    console.log(this.data.getPartsInfo);
+    wxParse.wxParse('content', 'html', result.data.data.wap_good_description, this);
+  },
+  //加入购物车
+  postAddCart(goods){
+    wx.showLoading({
+      title: '添加中...',
+    })
+    requestApi1(app.globalData.base_url+"/addCart",{
+      goods:goods
+    }).then(res=>{
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      wx.showToast({
+        title: '添加成功',
+        duration: 2000
+      })
+    })
+  },
+  //点击加入购物车
+  addCart:function(){
+    var goods=this.data.good_id+"|"+this.data.num;
+    this.postAddCart(goods)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      good_id:options.good_id
+    })
     this.getPartsInfo(options.good_id)
     wx.getSystemInfo({
       success: (result) => {
@@ -57,7 +85,7 @@ Page({
       },
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

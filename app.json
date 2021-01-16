@@ -1,13 +1,14 @@
 {
   "pages":[
+    "pages/forrent/forrent",
     "pages/accesshop/accesshop",
+    "pages/cart/cart",
     "pages/accedetail/accedetail",
     "pages/second/second",
     "pages/renlist/renlist",
     "pages/renmodify/renmodify",
     "pages/formodify/formodify",
     "pages/rental/rental",
-    "pages/forrent/forrent",
     "pages/seerent/seerent",
     "pages/reqmodify/reqmodify",
     "pages/secmodify/secmodify",

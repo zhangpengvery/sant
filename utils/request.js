@@ -7,7 +7,7 @@ function requestApi(url, data = {}, method = "get") {
       method: method,
       header: {
         "content-type": "application/json",
-        'XX-Token':wx.getStorageSync('token'),
+        'XX-Token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjE2MTA2OTg5MjMsIm5iZiI6MTYxMDY5ODkyMywiZXhwIjoxNjI2MjUwOTIzLCJ1aWQiOjc4NH0.uWY3UqMQxyVzVKV_gIo9b7R2ydCXoTtVTss9hsWNmQM',
       },
       success: function (res) {
         if (res.statusCode == 200) {
@@ -28,7 +28,7 @@ function requestApi1(url, data = {}, method = "post") {
       method: method,
       header: {
         "content-type": "application/x-www-form-urlencoded",
-        'XX-Token':wx.getStorageSync('token'),
+        'XX-Token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjE2MTA2OTg5MjMsIm5iZiI6MTYxMDY5ODkyMywiZXhwIjoxNjI2MjUwOTIzLCJ1aWQiOjc4NH0.uWY3UqMQxyVzVKV_gIo9b7R2ydCXoTtVTss9hsWNmQM',
       },
       success: function (res) {
         if (res.statusCode == 200) {

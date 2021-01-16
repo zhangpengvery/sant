@@ -1,4 +1,5 @@
 <!--pages/accedetail/accedetail.wxml-->
+<import src="/wxParse/wxParse.wxml"></import>
 <navbar params="{{params}}" />
 <swiper class="detail-swp" indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true" style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#F9B236">
   <block wx:for="{{imageList}}" wx:key="index">
@@ -54,10 +55,7 @@
 <view class="cpxq-text">产品详情</view>
 <view class="footer">
   <view class="footer-box">
-    <image mode="scaleToFill" src="http://www.jbccs.com/Upload/image/20201123/1606124814700515.png"></image>
-  </view>
-  <view class="footer-box">
-    <image mode="scaleToFill" src="http://www.jbccs.com/Upload/image/20201211/1607656585277983.jpg"></image>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
   </view>
 </view>
 <view class="footer-dw">
@@ -68,15 +66,17 @@
     <view>收藏</view>
   </view>
   <view class="footer-left">
-    <view class="iconfont icon-dacheshifu"></view>
-    <view>购物车</view>
+    <navigator url="/pages/cart/cart">
+      <view class="iconfont icon-dacheshifu"></view>
+      <view>购物车</view>
+    </navigator>
   </view>
   <view class="footer-left">
     <view class="iconfont icon-dianhua"></view>
     <view>电话</view>
   </view>
   <view class="footer-right">
-    <view class="left-car">加入购物车</view>
+    <view class="left-car" bindtap="addCart">加入购物车</view>
     <view class="ljgm">立即购买</view>
   </view>
 </view>

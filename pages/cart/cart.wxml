@@ -1,0 +1,68 @@
+<!--pages/cart/cart.wxml-->
+<!-- 自定义头部 -->
+<scroll-view scroll-y="true" style="height:{{widH-navH/2}}px;position:relative;">
+  <!-- 购物车 -->
+  <view class="cart-content" style="height:{{widH-navH/2}}px">
+    <!-- 购物车为空时 -->
+    <view wx:if="{{nogoods}}" class="nogoods" style="height:{{widH-navH/2}}px">
+      <image src="/assets/images/campus-robot.png"></image>
+      <view class="nogoods-info">
+        购物车空空如也，去逛逛吧
+      </view>
+    </view>
+    <!-- 购物车有商品 -->
+    <view wx:else class="havegoods">
+      <view class="total">共{{cartLength}}件宝贝</view>
+      <!-- 选择地址 -->
+      <view class="sendcity">
+        <view class="sendcityleft">
+          <view class="iconfont icon-dengdaifukuan-weizhi"></view>
+          <view>{{cityDatas}}{{address}}</view>
+        </view>
+        <view>
+          <view wx:if="{{editor}}" bindtap="editorFn">编辑</view>
+          <view wx:else bindtap="completeFn">完成</view>
+        </view>
+      </view>
+      <!-- 购物车内容 -->
+      <block wx:for="{{cartListDatas}}" wx:key="index">
+        <view class="cart-goods">
+          <view class="cart-icon" bindtap="changeSelect" data-index="{{index}}">
+            <icon type="success_circle" color="#F9B236" wx:if="{{item.isSelect}}"></icon>
+            <icon type="circle" wx:else></icon>
+          </view> 
+          <navigator url="/pages/goodsdetail/goodsdetail?goods_id={{item.cart_id}}">
+            <view class="cart-img">
+              <image mode="aspectFill" src="{{item.good_image}}"></image>
+            </view>
+          </navigator>
+          <view class="goods-info">
+            <view class="goods-title">{{item.good_name}}</view>
+            <view class="goods-other">
+              <view class="goods-price">{{item.good_price}}</view>
+              <view class="goods-num">
+                <button bindtap="jianCartNum" data-index="{{index}}">-</button>
+                <input type="text" disabled="true" adjust-position="true" value="{{item.good_num}}" bindinput="inputNum"/>
+                <button bindtap="addCartNum" data-index="{{index}}">+</button>
+              </view>
+              <view class="shoucang iconfont iconshoucang1"></view>
+              <view class="delate iconfont iconlajitong"></view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</scroll-view>
+<view class="cart-footer" wx:if="{{!nogoods}}">
+  <view class="cart-icon" bindtap="selectAllFn">
+    <icon type="success_circle" color="#F9B236" wx:if="{{isSelectAll}}"></icon>
+    <icon type="circle" wx:else></icon>
+    <text>全选</text>
+  </view>
+  <view class="allprice">
+    <text>合计:{{totalPrice}}</text>
+  </view>
+  <view class="gobuy" bindtap="gobuyFn">结算</view>
+</view>
+
