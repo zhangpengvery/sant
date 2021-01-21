@@ -1,0 +1,10 @@
+<!--pages/suggest/suggest.wxml-->
+<view class="text">问题描述</view>
+<view class="body">
+  <textarea class="suggest" bindinput="suggestFn" maxlength="200" placeholder="请说明建议，我们将为您不断改进！"></textarea>
+</view>
+<view class="footer">
+  <view class="footer-text">手机号码</view>
+  <input type="number" maxlength="11" bindinput="phoFn" placeholder="请留下您的手机号码" />
+</view>
+<view class="ljfb" bindtap="bddhFn">提交建议</view>

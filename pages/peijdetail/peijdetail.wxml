@@ -60,14 +60,13 @@
 </view>
 <view class="footer-dw">
   <view class="footer-left">
-    <view class="iconfont icon-shoucang" wx:if="{{getPartsInfo.is_favor==1}}"></view>
-    <view class="iconfont icon-dacheshifu" wx:else></view>
-    <view class=""></view>
+    <view class="iconfont icon-xin-xuanzhong" style="color:#F9B236" wx:if="{{is_favor==1}}"></view>
+    <view class="iconfont icon-shoucang1" wx:else bindtap="collecFn"></view>
     <view>收藏</view>
   </view>
   <view class="footer-left">
     <navigator url="/pages/cart/cart">
-      <view class="iconfont icon-dacheshifu"></view>
+      <view class="iconfont icon-gouwuche"></view>
       <view>购物车</view>
     </navigator>
   </view>

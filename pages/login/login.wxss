@@ -83,3 +83,23 @@
 .tiaoyue .zhiti .hui{
   color: #999;
 }
+.wxbtn-top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wxbtn-top .wxbtn-xian{
+  width: 100rpx;
+  height: 10rpx;
+  border-bottom: 1rpx solid #BEBEBE;
+}
+.wxbtn-text{
+  color: #999;
+  font-size: 22rpx;
+  margin: 0 10rpx;
+}
+.wx-btn .iconfont{
+  border: none;
+  color: #45C45D;
+  font-size: 70rpx;
+}

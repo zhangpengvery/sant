@@ -22,3 +22,11 @@
     <view class="zhiti"><text class="hui">已阅读并同意</text><text class="huang">《服务协议》</text><text class="hui">和</text><text class="huang">《隐私政策》</text></view>
   </view>
 </view>
+<view class="wxbtn-top">
+  <view class="wxbtn-xian"></view>
+  <view class="wxbtn-text">其他登录方式</view>
+  <view class="wxbtn-xian"></view>
+</view>
+<view class="wx-btn">
+  <button open-type="getPhoneNumber" class="iconfont icon-weixin" plain="true" bindgetphonenumber="getPhoneNumber"></button>
+</view>

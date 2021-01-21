@@ -37,8 +37,8 @@ Page({
     let result=await requestApi(app.globalData.base_url+"/getMyIcons")
     this.setData({
       getMindText:result.data.data,
-      getMindIcons:result.data.data[0].items
     })
+    console.log(result);
   },
   
   scrollPage:function(e){
@@ -60,7 +60,7 @@ Page({
     this.setData({
       user:wx.getStorageSync('user')
     })
-    if(this.data.user==[]){
+    if(wx.getStorageSync('token')==[]){
       this.setData({
         login:false,
         userInfor:true

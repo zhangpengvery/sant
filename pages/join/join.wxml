@@ -1,2 +1,70 @@
 <!--pages/join/join.wxml-->
-<text>pages/join/join.wxml</text>
+<view class="header-img">
+  <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-29/5feae74159346.jpg"></image>
+</view>
+<view class="title">加盟流程</view>
+<view class="gclc-icon">
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">网上申请</view>
+  </view>
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">投递简历</view>
+  </view>
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">面试</view>
+  </view>
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">offer</view>
+  </view>
+</view>
+<view class="title">基本信息</view>
+<view class="content">
+  <view class="box">
+    <view class="box-title">姓名</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindName" placeholder="请输入姓名" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">年龄</view>
+    <view class="box-inp">
+      <input type="number" maxlength="2" bindinput="bindage" placeholder="请输入年龄" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">工作地点</view>
+    <picker class="box-inp" bindchange="changeRegin" mode="region" value="{{region}}">
+      <view >{{region[0]}} - {{region[1]}} - {{region[2]}}</view>
+    </picker>
+  </view>
+  <view class="box">
+    <view class="box-title">工作经验</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindEx" placeholder="如底盘维修、上装维修等" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">手机</view>
+    <view class="box-inp">
+      <input type="number" maxlength="11" bindinput="bindPho" placeholder="请输入手机号码" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">验证码</view>
+    <view class="box-inp">
+      <input type="number" bindinput="bindCode" placeholder="请输入短信验证码" />
+    </view>
+    <view class="code" bindtap="getCode">
+      <view>{{codetext}}</view>
+    </view>
+  </view>
+</view>
+<view class="jmpho">
+  <view class="iconfont icon-mendian-dianhua"></view>
+  <view>加盟联系电话：400 900 7819</view>
+</view>
+<view class="ljfb" bindtap="bddhFn">申请加盟</view>

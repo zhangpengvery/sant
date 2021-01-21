@@ -1,0 +1,39 @@
+<!--pages/allries/allries.wxml-->
+<navbar params="{{params}}" />
+<view class="aui-content" style="margin-top:{{navH}}rpx">
+  <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
+    <text>综合排序</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+  <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="cityFn">
+    <text>部件</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+</view>
+<view class="showjuli" wx:if="{{showJuli}}">
+  <view bindtap="juliFn" data-id="0">综合排序</view>
+  <view bindtap="juliFn" data-id="1">销量</view>
+  <view bindtap="juliFn" data-id="2">价格由高到低</view>
+  <view bindtap="juliFn" data-id="3">价格由低到搞</view>
+</view>
+<view class="showcity" wx:if="{{showCity}}">
+  <view class="cityright">
+    <block wx:for="{{cateList}}" wx:key="index">
+      <view class="right-box" bindtap="rightBoxFn" data-id="{{item.cate_id}}">{{item.cate_name}}</view>
+    </block>
+  </view>
+</view>
+<view class="mask" wx:if="{{showMask}}" bindtap="maskFn"></view>
+<scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore">
+  <view class="list">
+    <block wx:for="{{getPartsList}}" wx:key="index">
+      <view class="list-content">
+        <image mode="aspectFit" src="{{item.good_image}}"></image>
+        <text class="list-name">{{item.good_name}}</text>
+        <text class="list-price">{{item.good_price}}</text>
+        <view class="iconfont {{item.favor_data==item.sale_id?'icon-xin-xuanzhong':'icon-xin-moren'}} list-xin"
+          bindtap="qiehuanFn" data-index="{{index}}" data-id="{{item.sale_id}}"></view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

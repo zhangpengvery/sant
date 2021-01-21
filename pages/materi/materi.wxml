@@ -1,0 +1,79 @@
+<!--pages/materi/materi.wxml-->
+<navbar params="{{params}}" />
+<view class="gclc-icon">
+  <view class="icon-left">
+    <view class="yuan"></view>
+    <view class="xiandan">1、完善信息</view>
+  </view>
+  <view class="icon-left" style="opacity:0.5;">
+    <view class="yuan"></view>
+    <view class="xiandan">2、上传证件</view>
+  </view>
+  <view class="icon-left" style="opacity:0.5;">
+    <view class="yuan"></view>
+    <view class="xiandan">3、完成</view>
+  </view>
+</view>
+<view class="footer">
+  <view class="box" bindtap="toxiangFn">
+    <view class="footer-text">头像</view>
+    <view class="box-left">
+      <view class="toxiang">
+        <image src="{{user_img}}"></image>
+      </view>
+      <view class="gai"> ></view>
+    </view>
+  </view>
+  <view class="box">
+    <view class="footer-text">用户名</view>
+    <input type="text" bindinput="bindname" placeholder="请输入真实姓名" />
+  </view>
+  <view class="box">
+    <view class="footer-text">QQ</view>
+    <input type="number" maxlength="10" bindinput="bindqq" placeholder="请输入QQ" />
+  </view>
+  <view class="box">
+    <view class="footer-text">微信</view>
+    <input type="text" maxlength="11" bindinput="bindwx" placeholder="请输入微信" />
+  </view>
+  <view class="box">
+    <view class="footer-text">所在地区</view>
+    <picker bindchange="changeRegin" bindcolumnchange="bindRegionColumnChange" mode="multiSelector" value="{{region}}"
+      range='{{multiArray}}'>
+      <view class="picker" wx:if="{{addressCity}}">{{addressCity[0]}} - {{addressCity[1]}} - {{addressCity[2]}}</view>
+      <view class="iconfont icon-tubiao2-14"></view>
+    </picker>
+  </view>
+  <view class="box">
+    <view class="footer-text">邮箱地址</view>
+    <input type="text" bindinput="bindeml" placeholder="请输入邮箱地址" />
+  </view>
+</view>
+<view class="footer">
+  <view class="box">
+    <view class="footer-text">行驶证编号</view>
+    <input type="text" bindinput="bindlic" placeholder="请输入行驶证编号" />
+  </view>
+  <view class="box">
+    <view class="footer-text">车牌号码</view>
+    <input type="text" bindinput="bindplate" placeholder="请输入车牌号码" />
+  </view>
+  <view class="box">
+    <view class="footer-text">挂靠搅拌站</view>
+    <input type="text" bindinput="bindsta" placeholder="请输入挂靠搅拌站" />
+  </view>
+  <view class="box">
+    <view class="footer-text">数量</view>
+    <input type="text" bindinput="bindnum" placeholder="请输入数量" />
+  </view>
+  <view class="box">
+    <view class="footer-text">车辆品牌</view>
+    <picker bindchange="changeCountry" value="{{countryIndex}}" range="{{countryList}}">
+      <view class="picker">{{countryList[countryIndex]}}</view>
+    </picker>
+  </view>
+</view>
+<view style="winth:100%;height:150rpx"></view>
+<navigator url="/pages/docum/docum">
+  <view class="ljfb" bindtap="bddhFn">提交建议</view>
+</navigator>

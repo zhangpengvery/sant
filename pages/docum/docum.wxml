@@ -1,0 +1,28 @@
+<!--pages/docum/docum.wxml-->
+<navbar params="{{params}}" />
+<view class="gclc-icon">
+  <view class="icon-left">
+    <view class="yuan"></view>
+    <view class="xiandan">1、完善信息</view>
+  </view>
+  <view class="icon-left">
+    <view class="yuan"></view>
+    <view class="xiandan">2、上传证件</view>
+  </view>
+  <view class="icon-left" style="opacity:0.5;">
+    <view class="yuan"></view>
+    <view class="xiandan">3、完成</view>
+  </view>
+</view>
+<view class="title">完成实名认证可获得更多权益哦！</view>
+<view class="text">上传驾驶证</view>
+<view class="jsz" bindtap="jiaszFn">
+  <image src="{{idcard_file}}"></image>
+</view>
+<view class="text">上传行驶证</view>
+<view class="jsz" bindtap="xingszFn">
+  <image src="{{drive_file}}"></image>
+</view>
+<navigator url="/pages/mind/mind">
+  <view class="ljfb" bindtap="bddhFn">确定上传</view>
+</navigator>

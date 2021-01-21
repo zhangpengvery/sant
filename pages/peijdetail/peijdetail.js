@@ -26,6 +26,8 @@ Page({
       title:"商品详情"
     },
     navH:0,
+    type:"parts",
+    is_favor:0,
     good_id:0,
     num:1,
     getPartsInfo:[],
@@ -43,7 +45,8 @@ Page({
     }
     this.setData({
       getPartsInfo:result.data.data,
-      imageList:result.data.data.pic
+      imageList:result.data.data.pic,
+      is_favor:result.data.data.is_favor
     })
     wxParse.wxParse('content', 'html', result.data.data.wap_good_description, this);
   },
@@ -68,6 +71,24 @@ Page({
   addCart:function(){
     var goods=this.data.good_id+"|"+this.data.num;
     this.postAddCart(goods)
+  },
+  //收藏接口
+  favorAdd(type,favor_data){
+    requestApi1(app.globalData.base_url+"/favor_add",{
+      type:type,
+      favor_data:favor_data
+    }).then(res=>{
+      wx.showToast({
+        title: '收藏成功',
+      })
+    })
+  },
+  //点击收藏
+  collecFn:function(){
+    this.favorAdd(this.data.type,this.data.good_id)
+    this.setData({
+      is_favor:1
+    })
   },
   /**
    * 生命周期函数--监听页面加载

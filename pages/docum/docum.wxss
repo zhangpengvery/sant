@@ -1,0 +1,72 @@
+/* pages/docum/docum.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.gclc-icon{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  width: 90%;
+  height: 40rpx;
+  padding: 150rpx 5%;
+  background: linear-gradient(180deg, #FFCE7A 0%, #F9B236 100%);
+}
+.icon-left{
+  text-align: center;
+  align-items: center;
+}
+.icon-left .yuan{
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 24rpx;
+}
+.icon-left .xiandan{
+  color: #333;
+  font-size: 26rpx;
+  margin: 20rpx 0;
+}
+.title{
+  width: 86%;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 2%;
+  background: #FFF7E8;
+  font-size: 26rpx;
+  color: #F9B236;
+  margin: 0 5% 50rpx 5%;
+  border-radius: 260rpx;
+}
+.text{
+  width: 90%;
+  margin: 20rpx 5%;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.jsz{
+  width: 90%;
+  margin: 0 5%;
+  height: 200rpx;
+  background: #f6f6f6;
+  border-radius: 20rpx;
+}
+.jsz image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.ljfb{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+}

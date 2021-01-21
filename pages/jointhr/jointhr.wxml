@@ -1,0 +1,70 @@
+<!--pages/jointhr/jointhr.wxml-->
+<view class="header-img">
+  <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-29/5feae74159346.jpg"></image>
+</view>
+<view class="title">加盟流程</view>
+<view class="gclc-icon">
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">网上申请</view>
+  </view>
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">采购经理联系</view>
+  </view>
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">资质审核</view>
+  </view>
+  <view class="icon-left">
+    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="xiandan">签订合同</view>
+  </view>
+</view>
+<view class="title">申请加盟</view>
+<view class="content">
+  <view class="box">
+    <view class="box-title">货物种类</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindHw" placeholder="请输入货品种类" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">公司名称</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindGsName" placeholder="请输入公司名称" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">营业地址</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindDd" placeholder="请输入营业地址" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">联系人</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindName" placeholder="请输入姓名" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">手机</view>
+    <view class="box-inp">
+      <input type="number" maxlength="11" bindinput="bindPho" placeholder="请输入手机号码" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">验证码</view>
+    <view class="box-inp">
+      <input type="number" bindinput="bindCode" placeholder="请输入短信验证码" />
+    </view>
+    <view class="code" bindtap="getCode">
+      <view>{{codetext}}</view>
+    </view>
+  </view>
+</view>
+<view class="jmpho">
+  <view class="iconfont icon-mendian-dianhua"></view>
+  <view>加盟联系电话：400 900 7819</view>
+</view>
+<view class="ljfb" bindtap="bddhFn">申请加盟</view>

@@ -1,0 +1,44 @@
+<!--pages/confirmed/confirmed.wxml-->
+<view class="header">
+  <view class="address">
+    <view class="moren">默认</view>
+    <view class="city">{{address.area_info}}</view>
+  </view>
+  <view class="xiangq">
+    <view class="xiangq-dz">{{address.area_info}}{{address.address}}</view>
+    <view class="dayu">></view>
+  </view>
+  <view class="user">
+    <view class="user-name">{{address.true_name}}</view>
+    <view>{{address.phone}}</view>
+  </view>
+</view>
+<block wx:for="{{preOrder}}" wx:key="index">
+  <view class="comlist">
+    <view class="comlist-img">
+      <image src="{{item.good_image}}"></image>
+    </view>
+    <view class="text-box">
+      <view class="text-name">{{item.good_name}}</view>
+      <view class="text-pic">￥{{item.good_price}}</view>
+      <view class="goods-num">
+        <button bindtap="jianCartNum" data-index="{{index}}">-</button>
+        <input type="text" disabled="true" adjust-position="true" value="{{item.num}}" bindinput="inputNum" />
+        <button bindtap="addCartNum" data-index="{{index}}">+</button>
+      </view>
+    </view>
+  </view>
+</block>
+<view class="zongj">
+  <view class="message">
+    <view class="message-text">购买留言</view>
+    <input type="text" placeholder="请输入购买留言" placeholder-style="font-size:28rpx" />
+  </view>
+</view>
+<view class="footer">
+  <view class="footer-lfet">
+    <view class="length">共{{preOrderLength}}件</view>
+    <view class="money">合计：￥{{totalPrice}}</view>
+  </view>
+  <view class="gobuy" bindtap="gobuyFn">结算</view>
+</view>

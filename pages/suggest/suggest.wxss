@@ -1,0 +1,53 @@
+/* pages/suggest/suggest.wxss */
+page{
+  background: #f6f6f6;
+}
+.text{
+  margin:20rpx 0 20rpx 3%;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+}
+.body{
+  width: 88%;
+  padding: 20rpx 3% ;
+  height: 300rpx;
+  margin: 0 3%;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.suggest{
+  width: 100%;
+  height: 100%;
+}
+.footer{
+  width: 88%;
+  margin: 20rpx 3% 0 3%;
+  padding: 20rpx 3%;
+  height: 60rpx;
+  display: flex;
+  background: #fff;
+  border-radius: 20rpx;
+  align-items: center;
+}
+.footer-text{
+  font-weight: bold;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+}
+.ljfb{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+}

@@ -1,0 +1,102 @@
+/* pages/materi/materi.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #f6f6f6;
+}
+.gclc-icon{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  width: 90%;
+  height: 40rpx;
+  padding: 150rpx 5%;
+  background: linear-gradient(180deg, #FFCE7A 0%, #F9B236 100%);
+}
+.icon-left{
+  text-align: center;
+  align-items: center;
+}
+.icon-left .yuan{
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 24rpx;
+}
+.icon-left .xiandan{
+  color: #333;
+  font-size: 26rpx;
+  margin: 20rpx 0;
+}
+.footer{
+  width: 88%;
+  margin: 20rpx 3% 0 3%;
+  padding: 20rpx 3%;
+  background: #fff;
+  border-radius: 20rpx;
+  align-items: center;
+}
+.box{
+  position: relative;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  border-bottom: 1rpx solid #f6f6f6;
+  display: flex;
+  justify-content: space-between;
+}
+.box .box-left{
+  display: flex;
+}
+.iconfont{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #F9B236;
+}
+.picker{
+  margin-right: 50rpx;
+  color: #F9B236;
+  font-size: 26rpx;
+}
+.toxiang{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  margin-top: 15rpx;
+}
+.gai{
+  color: #ABABAB;
+}
+.toxiang image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.box input{
+  width: 75%;
+  font-size: 30rpx;
+  height: 100rpx;
+}
+.footer-text{
+  width: 25%;
+  font-size: 30rpx;
+}
+.ljfb{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+}

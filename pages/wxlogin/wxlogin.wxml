@@ -1,0 +1,7 @@
+<!--pages/wxlogin/wxlogin.wxml-->
+<view class="title">使用微信账号快捷登录</view>
+<view class="name">三泰之家</view>
+<view class="img">
+  <image src="/assets/images/log.jpg"></image>
+</view>
+<button class="btn" style="width:94%" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登录</button>

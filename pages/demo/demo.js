@@ -144,6 +144,71 @@ Page({
     }
     that.setData(data)  //更新数据
   },
+  //循环版本
+  chooseImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count:4,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        const tempFilePaths  = res.tempFilePaths
+        that.setData({
+          imageList: res.tempFilePaths
+        })
+        console.log(tempFilePaths[0]);
+        for(var i=0;i<res.tempFilePaths.length;i++){
+          var imageUrl=res.tempFilePaths[i];
+          wx.uploadFile({
+            filePath: imageUrl,
+            name: 'file',
+            url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
+            header:{
+              "content-type": "application/x-www-form-urlencoded",
+              'XX-Token':wx.getStorageSync('token')
+            },
+            success:function(res){
+              // var data = JSON.parse(res.data)
+              console.log(res);
+              // that.setData({
+              //   pics:data.datas.result
+              // })
+            }
+          })
+        }
+      }
+    })
+  },
+  //普通版本
+  chooseImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count:4,
+      success: function (res) {
+        const tempFilePaths  = res.tempFilePaths
+        that.setData({
+          imageList: res.tempFilePaths
+        })
+        console.log(tempFilePaths[0]);
+        wx.uploadFile({
+          filePath: tempFilePaths[0],
+          name: 'file',
+          url: 'https://api.jbccs.com/api/files_upload',
+          header:{
+            "content-type": "application/x-www-form-urlencoded",
+            'XX-Token':wx.getStorageSync('token')
+          },
+          success:function(res){
+            var data = JSON.parse(res.data)
+            console.log(data);
+            that.setData({
+              pics:data.datas.result
+            })
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,0 +1,15 @@
+<!--pages/myvip/myvip.wxml-->
+<navbar params="{{params}}" />
+<view class="ersik">
+  <view class="user-to"></view>
+</view>
+<swiper class="vipswiper">
+  <swiper-item style="background:rgb(241,209,165);border-radius: 20rpx;">
+  </swiper-item>
+  <swiper-item style="background:rgb(220,220,220);border-radius: 20rpx;">
+
+  </swiper-item>
+  <swiper-item style="background:rgb(114,114,114);border-radius: 20rpx;">
+
+  </swiper-item>
+</swiper>

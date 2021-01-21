@@ -24,19 +24,178 @@
   <swiper-item>
     <!-- 全部 -->
     <view class="content">
-      <navigator url="/pages/orddetail/orddetail">
+      <block wx:for="{{getOrderList}}" wx:key="index">
         <view class="box">
           <view class="box-header">
             <view class="iconfont icon-dingdanbianhao1"></view>
-            <view class="bianh">订单编号：ST203940392039499</view>
+            <view class="bianh">订单编号：{{item.order_sn}}</view>
+            <view class="zhuangt" wx:if="{{item.order_state=='TRADE_FINISH'}}">交易完成</view>
+            <view wx:elif="{{item.order_state==SELLER_DELIVER}}">
+              <view class="zhuangt" wx:if="{{item.return_type==2&&return_state==5}}">退货失败</view>
+              <view class="zhuangt" wx:else>待收货</view>
+            </view>
+            <view class="zhuangt" wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">代付款</view>
+            <view class="zhuangt" wx:elif="{{item.order_state=='SELLER_PICK'}}">代发货</view>
+            <view class="zhuangt" wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">待接单</view>
+            <view wx:elif="{{item.order_state==TRADE_CLOSED}}">
+              <view class="zhuangt" wx:if="{{item.return_type==2}}">退货成功</view>
+              <view class="zhuangt" wx:elif="{{item.return_type==1}}">退款成功</view>
+              <view class="zhuangt" wx:else>交易关闭</view>
+            </view>
+            <view wx:elif="{{item.order_state=='AFTER_SERVICE'}}">
+              <view wx:if="{{item.return_type==2}}">
+                <view class="zhuangt" wx:if="{{item.return_state==5}}">退货失败</view>
+                <view class="zhuangt" wx:elif="{{item.return_state==3}}">退货成功</view>
+                <view class="zhuangt" wx:else>退货中</view>
+              </view>
+              <view wx:else>
+                <view class="zhuangt" wx:if="{{item.deal_state==3}}">退款失败</view>
+                <view class="zhuangt" wx:elif="{{item.deal_state==1}}">退款成功</view>
+                <view class="zhuangt" wx:else>退款中</view>
+              </view>
+            </view>
+          </view>
+          <view class="box-body" data-order_sn="{{item.order_sn}}" bindtap="datelFn">
+            <view class="body-img">
+              <image src="{{item.order_good[0].good_image}}"></image>
+            </view>
+            <view class="body-text">
+              <block wx:if="{{item.order_good.length==1}}">
+                <view class="body-title">{{item.order_good[0].good_name}}</view>
+              </block>
+              <block wx:else>
+                <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
+              </block>
+              <view class="body-pj">三泰之家上装保养</view>
+              <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="box-footer">
+            <view>
+              <text class="footer-left">应付金额：</text>
+              <text class="body-jg">￥{{item.order_amount}}</text>
+            </view>
+            <view wx:if="{{item.order_state=='TRADE_FINISH'}}">
+              <view class="footer-right">
+                <view class="cancella">查看物流</view>
+                <view class="payment">删除</view>
+              </view>
+            </view>
+            <view wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">
+              <view class="footer-right">
+                <view bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
+                <view class="payment">立即付款</view>
+              </view>
+            </view>
+            <view wx:elif="{{item.order_state=='SELLER_DELIVER'}}">
+              <view wx:if="{{return_type==2&&return_state==5}}">
+                <view class="footer-right">
+                  <view class="payment">确认收款</view>
+                </view>
+              </view>
+              <view wx:else>
+                <view class="footer-right">
+                  <view class="cancella">确认收款</view>
+                  <view class="payment">查看物流</view>
+                </view>
+              </view>
+            </view>
+            <view wx:elif="{{item.order_state=='AFTER_SERVICE'}}">
+              <view wx:if="{{item.return_type==2}}">
+                <view class="footer-right">
+                  <view class="payment">取消申请</view>
+                </view>
+              </view>
+              <view wx:else>
+                <view class="footer-right">
+                  <view class="payment">订单详情</view>
+                </view>
+              </view>
+            </view>
+            <view wx:elif="{{item.order_state=='TRADE_CLOSED'}}">
+              <view class="footer-right">
+                <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" class="cancella" class="payment">删除</view>
+              </view>
+            </view>
+            <view wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">
+              <view class="footer-right">
+                <view class="payment">退款</view>
+              </view>
+            </view>
+            <view wx:elif="{{item.order_state=='SELLER_PICK'}}">
+              <view class="footer-right">
+                <view class="payment">订单详情</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </swiper-item>
+  <!-- 待付款 -->
+  <swiper-item>
+    <view class="content">
+      <block wx:for="{{getOrderOne}}" wx:key="index">
+        <view class="box">
+          <view class="box-header">
+            <view class="iconfont icon-dingdanbianhao1"></view>
+            <view class="bianh">订单编号：{{item.order_sn}}</view>
             <view class="zhuangt">待付款</view>
           </view>
           <view class="box-body">
             <view class="body-img">
-              <image src="/assets/images/20201221165446.png"></image>
+              <image src="{{item.order_good[0].good_image}}"></image>
             </view>
             <view class="body-text">
-              <view class="body-title">三泰之家上装保养</view>
+              <block wx:if="{{item.order_good.length==1}}">
+                <view class="body-title">{{item.order_good[0].good_name}}</view>
+              </block>
+              <block wx:else>
+                <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
+              </block>
+              <view class="body-pj">三泰之家上装保养</view>
+              <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="box-footer">
+            <view>
+              <text class="footer-left">应付金额：</text>
+              <text class="body-jg">￥{{item.order_amount}}</text>
+            </view>
+            <view class="footer-right">
+              <view class="cancella" bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
+              <view class="payment">立即付款</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </swiper-item>
+  <!-- 待发货 -->
+  <swiper-item>
+    <view class="content">
+      <block wx:for="{{getOrderTow}}" wx:key="index">
+        <view class="box">
+          <view class="box-header">
+            <view class="iconfont icon-dingdanbianhao1"></view>
+            <view class="bianh">订单编号：{{item.order_sn}}</view>
+            <view class="zhuangt">待发货</view>
+          </view>
+          <view class="box-body">
+            <view class="body-img">
+              <image src="{{item.order_good[0].good_image}}"></image>
+            </view>
+            <view class="body-text">
+              <block wx:if="{{item.order_good.length==1}}">
+                <view class="body-title">{{item.order_good[0].good_name}}</view>
+              </block>
+              <block wx:else>
+                <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
+              </block>
               <view class="body-pj">三泰之家上装保养</view>
               <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
               </view>
@@ -48,78 +207,12 @@
               <text class="body-jg">￥800</text>
             </view>
             <view class="footer-right">
-              <view class="cancella">取消订单</view>
-              <view class="payment">立即付款</view>
+              <view class="cancella">删除订单</view>
+              <view class="payment">评价</view>
             </view>
           </view>
         </view>
-      </navigator>
-    </view>
-  </swiper-item>
-  <!-- 待付款 -->
-  <swiper-item>
-    <view class="content">
-      <view class="box">
-        <view class="box-header">
-          <view class="iconfont icon-dingdanbianhao1"></view>
-          <view class="bianh">订单编号：ST203940392039499</view>
-          <view class="zhuangt">待付款</view>
-        </view>
-        <view class="box-body">
-          <view class="body-img">
-            <image src="/assets/images/20201221165446.png"></image>
-          </view>
-          <view class="body-text">
-            <view class="body-title">三泰之家上装保养</view>
-            <view class="body-pj">三泰之家上装保养</view>
-            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
-            </view>
-          </view>
-        </view>
-        <view class="box-footer">
-          <view>
-            <text class="footer-left">应付金额：</text>
-            <text class="body-jg">￥800</text>
-          </view>
-          <view class="footer-right">
-            <view class="cancella">取消订单</view>
-            <view class="payment">立即付款</view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </swiper-item>
-  <!-- 待发货 -->
-  <swiper-item>
-    <view class="content">
-      <view class="box">
-        <view class="box-header">
-          <view class="iconfont icon-dingdanbianhao1"></view>
-          <view class="bianh">订单编号：ST203940392039499</view>
-          <view class="zhuangt">待发货</view>
-        </view>
-        <view class="box-body">
-          <view class="body-img">
-            <image src="/assets/images/20201221165446.png"></image>
-          </view>
-          <view class="body-text">
-            <view class="body-title">三泰之家上装保养</view>
-            <view class="body-pj">三泰之家上装保养</view>
-            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
-            </view>
-          </view>
-        </view>
-        <view class="box-footer">
-          <view>
-            <text class="footer-left">应付金额：</text>
-            <text class="body-jg">￥800</text>
-          </view>
-          <view class="footer-right">
-            <view class="cancella">删除订单</view>
-            <view class="payment">评价</view>
-          </view>
-        </view>
-      </view>
+      </block>
     </view>
   </swiper-item>
   <swiper-item>

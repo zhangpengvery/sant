@@ -7,7 +7,7 @@ function requestApi(url, data = {}, method = "get") {
       method: method,
       header: {
         "content-type": "application/json",
-        'XX-Token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjE2MTA2OTg5MjMsIm5iZiI6MTYxMDY5ODkyMywiZXhwIjoxNjI2MjUwOTIzLCJ1aWQiOjc4NH0.uWY3UqMQxyVzVKV_gIo9b7R2ydCXoTtVTss9hsWNmQM',
+        'XX-Token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjE2MTA3ODIyMjQsIm5iZiI6MTYxMDc4MjIyNCwiZXhwIjoxNjI2MzM0MjI0LCJ1aWQiOjc4NH0.FDT902KJPlic8NyY8cNe1wpl0np2RTr2Kn5meSrsXek',
       },
       success: function (res) {
         if (res.statusCode == 200) {
@@ -28,7 +28,7 @@ function requestApi1(url, data = {}, method = "post") {
       method: method,
       header: {
         "content-type": "application/x-www-form-urlencoded",
-        'XX-Token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjE2MTA2OTg5MjMsIm5iZiI6MTYxMDY5ODkyMywiZXhwIjoxNjI2MjUwOTIzLCJ1aWQiOjc4NH0.uWY3UqMQxyVzVKV_gIo9b7R2ydCXoTtVTss9hsWNmQM',
+        'XX-Token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjE2MTA3ODIyMjQsIm5iZiI6MTYxMDc4MjIyNCwiZXhwIjoxNjI2MzM0MjI0LCJ1aWQiOjc4NH0.FDT902KJPlic8NyY8cNe1wpl0np2RTr2Kn5meSrsXek',
       },
       success: function (res) {
         if (res.statusCode == 200) {

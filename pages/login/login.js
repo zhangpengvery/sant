@@ -1,87 +1,140 @@
 // pages/login/login.js
-const app=getApp()
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      r:255,
-      g:255,
-      b:255,
-      w:20,
-      l:20,
-      fz:32,
-      fw:"",
-      col:"#000",
-      navColor:1,
-      title:"三泰之家"
+    params: {
+      showBack: true,
+      navTitle: true,
+      navInput: false,
+      r: 255,
+      g: 255,
+      b: 255,
+      w: 20,
+      l: 20,
+      fz: 32,
+      fw: "",
+      col: "#000",
+      navColor: 1,
+      title: "三泰之家"
     },
-    navH:0,
-    mobile:"",
-    dian:false,
-    btn:false,
-    guanIf:false
+    navH: 0,
+    mobile: "",
+    dian: false,
+    btn: false,
+    guanIf: false,
+    session_key:"",
   },
   //获取input框的内容
-  userpho:function(e){
+  userpho: function (e) {
     this.setData({
-      mobile:e.detail.value
+      mobile: e.detail.value
     })
-    if(this.data.mobile.length>0){
+    if (this.data.mobile.length > 0) {
       this.setData({
-        guanIf:true
+        guanIf: true
       })
-    }else{
+    } else {
       this.setData({
-        guanIf:false
+        guanIf: false
       })
     }
-    if(this.data.mobile.length>10&&this.data.dian){
+    if (this.data.mobile.length > 10 && this.data.dian) {
       this.setData({
-        btn:true
+        btn: true
       })
-    }else{
+    } else {
       this.setData({
-        btn:false
+        btn: false
       })
     }
   },
   //点击清除input框中的内容
-  phoguanFn:function(e){
+  phoguanFn: function (e) {
     this.setData({
-      mobile:"",
-      guanIf:false,
-      btn:false
+      mobile: "",
+      guanIf: false,
+      btn: false
     })
   },
-  dianbian:function(e){
-    if(e.detail.value&&this.data.mobile.length>10){
+  dianbian: function (e) {
+    if (e.detail.value && this.data.mobile.length > 10) {
       this.setData({
-        btn:true,
-        dian:true
+        btn: true,
+        dian: true
       })
     }
-    if(e.detail.value==false){
+    if (e.detail.value == false) {
       this.setData({
-        btn:false
+        btn: false
       })
     }
+  },
+  //通过绑定手机号登录
+  getPhoneNumber: function (e) {
+    var ivObj = e.detail.iv
+    var telObj = encodeURI(e.detail.encryptedData)
+    var sessionObj = this.data.session_key
+    wx.request({
+      url: 'http://api.jbccs.com/api/getWxTel',
+      method: 'POST',
+      data: {
+        encryptedData: telObj,
+        iv: ivObj,
+        session_key: sessionObj
+      },
+      success: function (res) {
+        var phoneObj = JSON.parse(res.data.data).tel;
+        wx.setStorage({  //存储数据并准备发送给下一页使用
+          key: "phoneObj",
+          data: phoneObj,
+        })
+        if (phoneObj>1) {
+          wx.redirectTo({
+            url: '/pages/wxlogin/wxlogin',
+          })
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    // wx.login({
+    //   success(res) {
+    //     if (res.code) {
+    //       //发起网络请求
+    //       wx.request({
+    //         url: 'https://api.jbccs.com/api/getJscode2session',
+    //         data: {
+    //           code: res.code
+    //         },
+    //         success(res) {
+    //           that.setData({
+    //             session_key: res.data.data.session_key
+    //           })
+    //           wx.setStorage({
+    //             data: res.data.data.openid,
+    //             key: 'openid',
+    //           })
+    //         }
+    //       })
+    //     } else {
+    //       console.log('登录失败！' + res.errMsg)
+    //     }
+    //   }
+    // })
     wx.getSystemInfo({
       success: (result) => {
-         this.setData({
-          widH:result.windowHeight-app.globalData.navbarHeight,
-          navH:app.globalData.navbarHeight
-         })
+        this.setData({
+          widH: result.windowHeight - app.globalData.navbarHeight,
+          navH: app.globalData.navbarHeight
+        })
       },
     })
   },

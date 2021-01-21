@@ -18,6 +18,7 @@ Page({
     cartListDatas: [],//购物车商品数据
     cartLength:0,
     isSelectAll: false, //全选按钮
+    id:0
   },
   //点击编辑
   editorFn:function(){
@@ -72,7 +73,7 @@ Page({
     this.totalPrice()
   },
   //点击+号
-  addCartNum(e) { 
+  addCartNum(e) {
     var index = e.currentTarget.dataset.index
     console.log(index);
     var cartListDatas = this.data.cartListDatas;
@@ -107,7 +108,8 @@ Page({
       cart_id:cart_id
     })
   },
-  totalPrice() {  //计算总价
+  //计算总价
+  totalPrice() {  
     var cartListDatas = this.data.cartListDatas;
     var total = 0
     for (var i = 0; i < cartListDatas.length; i++) {
@@ -151,7 +153,36 @@ Page({
     }
     console.log(this.data.cartListDatas);
   },
+  //结算
   gobuyFn:function(){
+    var cartListDatas = this.data.cartListDatas;
+    var arr=[];
+    var id=0;
+    for(var i=0;i<cartListDatas.length;i++){
+      if(cartListDatas[i].isSelect){
+        arr.push(cartListDatas[i].good_id+"|"+cartListDatas[i].good_num);
+        id=arr.join(",")
+      }
+    }
+    this.setData({
+      id:id
+    })
+    if(this.data.id==0){
+      wx.showToast({
+        title: '请选择商品',
+      })
+    }else{
+      wx.setStorage({
+        data: this.data.id,
+        key: 'id',
+      })
+      wx.navigateTo({
+        url: '/pages/confirmed/confirmed',
+      })
+    }
+  },
+  //删除
+  deleteFn:function(){
     var cartListDatas = this.data.cartListDatas;
     var arr=[];
     var cart_id=0;

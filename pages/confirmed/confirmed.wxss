@@ -1,0 +1,172 @@
+/* pages/confirmed/confirmed.wxss */
+page{
+  background: #f6f6f6;
+}
+.header{
+  width: 90%;
+  height: 200rpx;
+  padding: 20rpx 2%;
+  margin: 20rpx 3%;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.address{
+  width: 100%;
+  display: flex;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.address .moren{
+  width: 50rpx;
+  background: #F9B236;
+  font-size: 18rpx;
+  border-radius: 8rpx;
+  color: #fff;
+  text-align: center;
+  margin-right: 10rpx;
+}
+.city{
+  font-size: 24rpx;
+  color: #333;
+}
+.xiangq{
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx 0;
+}
+.xiangq .xiangq-dz{
+  width: 80%;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.dayu{
+  line-height: 80rpx;
+}
+.user{
+  font-size: 26rpx;
+  color: #333;
+  display: flex;
+}
+.user-name{
+  margin-right: 10rpx;
+}
+.comlist{
+  width: 90%;
+  height: 200rpx;
+  margin: 0 3%;
+  margin-bottom: 20rpx;
+  padding: 20rpx 2%;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.comlist-img{
+  width: 172rpx;
+  height: 172rpx;
+  background: #f6f6f6;
+  border-radius: 20rpx;
+}
+.comlist-img image{
+  padding: 10%;
+  width: 80%;
+  height: 80%;
+}
+.text-name{
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.text-box{
+  position: relative;
+  width: 70%;
+  height: 172rpx;
+  margin-left: 20rpx;
+}
+.text-pic{
+  color: #BA1515;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.goods-num{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: start;
+  text-align: center;
+}
+.text-box .goods-num button{
+  width: 50rpx;
+  height: 50rpx;
+  padding: 0;
+  text-align: center;
+  line-height: 50rpx;
+  margin: 0;
+}
+.text-box .goods-num input{
+  width: 100rpx;
+  height: 50rpx;
+  border: 2rpx solid #f4f4f4;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 50rpx;
+  box-sizing: border-box;
+}
+.zongj{
+  width: 94%;
+  margin: 0 3%;
+  background: #fff;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-bottom: 150rpx;
+  border-radius: 20rpx;
+}
+.message{
+  width: 94%;
+  margin: 0 3%;
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+}
+.message .message-text{
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  padding: 0 5%;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #fff;
+  align-items: center;
+}
+.footer-lfet{
+  display: flex;
+}
+.length{
+  color: #999;
+  font-size: 28rpx;
+  margin-right: 20rpx;
+}
+.money{
+  color: #EC5D27;
+  font-size: 34rpx;
+}
+.gobuy{
+  width: 30%;
+  background: #F9B236;
+  color: #fff;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}

@@ -198,3 +198,10 @@ page{
   line-height: 88rpx;
   text-align: center;
 }
+.cart-footer .delete{
+  width: 30%;
+  background: #c4c4c4;
+  color: #f44;
+  line-height: 88rpx;
+  text-align: center;
+}
