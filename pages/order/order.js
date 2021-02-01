@@ -51,6 +51,7 @@ Page({
     p:1,
     type:"all",
     good_type:0,
+    right_con:false,
     getOrderList:[],
     getOrderOne:[],
     getOrderTow:[],
@@ -61,7 +62,8 @@ Page({
       leftCss:true,
       rightCss:false,
       left_content:true,
-      left_header:true
+      left_header:true,
+      right_con:false
     })
   },
   navRightFn:function(){
@@ -69,7 +71,8 @@ Page({
       leftCss:false,
       rightCss:true,
       left_header:false,
-      left_content:false
+      left_content:false,
+      right_con:true
     })
   },
   changeTab:function(e){

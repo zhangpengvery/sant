@@ -42,6 +42,7 @@ Page({
       mobile:mobile,
       code:code
     }).then(res=>{
+      console.log(res);
       this.setData({
         loginData:res.data
       })
@@ -58,6 +59,10 @@ Page({
           data: this.data.loginData.data.user.user_id,
           key: 'user_id',
         })
+        // wx.setStorage({
+        //   data: data,
+        //   key: 'key',
+        // })
         wx.reLaunch({
           url: '/pages/home/home',
         })

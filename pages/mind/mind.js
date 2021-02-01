@@ -52,6 +52,23 @@ Page({
       })
     }
   },
+  bindUrlFn:function(e){
+    console.log(e.currentTarget.dataset.url);
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else{
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+      })
+    }
+  },
+  gologinFn:function(){
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

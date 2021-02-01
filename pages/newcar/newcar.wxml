@@ -1,0 +1,68 @@
+<!--pages/newcar/newcar.wxml-->
+<navbar params="{{params}}" />
+<view class="aui-content" style="margin-top:{{navH}}rpx">
+  <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
+    <text>综合排序</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+  <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="cityFn">
+    <text>品牌</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+  <view class="juli-right {{dpColor==true?'cityactive':''}}" bindtap="dipFn">
+    <text>底盘</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+  <view class="juli-right {{qdColor==true?'cityactive':''}}" bindtap="qudFn">
+    <text>驱动</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+</view>
+<view class="showjuli" wx:if="{{showJuli}}">
+  <view class="{{leftAct==0?'leftAct':''}}" bindtap="bindzhFn" data-id="0">综合排序</view>
+  <view class="{{leftAct==1?'leftAct':''}}" bindtap="bindxlFn" data-id="1">销量</view>
+  <view class="{{leftAct==2?'leftAct':''}}" bindtap="bindgjgFn" data-id="2">最新</view>
+</view>
+<view class="showcity" wx:if="{{showCity}}">
+  <view class="cityright">
+    <view class="right-box {{brand_id==0?'rigAct':''}}" data-id="0" bindtap="rightBoxFn">全部</view>
+    <block wx:for="{{getBrandList}}" wx:key="index">
+      <view class="right-box {{brand_id==item.brand_id?'rigAct':''}}" bindtap="rightBoxFn" data-id="{{item.brand_id}}">
+        {{item.brand_name}}</view>
+    </block>
+  </view>
+</view>
+<view class="showcity" wx:if="{{showDip}}">
+  <view class="cityright">
+    <view class="right-box {{chassis_id==0?'rigAct':''}}" data-id="0" bindtap="chassisFn">全部</view>
+    <block wx:for="{{getChassisList}}" wx:key="index">
+      <view class="right-box {{chassis_id==item.brand_id?'rigAct':''}}" bindtap="chassisFn" data-id="{{item.brand_id}}">
+        {{item.brand_name}}</view>
+    </block>
+  </view>
+</view>
+<view class="showcity" wx:if="{{showQud}}">
+  <view class="cityright">
+    <view class="right-box {{drive_id==0?'rigAct':''}}" data-id="0" bindtap="driveFn">全部</view>
+    <block wx:for="{{getDriveList}}" wx:key="index">
+      <view class="right-box {{drive_id==item.drive_id?'rigAct':''}}" bindtap="driveFn" data-id="{{item.drive_id}}">
+        {{item.drive_name}}</view>
+    </block>
+  </view>
+</view>
+<view class="mask" wx:if="{{showMask}}" bindtap="maskFn"></view>
+<scroll-view wx:if="{{getPartsList.length>0}}" scroll-y="true" style="height:{{scrollH}}rpx"
+  bindscrolltolower="loadMore">
+  <view class="list">
+    <block wx:for="{{getPartsList}}" wx:key="index">
+      <view class="list-content">
+        <image mode="aspectFit" src="{{item.good_image}}"></image>
+        <text class="list-name">{{item.good_name}}</text>
+        <text class="list-price">{{item.good_price}}</text>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+<view class="kong" style="height:{{scrollH}}rpx" wx:else>
+  <view class="kong-box">暂无车辆信息</view>
+</view>

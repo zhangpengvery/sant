@@ -25,18 +25,41 @@ Page({
       title:"我要保养"
     },
     navH:0,
-    activeTop:false,
-    activeBtm:false
+    maintain:1,
+    realname:"",
+    mobile:0
   },
   xuanzTopFn:function(){
     this.setData({
-      activeTop:!this.data.activeTop
+      maintain:1
     })
   },
   xuanzBtmFn:function(){
     this.setData({
-      activeBtm:!this.data.activeBtm
+      maintain:2
     })
+  },
+  addOrder(maintain,mobile,realname){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Maintain/addOrder",{
+      maintain:maintain,
+      mobile:mobile,
+      realname:realname
+    }).then(res=>{
+      console.log(res);
+    })
+  },
+  bindName:function(e){
+    this.setData({
+      realname:e.detail.value
+    })
+  },
+  bindPho:function(e){
+    this.setData({
+      mobile:e.detail.value
+    })
+  },
+  ljzfFn:function(){
+    this.addOrder(this.data.maintain,this.data.mobile,this.data.realname)
   },
   /**
    * 生命周期函数--监听页面加载

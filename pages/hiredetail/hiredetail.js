@@ -29,6 +29,33 @@ Page({
     getHireInfo:[],
     getSaleImg:[]
   },
+  //收藏点击
+  shoucFn: function (e) {
+    if (wx.getStorageSync('token')==[]) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      var getSaleInfo = this.data.getSaleInfo
+      var hire_id = getSaleInfo.hire_id;
+      getSaleInfo.is_favor = 1;
+      this.setData({
+        getSaleInfo: getSaleInfo
+      })
+      this.postFavorAdd(hire_id)
+    }
+  },
+  //删除收藏
+  qiehuanFn: function (e) {
+    var getSaleInfo = this.data.getSaleInfo;
+    var is_favor = getSaleInfo.hire_id;
+    getSaleInfo.is_favor = 0;
+    this.setData({
+      getSaleInfo: getSaleInfo
+    })
+    console.log(is_favor);
+    this.deleteMyFavor(is_favor)
+  },
   bddhFn:function(){
     wx.makePhoneCall({
       phoneNumber: this.data.phone,
@@ -50,6 +77,22 @@ Page({
       phone:result.data.data.contact_tel
     })
     console.log(this.data.getSaleInfo);
+  },
+  postFavorAdd(favor_data) {
+    requestApi1(app.globalData.post_url + "/index.php/Api/StoreCar/addFavor", {
+      type: "hire",
+      favor_data: favor_data
+    }).then(res=>{
+      console.log(res);
+    })
+  },
+  deleteMyFavor(favor_data) {
+    requestApi1(app.globalData.post_url + "/index.php/Api/StoreCar/addFavor", {
+      type:"hire",
+      favor_data: favor_data
+    }).then(res => {
+      console.log(res);
+    })
   },
   /**
    * 生命周期函数--监听页面加载

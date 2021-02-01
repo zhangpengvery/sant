@@ -25,15 +25,21 @@ Page({
       title:"会员中心"
     },
     navH:0,
+    current:0,
     getUserInfo:[]
   },
   //获取用户信息
   async getUserInfo(){
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/User/getUserInfo")
     this.setData({
-      getUserInfo:result
+      getUserInfo:result.data.datas.user_info
     })
     console.log(this.data.getUserInfo);
+  },
+  changeFn:function(e){
+    this.setData({
+      current:e.detail.current
+    })
   },
   /**
    * 生命周期函数--监听页面加载

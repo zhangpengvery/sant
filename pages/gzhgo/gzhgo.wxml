@@ -1,0 +1,2 @@
+<!--pages/gzhgo/gzhgo.wxml-->
+<web-view src="{{webSrc}}"></web-view>

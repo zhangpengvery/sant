@@ -8,36 +8,36 @@
         </view>
         <view>{{getUserInfo.user_name}}</view>
       </view>
-      <view class="gobuy"> ></view>
+      <view class="iconfont icon-xiangyou gobuy"></view>
     </view>
     <navigator url="/pages/address/address">
       <view class="box">
         <view>地址管理</view>
-        <view class="gobuy"> ></view>
+        <view class="iconfont icon-xiangyou gobuy"></view>
       </view>
     </navigator>
   </view>
   <view style="margin-top:20rpx">
     <view class="box">
       <view>账号安全</view>
-      <view class="gobuy"> ></view>
+      <view class="iconfont icon-xiangyou gobuy"></view>
     </view>
     <navigator url="/pages/myvip/myvip">
       <view class="box">
         <view>三泰会员</view>
-        <view class="gobuy"> ></view>
+        <view class="iconfont icon-xiangyou gobuy"></view>
       </view>
     </navigator>
   </view>
   <view style="margin-top:20rpx">
     <view class="box" bindtap="phoFn">
       <view>联系客服</view>
-      <view class="gobuy"> ></view>
+      <view class="iconfont icon-xiangyou gobuy"></view>
     </view>
     <navigator url="/pages/suggest/suggest">
       <view class="box">
         <view>建议反馈</view>
-        <view class="gobuy"> ></view>
+        <view class="iconfont icon-xiangyou gobuy"></view>
       </view>
     </navigator>
   </view>

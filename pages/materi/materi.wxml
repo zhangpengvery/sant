@@ -26,15 +26,15 @@
   </view>
   <view class="box">
     <view class="footer-text">用户名</view>
-    <input type="text" bindinput="bindname" placeholder="请输入真实姓名" />
+    <input type="text" bindinput="bindname" value="{{getUserInfo.user_truename}}" placeholder="请输入真实姓名" />
   </view>
   <view class="box">
     <view class="footer-text">QQ</view>
-    <input type="number" maxlength="10" bindinput="bindqq" placeholder="请输入QQ" />
+    <input type="number" maxlength="10" value="{{getUserInfo.user_qq}}" bindinput="bindqq" placeholder="请输入QQ" />
   </view>
   <view class="box">
     <view class="footer-text">微信</view>
-    <input type="text" maxlength="11" bindinput="bindwx" placeholder="请输入微信" />
+    <input type="text" maxlength="11" value="{{getUserInfo.user_wechat}}" bindinput="bindwx" placeholder="请输入微信" />
   </view>
   <view class="box">
     <view class="footer-text">所在地区</view>
@@ -46,25 +46,25 @@
   </view>
   <view class="box">
     <view class="footer-text">邮箱地址</view>
-    <input type="text" bindinput="bindeml" placeholder="请输入邮箱地址" />
+    <input type="text" bindinput="bindeml" value="{{getUserInfo.user_email}}" placeholder="请输入邮箱地址" />
   </view>
 </view>
 <view class="footer">
   <view class="box">
     <view class="footer-text">行驶证编号</view>
-    <input type="text" bindinput="bindlic" placeholder="请输入行驶证编号" />
+    <input type="text" bindinput="bindlic" value="{{getUserInfo.user_license_num}}" placeholder="请输入行驶证编号" />
   </view>
   <view class="box">
     <view class="footer-text">车牌号码</view>
-    <input type="text" bindinput="bindplate" placeholder="请输入车牌号码" />
+    <input type="text" bindinput="bindplate" value="{{getUserInfo.user_plate_num}}" placeholder="请输入车牌号码" />
   </view>
   <view class="box">
     <view class="footer-text">挂靠搅拌站</view>
-    <input type="text" bindinput="bindsta" placeholder="请输入挂靠搅拌站" />
+    <input type="text" bindinput="bindsta" value="{{getUserInfo.user_station}}" placeholder="请输入挂靠搅拌站" />
   </view>
   <view class="box">
     <view class="footer-text">数量</view>
-    <input type="text" bindinput="bindnum" placeholder="请输入数量" />
+    <input type="text" bindinput="bindnum" value="{{getUserInfo.user_carnum}}" placeholder="请输入数量" />
   </view>
   <view class="box">
     <view class="footer-text">车辆品牌</view>
@@ -75,5 +75,5 @@
 </view>
 <view style="winth:100%;height:150rpx"></view>
 <navigator url="/pages/docum/docum">
-  <view class="ljfb" bindtap="bddhFn">提交建议</view>
+  <view class="ljfb" bindtap="bddhFn">完善资料</view>
 </navigator>

@@ -1,4 +1,5 @@
 /* pages/setting/setting.wxss */
+@import "/assets/fonts/iconfont.wxss";
 page{
   background: #f6f6f6;
 }
@@ -51,6 +52,7 @@ page{
   background: #fff;
 }
 .gobuy{
+  font-size: 30rpx;
   color: #ababab;
 }
 .ljzf{

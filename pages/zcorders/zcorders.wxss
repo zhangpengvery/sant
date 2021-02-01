@@ -1,0 +1,116 @@
+/* pages/zcorders/zcorders.wxss */
+page{
+  background: #f4f4f4;
+}
+.header{
+  display: flex;
+  width: 88%;
+  height: 170rpx;
+  margin: 0 3%;
+  margin-top: 20rpx;
+  padding: 20rpx 3%;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.header-img{
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+}
+.header-img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.good_name{
+  margin-bottom: 50rpx;
+  font-weight: bold;
+}
+.good_price{
+  color: #BA1515;
+}
+.body{
+  width: 88%;
+  margin: 0 3%;
+  margin-top: 20rpx;
+  padding: 20rpx 3%;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.box{
+  display: flex;
+  height: 60rpx;
+  margin-top: 30rpx;
+  align-items: center;
+}
+.box .box-inp{
+  border-bottom: 2rpx solid #DCDCDC;
+}
+.box-title{
+  width: 22%;
+  color: #333;
+  font-size: 30rpx;
+}
+.box-inp{
+  width: 78%;
+  position: relative;
+}
+.box-inp input{
+  font-size: 26rpx;
+}
+.yuan{
+  width: 30rpx;
+  height: 30rpx;
+  border: 1rpx solid #b5b5b5;
+  border-radius: 50%;
+  margin-left: 30rpx;
+}
+.huang{
+  background: #F9B236;
+}
+.left{
+  margin-left: 5rpx;
+  line-height: 60rpx;
+}
+.footer1{
+  width: 88%;
+  height: 110rpx;
+  margin: 0 3%;
+  margin-top: 20rpx;
+  padding: 20rpx 3%;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  padding: 0 5%;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #fff;
+  align-items: center;
+}
+.footer-lfet{
+  display: flex;
+}
+.length{
+  color: #999;
+  font-size: 28rpx;
+  margin-right: 20rpx;
+}
+.money{
+  color: #EC5D27;
+  font-size: 34rpx;
+}
+.gobuy{
+  width: 30%;
+  background: #F9B236;
+  color: #fff;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}

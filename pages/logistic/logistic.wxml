@@ -1,2 +1,9 @@
 <!--pages/logistic/logistic.wxml-->
-<text>pages/logistic/logistic.wxml</text>
+<view class="box-img">
+  <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-29/5feae74159346.jpg"></image>
+</view>
+<view class="box">
+  <image src="https://jbccs.com/Upload/image/2021-01-30/60151386d08d2.png"></image>
+</view>
+<view class="text">联系人：杨经理</view>
+<view class="text" bindtap="bindphoFn">电话：<text style="color:#F9B236">176133159555</text></view>

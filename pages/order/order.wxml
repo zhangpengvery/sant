@@ -251,7 +251,7 @@
     </view>
   </swiper-item>
 </swiper>
-<view class="right-box">
+<view class="right-box" wx:if="{{right_con}}">
   <view class="rders">
     <view class="rders-title">其他订单</view>
   </view>

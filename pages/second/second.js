@@ -131,6 +131,7 @@ Page({
         }
       }
     })
+    that.mySaleList()
   },
   //求购删除
   dadQgFn:function(e){
@@ -146,6 +147,7 @@ Page({
         }
       }
     })
+    that.mySaleForList()
   },
   //出售删除
   deleteSale(uc_id){

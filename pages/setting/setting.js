@@ -1,54 +1,71 @@
 // pages/setting/setting.js
-const app=getApp()
-let{
+const app = getApp()
+let {
   requestApi, requestApi1
-}=require("../../utils/request")
+} = require("../../utils/request")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    getUserInfo:[],
-    user_img:"",
+    getUserInfo: [],
+    user_img: "",
   },
-  async getUserInfo(){
-    let result=await requestApi(app.globalData.post_url+"/index.php/Api/User/getUserInfo")
+  async getUserInfo() {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
     this.setData({
-      getUserInfo:result.data.datas.user_info,
-      user_img:result.data.datas.user_info.user_avatar
+      getUserInfo: result.data.datas.user_info,
+      user_img: result.data.datas.user_info.user_avatar
     })
     console.log(this.data.getUserInfo);
   },
-  toxiangFn:function(){
-    var that=this
+  toxiangFn: function () {
+    var that = this
     wx.chooseImage({
-      success (res) {
+      success(res) {
         const tempFilePaths = res.tempFilePaths
         console.log(tempFilePaths);
         wx.uploadFile({
-          url: 'https://jbccs.com/index.php/Api/User/avatar_upload', 
-          header:{
+          url: 'https://jbccs.com/index.php/Api/User/avatar_upload',
+          header: {
             "content-type": "application/x-www-form-urlencoded",
-            'XX-Token':wx.getStorageSync('token')
+            'XX-Token': wx.getStorageSync('token')
           },
           filePath: tempFilePaths[0],
           name: 'pic',
-          success (res){
-            var data=JSON.parse(res.data)
+          success(res) {
+            var data = JSON.parse(res.data)
             console.log(data);
             that.setData({
-              user_img:data.datas.result
+              user_img: data.datas.result
             })
           }
         })
       }
     })
   },
-  phoFn:function(){
+  phoFn: function () {
     wx.makePhoneCall({
       phoneNumber: '10086',
     })
+  },
+  ljzfFn: function () {
+    wx.showModal({
+      title: '是否退出登录',
+      success(res) {
+        if (res.confirm) {
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('user');
+          wx.removeStorageSync('user_id');
+          wx.removeStorageSync('openid')
+          wx.reLaunch({
+            url: '/pages/home/home',
+          })
+        }
+      }
+    })
+
   },
   /**
    * 生命周期函数--监听页面加载

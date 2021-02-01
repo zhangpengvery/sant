@@ -95,8 +95,8 @@
 }
 .content-img{
   position: relative;
-  width: 37px;
-  height: 37px;
+  width: 25px;
+  height: 25px;
 }
 .content-img image{
   width: 100%;
@@ -108,5 +108,5 @@
   width: 140rpx;
   position: absolute;
   bottom: -44rpx;
-  left: -30rpx;
+  left: -44rpx;
 }

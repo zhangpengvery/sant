@@ -7,43 +7,47 @@
   </view>
   <view class="right" hidden="{{jiaoban}}">
     <view class="title">车型分类</view>
-    <view class="th-img">
+    <view class="th-img" bindtap="bindflthFn">
       <image src="/assets/images/flth.png"></image>
     </view>
     <view class="ytsq-img">
-      <view class="yt-img">
+      <view class="yt-img" bindtap="bindflytFn">
         <image src="/assets/images/flyt.png"></image>
       </view>
-      <view class="yt-img">
+      <view class="yt-img" bindtap="bindflsqFn">
         <image src="/assets/images/flsq.png"></image>
       </view>
     </view>
     <view class="title">全部车辆</view>
-    <view class="quan">
+    <navigator url="/pages/newcar/newcar?brand_id=0">
+      <view class="quan">
       <image src="/assets/images/qbcl.png"></image>
       <view>全部车辆</view>
     </view>
+    </navigator>
   </view>
   <view class="right" hidden="{{peijian}}">
     <view class="title">配件分类</view>
     <view class="ytsq-img">
-      <view class="yt-img flpj">
+      <view class="yt-img flpj" bindtap="youpFn">
         <image src="/assets/images/pjyp.png"></image>
       </view>
-      <view class="yt-img">
+      <view class="yt-img" bindtap="shangzFn">
         <image src="/assets/images/pjsz.png"></image>
       </view>
-      <view class="yt-img">
+      <view class="yt-img" bindtap="dipanFn">
         <image src="/assets/images/dppj.png"></image>
       </view>
-      <view class="yt-img">
+      <view class="yt-img" bindtap="luntFn">
         <image src="/assets/images/pjlt.png"></image>
       </view>
     </view>
     <view class="title">全部配件</view>
-    <view class="quan">
-      <image src="/assets/images/qbpj.png"></image>
-      <view>全部配件</view>
-    </view>
+    <navigator url="/pages/accesshop/accesshop">
+      <view class="quan">
+        <image src="/assets/images/qbpj.png"></image>
+        <view>全部配件</view>
+      </view>
+    </navigator>
   </view>
 </view>

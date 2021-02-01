@@ -13,7 +13,7 @@
     <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore">
       <view class="right-text">{{rightTitle}}</view>
       <!-- 内容 -->
-      <view class="content">
+      <view class="content" wx:if="{{wuShuju}}">
         <block wx:for="{{getCataegoryContent}}" wx:key="index">
           <view class="right-content">
             <navigator url="/pages/peijdetail/peijdetail?good_id={{item.good_id}}">
@@ -26,6 +26,8 @@
           </view>
         </block>
       </view>
+      <view wx:else class="wushujucs">暂无配件数据</view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
     </scroll-view>
   </view>
 </view>

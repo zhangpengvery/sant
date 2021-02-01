@@ -25,7 +25,7 @@ Page({
       title:"发布出租"
     },
     navH:0,
-    pics:null,
+    pics:"",
     imageList: [],
     province_list: null,
     province_name: null,
@@ -70,14 +70,13 @@ Page({
             },
             success:function(res){
               var data = JSON.parse(res.data)
-              arr.push(data.datas.result)
+              var pic=data.datas.result
+              that.setData({
+                pics:that.data.pics+pic+','
+              })
             }
           })
         }
-        console.log(arr);
-        that.setData({
-          pics:arr.join(',')
-        })
       }
     })
   },

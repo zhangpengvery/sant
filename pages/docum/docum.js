@@ -35,18 +35,18 @@ Page({
         const tempFilePaths = res.tempFilePaths
         console.log(tempFilePaths);
         wx.uploadFile({
-          url: 'https://jbccs.com/index.php/Api/User/avatar_upload',
+          url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
           header: {
             "content-type": "application/x-www-form-urlencoded",
             'XX-Token': wx.getStorageSync('token')
           },
           filePath: tempFilePaths[0],
-          name: 'pic',
+          name: 'idcard_file',
           success(res) {
             var data = JSON.parse(res.data)
             console.log(data);
             that.setData({
-              idcard_file: data.datas.result
+              idcard_file:data.datas.result
             })
           }
         })
@@ -60,13 +60,13 @@ Page({
         const tempFilePaths = res.tempFilePaths
         console.log(tempFilePaths);
         wx.uploadFile({
-          url: 'https://jbccs.com/index.php/Api/User/avatar_upload',
+          url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
           header: {
             "content-type": "application/x-www-form-urlencoded",
             'XX-Token': wx.getStorageSync('token')
           },
           filePath: tempFilePaths[0],
-          name: 'pic',
+          name: 'drive_file',
           success(res) {
             var data = JSON.parse(res.data)
             console.log(data);

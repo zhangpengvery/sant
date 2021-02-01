@@ -52,6 +52,49 @@ Page({
     console.log(this.data.getSaleInfo);
     
   },
+  //收藏点击
+  shoucFn: function (e) {
+    if (wx.getStorageSync('token')==[]) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      var getSaleInfo = this.data.getSaleInfo
+      var sale_id = getSaleInfo.sale_id;
+      getSaleInfo.is_favor = 1;
+      this.setData({
+        getSaleInfo: getSaleInfo
+      })
+      this.postFavorAdd(sale_id)
+    }
+  },
+  //删除收藏
+  qiehuanFn: function (e) {
+    var getSaleInfo = this.data.getSaleInfo;
+    var is_favor = getSaleInfo.sale_id;
+    getSaleInfo.is_favor = 0;
+    this.setData({
+      getSaleInfo: getSaleInfo
+    })
+    console.log(is_favor);
+    this.deleteMyFavor(is_favor)
+  },
+  postFavorAdd(favor_data) {
+    requestApi1(app.globalData.post_url + "/index.php/Api/StoreCar/addFavor", {
+      type: "sale",
+      favor_data: favor_data
+    }).then(res=>{
+      console.log(res);
+    })
+  },
+  deleteMyFavor(favor_data) {
+    requestApi1(app.globalData.post_url + "/index.php/Api/StoreCar/addFavor", {
+      type:"sale",
+      favor_data: favor_data
+    }).then(res => {
+      console.log(res);
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

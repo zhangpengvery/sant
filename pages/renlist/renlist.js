@@ -131,6 +131,7 @@ Page({
         }
       }
     })
+    that.myHireList()
   },
   //求购删除
   dadQgFn:function(e){
@@ -146,6 +147,7 @@ Page({
         }
       }
     })
+    that.myHireForList()
   },
   //出租删除
   deleteHire(hire_id){

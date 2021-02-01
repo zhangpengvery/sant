@@ -17,11 +17,11 @@
 <view class="title">完成实名认证可获得更多权益哦！</view>
 <view class="text">上传驾驶证</view>
 <view class="jsz" bindtap="jiaszFn">
-  <image src="{{idcard_file}}"></image>
+  <image src="https://jbccs.com/{{idcard_file}}"></image>
 </view>
 <view class="text">上传行驶证</view>
 <view class="jsz" bindtap="xingszFn">
-  <image src="{{drive_file}}"></image>
+  <image src="https://jbccs.com/{{drive_file}}"></image>
 </view>
 <navigator url="/pages/mind/mind">
   <view class="ljfb" bindtap="bddhFn">确定上传</view>

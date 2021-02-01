@@ -18,7 +18,10 @@
 </view>
 <view class="footer">
   <view class="footer-left">
-    <view class="iconfont icon-wodeshoucang"></view>
+    <view wx:if="{{getSaleInfo.is_favor==1}}" class="iconfont icon-taishifuwu-huangxing list-xin" bindtap="qiehuanFn"
+      data-index="{{index}}" data-sale_id="{{getSaleInfo.sale_id}}"></view>
+    <view class="iconfont icon-shoucang1 list-xin" wx:else bindtap="shoucFn" data-sale_id="{{getSaleInfo.sale_id}}"
+      data-index="{{index}}"></view>
     <view>收藏</view>
   </view>
   <view class="footer-right" bindtap="bddhFn">拨打电话</view>

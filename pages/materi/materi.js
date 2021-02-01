@@ -61,6 +61,7 @@ Page({
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
     this.setData({
       getUserInfo: result.data.datas.user_info,
+      selectAreaId:result.data.datas.user_info.user_district_id,
       user_img: result.data.datas.user_info.user_avatar
     })
     console.log(this.data.getUserInfo);

@@ -130,6 +130,7 @@ Page({
         }
       }
     })
+    that.myRecruitList()
   },
   //招聘删除点击
   delzpFn:function(e){
@@ -144,6 +145,7 @@ Page({
         }
       }
     })
+    that.myApplyList()
   },
   //求职删除
   deleteRecuit(jr_id){

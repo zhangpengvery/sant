@@ -1,0 +1,64 @@
+/* pages/stordetail/stordetail.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.header-img{
+  width: 100%;
+  height: 526rpx;
+  margin-bottom: 20rpx;
+}
+.header-img image{
+  width: 100%;
+  height: 100%;
+}
+.body{
+  width: 94%;
+  height: 200rpx;
+  margin: 0 3%;
+}
+.title{
+  display: flex;
+  justify-content: space-between;
+}
+.titleleft{
+  color: #333;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.titlerig{
+  color: #999;
+  font-size: 26rpx;
+}
+.text{
+  position: relative;
+  font-size: 26rpx;
+  color: #333;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+.textleft{
+  width: 15%;
+}
+.textrig{
+  width: 50%;
+}
+.mapgo{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 152rpx;
+  height: 44rpx;
+  background: #F9B236;
+  border-radius: 74rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 44rpx;
+  margin-top: 34rpx;
+}
+.mapgo .mapgo-icon{
+  font-size: 20rpx;
+}
+.text-margin{
+  margin-left: 10rpx;
+}

@@ -1,0 +1,23 @@
+<!--pages/stordetail/stordetail.wxml-->
+<view class="header-img">
+  <image src="http://www.jbccs.com{{getFoursInfo.shop_image}}"></image>
+</view>
+<view class="body">
+  <view class="title">
+    <view class="titleleft">{{getFoursInfo.shop_name}}</view>
+    <view class="titlerig">{{getFoursInfo.distance}}Km</view>
+  </view>
+  <view class="text">
+    <view class="textleft">电 话：</view>
+    <view class="textrig" style="color:#F9B236">{{getFoursInfo.shop_tel}}</view>
+  </view>
+  <view class="text">
+    <view class="textleft">地 址：</view>
+    <view class="textrig">{{getFoursInfo.shop_address}}</view>
+    <view class="mapgo" data-lat="{{getFoursInfo.shop_lat}}" data-lng="{{getFoursInfo.shop_lng}}" bindtap="goGoingFn"
+      data-name="{{getFoursInfo.shop_name}}" data-address="{{getFoursInfo.shop_address}}">
+      <text class="iconfont icon-lijichufa mapgo-icon"></text>
+      <text class="text-margin">立即出发</text>
+    </view>
+  </view>
+</view>

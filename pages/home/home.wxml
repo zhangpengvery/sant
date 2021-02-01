@@ -41,12 +41,19 @@
     <view class="zuo"></view>
     <text>热卖配件</text>
   </view>
-  <scroll-view scroll-x="true" style="height: 332rpx">
+  <scroll-view scroll-x="true" style="height: 400rpx">
     <view class="options-fater">
       <block wx:for="{{getSwiperImages}}" wx:key="index">
         <view class="options-child">
-          <image src="{{item.good_image}}"></image>
-          <text class="options-price">{{item.good_price}}</text>
+          <navigator url="/pages/peijdetail/peijdetail?good_id={{item.good_id}}">
+            <view class="img-box">
+              <image src="{{item.good_image}}"></image>
+            </view>
+          </navigator>
+          <view class="child-footer">
+            <view class="options-name">{{item.good_name}}</view>
+            <view class="options-price">{{item.good_price}}</view>
+          </view>
           <view class="options-rm">热卖</view>
         </view>
       </block>
@@ -59,14 +66,14 @@
   </view>
   <!-- 红黄蓝三图 -->
   <view class="hhl-fater">
-    <view class="h-img">
+    <view class="h-img" bindtap="bindSanqFn">
       <image src="/assets/images/20201221165446.png"></image>
     </view>
     <view class="hl-img">
-      <view class="huang-img">
+      <view class="huang-img" bindtap="bindJiefFn">
         <image src="/assets/images/20201221165508.png"></image>
       </view>
-      <view class="huang-img">
+      <view class="huang-img" bindtap="bindTangFn">
         <image src="/assets/images/20201221165531.png"></image>
       </view>
     </view>
@@ -77,15 +84,20 @@
     <text>二手车推荐</text>
   </view>
   <view class="list">
-  <block wx:for="{{listData}}" wx:key="index">
-    <view class="list-content">
-      <image src="http://www.jbccs.com{{item.image_url}}"></image>
-      <text class="list-name">{{item.sale_title}}</text>
-      <text class="list-price">{{item.sale_price}}</text>
-      <view class="iconfont {{item.favor_data==item.sale_id?'icon-xin-xuanzhong':'icon-xin-moren'}} list-xin" bindtap="qiehuanFn" data-index="{{index}}" data-id="{{item.sale_id}}"></view>
-    </view>
-  </block>
-</view>
+    <block wx:for="{{listData}}" wx:key="index">
+      <view class="list-content">
+        <navigator url="/pages/saledetail/saledetail?sale_id={{item.sale_id}}">
+          <image mode="aspectFill" src="{{item.image_url}}"></image>
+        </navigator>
+        <text class="list-name">{{item.sale_title}}</text>
+        <text class="list-price">{{item.sale_price}}</text>
+        <view wx:if="{{item.favor_data==item.sale_id}}" class="iconfont icon-xin-xuanzhong list-xin"
+          bindtap="qiehuanFn" data-index="{{index}}" data-sale_id="{{item.sale_id}}"></view>
+        <view class="iconfont icon-xin-moren list-xin" wx:else  bindtap="shoucFn" data-sale_id="{{item.sale_id}}" data-index="{{index}}"></view>
+      </view>
+    </block>
+  </view>
+  <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
 </scroll-view>
 <view class="urgent" bindtap="urgentFn">
   <view class="iconfont icon-dianhua"></view>

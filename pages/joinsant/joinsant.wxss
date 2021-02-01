@@ -1,0 +1,71 @@
+/* pages/joinsant/joinsant.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #f6f6f6;
+}
+.header-img{
+  width: 94%;
+  height: 300rpx;
+  margin: 20rpx 3%;
+  border-radius: 20rpx;
+}
+.header-img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.body-img{
+  display: flex;
+  justify-content: space-between;
+  width: 94%;
+  margin: 0 3%;
+  height: 220rpx;
+}
+.img-box{
+  width: 48%;
+  height: 220rpx;
+}
+.img-box image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.join{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 20rpx 3%;
+  padding: 20rpx 2%;
+  height: 100rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.join-box{
+  width: 15%;
+  display: flex;
+}
+.join-box .iconfont{
+  font-size: 60rpx;
+}
+.join1{
+  color: #088ACF;
+}
+.join2{
+  color: #3DAA89;
+}
+.join3{
+  color: #088ACF;
+}
+.join-text{
+  width: 80%;
+  height: 80rpx;
+}
+.title{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.text{
+  font-size: 24rpx;
+  color: #999;
+}

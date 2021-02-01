@@ -1,0 +1,44 @@
+<!--pages/joinsant/joinsant.wxml-->
+<view class="header-img">
+  <image src="http://www.jbccs.com/Public/Wap/image/zp-big.jpg"></image>
+</view>
+<view class="body-img">
+  <view class="img-box" bindtap="joinFn">
+    <image src="http://www.jbccs.com/Public/Wap/image/jm-s-1.png"></image>
+  </view>
+  <view class="img-box" bindtap="joinTowfn">
+    <image src="http://www.jbccs.com/Public/Wap/image/jm-s-2.png"></image>
+  </view>
+</view>
+<navigator url="/pages/jointhr/jointhr">
+  <view class="join">
+    <view class="join-box">
+      <view class="iconfont icon-woyaozhaopin join1"></view>
+    </view>
+    <view class="join-text">
+      <view class="title">供应商入驻</view>
+      <view class="text">资源共享，合作共赢</view>
+    </view>
+    <view class="iconfont icon-xiangyou"></view>
+  </view>
+</navigator>
+<view class="join">
+  <view class="join-box">
+    <view class="iconfont icon-zixundingdan join2"></view>
+  </view>
+  <view class="join-text" bindtap="joinFn">
+    <view class="title">服务小哥加盟</view>
+    <view class="text">招聘信息，持续发布</view>
+  </view>
+  <view class="iconfont icon-xiangyou"></view>
+</view>
+<view class="join" bindtap="goGzhFn">
+  <view class="join-box">
+    <view class="iconfont icon-zixundingdan join3"></view>
+  </view>
+  <view class="join-text">
+    <view class="title">公司招聘</view>
+    <view class="text">招聘信息，持续发布</view>
+  </view>
+  <view class="iconfont icon-xiangyou"></view>
+</view>

@@ -1,15 +1,118 @@
 <!--pages/myvip/myvip.wxml-->
 <navbar params="{{params}}" />
 <view class="ersik">
-  <view class="user-to"></view>
+  <view class="user-to">
+    <image src="{{getUserInfo.user_avatar}}"></image>
+  </view>
 </view>
-<swiper class="vipswiper">
+<swiper class="vipswiper" autoplay="true" circular="true" bindchange="changeFn">
   <swiper-item style="background:rgb(241,209,165);border-radius: 20rpx;">
+    <view class="box">
+      <view class="title">普通会员</view>
+      <view class="box-text">登录即为普通会员</view>
+      <view class="tiaozv1">已完成登录</view>
+    </view>
   </swiper-item>
   <swiper-item style="background:rgb(220,220,220);border-radius: 20rpx;">
-
+    <view class="box">
+      <view class="title">白金会员</view>
+      <view class="box-text">完善资料即为白金会员</view>
+      <navigator url="/pages/materi/materi">
+        <view class="tiaozv2">立即完善</view>
+      </navigator>
+    </view>
   </swiper-item>
   <swiper-item style="background:rgb(114,114,114);border-radius: 20rpx;">
-
+    <view class="box">
+      <view class="title" style="color:#fff">黑金会员</view>
+      <view class="box-text" style="color:#fff">认证资料即为黑金会员</view>
+      <view class="box-footer">
+        <navigator url="/pages/docum/docum">
+          <view class="tiaozv2">立即完善</view>
+        </navigator>
+        <view class="footer-text">会员等级根据认证的资料完成度确定，上传 <text style="color:#EEC184">身份证、行驶证</text>、认证为黑金会员</view>
+      </view>
+    </view>
   </swiper-item>
 </swiper>
+<block wx:if="{{current==0}}">
+  <view class="body">
+    <view class="body-title">
+      <view class="xian">————</view>
+      <view class="title-text">V1特权</view>
+      <view class="xian">————</view>
+    </view>
+  </view>
+  <view class="tequan" >
+    <view class="tequan-box">
+      <view class="iconfont icon-zixundingdan"></view>
+      <view class="tequan-text" style="font-size:16rpx">查看完整号码</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-tuijiangouche"></view>
+      <view class="tequan-text">会员头衔</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="tequan-text">登录特权</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="tequan-text">登录特权</view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{current==1}}">
+  <view class="body">
+    <view class="body-title">
+      <view class="xian">————</view>
+      <view class="title-text">V2特权</view>
+      <view class="xian">————</view>
+    </view>
+  </view>
+  <view class="tequan" >
+    <view class="tequan-box">
+      <view class="iconfont icon-zixundingdan"></view>
+      <view class="tequan-text" style="font-size:16rpx">查看完整号码</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-tuijiangouche"></view>
+      <view class="tequan-text">会员头衔</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="tequan-text">登录特权</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="tequan-text">登录特权</view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{current==2}}">
+  <view class="body">
+    <view class="body-title">
+      <view class="xian">————</view>
+      <view class="title-text">V3特权</view>
+      <view class="xian">————</view>
+    </view>
+  </view>
+  <view class="tequan" >
+    <view class="tequan-box">
+      <view class="iconfont icon-zixundingdan"></view>
+      <view class="tequan-text" style="font-size:16rpx">查看完整号码</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-tuijiangouche"></view>
+      <view class="tequan-text">会员头衔</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="tequan-text">登录特权</view>
+    </view>
+    <view class="tequan-box">
+      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="tequan-text">登录特权</view>
+    </view>
+  </view>
+</block>

@@ -15,10 +15,10 @@
 <!-- 距离选择 -->
 <view class="showjuli" wx:if="{{showJuli}}">
   <view bindtap="juliFn" data-id="0">全部</view>
-  <view bindtap="juliFn" data-id="1">0-50km</view>
-  <view bindtap="juliFn" data-id="2">50-100km</view>
-  <view bindtap="juliFn" data-id="3">100-200km</view>
-  <view bindtap="juliFn" data-id="4">200km以上</view>
+  <view bindtap="juliTowFn" data-id="1">0-50km</view>
+  <view bindtap="juliThrFn" data-id="2">50-100km</view>
+  <view bindtap="juliFouFn" data-id="3">100-200km</view>
+  <view bindtap="juliFivFn" data-id="4">200km以上</view>
 </view>
 <!-- 城市选择 -->
 <view class="showcity" wx:if="{{showCity}}">
@@ -39,9 +39,11 @@
 <view class="content" style="margin-top:{{mgH}}rpx">
   <block wx:for="{{postStoresList}}" wx:key="index">
     <view class="fater">
-      <view class="stores-img">
-        <image src="http://www.jbccs.com{{item.shop_image}}"></image>
-      </view>
+      <navigator url="/pages/stordetail/stordetail?id={{item.shop_id}}">
+        <view class="stores-img">
+          <image src="http://www.jbccs.com{{item.shop_image}}"></image>
+        </view>
+      </navigator>
       <view class="stores-text">
         <view class="stores-title">{{item.shop_name}}</view>
         <view class="stores-pho">
@@ -50,13 +52,14 @@
         </view>
         <view class="stores-pho">
           <text class="iconfont icon-weizhi stores-icon"></text>
-          <text class="text-fz text-margin">地址：{{item.shop_name}}</text>
+          <text class="text-fz text-margin">地址：{{item.shop_address}}</text>
         </view>
-        <view class="mapgo">
+        <view class="mapgo" data-lat="{{item.shop_lat}}" data-lng="{{item.shop_lng}}" bindtap="goGoingFn"
+          data-name="{{item.shop_name}}" data-address="{{item.shop_address}}">
           <text class="iconfont icon-lijichufa mapgo-icon"></text>
           <text class="text-margin">立即出发</text>
         </view>
-        <view class="text-fz length">3.88KM</view>
+        <view class="text-fz length">{{item.distance}}km</view>
       </view>
     </view>
   </block>

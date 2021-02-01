@@ -1,1 +1,7 @@
 /* pages/live/live.wxss */
+.box{
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+}

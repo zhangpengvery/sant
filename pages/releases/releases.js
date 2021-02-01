@@ -49,28 +49,34 @@ Page({
     var that = this;
     wx.chooseImage({
       count:4,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album'],
       success: function (res) {
         const tempFilePaths  = res.tempFilePaths
         that.setData({
           imageList: res.tempFilePaths
         })
         console.log(tempFilePaths[0]);
-        wx.uploadFile({
-          filePath: tempFilePaths[0],
-          name: 'file',
-          url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
-          header:{
-            "content-type": "application/x-www-form-urlencoded",
-            'XX-Token':wx.getStorageSync('token')
-          },
-          success:function(res){
-            var data = JSON.parse(res.data)
-            console.log(data);
-            that.setData({
-              pics:data.datas.result
-            })
-          }
-        })
+        var arr=[]
+        for(var i=0;i<res.tempFilePaths.length;i++){
+          var imageUrl=res.tempFilePaths[i];
+          wx.uploadFile({
+            filePath: imageUrl,
+            name: 'file',
+            url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
+            header:{
+              "content-type": "application/x-www-form-urlencoded",
+              'XX-Token':wx.getStorageSync('token')
+            },
+            success:function(res){
+              var data = JSON.parse(res.data)
+              var pic=data.datas.result
+              that.setData({
+                pics:that.data.pics+pic+','
+              })
+            }
+          })
+        }
       }
     })
   },

@@ -14,13 +14,13 @@
     <view class="iconfont icon-zu261 xiabiao"></view>
   </view>
 </view>
-<!-- 距离选择 -->
+<!-- 价格车龄选择 -->
 <view class="showjuli" wx:if="{{showJuli}}">
-  <view bindtap="juliFn" data-id="0">综合排序</view>
-  <view bindtap="juliFn" data-id="1" data-price_up="1">价格由高到低</view>
-  <view bindtap="juliFn" data-id="2" data-price_up="0">价格由低到高</view>
-  <view bindtap="juliFn" data-id="3" data-leng_up="1">车龄由高到低</view>
-  <view bindtap="juliFn" data-id="4" data-leng_up="0">车龄由低到高</view>
+  <view class="{{jiageActtiv==0?'jiagecss':''}}" bindtap="juliFn" data-id="0">综合排序</view>
+  <view class="{{jiageActtiv==1?'jiagecss':''}}" bindtap="juliFn2" data-id="1">价格由高到低</view>
+  <view class="{{jiageActtiv==2?'jiagecss':''}}" bindtap="juliFn3" data-id="2">价格由低到高</view>
+  <view class="{{jiageActtiv==3?'jiagecss':''}}" bindtap="juliFn4" data-id="3">车龄由高到低</view>
+  <view class="{{jiageActtiv==4?'jiagecss':''}}" bindtap="juliFn5" data-id="4">车龄由低到高</view>
 </view>
 <!-- 车型选择 -->
 <view class="showchengs" wx:if="{{showcity}}">

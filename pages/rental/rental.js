@@ -25,7 +25,7 @@ Page({
       navColor:1,
       col:"#000",
     },
-    page:2,
+    page:1,
     navH:0,
     posH:0,
     winH:0,
@@ -49,6 +49,9 @@ Page({
     showChshi:false,
     listLeft:true,
     listRight:false,
+    age_up:0,
+    price_up:0,
+    jiageActtiv:0,
     getAllHireLists:[],
     getBrandList:[],
     getChassisList:[],
@@ -60,6 +63,7 @@ Page({
     getCityList:[],
     getRecruitList:[],
     rigthUrl:"https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=16",
+    city:0,
   },
   //出租列表
   recruitFn:function(e){
@@ -151,6 +155,78 @@ Page({
         showChshi:false,
       })
     },
+    //普通排序点击
+    juliFn:function(e){
+      this.setData({
+        showMask:false,
+        showJuli:false,
+        color:false,
+        jiageActtiv:0,
+        age_up:0,
+        price_up:0
+      })
+      if(this.data.leftActive){
+        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }else{
+        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }
+    },
+    juliFn2:function(e){
+      this.setData({
+        showMask:false,
+        showJuli:false,
+        color:false,
+        jiageActtiv:1,
+        price_up:1
+      })
+      if(this.data.leftActive){
+        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }else{
+        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }
+    },
+    juliFn3:function(e){
+      this.setData({
+        showMask:false,
+        showJuli:false,
+        color:false,
+        jiageActtiv:2,
+        price_up:0
+      })
+      if(this.data.leftActive){
+        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }else{
+        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }
+    },
+    juliFn4:function(e){
+      this.setData({
+        showMask:false,
+        showJuli:false,
+        color:false,
+        jiageActtiv:3,
+        age_up:1
+      })
+      if(this.data.leftActive){
+        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }else{
+        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }
+    },
+    juliFn5:function(e){
+      this.setData({
+        showMask:false,
+        showJuli:false,
+        color:false,
+        jiageActtiv:4,
+        age_up:0
+      })
+      if(this.data.leftActive){
+        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }else{
+        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }
+    },
     //品牌点击
     brandcssFn:function(e){
       this.setData({
@@ -194,14 +270,28 @@ Page({
         cityColor:false,
         showcity:false,
       })
+      if(this.data.leftActive){
+        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }else{
+        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+      }
     },
     //出租列表
-    async getAllHireLists(page){
+    async getAllHireLists(page,hire_brand_id,hire_age_id,hire_chassis_id,hire_drive_id,hire_source_id,hire_discharge_id,hire_city_id,leng_up,price_up){
       wx.showLoading({
         title: '加载中...',
       })
       let result=await requestApi(app.globalData.base_url+"/getAllHireLists",{
-        page:page
+        page:page,
+        hire_brand_id:hire_brand_id,
+        hire_age_id:hire_age_id,
+        hire_chassis_id:hire_chassis_id,
+        hire_drive_id:hire_drive_id,
+        hire_source_id:hire_source_id,
+        hire_discharge_id:hire_discharge_id,
+        hire_city_id:hire_city_id,
+        leng_up:leng_up,
+        price_up:price_up
       })
       if(result.statusCode==200){
         wx.hideLoading()
@@ -215,12 +305,21 @@ Page({
         getSourceList:result.data.data.source_list,
         getDischargeList:result.data.data.discharge_list
       })
-      console.log(this.data.getAllHireLists);
+      console.log(result);
     },
   //求租列表
-  async getAllHireforLists(page){
+  async getAllHireforLists(page,hirefor_brand_id,hirefor_age_id,hirefor_chassis_id,hirefor_drive_id,hirefor_source_id	,hirefor_discharge_id,hirefor_city_id,age_up,price_up){
       let result=await requestApi(app.globalData.base_url+"/getAllHireforLists",{
-        page:page
+        page:page,
+        hirefor_brand_id:hirefor_brand_id,
+        hirefor_age_id:hirefor_age_id,
+        hirefor_chassis_id:hirefor_chassis_id,
+        hirefor_drive_id:hirefor_drive_id,
+        hirefor_source_id:hirefor_source_id,
+        hirefor_discharge_id:hirefor_discharge_id,
+        hirefor_city_id:hirefor_city_id,
+        age_up:age_up,
+        price_up:price_up
       })
       this.setData({
         getAllHireforLists:result.data.data.list
@@ -253,6 +352,21 @@ Page({
       }
     })
   },
+  rightBoxFn:function(e){
+    var that=this
+    this.setData({
+      city:e.target.dataset.id,
+      showMask:false,
+      chshiColor:false,
+      showChshi:false,
+    },function(){
+      if(that.data.leftActive==true){
+        that.getAllHireLists(that.data.page,that.data.brandCss,that.data.ageCss,that.data.chassisCss,that.data.driveCss,that.data.sourceCss,that.data.dischargeCss,that.data.city,that.data.age_up,that.data.price_up)
+      }else{
+        that.getAllHireforLists(that.data.page,that.data.brandCss,that.data.ageCss,that.data.chassisCss,that.data.driveCss,that.data.sourceCss,that.data.dischargeCss,that.data.city,that.data.age_up,that.data.price_up)
+      }
+    })
+  },
     //滑动到底部
     bindLanFn:function(){
     },
@@ -262,8 +376,8 @@ Page({
   onLoad: function (options) {
     this.getCityList()
     this.getChengFn()
-    this.getAllHireLists(this.data.page)
-    this.getAllHireforLists(this.data.page)
+    this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+    this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

@@ -6,7 +6,7 @@ page{
 .ersik{
   width: 100%;
   height: 150rpx;
-  padding: 150rpx 0;
+  padding: 150rpx 0 100rpx 0;
   background: rgb(242, 192, 86);
 }
 .user-to{
@@ -14,13 +14,102 @@ page{
   height: 100rpx;
   border-radius: 50%;
   margin: 0 auto;
-  background: #000;
+}
+.user-to image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 .vipswiper{
   position: relative;
   top: -100rpx;
   width: 80%;
-  padding: 0 10%;
+  margin: 0 10%;
   height: 250rpx;
   border-radius: 20rpx;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.box{
+  width: 90%;
+  height: 180rpx;
+  margin: 50rpx 5% 20rpx 5%;
+}
+.box .title{
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.box .box-text{
+  font-size: 26rpx;
+}
+.tiaozv1{
+  width: 140rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  background: #c2c2c2;
+  font-size: 22rpx;
+  color: #fff;
+  margin-top: 40rpx;
+}
+.tiaozv2{
+  width: 140rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  background: #D1A36A;
+  font-size: 22rpx;
+  color: #fff;
+  margin-top: 40rpx;
+}
+.box-footer{
+  width: 100%;
+  display: flex;
+}
+.box-footer .footer-text{
+  width: 65%;
+  font-size: 20rpx;
+  color: #fff;
+  margin: 40rpx 0 0 20rpx;
+}
+.body{
+  width: 90%;
+  margin:0  5%;
+}
+.body-title{
+  display: flex;
+  justify-content: center;
+}
+.title-text{
+  font-weight: bold;
+  font-size: 32rpx;
+  margin: 0 20rpx;
+}
+.tequan{
+  width: 90%;
+  margin: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+.tequan-box{
+  width: 128rpx;
+  height: 162rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  border: 1rpx solid #DCDCDC;
+  text-align: center;
+}
+.tequan-box .iconfont{
+  font-size: 60rpx;
+  background-image: linear-gradient(180deg,#F3DAB8,#EEC082);
+  -webkit-background-clip:text;
+  color: transparent;
+  margin: 30rpx 0 20rpx 0;
+}
+.tequan-text{
+  font-size: 20rpx;
+  color: #E4BD89;
 }

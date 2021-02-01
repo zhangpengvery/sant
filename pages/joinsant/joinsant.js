@@ -1,4 +1,4 @@
-// pages/login2/login2.js
+// pages/joinsant/joinsant.js
 Page({
 
   /**
@@ -7,14 +7,19 @@ Page({
   data: {
 
   },
-  getPhoneNumber: function (e) {
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {weRunData: wx.cloud.CloudID(e.detail.cloudID)}
-    }).then(res => {
-      this.setData({
-        mobile: res.result.weRunData.data.phoneNumber
-      })
+  joinFn:function(){
+    wx.navigateTo({
+      url: '/pages/join/join',
+    })
+  },
+  joinTowfn:function(){
+    wx.navigateTo({
+      url: '/pages/jointow/jointow',
+    })
+  },
+  goGzhFn:function(){
+    wx.navigateTo({
+      url: '/pages/gzhgo/gzhgo?url=https://mp.weixin.qq.com/s/wfK6m-B5GQewGC-eJWxJcg',
     })
   },
   /**

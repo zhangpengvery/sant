@@ -13,12 +13,15 @@
     <view class="user-name">姓名：{{getSaleInfo.contact_name}}</view>
     <view class="user-name">手机：{{getSaleInfo.contact_tel}}</view>
     <view class="user-name">地址：{{getSaleInfo.province}}{{getSaleInfo.city}}{{getSaleInfo.area_name}}</view>
-    <view class="user-name">发布时间：2020-12-12  09：50：32</view>
+    <view class="user-name">发布时间：2020-12-12 09：50：32</view>
   </view>
 </view>
 <view class="footer">
   <view class="footer-left">
-    <view class="iconfont icon-wodeshoucang"></view>
+    <view wx:if="{{getSaleInfo.is_favor==1}}" class="iconfont icon-taishifuwu-huangxing list-xin" bindtap="qiehuanFn"
+      data-index="{{index}}" data-hire_id="{{getSaleInfo.hire_id}}"></view>
+    <view class="iconfont icon-shoucang1 list-xin" wx:else bindtap="shoucFn" data-hire_id="{{getSaleInfo.hire_id}}"
+      data-index="{{index}}"></view>
     <view>收藏</view>
   </view>
   <view class="footer-right" bindtap="bddhFn">拨打电话</view>

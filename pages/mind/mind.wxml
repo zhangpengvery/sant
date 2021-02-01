@@ -9,7 +9,7 @@
       <image class="weideng" src="/assets/images/mrdltx.png"></image>
       <view class="dl-text">未登录</view>
     </navigator>
-    <view class="iconfont icon-shezhi shezhi"></view>
+    <view class="iconfont icon-shezhi shezhi" bindtap="gologinFn"></view>
   </view>
   <view style="margin-top:{{navH}}rpx" class="header" hidden="{{userInfor}}">
     <image class="weideng" src="{{user.wechat_img}}"></image>
@@ -31,12 +31,10 @@
         <view class="title">{{item.title}}</view>
         <view class="content">
           <block wx:for="{{item.items}}" wx:key="index">
-            <navigator url="{{item.url}}">
-              <view class="content-img">
-                <image mode="aspectFit" src="{{item.icon}}"></image>
-                <view class="content-text">{{item.text}}</view>
-              </view>
-            </navigator>
+            <view class="content-img" data-url="{{item.url}}" bindtap="bindUrlFn">
+              <image mode="aspectFit" src="{{item.icon}}"></image>
+              <view class="content-text">{{item.text}}</view>
+            </view>
           </block>
         </view>
       </view>

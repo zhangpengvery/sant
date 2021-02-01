@@ -167,6 +167,9 @@
   height: 70rpx;
   line-height: 70rpx;
 }
+.showjuli .jiagecss{
+  color: #F9B236;
+}
 .showchengs{
   position: fixed;
   top: 250rpx;

@@ -1,179 +1,236 @@
 // pages/stores/stores.js
-const app=getApp()
-let{
+const app = getApp()
+let {
   requestApi, requestApi1
-}=require("../../utils/request")
+} = require("../../utils/request")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:false,
-      navTitle:true,
-      navInput:true,
-      navAddress:true,
-      r:255,
-      g:255,
-      b:255,
-      w:20,
-      l:50,
-      inpLeft:105,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"门店"
+    params: {
+      showBack: false,
+      navTitle: true,
+      navInput: true,
+      navAddress: true,
+      r: 255,
+      g: 255,
+      b: 255,
+      w: 20,
+      l: 50,
+      inpLeft: 105,
+      fz: 34,
+      fw: "bold",
+      navColor: 1,
+      col: "#000",
+      title: "门店"
     },
-    navH:0,
-    mgH:0,
-    city:0,
-    getCityList:[],
-    getRecruitList:[],
-    postStoresList:[],
-    cityActive:16,
-    showJuli:false,
-    showMask:false,
-    color:false,
-    cityColor:false,
-    showCity:false,
-    rigthUrl:"https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=16",
-    lat1:0,
-    lng1:0,
-    lat2:0,
-    lng2:0
-  },
-  //获取用户地址
-  getProvinceName(latitude, longitude){
-    wx.request({
-      url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=ZXJBZ-3FVRP-6BYD2-VAAXH-5GHMS-LHFHR',   
-      data:{},
-      success: (res)=> {
-        this.setData({
-          lat1:res.data.result.location.lat,
-          lng1:res.data.result.location.lng
-        })
-        },
-    })
+    navH: 0,
+    mgH: 0,
+    city: 0,
+    getCityList: [],
+    getRecruitList: [],
+    postStoresList: [],
+    cityActive: 16,
+    showJuli: false,
+    showMask: false,
+    color: false,
+    cityColor: false,
+    showCity: false,
+    rigthUrl: "https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=16",
+    latitude: 0,
+    longitude: 0
   },
   //隐藏距离模块点击
-  juliFn:function(e){
+  juliFn: function (e) {
+    this.postStoresList(this.data.city, this.data.longitude, this.data.latitude)
     this.setData({
-      showJuli:false,
-      showMask:false,
-      color:false,
+      showJuli: false,
+      showMask: false,
+      color: false,
     })
   },
   //距离点击
-  distanceFn:function(e){
+  distanceFn: function (e) {
     this.setData({
-      showJuli:true,
-      showMask:true,
-      color:true,
-      cityColor:false,
-      showCity:false
+      showJuli: true,
+      showMask: true,
+      color: true,
+      cityColor: false,
+      showCity: false
     })
+    this.postStoresList(this.data.city, this.data.longitude, this.data.latitude)
   },
   //mask点击事件
-  maskFn:function(){
+  maskFn: function () {
     this.setData({
-      showJuli:false,
-      showMask:false,
-      color:false,
-      cityColor:false,
-      showCity:false
+      showJuli: false,
+      showMask: false,
+      color: false,
+      cityColor: false,
+      showCity: false
     })
   },
   //城市点击
-  cityFn:function(){
+  cityFn: function () {
     this.setData({
-      showJuli:false,
-      showMask:true,
-      color:false,
-      cityColor:true,
-      showCity:true
+      showJuli: false,
+      showMask: true,
+      color: false,
+      cityColor: true,
+      showCity: true
     })
   },
   //城市请求
-  async getCityList(){
-    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Public/get_area")
+  async getCityList() {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Public/get_area")
     this.setData({
-      getCityList:result.data.datas.area_list
+      getCityList: result.data.datas.area_list
     })
   },
   //门店内容
-  postStoresList(p,city){
-    requestApi1(app.globalData.post_url+"/index.php/Wap/Api/fours_json",{
-      p:1,
-      city:this.data.city
-    }).then(res=>{
+  postStoresList(city, lng, lat) {
+    requestApi1(app.globalData.post_url + "/index.php/Wap/Api/fours_json", {
+      p: 1,
+      city: city,
+      lng: lng,
+      lat: lat
+    }).then(res => {
       console.log(res);
       this.setData({
-        postStoresList:res.data.datas.list,
+        postStoresList: res.data.datas.list,
       })
     })
   },
   //城市每项点击
-  SaveFn:function(e){
+  SaveFn: function (e) {
     this.setData({
-      cityActive:e.target.dataset.id,
-      rigthUrl:`https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=${e.target.dataset.id}`
+      cityActive: e.target.dataset.id,
+      rigthUrl: `https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=${e.target.dataset.id}`
     })
     this.getChengFn()
   },
   //点击每个城市切换内容
-  getChengFn(){
+  getChengFn() {
     wx.request({
       url: this.data.rigthUrl,
-      success:(res)=>{
+      success: (res) => {
         this.setData({
-          getRecruitList:res.data.datas.area_list
+          getRecruitList: res.data.datas.area_list
         })
       }
     })
   },
-  rightBoxFn:function(e){
+  rightBoxFn: function (e) {
     this.setData({
-      city:e.target.dataset.id,
-      showMask:false,
-      cityColor:false,
-      showCity:false,
+      city: e.target.dataset.id,
+      showMask: false,
+      cityColor: false,
+      showCity: false,
     })
-    this.postStoresList(this.data.city)
+    this.postStoresList(this.data.city, this.data.longitude, this.data.latitude)
   },
-  //计算两点位置距离
-  getDistance: function (lat1, lng1, lat2, lng2) {
-    lat1 = lat1 || 0;
-    lng1 = lng1 || 0;
-    lat2 = lat2 || 0;
-    lng2 = lng2 || 0;   
-    var rad1 = lat1 * Math.PI / 180.0;   
-    var rad2 = lat2 * Math.PI / 180.0;   
-    var a = rad1 - rad2;   
-    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;   
-    var r = 6378137;  //地球半径
-    var distance = r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)));   
-    /*
-    if (distance > 1000){
-      distance = Math.round(distance / 1000);
-    }*/
-    return distance;
+  goGoingFn: function (e) {
+    wx.openLocation({
+      latitude: Number(e.currentTarget.dataset.lat),
+      longitude: Number(e.currentTarget.dataset.lng),
+      scale: 18,
+      name: e.currentTarget.dataset.name,
+      address: e.currentTarget.dataset.address
+    })
+  },
+
+  juliTowFn: function () {
+    var arr = [];
+    var postStoresList = this.data.postStoresList;
+    for (var i = 0; i < postStoresList.length; i++) {
+      if (postStoresList[i].distance >= 0 && postStoresList[i].distance <= 50) {
+        arr.push(postStoresList[i])
+      }
+    }
+    this.setData({
+      postStoresList: arr,
+      showJuli: false,
+      showMask: false,
+      color: false,
+      cityColor: false,
+      showCity: false
+    })
+  },
+  juliThrFn: function () {
+    var arr = [];
+    var postStoresList = this.data.postStoresList;
+    for (var i = 0; i < postStoresList.length; i++) {
+      if (postStoresList[i].distance >= 50 && postStoresList[i].distance <= 100) {
+        arr.push(postStoresList[i])
+      }
+    }
+    this.setData({
+      postStoresList: arr,
+      showJuli: false,
+      showMask: false,
+      color: false,
+      cityColor: false,
+      showCity: false
+    })
+  },
+  juliFouFn: function () {
+    var arr = [];
+    var postStoresList = this.data.postStoresList;
+    for (var i = 0; i < postStoresList.length; i++) {
+      if (postStoresList[i].distance >= 100 && postStoresList[i].distance <= 200) {
+        arr.push(postStoresList[i])
+      }
+    }
+    this.setData({
+      postStoresList: arr,
+      showJuli: false,
+      showMask: false,
+      color: false,
+      cityColor: false,
+      showCity: false
+    })
+  },
+  juliFivFn: function () {
+    var arr = [];
+    var postStoresList = this.data.postStoresList;
+    for (var i = 0; i < postStoresList.length; i++) {
+      if (postStoresList[i].distance > 200) {
+        arr.push(postStoresList[i])
+      }
+    }
+    this.setData({
+      postStoresList: arr,
+      showJuli: false,
+      showMask: false,
+      color: false,
+      cityColor: false,
+      showCity: false
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+        this.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+        this.postStoresList(this.data.city, this.data.longitude, this.data.latitude)
+      }
+    })
     this.getCityList()
     this.getChengFn()
-    this.getDistance()
-    this.postStoresList(this.data.city)
     wx.getSystemInfo({
       success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight,
-          mgH:app.globalData.navbarHeight+74
-         })
+        this.setData({
+          navH: app.globalData.navbarHeight,
+          mgH: app.globalData.navbarHeight + 74
+        })
       },
     })
   },
@@ -182,20 +239,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let _this = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        // console.log(res)
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
-        _this.getProvinceName(latitude, longitude)
-      }
-    })
+
   },
-  
+
   /**
    * 生命周期函数--监听页面显示
    */

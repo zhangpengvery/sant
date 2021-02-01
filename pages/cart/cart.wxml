@@ -5,7 +5,6 @@
   <view class="cart-content" style="height:{{widH-navH/2}}px">
     <!-- 购物车为空时 -->
     <view wx:if="{{nogoods}}" class="nogoods" style="height:{{widH-navH/2}}px">
-      <image src="/assets/images/campus-robot.png"></image>
       <view class="nogoods-info">
         购物车空空如也，去逛逛吧
       </view>

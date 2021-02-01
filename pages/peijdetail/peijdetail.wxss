@@ -180,3 +180,6 @@ page{
   background: #F97936;
   border-radius: 0px 94rpx 94rpx 0px;
 }
+.list-xin{
+  color: #F9B236;
+}

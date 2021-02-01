@@ -1,0 +1,66 @@
+<!--pages/zcorders/zcorders.wxml-->
+<view class="header">
+  <view class="header-img">
+    <image src="{{getPartsInfo.good_image}}"></image>
+  </view>
+  <view>
+    <view class="good_name">{{getPartsInfo.good_name}}</view>
+    <view class="good_price">价格：{{getPartsInfo.good_price}}</view>
+  </view>
+</view>
+<view class="body">
+  <view>购买信息</view>
+  <view class="box">
+    <view class="box-title">购买类型</view>
+    <view bindtap="gerenFn" class="yuan {{person_type==1?'huang':''}}"></view>
+    <view class="left">个人</view>
+    <view bindtap="gongsFn" class="yuan {{person_type==2?'huang':''}}"></view>
+    <view class="left">企业</view>
+  </view>
+  <view class="box">
+    <view class="box-title">购买人姓名</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindname" placeholder="请输入姓名" />
+    </view>
+  </view>
+  <view class="box" wx:if="{{person_type==1}}">
+    <view class="box-title">证件号码</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindname2" placeholder="请输入证件号码" />
+    </view>
+  </view>
+  <view class="box" wx:if="{{person_type==2}}">
+    <view class="box-title">企业名称</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindname5" placeholder="请输入企业名称" />
+    </view>
+  </view>
+  <view class="box" wx:if="{{person_type==2}}">
+    <view class="box-title">企业代码</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindname6" placeholder="请输入企业代码" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">上牌城市</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindname3" placeholder="请输入城市" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">联系电话</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindname4" placeholder="请输入联系电话" />
+    </view>
+  </view>
+</view>
+<view class="footer1">
+  <view>意向金￥5000</view>
+  <view>交5000购车时抵10000！！！</view>
+</view>
+<view class="footer">
+  <view class="footer-lfet">
+    <view class="money">合计：￥5000</view>
+  </view>
+  <view class="gobuy" bindtap="gobuyFn">结算</view>
+</view>

@@ -36,9 +36,13 @@ Page({
     activeIndex:7,
     rigthUrl:"https://api.jbccs.com/api/getPartsList/cate_id2/7/p/1/salenum_up/-1/price_up/-1",
     rightTitle:"油品",
+    dixian:false,
+    wuShuju:true,
   },
   leftNavFn:function(e){
     this.setData({
+      dixian:false,
+      wuShuju:true,
       p:1,
       rightTitle:e.target.dataset.title,
       cate_id2:e.target.dataset.id,
@@ -57,11 +61,16 @@ Page({
         if(res.statusCode==200){
           wx.hideLoading()
         }
+        if(res.data.data.list.length==0){
+          this.setData({
+            wuShuju:false
+          })
+        }
         this.setData({
           getCataegoryNavList:res.data.data.cate_list,
           getCataegoryContent:res.data.data.list
         })
-        console.log(this.data.getCataegoryContent);
+        console.log(this.data.getCataegoryNavList);
       }
     })
   },
@@ -73,6 +82,11 @@ Page({
       salenum_up:salenum_up,
       price_up:price_up
     })
+    if(result.data.data.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }
     this.setData({
       getCataegoryContent:this.data.getCataegoryContent.concat(result.data.data.list)
     })

@@ -1,2 +1,108 @@
 <!--pages/maps/maps.wxml-->
-<text>pages/maps/maps.wxml</text>
+<view class="mapbox" hover-class="none" wx:if="{{showFwz}}" style="width: 100%; height: 100%;">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
+    style="width: 100%; height: 100%;" bindmarkertap="markertap"></map>
+</view>
+<view class="mapbox" hover-class="none" wx:else style="width: 100%; height: 100%;">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
+    style="width: 100%; height: 100%;" bindmarkertap="repairtap"></map>
+</view>
+<view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx">
+  <view class="iconfont icon-xiala jiant" bindtap="bindTapFn"></view>
+  <view class="gclc-icon">
+    <view class="icon-left" bindtap="bindFwgj">
+      <view class="iconfont icon-taishifuwu-fuwuguanjia yuan yuan1"></view>
+      <view class="xiandan">服务管家</view>
+    </view>
+    <view class="icon-left" bindtap="bindCmsc">
+      <view class="iconfont icon-taishifuwu-chenmasongche yuan yuan2"></view>
+      <view class="xiandan">辰马送车</view>
+    </view>
+    <view class="icon-left" bindtap="bindJrzy">
+      <view class="iconfont icon-taishifuwu-jinrongzhuanyuan yuan yuan3"></view>
+      <view class="xiandan">金融专员</view>
+    </view>
+    <view class="icon-left" bindtap="bindCxzy">
+      <view class="iconfont icon-taishifuwu-chexianzhuanyuan yuan yuan4"></view>
+      <view class="xiandan">车险专员</view>
+    </view>
+    <view class="icon-left" bindtap="bindFwz">
+      <view class="iconfont icon-taishifuwu-fuwuzhan yuan yuan5"></view>
+      <view class="xiandan">服务站</view>
+    </view>
+  </view>
+  <view class="text">已为您匹配距离最近的服务管家</view>
+  <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" binddragging="scrTopFn"
+    bindscroll="scrBtnFn">
+    <block wx:if="{{showGao}}">
+      <block wx:for="{{userList}}" wx:key="item">
+        <view class="box-con">
+          <view class="user">
+            <view class="user-img">
+              <image mode="aspectFill" src="{{item.avator}}"></image>
+            </view>
+            <view class="user-xx">
+              <view class="user-name">{{item.user_name}}</view>
+              <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+            </view>
+            <view class="juli">距您{{item.distance}}km</view>
+          </view>
+          <view class="goging">
+            <view class="gogingleft">
+              <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{item.user_mobile}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="user-pho" data-pay="is_pay" bindtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
+          </view>
+        </view>
+      </block>
+    </block>
+    <block wx:elif="{{showBox}}">
+      <view class="box-con">
+        <view class="user">
+          <view class="user-img">
+            <image mode="aspectFill" src="{{avator}}"></image>
+          </view>
+          <view class="user-xx">
+            <view class="user-name">{{name}}</view>
+            <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+          </view>
+          <view class="juli">距您{{distance}}km</view>
+        </view>
+        <view class="goging">
+          <view class="gogingleft">
+            <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{user_mobile}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="box-con">
+        <view class="user">
+          <view class="user-xx">
+            <view class="user-name">{{shop_name}}</view>
+            <view class="user-pj"></view>
+          </view>
+          <view class="juli">距您{{fwdistance}}km</view>
+        </view>
+        <view class="gofwz">
+          <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{shop_tel}}</text>
+          </view>
+          <view class="iconfont icon-mendian-dizhi icon">
+            <text style="color:#F9B236">{{shop_address}}</text>
+          </view>
+        </view>
+        <view bindtap="" class="iconfont icon-mendian-lijichufa user-pho"> 路线</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<view class="scrfooter">
+  <view class="iconfont icon-taishifuwu-changyonggongneng-moren cygn {{active==1?'huang':''}}" bindtap="bindCygn"> 常用功能
+  </view>
+  <view class="iconfont icon-taishifuwu-dingdanguanli-xuanzhong yjbx {{active==2?'huang':''}}" bindtap="bindYjbx"> 订单管理
+  </view>
+</view>

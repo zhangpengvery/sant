@@ -1,4 +1,5 @@
 <!--pages/accedetail/accedetail.wxml-->
+<import src="/wxParse/wxParse.wxml"></import>
 <navbar params="{{params}}" />
 <swiper class="detail-swp" indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true"
   style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#F9B236">
@@ -9,7 +10,7 @@
   </block>
 </swiper>
 <view class="details">
-  <view class="details-text">唐鸿牌水泥搅拌车10方<view class="iconfont icon-qiuzhiguanli"></view>
+  <view class="details-text">{{getPartsInfo.good_name}}<view class="iconfont icon-zhuanfa"></view>
   </view>
   <view class="details-jg">￥45.00万</view>
   <view class="details-bzd">
@@ -32,17 +33,17 @@
   </view>
   <view class="gclc-icon">
     <view class="icon-left">
-      <view class="yuan"></view>
+      <view class="iconfont icon-jiaobanchexiangqingye-xiadan yuan"></view>
       <view class="xiandan">下单</view>
       <view class="dingj">线上交订金</view>
     </view>
     <view class="icon-left">
-      <view class="yuan"></view>
+      <view class="iconfont icon-jiaobanchexiangqingye-qianhetong yuan"></view>
       <view class="xiandan">签合同</view>
       <view class="dingj">线下经销商选配签合同</view>
     </view>
     <view class="icon-left">
-      <view class="yuan"></view>
+      <view class="iconfont icon-xinchedingdan yuan"></view>
       <view class="xiandan">提车</view>
       <view class="dingj">线下经销商付全款提车</view>
     </view>
@@ -79,20 +80,24 @@
 <view class="cpxq-text">产品详情</view>
 <view class="footer">
   <view class="footer-box">
-    <image mode="scaleToFill" src="http://www.jbccs.com/Upload/image/20201123/1606124814700515.png"></image>
-  </view>
-  <view class="footer-box">
-    <image mode="scaleToFill" src="http://www.jbccs.com/Upload/image/20201211/1607656585277983.jpg"></image>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
   </view>
 </view>
 <view class="footer-dw">
   <view class="footer-left">
-    <view class="iconfont icon-shoucang"></view>
+    <view wx:if="{{getPartsInfo.is_favor==1}}" class="iconfont icon-taishifuwu-huangxing list-xin" bindtap="qiehuanFn"
+      data-index="{{index}}" data-good_id="{{getPartsInfo.good_id}}"></view>
+    <view class="iconfont icon-shoucang1 " wx:else bindtap="shoucFn" data-good_id="{{getPartsInfo.good_id}}"
+      data-index="{{index}}"></view>
     <view>收藏</view>
   </view>
-  <view class="footer-left">
-    <view class="iconfont icon-dianhua"></view>
+  <view class="footer-left" bindtap="bindPhoFn">
+    <view class="iconfont icon-jiaobanchexiangqingye-dianhua"></view>
     <view>电话</view>
   </view>
-  <view class="footer-right" bindtap="bddhFn">拨打电话</view>
+  <view class="footer-right">
+    <navigator url="/pages/zcorders/zcorders?good_id={{getPartsInfo.good_id}}">
+      <view>支付意向金</view>
+  </navigator>
+  </view>
 </view>

@@ -105,30 +105,30 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    // wx.login({
-    //   success(res) {
-    //     if (res.code) {
-    //       //发起网络请求
-    //       wx.request({
-    //         url: 'https://api.jbccs.com/api/getJscode2session',
-    //         data: {
-    //           code: res.code
-    //         },
-    //         success(res) {
-    //           that.setData({
-    //             session_key: res.data.data.session_key
-    //           })
-    //           wx.setStorage({
-    //             data: res.data.data.openid,
-    //             key: 'openid',
-    //           })
-    //         }
-    //       })
-    //     } else {
-    //       console.log('登录失败！' + res.errMsg)
-    //     }
-    //   }
-    // })
+    wx.login({
+      success(res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: 'https://api.jbccs.com/api/getJscode2session',
+            data: {
+              code: res.code
+            },
+            success(res) {
+              that.setData({
+                session_key: res.data.data.session_key
+              })
+              wx.setStorage({
+                data: res.data.data.openid,
+                key: 'openid',
+              })
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
     wx.getSystemInfo({
       success: (result) => {
         this.setData({

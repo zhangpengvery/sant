@@ -167,6 +167,9 @@ page{
   background: #fff;
   z-index: 100;
 }
+.showjuli .jiagecss{
+  color: #F9B236;
+}
 .showjuli view{
   font-size: 26rpx;
   color: #333;

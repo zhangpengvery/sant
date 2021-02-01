@@ -31,7 +31,8 @@ Page({
     good_id:0,
     num:1,
     getPartsInfo:[],
-    imageList:[]
+    imageList:[],
+    id:0
   },
   async getPartsInfo(good_id){
     wx.showLoading({
@@ -48,6 +49,7 @@ Page({
       imageList:result.data.data.pic,
       is_favor:result.data.data.is_favor
     })
+    console.log(this.data.getPartsInfo);
     wxParse.wxParse('content', 'html', result.data.data.wap_good_description, this);
   },
   //加入购物车
@@ -69,26 +71,90 @@ Page({
   },
   //点击加入购物车
   addCart:function(){
-    var goods=this.data.good_id+"|"+this.data.num;
-    this.postAddCart(goods)
-  },
-  //收藏接口
-  favorAdd(type,favor_data){
-    requestApi1(app.globalData.base_url+"/favor_add",{
-      type:type,
-      favor_data:favor_data
-    }).then(res=>{
-      wx.showToast({
-        title: '收藏成功',
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
       })
+    }else{
+      var goods=this.data.good_id+"|"+this.data.num;
+      this.postAddCart(goods)
+    }
+  },
+  //收藏点击
+  shoucFn: function (e) {
+    if (wx.getStorageSync('token')==[]) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      var getPartsInfo = this.data.getPartsInfo
+      var good_id = getPartsInfo.good_id;
+      getPartsInfo.is_favor = 1;
+      this.setData({
+        getPartsInfo: getPartsInfo
+      })
+      this.postFavorAdd(good_id)
+    }
+  },
+  //删除收藏
+  qiehuanFn: function (e) {
+    var getPartsInfo = this.data.getPartsInfo;
+    var is_favor = getPartsInfo.good_id;
+    getPartsInfo.is_favor = 0;
+    this.setData({
+      getPartsInfo: getPartsInfo
+    })
+    this.deleteMyFavor(is_favor)
+  },
+  postFavorAdd(favor_data) {
+    requestApi1(app.globalData.post_url + "/index.php/Api/StoreCar/addFavor", {
+      type: "parts",
+      favor_data: favor_data
+    }).then(res=>{
+      console.log(res);
     })
   },
-  //点击收藏
-  collecFn:function(){
-    this.favorAdd(this.data.type,this.data.good_id)
-    this.setData({
-      is_favor:1
+  deleteMyFavor(favor_data) {
+    requestApi1(app.globalData.post_url + "/index.php/Api/StoreCar/addFavor", {
+      type:"parts",
+      favor_data: favor_data
     })
+  },
+  wxgobuy:function(e){
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else{
+      var id=this.data.good_id+"|"+1;
+      this.setData({
+        id:id
+      })
+      wx.setStorage({
+        data: this.data.id,
+        key: 'id',
+      })
+      wx.navigateTo({
+        url: '/pages/confirmed/confirmed',
+      })
+    }
+    
+  },
+  bindPho:function(){
+    wx.makePhoneCall({
+      phoneNumber: '4009007819',
+    })
+  },
+  bindCarFn:function(){
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/cart/cart',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

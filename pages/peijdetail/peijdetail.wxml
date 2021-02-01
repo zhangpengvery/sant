@@ -60,22 +60,22 @@
 </view>
 <view class="footer-dw">
   <view class="footer-left">
-    <view class="iconfont icon-xin-xuanzhong" style="color:#F9B236" wx:if="{{is_favor==1}}"></view>
-    <view class="iconfont icon-shoucang1" wx:else bindtap="collecFn"></view>
+    <view wx:if="{{getPartsInfo.is_favor==1}}" class="iconfont icon-taishifuwu-huangxing list-xin" bindtap="qiehuanFn"
+      data-index="{{index}}" data-good_id="{{getPartsInfo.good_id}}"></view>
+    <view class="iconfont icon-shoucang1 " wx:else bindtap="shoucFn" data-good_id="{{getPartsInfo.good_id}}"
+      data-index="{{index}}"></view>
     <view>收藏</view>
   </view>
-  <view class="footer-left">
-    <navigator url="/pages/cart/cart">
+  <view class="footer-left" bindtap="bindCarFn">
       <view class="iconfont icon-gouwuche"></view>
       <view>购物车</view>
-    </navigator>
   </view>
-  <view class="footer-left">
-    <view class="iconfont icon-dianhua"></view>
+  <view class="footer-left" bindtap="bindPho">
+    <view class="iconfont icon-jiaobanchexiangqingye-dianhua"></view>
     <view>电话</view>
   </view>
   <view class="footer-right">
     <view class="left-car" bindtap="addCart">加入购物车</view>
-    <view class="ljgm">立即购买</view>
+    <view class="ljgm" bindtap="wxgobuy">立即购买</view>
   </view>
 </view>

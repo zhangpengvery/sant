@@ -45,6 +45,41 @@ Page({
       })
     }
   },
+  bindflthFn:function(){
+    wx.navigateTo({
+      url: '/pages/newcar/newcar?brand_id=5',
+    })
+  },
+  bindflytFn:function(){
+    wx.navigateTo({
+      url: '/pages/newcar/newcar?brand_id=7',
+    })
+  },
+  bindflsqFn:function(){
+    wx.navigateTo({
+      url: '/pages/newcar/newcar?brand_id=17',
+    })
+  },
+  youpFn:function(){
+    wx.navigateTo({
+      url: '/pages/allries/allries?cate_id2=7',
+    })
+  },
+  shangzFn:function(){
+    wx.navigateTo({
+      url: '/pages/allries/allries?cate_id2=5',
+    })
+  },
+  dipanFn:function(){
+    wx.navigateTo({
+      url: '/pages/allries/allries?cate_id2=3',
+    })
+  },
+  luntFn:function(){
+    wx.navigateTo({
+      url: '/pages/allries/allries?cate_id2=8',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

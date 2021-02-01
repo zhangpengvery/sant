@@ -7,7 +7,11 @@ Page({
   data: {
 
   },
-
+  bindphoFn:function(){
+    wx.makePhoneCall({
+      phoneNumber: '176133159555',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
