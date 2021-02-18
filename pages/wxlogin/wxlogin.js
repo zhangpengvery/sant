@@ -37,6 +37,9 @@ Page({
           wx.reLaunch({
             url: '/pages/home/home',
           })
+          wx.showTabBar({
+            animation: true,
+          })
         })
       })
     } else {

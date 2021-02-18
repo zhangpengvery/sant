@@ -1,13 +1,15 @@
 <!--pages/maps/maps.wxml-->
+<view class="iconfont icon-ziyuan2 home" style="top:{{TopH}}px" bindtap="bindGohome">首页</view>
 <view class="mapbox" hover-class="none" wx:if="{{showFwz}}" style="width: 100%; height: 100%;">
   <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
     style="width: 100%; height: 100%;" bindmarkertap="markertap"></map>
 </view>
 <view class="mapbox" hover-class="none" wx:else style="width: 100%; height: 100%;">
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
+  <map id="map2" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
     style="width: 100%; height: 100%;" bindmarkertap="repairtap"></map>
 </view>
-<view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx">
+<view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx"
+  wx:if="{{active==1}}">
   <view class="iconfont icon-xiala jiant" bindtap="bindTapFn"></view>
   <view class="gclc-icon">
     <view class="icon-left" bindtap="bindFwgj">
@@ -55,6 +57,7 @@
           </view>
           <view class="user-pho" data-pay="is_pay" bindtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
           </view>
+          <view wx:if="{{type==1}}" data-service_uid="{{item.user_id}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
         </view>
       </block>
     </block>
@@ -77,6 +80,7 @@
           </view>
         </view>
         <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
+        <view wx:if="{{type==1}}" data-service_uid="{{service_uid}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
       </view>
     </block>
     <block wx:else>
@@ -89,20 +93,80 @@
           <view class="juli">距您{{fwdistance}}km</view>
         </view>
         <view class="gofwz">
-          <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{shop_tel}}</text>
+          <view class="iconfont icon-mendian-dianhua icon"> <text data-pay="1" data-pho="{{shop_tel}}" bindtap="bindPho"
+              style="color:#F9B236">{{shop_tel}}</text>
           </view>
           <view class="iconfont icon-mendian-dizhi icon">
             <text style="color:#F9B236">{{shop_address}}</text>
           </view>
         </view>
-        <view bindtap="" class="iconfont icon-mendian-lijichufa user-pho"> 路线</view>
+        <view bindtap="bindgoDitu" data-name="{{shop_name}}" data-address="{{shop_address}}" data-lat="{{shop_lat}}"
+          data-lng="{{shop_lng}}" class="iconfont icon-mendian-lijichufa user-pho"> 路线</view>
       </view>
     </block>
   </scroll-view>
+  <cover-image class="gozhong" src="/assets/images/dqwz.png" bindtap='clickControl'></cover-image>
+</view>
+<view wx:else class="order">
+  <view class="order-top">
+    <view class="iconfont icon-zu1665 top-left"> <text> 我的订单</text></view>
+    <view class="top-right">全部订单 <text class="iconfont icon-xiangyou"></text></view>
+  </view>
+  <view class="order-tab">
+    <view class="tab-title xian">一键报修</view>
+    <!-- <view class="tab-title">一键送车</view>
+    <view class="tab-title">一键派单</view>
+    <view class="tab-title">一键保险</view> -->
+  </view>
+  <view class="order-content">
+    <view class="con-top">服务倒计时</view>
+    <view class="time-w">
+      <text class="time">{{hr}}</text>
+      <text class="time1">:</text>
+      <text class="time">{{min}}</text>
+      <text class="time1">:</text>
+      <text class="time">{{sec}}</text>
+    </view>
+    <view class="order-footer">
+      <view class="footer-box okactive">
+        <view class="iconfont icon-fuwu"></view>
+        <view>已接单</view>
+      </view>
+      <view class="iconfont icon-taishifuwu-jiantou jiant2"></view>
+      <view class="footer-box">
+        <view class="iconfont icon-taishifuwu-jinhangzhong-moren"></view>
+        <view>进行中</view>
+      </view>
+      <view class="iconfont icon-taishifuwu-jiantou jiant2"></view>
+      <view class="footer-box">
+        <view class="iconfont icon-zujian202"></view>
+        <view>已完成</view>
+      </view>
+    </view>
+    <view class="user-con">
+      <view class="user">
+        <view class="user-img">
+          <image mode="aspectFill" src="{{broList.avator}}"></image>
+        </view>
+        <view class="user-xx">
+          <view class="user-name">{{broList.user_name}}</view>
+          <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+        </view>
+        <!-- <view class="juli">距您{{distance}}km</view> -->
+      </view>
+      <view class="goging">
+        <view class="gogingleft">
+          <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{broList.user_mobile}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="user-pho" data-pho="{{broList.user_mobile}}">拨打电话</view>
+    </view>
+  </view>
 </view>
 <view class="scrfooter">
   <view class="iconfont icon-taishifuwu-changyonggongneng-moren cygn {{active==1?'huang':''}}" bindtap="bindCygn"> 常用功能
   </view>
-  <view class="iconfont icon-taishifuwu-dingdanguanli-xuanzhong yjbx {{active==2?'huang':''}}" bindtap="bindYjbx"> 订单管理
+  <view class="iconfont icon-zu1665 yjbx {{active==2?'huang':''}}" bindtap="bindDdgl"> 订单管理
   </view>
 </view>

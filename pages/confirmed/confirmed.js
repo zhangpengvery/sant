@@ -108,7 +108,7 @@ Page({
       }
       var  order_sn=res.data.data.more_sn
       wx.request({
-        url: "http://www.jbccs.com/index.php/index/MiniPay/getPay",
+        url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
         method: "GET",
         data: {
           "open_id": wx.getStorageSync('openid'),
@@ -148,6 +148,11 @@ Page({
       id = arr.join(",")
     }
     this.cartOrderAdd(this.data.address_id, id)
+  },
+  bindNav:function(){
+    wx.redirectTo({
+      url: '/pages/address/address',
+    })
   },
   /**
    * 生命周期函数--监听页面加载

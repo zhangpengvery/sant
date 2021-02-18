@@ -37,6 +37,4 @@
     <switch class="switchcss" color="#F9B236" bindchange="switchFn" checked="{{is_def==1?true:false}}"     disabled="{{is_def==1?true:false}}"></switch>
   </view>
 </view>
-<navigator url="/pages/address/address">
   <view class="ljfb" bindtap="bddhFn">保存</view>
-</navigator>

@@ -5,24 +5,25 @@
   <view class="box {{rightActive==true?'box-right':''}}" bindtap="jobFn">我要求职</view>
 </view>
 <view class="aui-content">
-    <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
-      <text>职位</text>
-      <view class="iconfont icon-zu261 xiabiao"></view>
-    </view>
-    <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="cityFn">
-      <text>城市</text>
-      <view class="iconfont icon-zu261 xiabiao"></view>
-    </view>
-    <view class="juli-right {{commonColor==true?'commoncolor':''}}" bindtap="yaoqiuFn">
-      <text>要求</text>
-      <view class="iconfont icon-zu261 xiabiao"></view>
-    </view>
+  <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
+    <text>职位</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+  <view class="juli-right {{cityColor==true?'cityactive':''}}" bindtap="cityFn">
+    <text>城市</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
+  <view class="juli-right {{commonColor==true?'commoncolor':''}}" bindtap="yaoqiuFn">
+    <text>要求</text>
+    <view class="iconfont icon-zu261 xiabiao"></view>
+  </view>
 </view>
 <!-- 职位选择 -->
 <view class="showjuli" wx:if="{{showzhiwei}}">
   <view class="type-select {{typeCss==0?'type-xuanz':''}}" bindtap="typeFn" data-id="0">不限</view>
   <block wx:for="{{postTypeList}}" wx:key="index">
-    <view class="type-select {{typeCss==item.jt_id?'type-xuanz':''}}" bindtap="typeFn" data-id="{{item.jt_id}}">{{item.job_name}}</view>
+    <view class="type-select {{typeCss==item.jt_id?'type-xuanz':''}}" bindtap="typeFn" data-id="{{item.jt_id}}">
+      {{item.job_name}}</view>
   </block>
 </view>
 <!-- 城市选择 -->
@@ -31,25 +32,28 @@
     <view class="showcity-box">
       <view class="city-select {{cityCss==0?'city-xuanz':''}}" data-id="0" bindtap="cityXuanzFn">全部</view>
       <block wx:for="{{postCityList}}" wx:key="index">
-        <view class="city-select {{cityCss==item.area_id?'city-xuanz':''}}" data-id="{{item.area_id}}" bindtap="cityXuanzFn">{{item.area_name}}</view>
+        <view class="city-select {{cityCss==item.area_id?'city-xuanz':''}}" data-id="{{item.area_id}}"
+          bindtap="cityXuanzFn">{{item.area_name}}</view>
       </block>
     </view>
   </scroll-view>
-</view> 
+</view>
 <!-- 要求选择 -->
 <view class="showyaoqiu" wx:if="{{showyaoqiu}}">
   <view class="showyaoqiu-text">经验</view>
   <view class="showyaoqiu-fater">
     <view class="showyaoqiu-box {{exCss==0?'exxuanz':''}}" data-id="0" bindtap="excssFn">全部</view>
     <block wx:for="{{postExList}}" wx:key="index">
-      <view class="showyaoqiu-box {{exCss==item.je_id?'exxuanz':''}}" data-id="{{item.je_id}}" bindtap="excssFn">{{item.ex_name}}</view>
+      <view class="showyaoqiu-box {{exCss==item.je_id?'exxuanz':''}}" data-id="{{item.je_id}}" bindtap="excssFn">
+        {{item.ex_name}}</view>
     </block>
   </view>
   <view class="showyaoqiu-text">薪资</view>
   <view class="showyaoqiu-fater">
     <view class="showyaoqiu-box {{salaryCss==0?'salaxuanz':''}}" data-id="0" bindtap="salacssFn">全部</view>
     <block wx:for="{{postSalaryList}}" wx:key="index">
-      <view class="showyaoqiu-box {{salaryCss==item.js_id?'salaxuanz':''}}" data-id="{{item.js_id}}" bindtap="salacssFn">{{item.salary_name}}</view>
+      <view class="showyaoqiu-box {{salaryCss==item.js_id?'salaxuanz':''}}" data-id="{{item.js_id}}"
+        bindtap="salacssFn">{{item.salary_name}}</view>
     </block>
   </view>
   <view class="hbtn" bindtap="showBtnFn">确定</view>
@@ -79,39 +83,43 @@
 <!-- 叉号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 招聘 -->
-<view class="recruit-content" wx:if="{{leftActive}}">
-  <block wx:for="{{postRecruitList}}" wx:key="index">
-    <navigator url="/pages/details/details?ja_id={{item.ja_id}}">
-      <view class="content-box">
-        <view class="content-title">{{item.apply_title}}</view>
-        <view class="content-gs">{{item.apply_company}}</view>
-        <view class="content-jg">{{item.salary_name}}</view>
-        <view class="content-time">{{item.add_time_text}}</view>
-        <view class="content-dz">
-          <view class="content-dz-box">{{item.province_name}}</view>
-          <view class="content-dz-box">{{item.city_name}}</view>
-          <view class="content-dz-box">{{item.area_name}}</view>
+<scroll-view scroll-y="true" style="height:{{ScrH}}rpx" bindscrolltolower="loadMore" wx:if="{{leftActive}}">
+  <view class="recruit-content">
+    <block wx:for="{{postRecruitList}}" wx:key="index">
+      <navigator url="/pages/details/details?ja_id={{item.ja_id}}">
+        <view class="content-box">
+          <view class="content-title">{{item.apply_title}}</view>
+          <view class="content-gs">{{item.apply_company}}</view>
+          <view class="content-jg">{{item.salary_name}}</view>
+          <view class="content-time">{{item.add_time_text}}</view>
+          <view class="content-dz">
+            <view class="content-dz-box">{{item.province_name}}</view>
+            <view class="content-dz-box">{{item.city_name}}</view>
+            <view class="content-dz-box">{{item.area_name}}</view>
+          </view>
         </view>
-      </view>
-    </navigator>
-  </block>
-</view>
+      </navigator>
+    </block>
+  </view>
+</scroll-view>
 <!-- 求职 -->
-<view class="recruit-content" wx:if="{{rightActive}}">
-  <block wx:for="{{getJobRecruitLists}}" wx:key="index">
-    <navigator url="/pages/qzdetails/qzdetails?jr_id={{item.jr_id}}">
-      <view class="content-box">
-        <view class="content-title">{{item.recruit_title}}</view>
-        <view class="content-gs">{{item.contact_name}}</view>
-        <view class="content-jg">{{item.salary_name}}</view>
-        <view class="content-time">{{item.add_time_text}}</view>
-        <view class="content-dz">
-          <view class="content-dz-box">{{item.province_name}}</view>
-          <view class="content-dz-box">{{item.city_name}}</view>
-          <view class="content-dz-box">{{item.area_name}}</view>
-          <view class="content-dz-box">{{item.ex_name}}</view>
+<scroll-view scroll-y="true" style="height:{{ScrH}}rpx" bindscrolltolower="loadMore2" wx:if="{{rightActive}}">
+  <view class="recruit-content">
+    <block wx:for="{{getJobRecruitLists}}" wx:key="index">
+      <navigator url="/pages/qzdetails/qzdetails?jr_id={{item.jr_id}}">
+        <view class="content-box">
+          <view class="content-title">{{item.recruit_title}}</view>
+          <view class="content-gs">{{item.contact_name}}</view>
+          <view class="content-jg">{{item.salary_name}}</view>
+          <view class="content-time">{{item.add_time_text}}</view>
+          <view class="content-dz">
+            <view class="content-dz-box">{{item.province_name}}</view>
+            <view class="content-dz-box">{{item.city_name}}</view>
+            <view class="content-dz-box">{{item.area_name}}</view>
+            <view class="content-dz-box">{{item.ex_name}}</view>
+          </view>
         </view>
-      </view>
-    </navigator>
-  </block>
-</view>
+      </navigator>
+    </block>
+  </view>
+</scroll-view>

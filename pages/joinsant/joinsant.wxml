@@ -1,13 +1,13 @@
 <!--pages/joinsant/joinsant.wxml-->
 <view class="header-img">
-  <image src="http://www.jbccs.com/Public/Wap/image/zp-big.jpg"></image>
+  <image src="https://www.jbccs.com/Public/Wap/image/zp-big.jpg"></image>
 </view>
 <view class="body-img">
   <view class="img-box" bindtap="joinFn">
-    <image src="http://www.jbccs.com/Public/Wap/image/jm-s-1.png"></image>
+    <image src="https://www.jbccs.com/Public/Wap/image/jm-s-1.png"></image>
   </view>
   <view class="img-box" bindtap="joinTowfn">
-    <image src="http://www.jbccs.com/Public/Wap/image/jm-s-2.png"></image>
+    <image src="https://www.jbccs.com/Public/Wap/image/jm-s-2.png"></image>
   </view>
 </view>
 <navigator url="/pages/jointhr/jointhr">

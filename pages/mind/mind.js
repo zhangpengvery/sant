@@ -91,9 +91,13 @@ Page({
     //获取高度
     wx.getSystemInfo({
       success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =clientHeight * ratio
          this.setData({
           navH:app.globalData.navbarHeight,
-          winH:app.globalData.windowHeigtn
+          winH:ScrH
          })
       },
     })

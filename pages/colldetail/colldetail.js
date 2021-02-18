@@ -181,6 +181,9 @@ Page({
 
   bddhFn:function(){
     this.editAddress(this.data.address_id,this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone)
+    wx.redirectTo({
+      url: '/pages/address/address',
+    })
   },
   bindBoard:function(e){
     this.setData({
@@ -188,6 +191,7 @@ Page({
     })
   },
   bindPho:function(e){
+    console.log(e.detail.value);
     this.setData({
       phone:e.detail.value
     })
@@ -212,7 +216,8 @@ Page({
       is_def:result.data.data.address_info.is_def,
       selectAreaId:result.data.data.address_info.area_id,
       true_name:result.data.data.address_info.true_name,
-      address:result.data.data.address_info.address
+      address:result.data.data.address_info.address,
+      phone:result.data.data.address_info.phone
     })
     console.log(this.data.getAddressInfo);
   },

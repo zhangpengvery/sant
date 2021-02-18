@@ -26,8 +26,8 @@ Page({
       col:"#000",
     },
     page:1,
+    page2:1,
     navH:0,
-    posH:0,
     winH:0,
     brandCss:0,
     chassisCss:0,
@@ -142,7 +142,7 @@ Page({
       if(this.data.leftActive){
         this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }else{
-        this.getAllSaleforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }
     },
     juliFn2:function(e){
@@ -156,7 +156,7 @@ Page({
       if(this.data.leftActive){
         this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }else{
-        this.getAllSaleforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }
     },
     juliFn3:function(e){
@@ -170,7 +170,7 @@ Page({
       if(this.data.leftActive){
         this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }else{
-        this.getAllSaleforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }
     },
     juliFn4:function(e){
@@ -184,7 +184,7 @@ Page({
       if(this.data.leftActive){
         this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }else{
-        this.getAllSaleforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }
     },
     juliFn5:function(e){
@@ -198,7 +198,7 @@ Page({
       if(this.data.leftActive){
         this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }else{
-        this.getAllSaleforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }
     },
     //品牌点击
@@ -247,7 +247,7 @@ Page({
       if(this.data.leftActive){
         this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }else{
-        this.getAllSaleforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }
     },
     //出售列表
@@ -270,7 +270,7 @@ Page({
         wx.hideLoading()
       }
       this.setData({
-        getAllSaleList:result.data.data.list,
+        getAllSaleList:this.data.getAllSaleList.concat(result.data.data.list),
         getBrandList:result.data.data.brand_list,
         getChassisList:result.data.data.chassis_list,
         getDriveList:result.data.data.drive_list,
@@ -279,9 +279,12 @@ Page({
         getDischargeList:result.data.data.discharge_list
       })
     },
-    async getAllSaleforLists(page,salefor_brand_id,salefor_age_id,salefor_chassis_id,salefor_drive_id,salefor_source_id,salefor_discharge_id,age_up,price_up){
+    async getAllSaleforLists(page2,salefor_brand_id,salefor_age_id,salefor_chassis_id,salefor_drive_id,salefor_source_id,salefor_discharge_id,age_up,price_up){
+      wx.showLoading({
+        title: '加载中...',
+      })
       let result=await requestApi(app.globalData.base_url+"/getAllSaleforLists",{
-        page:page,
+        page2:page2,
         salefor_brand_id:salefor_brand_id,
         salefor_age_id:salefor_age_id,
         salefor_chassis_id:salefor_chassis_id,
@@ -291,26 +294,41 @@ Page({
         age_up:age_up,
         price_up:price_up
       })
+      if(result.statusCode==200){
+        wx.hideLoading()
+      }
       this.setData({
-        getSaleforLists:result.data.data.list
+        getSaleforLists:this.data.getSaleforLists.concat(result.data.data.list)
       })
-      console.log(this.data.getSaleforLists);
     },
     //滑动到底部
-    bindLanFn:function(){
+    loadMore(){
+      this.setData({
+        page:++this.data.page
+      })
+      this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+    },
+    loadMore2(){
+      this.setData({
+        page2:++this.data.page2
+      })
+      this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
     },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
-    this.getAllSaleforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+    this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
     wx.getSystemInfo({
       success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH = (clientHeight * ratio)-138-app.globalData.navbarHeight;
          this.setData({
           navH:app.globalData.navbarHeight,
-          posH:app.globalData.navbarHeight+49,
-          winH:app.globalData.windowHeigtn+250+app.globalData.navbarHeight
+          winH:ScrH
          })
       },
     })

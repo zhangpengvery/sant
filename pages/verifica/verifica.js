@@ -59,12 +59,11 @@ Page({
           data: this.data.loginData.data.user.user_id,
           key: 'user_id',
         })
-        // wx.setStorage({
-        //   data: data,
-        //   key: 'key',
-        // })
         wx.reLaunch({
           url: '/pages/home/home',
+        })
+        wx.showTabBar({
+          animation: true,
         })
       }else{
         wx.showToast({

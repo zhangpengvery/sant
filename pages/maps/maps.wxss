@@ -3,6 +3,19 @@
 page{
   height: 100%;
 }
+.home{
+  position: fixed;
+  left: 30rpx;
+  z-index: 100;
+  align-items: center;
+  font-size: 34rpx;
+  text-align: center;
+  color: #333;
+}
+.home image{
+  width: 60rpx;
+  height: 60rpx;
+}
 .mapbox{
   position: fixed;
   left: 0;
@@ -150,6 +163,19 @@ page{
   border-radius: 308rpx;
   text-align: center;
 }
+.user-bx{
+  position: absolute;
+  bottom: 30rpx;
+  right: 160rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #756E6E;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+}
 .scrfooter{
   position: fixed;
   width: 100%;
@@ -162,6 +188,7 @@ page{
   font-size: 30rpx;
   z-index: 10;
   background: #fff;
+  color: #888888;
 }
 .cygn{
   width: 50%;
@@ -185,4 +212,131 @@ page{
 }
 .gofwz .icon text{
   color: #666;
+}
+.gozhong{
+  width: 70rpx;
+  height: 70rpx;
+  position: absolute;
+  right: 30rpx;
+  top: -90rpx;
+}
+.order{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width:  100%;
+  height: 740rpx;
+  padding-top: 20rpx;
+  background: #fff;
+  box-shadow: 0px 0px 20rpx rgba(0, 0, 0, 0.07);
+  border-radius: 20rpx 20rpx 0px 0px;
+}
+.order-top{
+  width: 94%;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0 3%;
+  display: flex;
+  justify-content: space-between;
+}
+.top-left{
+  color: #F9B236;
+}
+.top-left text{
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.top-right{
+  color: #000;
+  font-size: 24rpx;
+}
+.top-right text{
+  color: #ababab;
+  font-size: 20rpx;
+}
+.order-tab{
+  display: flex;
+  width: 94%;
+  margin: 0 3%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.order-tab .tab-title{
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #9A9A9A;
+}
+.order-tab .xian{
+  color: #333;
+  border-bottom: 4rpx solid #F9B236;
+}
+.order-content{
+  width: 100%;
+  height: 600rpx;
+  background: #f9f9f9;
+  overflow: hidden;
+}
+.con-top{
+  width: 100%;
+  text-align: center;
+  margin: 50rpx 0 20rpx 0;
+  font-size: 20rpx;
+}
+.time-w{
+  width: 100%;
+  display: flex;
+  line-height: 60rpx;
+  justify-content: center;
+  text-align: center;
+}
+.time-w .time{
+  width: 70rpx;
+  height: 70rpx;
+  background: #c55353;
+  opacity: 1;
+  border-radius: 8rpx;
+  line-height: 70rpx;
+  color: #fff;
+  font-size: 44rpx;
+}
+.time-w .time1{
+  color: #333;
+  font-size: 44rpx;
+  margin: 0 10rpx;
+}
+.order-footer{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 40rpx 10% 20rpx 10%;
+}
+.footer-box{
+  width: 100rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #B3B3B3;
+}
+.footer-box .iconfont{
+  font-size: 44rpx;
+  margin-bottom: 10rpx;
+}
+.order-footer .okactive{
+  color: #F9B236;
+}
+.order-footer .jiant2{
+  color: #E3E2E2;
+}
+.user-con{
+  position: relative;
+  width: 90%;
+  height: 180rpx;
+  padding: 20rpx 2% 0 2%;
+  margin: 0 3%;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.user-con .user{
+  position: relative;
+  display: flex;
 }

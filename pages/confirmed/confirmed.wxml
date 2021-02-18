@@ -6,7 +6,7 @@
   </view>
   <view class="xiangq">
     <view class="xiangq-dz">{{address.area_info}}{{address.address}}</view>
-    <view class="dayu">></view>
+    <view class="iconfont icon-xiangyou dayu" bindtap="bindNav"></view>
   </view>
   <view class="user">
     <view class="user-name">{{address.true_name}}</view>

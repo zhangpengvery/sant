@@ -169,6 +169,7 @@ Page({
     })
     if(this.data.id==0){
       wx.showToast({
+        icon:'none',
         title: '请选择商品',
       })
     }else{
@@ -176,7 +177,7 @@ Page({
         data: this.data.id,
         key: 'id',
       })
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/confirmed/confirmed',
       })
     }

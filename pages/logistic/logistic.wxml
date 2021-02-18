@@ -1,6 +1,6 @@
 <!--pages/logistic/logistic.wxml-->
 <view class="box-img">
-  <image src="http://www.jbccs.com//Upload/Upload/Pictures/2020-12-29/5feae74159346.jpg"></image>
+  <image src="https://www.jbccs.com//Upload/Upload/Pictures/2020-12-29/5feae74159346.jpg"></image>
 </view>
 <view class="box">
   <image src="https://jbccs.com/Upload/image/2021-01-30/60151386d08d2.png"></image>

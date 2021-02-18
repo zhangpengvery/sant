@@ -1,12 +1,6 @@
 <!--pages/order/order.wxml-->
 <view class="nav-top" style="height:{{navH}}rpx">
   <view class="iconfont icon-ziyuan2 back" bindtap="backFn"></view>
-  <view class="navber-content">
-    <!-- 输入框 -->
-    <navigator url="/pages/search/search">
-      <view class="iconfont icon-lujing46 search-icon"></view>
-    </navigator>
-  </view>
   <view class="nav-tab">
     <view class="nav-left {{leftCss==true?'leftactive':''}}" bindtap="navLeftFn">我的订单</view>
     <view class="nav-right {{rightCss==true?'rightactive':''}}" bindtap="navRightFn">其他订单</view>
@@ -19,161 +13,166 @@
     </view>
   </block>
 </view>
-<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx"
-  wx:if="{{left_content}}">
+<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" wx:if="{{left_content}}"
+  style="height:{{scrollH}}rpx">
   <swiper-item>
     <!-- 全部 -->
-    <view class="content">
-      <block wx:for="{{getOrderList}}" wx:key="index">
-        <view class="box">
-          <view class="box-header">
-            <view class="iconfont icon-dingdanbianhao1"></view>
-            <view class="bianh">订单编号：{{item.order_sn}}</view>
-            <view class="zhuangt" wx:if="{{item.order_state=='TRADE_FINISH'}}">交易完成</view>
-            <view wx:elif="{{item.order_state==SELLER_DELIVER}}">
-              <view class="zhuangt" wx:if="{{item.return_type==2&&return_state==5}}">退货失败</view>
-              <view class="zhuangt" wx:else>待收货</view>
-            </view>
-            <view class="zhuangt" wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">代付款</view>
-            <view class="zhuangt" wx:elif="{{item.order_state=='SELLER_PICK'}}">代发货</view>
-            <view class="zhuangt" wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">待接单</view>
-            <view wx:elif="{{item.order_state==TRADE_CLOSED}}">
-              <view class="zhuangt" wx:if="{{item.return_type==2}}">退货成功</view>
-              <view class="zhuangt" wx:elif="{{item.return_type==1}}">退款成功</view>
-              <view class="zhuangt" wx:else>交易关闭</view>
-            </view>
-            <view wx:elif="{{item.order_state=='AFTER_SERVICE'}}">
-              <view wx:if="{{item.return_type==2}}">
-                <view class="zhuangt" wx:if="{{item.return_state==5}}">退货失败</view>
-                <view class="zhuangt" wx:elif="{{item.return_state==3}}">退货成功</view>
-                <view class="zhuangt" wx:else>退货中</view>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore">
+      <view class="content">
+        <block wx:for="{{getOrderList}}" wx:key="index">
+          <view class="box">
+            <view class="box-header">
+              <view class="iconfont icon-dingdanbianhao1"></view>
+              <view class="bianh">订单编号：{{item.order_sn}}</view>
+              <view class="zhuangt" wx:if="{{item.order_state=='TRADE_FINISH'}}">交易完成</view>
+              <view wx:elif="{{item.order_state==SELLER_DELIVER}}">
+                <view class="zhuangt" wx:if="{{item.return_type==2&&return_state==5}}">退货失败</view>
+                <view class="zhuangt" wx:else>待收货</view>
               </view>
-              <view wx:else>
-                <view class="zhuangt" wx:if="{{item.deal_state==3}}">退款失败</view>
-                <view class="zhuangt" wx:elif="{{item.deal_state==1}}">退款成功</view>
-                <view class="zhuangt" wx:else>退款中</view>
+              <view class="zhuangt" wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">待付款</view>
+              <view class="zhuangt" wx:elif="{{item.order_state=='SELLER_PICK'}}">待发货</view>
+              <view class="zhuangt" wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">待接单</view>
+              <view wx:elif="{{item.order_state==TRADE_CLOSED}}">
+                <view class="zhuangt" wx:if="{{item.return_type==2}}">退货成功</view>
+                <view class="zhuangt" wx:elif="{{item.return_type==1}}">退款成功</view>
+                <view class="zhuangt" wx:else>交易关闭</view>
               </view>
-            </view>
-          </view>
-          <view class="box-body" data-order_sn="{{item.order_sn}}" bindtap="datelFn">
-            <view class="body-img">
-              <image src="{{item.order_good[0].good_image}}"></image>
-            </view>
-            <view class="body-text">
-              <block wx:if="{{item.order_good.length==1}}">
-                <view class="body-title">{{item.order_good[0].good_name}}</view>
-              </block>
-              <block wx:else>
-                <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
-              </block>
-              <view class="body-pj">三泰之家上装保养</view>
-              <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+              <view wx:elif="{{item.order_state=='AFTER_SERVICE'}}">
+                <view wx:if="{{item.return_type==2}}">
+                  <view class="zhuangt" wx:if="{{item.return_state==5}}">退货失败</view>
+                  <view class="zhuangt" wx:elif="{{item.return_state==3}}">退货成功</view>
+                  <view class="zhuangt" wx:else>退货中</view>
+                </view>
+                <view wx:else>
+                  <view class="zhuangt" wx:if="{{item.deal_state==3}}">退款失败</view>
+                  <view class="zhuangt" wx:elif="{{item.deal_state==1}}">退款成功</view>
+                  <view class="zhuangt" wx:else>退款中</view>
                 </view>
               </view>
             </view>
-          </view>
-          <view class="box-footer">
-            <view>
-              <text class="footer-left">应付金额：</text>
-              <text class="body-jg">￥{{item.order_amount}}</text>
-            </view>
-            <view wx:if="{{item.order_state=='TRADE_FINISH'}}">
-              <view class="footer-right">
-                <view class="cancella">查看物流</view>
-                <view class="payment">删除</view>
+            <view class="box-body" data-order_sn="{{item.order_sn}}" bindtap="datelFn">
+              <view class="body-img">
+                <image src="{{item.order_good[0].good_image}}"></image>
+              </view>
+              <view class="body-text">
+                <block wx:if="{{item.order_good.length==1}}">
+                  <view class="body-title">{{item.order_good[0].good_name}}</view>
+                </block>
+                <block wx:else>
+                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
+                </block>
+                <view class="body-pj">三泰之家上装保养</view>
+                <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+                  </view>
+                </view>
               </view>
             </view>
-            <view wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">
-              <view class="footer-right">
-                <view bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
-                <view class="payment">立即付款</view>
+            <view class="box-footer">
+              <view>
+                <text class="footer-left">应付金额：</text>
+                <text class="body-jg">￥{{item.order_amount}}</text>
               </view>
-            </view>
-            <view wx:elif="{{item.order_state=='SELLER_DELIVER'}}">
-              <view wx:if="{{return_type==2&&return_state==5}}">
+              <view wx:if="{{item.order_state=='TRADE_FINISH'}}">
                 <view class="footer-right">
-                  <view class="payment">确认收款</view>
+                  <view class="cancella">查看物流</view>
+                  <view class="payment">删除</view>
                 </view>
               </view>
-              <view wx:else>
+              <view wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">
                 <view class="footer-right">
-                  <view class="cancella">确认收款</view>
-                  <view class="payment">查看物流</view>
+                  <view bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
+                  <view bindtap="bindGoPin" data-order_sn="{{item.order_sn}}" class="payment">立即付款</view>
                 </view>
               </view>
-            </view>
-            <view wx:elif="{{item.order_state=='AFTER_SERVICE'}}">
-              <view wx:if="{{item.return_type==2}}">
+              <view wx:elif="{{item.order_state=='SELLER_DELIVER'}}">
+                <view wx:if="{{return_type==2&&return_state==5}}">
+                  <view class="footer-right">
+                    <view class="payment">确认收款</view>
+                  </view>
+                </view>
+                <view wx:else>
+                  <view class="footer-right">
+                    <view class="cancella">确认收款</view>
+                    <view class="payment">查看物流</view>
+                  </view>
+                </view>
+              </view>
+              <view wx:elif="{{item.order_state=='AFTER_SERVICE'}}">
+                <view wx:if="{{item.return_type==2}}">
+                  <view class="footer-right">
+                    <view class="payment">取消申请</view>
+                  </view>
+                </view>
+                <view wx:else>
+                  <view class="footer-right">
+                    <view class="payment">订单详情</view>
+                  </view>
+                </view>
+              </view>
+              <view wx:elif="{{item.order_state=='TRADE_CLOSED'}}">
                 <view class="footer-right">
-                  <view class="payment">取消申请</view>
+                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" class="cancella" class="payment">删除</view>
                 </view>
               </view>
-              <view wx:else>
+              <view wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">
+                <view class="footer-right">
+                  <view class="payment">退款</view>
+                </view>
+              </view>
+              <view wx:elif="{{item.order_state=='SELLER_PICK'}}">
                 <view class="footer-right">
                   <view class="payment">订单详情</view>
                 </view>
               </view>
             </view>
-            <view wx:elif="{{item.order_state=='TRADE_CLOSED'}}">
-              <view class="footer-right">
-                <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" class="cancella" class="payment">删除</view>
-              </view>
-            </view>
-            <view wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">
-              <view class="footer-right">
-                <view class="payment">退款</view>
-              </view>
-            </view>
-            <view wx:elif="{{item.order_state=='SELLER_PICK'}}">
-              <view class="footer-right">
-                <view class="payment">订单详情</view>
-              </view>
-            </view>
           </view>
-        </view>
-      </block>
-    </view>
+        </block>
+      </view>
+    </scroll-view>
   </swiper-item>
   <!-- 待付款 -->
   <swiper-item>
-    <view class="content">
-      <block wx:for="{{getOrderOne}}" wx:key="index">
-        <view class="box">
-          <view class="box-header">
-            <view class="iconfont icon-dingdanbianhao1"></view>
-            <view class="bianh">订单编号：{{item.order_sn}}</view>
-            <view class="zhuangt">待付款</view>
-          </view>
-          <view class="box-body">
-            <view class="body-img">
-              <image src="{{item.order_good[0].good_image}}"></image>
+    <scroll-view bindscrolltolower="loadMore" scroll-y="true" style="height:{{scrollH}}rpx">
+      <view class="content">
+        <block wx:for="{{getOrderOne}}" wx:key="index">
+          <view class="box">
+            <view class="box-header">
+              <view class="iconfont icon-dingdanbianhao1"></view>
+              <view class="bianh">订单编号：{{item.order_sn}}</view>
+              <view class="zhuangt">待付款</view>
             </view>
-            <view class="body-text">
-              <block wx:if="{{item.order_good.length==1}}">
-                <view class="body-title">{{item.order_good[0].good_name}}</view>
-              </block>
-              <block wx:else>
-                <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
-              </block>
-              <view class="body-pj">三泰之家上装保养</view>
-              <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+            <view class="box-body">
+              <view class="body-img">
+                <image src="{{item.order_good[0].good_image}}"></image>
+              </view>
+              <view class="body-text">
+                <block wx:if="{{item.order_good.length==1}}">
+                  <view class="body-title">{{item.order_good[0].good_name}}</view>
+                </block>
+                <block wx:else>
+                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
+                </block>
+                <view class="body-pj">三泰之家上装保养</view>
+                <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+                  </view>
                 </view>
               </view>
             </view>
-          </view>
-          <view class="box-footer">
-            <view>
-              <text class="footer-left">应付金额：</text>
-              <text class="body-jg">￥{{item.order_amount}}</text>
+            <view class="box-footer">
+              <view>
+                <text class="footer-left">应付金额：</text>
+                <text class="body-jg">￥{{item.order_amount}}</text>
+              </view>
+              <view class="footer-right">
+                <view class="cancella" bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单
+                </view>
+                <view data-order_sn="{{item.order_sn}}" bindtap="bindGoPin" class="payment">立即付款</view>
+              </view>
             </view>
-            <view class="footer-right">
-              <view class="cancella" bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
-              <view class="payment">立即付款</view>
-            </view>
           </view>
-        </view>
-      </block>
-    </view>
+        </block>
+      </view>
+    </scroll-view>
   </swiper-item>
   <!-- 待发货 -->
   <swiper-item>
@@ -227,9 +226,6 @@
           <view class="zhuangt">已完成</view>
         </view>
         <view class="box-body">
-          <view class="body-img">
-            <image src="/assets/images/20201221165446.png"></image>
-          </view>
           <view class="body-text">
             <view class="body-title">三泰之家上装保养</view>
             <view class="body-pj">三泰之家上装保养</view>

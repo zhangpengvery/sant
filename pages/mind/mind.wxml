@@ -1,6 +1,6 @@
 <!--pages/mind/mind.wxml-->
 <navbar params="{{params}}" />
-<scroll-view scroll-y="true" bindscroll="scrollPage" style="height:{{winH}}px">
+<scroll-view scroll-y="true" bindscroll="scrollPage" style="height:{{winH}}rpx">
   <view class="mind-navimg" hidden="{{hidden}}">
     <image src="/assets/images/sybj.png"></image>
   </view>

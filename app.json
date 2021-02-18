@@ -1,10 +1,13 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/zcorders/zcorders",
-    "pages/maps/maps",
-    "pages/category/category",
+    "pages/recruit/recruit",
+    "pages/live/live",
+    "pages/swvideos/swvideos",
     "pages/mind/mind",
+    "pages/maps/maps",
+    "pages/zcorders/zcorders",
+    "pages/category/category",
     "pages/stores/stores",
     "pages/stordetail/stordetail",
     "pages/newcar/newcar",
@@ -46,14 +49,12 @@
     "pages/postjob/postjob",
     "pages/hiredetail/hiredetail",
     "pages/rendetail/rendetail",
-    "pages/live/live",
     "pages/logistic/logistic",
     "pages/address/address",
     "pages/colldetail/colldetail",
     "pages/newress/newress",
     "pages/peijdetail/peijdetail",
     "pages/maintain/maintain",
-    "pages/recruit/recruit",
     "pages/qzdetails/qzdetails",
     "pages/details/details",
     "pages/reqdetail/reqdetail",
@@ -87,9 +88,9 @@
     },
     {
       "pagePath": "pages/maps/maps",
-      "text":"“泰式”服务",
+      "text":"泰式服务",
       "iconPath":"/assets/images/xgwx.png",
-      "selectedIconPath":"/assets/images/xg.png"
+      "selectedIconPath":"/assets/images/xgwx.png"
     },{
       "pagePath": "pages/stores/stores",
       "text":"门店",

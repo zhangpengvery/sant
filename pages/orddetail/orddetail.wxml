@@ -17,7 +17,7 @@
 </view>
 <view class="product">
   <view class="product-img">
-    <image mode="aspectFill" src="http://www.jbccs.com/Upload//Pictures/2020-11-25/5fbe18edb54be.png"></image>
+    <image mode="aspectFill" src="https://www.jbccs.com/Upload//Pictures/2020-11-25/5fbe18edb54be.png"></image>
   </view>
   <view class="product-text">
     <view class="product-title">三泰之家上装保养</view>

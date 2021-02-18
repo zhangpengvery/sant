@@ -40,12 +40,46 @@ Page({
     })
   },
   addOrder(maintain,mobile,realname){
+    wx.showLoading({
+      title: '加载中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Maintain/addOrder",{
       maintain:maintain,
       mobile:mobile,
       realname:realname
     }).then(res=>{
-      console.log(res);
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      var  order_sn=res.data.more_sn
+      wx.request({
+        url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
+        method: "GET",
+        data: {
+          "open_id": wx.getStorageSync('openid'),
+          "order_sn": order_sn
+        },
+        header: {
+          "content-type": "application/json",
+          "XX-Token": wx.getStorageSync('token')
+        },
+        success: function (e) {
+          // 签权调起支付 
+          wx.requestPayment({
+            'timeStamp': e.data.datas.timeStamp,
+            'nonceStr': e.data.datas.nonceStr,
+            'package': e.data.datas.package,
+            'signType': e.data.datas.signType,
+            'paySign': e.data.datas.paySign,
+            'success': function (res) {
+              console.log(res, "成功")
+            },
+            'fail': function (res) {
+              console.log("支付失败", res)
+            },
+          })
+        }
+      })
     })
   },
   bindName:function(e){
@@ -59,12 +93,21 @@ Page({
     })
   },
   ljzfFn:function(){
-    this.addOrder(this.data.maintain,this.data.mobile,this.data.realname)
+    if(wx.getStorageSync('token') == []){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else{
+      this.addOrder(this.data.maintain,this.data.mobile,this.data.realname)
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      maintain:options.id
+    })
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

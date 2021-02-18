@@ -27,7 +27,6 @@ Page({
     },
     page:1,
     navH:0,
-    posH:0,
     winH:0,
     brandCss:0,
     chassisCss:0,
@@ -380,10 +379,13 @@ Page({
     this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
     wx.getSystemInfo({
       success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH = (clientHeight * ratio)-138-app.globalData.navbarHeight;
          this.setData({
           navH:app.globalData.navbarHeight,
-          posH:app.globalData.navbarHeight+49,
-          winH:app.globalData.windowHeigtn+250+app.globalData.navbarHeight
+          winH:ScrH
          })
       },
     })

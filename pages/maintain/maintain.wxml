@@ -1,7 +1,7 @@
 <!--pages/maintain/maintain.wxml-->
 <navbar params="{{params}}" />
 <view class="header-img" style="margin-top:{{navH}}rpx">
-  <image src="http://www.jbccs.com/Public/Wap/image/by-banner.png"></image>
+  <image src="https://www.jbccs.com/Public/Wap/image/by-banner.png"></image>
 </view>
 <view class="title">
   <view class="dian"></view>
@@ -10,7 +10,7 @@
 <view class="content">
   <view class="con-fater">
     <view class="con-img">
-      <image src="http://www.jbccs.com/Public/Wap/image/by-sz.png"></image>
+      <image src="https://www.jbccs.com/Public/Wap/image/by-sz.png"></image>
     </view>
     <view class="con-text">
       <view class="con-title">上装保养</view>
@@ -21,11 +21,11 @@
   </view>
   <view class="con-fater">
     <view class="con-img">
-      <image src="http://www.jbccs.com/Public/Wap/image/by-dp.png"></image>
+      <image src="https://www.jbccs.com/Public/Wap/image/by-dp.png"></image>
     </view>
     <view class="con-text">
       <view class="con-title">底盘基础保养</view>
-      <view class="con-jg">￥800</view>
+      <view class="con-jg">￥770</view>
       <view class="con-pj">1个18L机油+2个4L机油+2个机油滤芯</view>
     </view>
     <view class="xuanz {{maintain==2?'bgxuanz':''}}" bindtap="xuanzBtmFn">√</view>

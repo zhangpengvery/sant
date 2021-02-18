@@ -1,6 +1,6 @@
 <!--pages/stordetail/stordetail.wxml-->
 <view class="header-img">
-  <image src="http://www.jbccs.com{{getFoursInfo.shop_image}}"></image>
+  <image src="https://www.jbccs.com{{getFoursInfo.shop_image}}"></image>
 </view>
 <view class="body">
   <view class="title">

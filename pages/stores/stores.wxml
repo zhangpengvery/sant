@@ -41,7 +41,7 @@
     <view class="fater">
       <navigator url="/pages/stordetail/stordetail?id={{item.shop_id}}">
         <view class="stores-img">
-          <image src="http://www.jbccs.com{{item.shop_image}}"></image>
+          <image src="https://www.jbccs.com{{item.shop_image}}"></image>
         </view>
       </navigator>
       <view class="stores-text">

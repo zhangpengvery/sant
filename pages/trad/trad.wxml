@@ -1,10 +1,10 @@
 <!--pages/trad/trad.wxml-->
 <navbar params="{{params}}" />
-<view class="header" style="top:{{navH}}rpx">
+<view class="header" style="margin-top:{{navH}}rpx">
   <view class="box {{leftActive==true?'box-left':''}}" bindtap="recruitFn">出售列表</view>
-  <view class="box2 {{rightActive==true?'box-right':''}}" bindtap="jobFn">求购列表</view>
+  <view class="box {{rightActive==true?'box-right':''}}" bindtap="jobFn">求购列表</view>
 </view>
-<view class="aui-content" style="top:{{posH}}rpx">
+<view class="aui-content">
   <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
     <text>综合排序</text>
     <view class="iconfont icon-zu261 xiabiao"></view>
@@ -101,8 +101,7 @@
 <!-- 乘号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 商品列表 -->
-<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx;margin-top:250rpx"
-  wx:if="{{listLeft}}">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{listLeft}}" bindscrolltolower="loadMore">
   <view class="list">
     <block wx:for="{{getAllSaleList}}" wx:key="index">
       <view class="list-content">
@@ -116,22 +115,24 @@
     </block>
   </view>
 </scroll-view>
-<view class="list-right" wx:if="{{listRight}}" style="margin-top:250rpx">
-  <block wx:for="{{getSaleforLists}}" wx:key="index">
-    <navigator url="/pages/reqdetail/reqdetail?sf_id={{item.sf_id}}">
-      <view class="right-content">
-        <view class="right-title">{{item.safe_title}}
-          <view class="right-jg">{{item.price}}</view>
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{listRight}}" bindscrolltolower="loadMore2">
+  <view class="list-right" >
+    <block wx:for="{{getSaleforLists}}" wx:key="index">
+      <navigator url="/pages/reqdetail/reqdetail?sf_id={{item.sf_id}}">
+        <view class="right-content">
+          <view class="right-title">{{item.safe_title}}
+            <view class="right-jg">{{item.price}}</view>
+          </view>
+          <view class="right-name">
+            <text class="iconfont icon-quanminjingjiren"></text>
+            <text>求购人：{{item.contact_name}}</text>
+          </view>
+          <view class="right-name">
+            <text class="iconfont icon-dingwei"></text>
+            <text>位置：{{item.city_name}}</text>
+          </view>
         </view>
-        <view class="right-name">
-          <text class="iconfont icon-quanminjingjiren"></text>
-          <text>求购人：{{item.contact_name}}</text>
-        </view>
-        <view class="right-name">
-          <text class="iconfont icon-dingwei"></text>
-          <text>位置：{{item.city_name}}</text>
-        </view>
-      </view>
-    </navigator>
-  </block>
-</view>
+      </navigator>
+    </block>
+  </view>
+</scroll-view>

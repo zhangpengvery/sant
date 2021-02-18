@@ -49,6 +49,7 @@ Page({
     left_content:true,
     left_header:true,
     p:1,
+    p2:1,
     type:"all",
     good_type:0,
     right_con:false,
@@ -86,26 +87,26 @@ Page({
     })
   },
   //订单列表
-  async getOrderList(good_type){
+  async getOrderList(p,good_type){
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
-      p:1,
+      p:p,
       type:"all",
       good_type:good_type
     })
     this.setData({
-      getOrderList:result.data.datas.list
+      getOrderList:this.data.getOrderList.concat(result.data.datas.list)
     })
-    console.log(this.data.getOrderList);
+    console.log(result.data.datas.list);
   },
   //代付款订单
-  async getOrderOne(good_type){
+  async getOrderOne(p,good_type){
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
-      p:1,
+      p:p,
       type:"waitpay",
       good_type:good_type
     })
     this.setData({
-      getOrderOne:result.data.datas.list
+      getOrderOne:this.data.getOrderOne.concat(result.data.datas.list)
     })
     console.log(this.data.getOrderOne);
   },
@@ -178,7 +179,56 @@ Page({
     })
   },
   backFn:function(){
-      wx.navigateBack()
+    wx.navigateBack()
+  },
+  bindGoPin:function(e){
+    if(wx.getStorageSync('token') == []){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else{
+      wx.request({
+        url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
+        method: "GET",
+        data: {
+          "open_id": wx.getStorageSync('openid'),
+          "order_sn": e.currentTarget.dataset.order_sn
+        },
+        header: {
+          "content-type": "application/json",
+          "XX-Token": wx.getStorageSync('token')
+        },
+        success: function (e) {
+          console.log(e.data.datas);
+          // 签权调起支付 
+          wx.requestPayment({
+            'timeStamp': e.data.datas.timeStamp,
+            'nonceStr': e.data.datas.nonceStr,
+            'package': e.data.datas.package,
+            'signType': e.data.datas.signType,
+            'paySign': e.data.datas.paySign,
+            'success': function (res) {
+              console.log(res, "成功")
+            },
+            'fail': function (res) {
+              console.log("支付失败", res)
+            },
+          })
+        }
+      })
+    }
+  },
+  loadMore(){
+    this.setData({
+      p: ++this.data.p
+    })
+    this.getOrderList(this.data.p,this.data.good_type)
+  },
+  loadMore2(){
+    this.setData({
+      p2: ++this.data.p2
+    })
+    this.getOrderOne(this.data.p2,this.data.good_type)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -187,8 +237,8 @@ Page({
     this.setData({
       good_type:options.good_type
     })
-    this.getOrderList(this.data.good_type)
-    this.getOrderOne(this.data.good_type)
+    this.getOrderList(this.data.p,this.data.good_type)
+    this.getOrderOne(this.data.p2,this.data.good_type)
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

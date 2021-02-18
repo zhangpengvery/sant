@@ -99,6 +99,12 @@ Page({
       address_id:address_id
     })
   },
+  bindShez:function(e){
+    console.log(e.currentTarget.dataset.addres_id);
+    wx.redirectTo({
+      url: `/pages/colldetail/colldetail?address_id=${e.currentTarget.dataset.addres_id}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

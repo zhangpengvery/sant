@@ -43,13 +43,12 @@ Page({
       mobile:mobile,
       id:id
     }).then(res=>{
-      console.log(res);
       if(res.statusCode==200){
         wx.hideLoading()
       }
       var  order_sn=res.data.more_sn
       wx.request({
-        url: "http://www.jbccs.com/index.php/index/MiniPay/getPay",
+        url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
         method: "GET",
         data: {
           "open_id": wx.getStorageSync('openid'),

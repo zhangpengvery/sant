@@ -79,7 +79,7 @@ Page({
     var telObj = encodeURI(e.detail.encryptedData)
     var sessionObj = this.data.session_key
     wx.request({
-      url: 'http://api.jbccs.com/api/getWxTel',
+      url: 'https://api.jbccs.com/api/getWxTel',
       method: 'POST',
       data: {
         encryptedData: telObj,

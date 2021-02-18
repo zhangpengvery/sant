@@ -57,6 +57,13 @@ page{
   line-height: 66rpx;
   margin-bottom: 20rpx;
 }
+.fw-flex{
+  display: flex;
+}
+.fw-flex .iconfont{
+  color: #f00;
+  margin-right: 5rpx;
+}
 .gclc{
   width: 90%;
   padding: 0 5%;

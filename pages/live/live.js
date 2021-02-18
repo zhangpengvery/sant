@@ -1,18 +1,47 @@
 // pages/live/live.js
+const app = getApp()
+let {
+  requestApi, requestApi1
+} = require("../../utils/request")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    winH:0,
+    navH:0,
+    page:1,
+    active:0,
+    getVideoList:[]
   },
-
+  bindTabFn:function(e){
+    this.setData({
+      active:e.currentTarget.dataset.id
+    })
+  },
+  async getVideoList(page) {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Video/getVideoList",{
+      page:page
+    })
+    this.setData({
+      getVideoList: this.data.getVideoList.concat(result.data.result.article)
+    })
+  },
+  loadMore(){
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getVideoList(this.data.page)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      winH: app.globalData.windowHeigtn-40
+    })
+    this.getVideoList(this.data.page)
   },
 
   /**

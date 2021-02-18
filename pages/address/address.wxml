@@ -12,9 +12,7 @@
           <view>{{item.phone}}</view>
         </view>
       </view>
-      <navigator url="/pages/colldetail/colldetail?address_id={{item.address_id}}">
-        <view class="iconfont icon-shezhi xiugai"></view>
-      </navigator>
+        <view class="iconfont icon-shezhi xiugai" data-addres_id="{{item.address_id}}" bindtap="bindShez"></view>
     </view>
   </block>
 </view>

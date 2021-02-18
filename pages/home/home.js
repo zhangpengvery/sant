@@ -90,7 +90,6 @@ Page({
   },
   async getSwiperImages() {
     let result = await requestApi(app.globalData.base_url + "/getSwiperImages")
-    // console.log(result);
     this.setData({
       getSwiperImages: result.data.data.pj_list
     })
@@ -144,6 +143,7 @@ Page({
       })
     }
   },
+  //整车跳转
   bindSanqFn:function(){
     wx.navigateTo({
       url: '/pages/newcar/newcar?brand_id=17',
@@ -185,6 +185,11 @@ Page({
       console.log(res);
     })
   },
+  bindAddFn:function(){
+    wx.navigateTo({
+      url: '/pages/allries/allries?cate_id2=0',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -200,18 +205,32 @@ Page({
       this.postHomeBestList(this.data.page, this.data.user_id)
     }
     //获取高度
-    this.setData({
-      winH: app.globalData.windowHeigtn
-    })
+    // this.setData({
+    //   winH: app.globalData.windowHeigtn
+    // })
     wx.getSystemInfo({
       success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =clientHeight * ratio
         this.setData({
-          navH: app.globalData.navbarHeight
+          navH: app.globalData.navbarHeight,
+          winH:ScrH
         })
       },
     })
   },
-
+  bindMain:function(){
+    wx.navigateTo({
+      url: '/pages/maintain/maintain?id=1',
+    })
+  },
+  bindMain2:function(){
+    wx.navigateTo({
+      url: '/pages/maintain/maintain?id=2',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

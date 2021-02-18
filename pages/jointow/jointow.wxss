@@ -23,6 +23,10 @@
   height: 170rpx;
   margin: 0 5%;
 }
+.gclc-icon .jiant{
+  line-height: 100rpx;
+  color: #E3E2E2;
+}
 .icon-left{
   text-align: center;
   align-items: center;

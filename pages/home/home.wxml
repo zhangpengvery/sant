@@ -1,11 +1,10 @@
 <!--pages/home/home.wxml-->
 <navbar params="{{params}}" />
-<scroll-view scroll-y="true" style="height:{{winH}}px" bindscrolltolower="loadMore" bindscroll="scrollPage">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscrolltolower="loadMore" bindscroll="scrollPage">
   <view class="header" style="margin-top:{{navH}}rpx">
-    <text>服务创造价值!</text>
+    <image src="/assets/images/homecunjie.png"></image>
   </view>
   <view class="home-navimg" hidden="{{hidden}}">
-    <image src="/assets/images/sybj.png"></image>
   </view>
   <!-- 小图标 -->
   <view class="icon-fater">
@@ -22,78 +21,113 @@
   </view>
   <!-- 保养服务 -->
   <view class="home-options">
-    <view class="zuo"></view>
+    <view class="iconfont icon-lujing534" style="color:#3DB988"></view>
     <text>保养服务</text>
   </view>
   <!-- 蓝粉双图 -->
-  <navigator url="/pages/maintain/maintain">
-    <view class="bp-fater">
-      <view class="bp-img">
-        <image src="/assets/images/pinkt.png"></image>
+  <view class="bp-fater">
+    <view class="bp-img" bindtap="bindMain">
+      <view class="img-title">上装保养</view>
+      <view class="img-text">齿轮油+液压油+液压滤芯</view>
+      <image src="/assets/images/1627.png"></image>
+    </view>
+    <view class="bp-img" bindtap="bindMain2">
+      <view class="img-title">底盘保养</view>
+      <view class="img-text">1个18L机油+2个4L机油+2个机油滤芯</view>
+      <image src="/assets/images/1628.png"></image>
+    </view>
+  </view>
+  <!-- 热卖配件 -->
+  <view class="options-fater">
+    <view class="options-header">
+      <view class="options-left">
+        <view class="iconfont icon-lujing533" style="color:#EF543C"></view>
+        <view class="options-rmpj">热卖配件</view>
       </view>
-      <view class="bp-img">
-        <image src="/assets/images/bluet.png"></image>
+      <view class="options-left" bindtap="bindAddFn">
+        <view class="options-gd">更多</view>
+        <image src="/assets/images/1629.png"></image>
       </view>
     </view>
-  </navigator>
-  <!-- 热卖配件 -->
-  <view class="home-options">
-    <view class="zuo"></view>
-    <text>热卖配件</text>
-  </view>
-  <scroll-view scroll-x="true" style="height: 400rpx">
-    <view class="options-fater">
+    <view class="options-new">
       <block wx:for="{{getSwiperImages}}" wx:key="index">
         <view class="options-child">
           <navigator url="/pages/peijdetail/peijdetail?good_id={{item.good_id}}">
             <view class="img-box">
-              <image src="{{item.good_image}}"></image>
+              <image mode="aspectFit" src="{{item.good_image}}"></image>
             </view>
           </navigator>
           <view class="child-footer">
             <view class="options-name">{{item.good_name}}</view>
             <view class="options-price">{{item.good_price}}</view>
           </view>
-          <view class="options-rm">热卖</view>
+          <view class="options-rm">TOP{{index+1}}</view>
         </view>
       </block>
     </view>
-  </scroll-view>
+  </view>
   <!-- 限时促销 -->
   <view class="home-options">
-    <view class="zuo"></view>
+    <view class="iconfont icon-lujing535" style="color:#F8D444"></view>
     <text>限时促销</text>
   </view>
   <!-- 红黄蓝三图 -->
   <view class="hhl-fater">
-    <view class="h-img" bindtap="bindSanqFn">
-      <image src="/assets/images/20201221165446.png"></image>
+    <view class="hhl-box" bindtap="bindSanqFn">
+      <view class="hhl-cz">超值</view>
+      <view class="hhl-text">
+        <view class="hhl-name">陕汽重卡搅拌车</view>
+        <view class="hhl-con">轻量化制造</view>
+        <view class="hhl-qkk">去看看</view>
+      </view>
+      <view class="hhl-footer">
+        <view style="font-size:14rpx">价格</view>
+        <view style="font-size:28rpx">面议</view>
+      </view>
+      <view class="hhl-img">
+        <image mode="aspectFit" src="/assets/images/1634.png"></image>
+      </view>
+      <view class="hhl-ftext">交五千抵一万</view>
+      <image src="/assets/images/1631.png"></image>
     </view>
-    <view class="hl-img">
-      <view class="huang-img" bindtap="bindJiefFn">
-        <image src="/assets/images/20201221165508.png"></image>
+    <view class="hhl-box" bindtap="bindJiefFn">
+      <view class="hhl-cz">超值</view>
+      <view class="hhl-text">
+        <view class="hhl-name">解放牌搅拌车12方</view>
+        <view class="hhl-con">轻量化制造</view>
+        <view class="hhl-qkk">去看看</view>
       </view>
-      <view class="huang-img" bindtap="bindTangFn">
-        <image src="/assets/images/20201221165531.png"></image>
+      <view class="hhl-footer">
+        <view style="font-size:14rpx">价格</view>
+        <view style="font-size:28rpx">面议</view>
       </view>
+      <view class="hhl-img">
+        <image mode="aspectFit" src="/assets/images/1633.jpg"></image>
+      </view>
+      <view class="hhl-ftext">交五千抵一万</view>
+      <image src="/assets/images/1632.png"></image>
     </view>
   </view>
   <!-- 二手车推荐 -->
   <view class="home-options">
-    <view class="zuo"></view>
+    <view class="iconfont icon-jianqu24" style="color:#F39B35"></view>
     <text>二手车推荐</text>
   </view>
   <view class="list">
     <block wx:for="{{listData}}" wx:key="index">
       <view class="list-content">
+        <view class="list-img">
+          <image class="img1" src="/assets/images/1635.png"></image>
+        </view>
         <navigator url="/pages/saledetail/saledetail?sale_id={{item.sale_id}}">
-          <image mode="aspectFill" src="{{item.image_url}}"></image>
+          <image mode="aspectFill" class="img-con" src="{{item.image_url}}"></image>
         </navigator>
         <text class="list-name">{{item.sale_title}}</text>
         <text class="list-price">{{item.sale_price}}</text>
-        <view wx:if="{{item.favor_data==item.sale_id}}" class="iconfont icon-xin-xuanzhong list-xin"
-          bindtap="qiehuanFn" data-index="{{index}}" data-sale_id="{{item.sale_id}}"></view>
-        <view class="iconfont icon-xin-moren list-xin" wx:else  bindtap="shoucFn" data-sale_id="{{item.sale_id}}" data-index="{{index}}"></view>
+        <view wx:if="{{item.favor_data==item.sale_id}}" class="iconfont icon-xin-xuanzhong list-xin" bindtap="qiehuanFn"
+          data-index="{{index}}" data-sale_id="{{item.sale_id}}"></view>
+        <view class="iconfont icon-xin-moren list-xin" wx:else bindtap="shoucFn" data-sale_id="{{item.sale_id}}"
+          data-index="{{index}}"></view>
       </view>
     </block>
   </view>
