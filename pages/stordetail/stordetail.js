@@ -40,6 +40,11 @@ Page({
       address:e.currentTarget.dataset.address
     })
   },
+  bindShopFn:function(e){
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.shop,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

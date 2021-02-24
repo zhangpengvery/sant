@@ -2,15 +2,17 @@
 <navbar params="{{params}}" />
 <view class="gclc-icon">
   <view class="icon-left">
-    <view class="yuan"></view>
+    <view class="iconfont icon-shouhuodizhi-bianji yuan"></view>
     <view class="xiandan">1、完善信息</view>
   </view>
+  <view class="iconfont icon-taishifuwu-jiantou jiant"></view>
   <view class="icon-left" style="opacity:0.5;">
-    <view class="yuan"></view>
+    <view class="yuan" style="font-size:60rpx">+</view>
     <view class="xiandan">2、上传证件</view>
   </view>
+  <view class="iconfont icon-taishifuwu-jiantou jiant"></view>
   <view class="icon-left" style="opacity:0.5;">
-    <view class="yuan"></view>
+    <view class="iconfont icon-duigou yuan"></view>
     <view class="xiandan">3、完成</view>
   </view>
 </view>

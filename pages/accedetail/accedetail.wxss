@@ -74,7 +74,8 @@ page{
   margin-bottom: 20rpx;
 }
 .gclc-title{
-  display: flex;align-items: center;
+  display: flex;
+  align-items: center;
   font-size: 30rpx;
   font-weight: bold;
   margin: 20rpx 0 40rpx 0;
@@ -92,6 +93,10 @@ page{
   width: 94%;
   height: 200rpx;
   margin: 0 3%;
+}
+.gclc-icon .jiant{
+  line-height: 90rpx;
+  color: #E3E2E2;
 }
 .icon-left{
   width: 20%;

@@ -23,7 +23,7 @@
     <view class="iconfont icon-woyaozhaopin yuan"></view>
     <view class="xiandan">offer</view>
   </view>
-</view>
+</view> 
 <view class="title">基本信息</view>
 <view class="content">
   <view class="box">

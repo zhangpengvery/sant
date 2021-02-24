@@ -6,24 +6,29 @@
   </view>
 </view>
 <swiper class="vipswiper" autoplay="true" circular="true" bindchange="changeFn">
-  <swiper-item style="background:rgb(241,209,165);border-radius: 20rpx;">
-    <view class="box">
+  <swiper-item>
+    <view class="fater" style="background:rgb(241,209,165);border-radius: 20rpx;">
+      <view class="box" >
       <view class="title">普通会员</view>
       <view class="box-text">登录即为普通会员</view>
       <view class="tiaozv1">已完成登录</view>
     </view>
+    </view>
   </swiper-item>
-  <swiper-item style="background:rgb(220,220,220);border-radius: 20rpx;">
-    <view class="box">
+  <swiper-item>
+    <view  class="fater" style="background:rgb(220,220,220);border-radius: 20rpx;">
+      <view class="box">
       <view class="title">白金会员</view>
       <view class="box-text">完善资料即为白金会员</view>
       <navigator url="/pages/materi/materi">
         <view class="tiaozv2">立即完善</view>
       </navigator>
     </view>
+    </view>
   </swiper-item>
-  <swiper-item style="background:rgb(114,114,114);border-radius: 20rpx;">
-    <view class="box">
+  <swiper-item>
+    <view class="fater" style="background:rgb(114,114,114);border-radius: 20rpx;">
+      <view class="box">
       <view class="title" style="color:#fff">黑金会员</view>
       <view class="box-text" style="color:#fff">认证资料即为黑金会员</view>
       <view class="box-footer">
@@ -32,6 +37,7 @@
         </navigator>
         <view class="footer-text">会员等级根据认证的资料完成度确定，上传 <text style="color:#EEC184">身份证、行驶证</text>、认证为黑金会员</view>
       </view>
+    </view>
     </view>
   </swiper-item>
 </swiper>

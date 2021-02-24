@@ -97,6 +97,16 @@ Page({
       wx.navigateTo({
         url: '/pages/login/login',
       })
+    }else if(this.data.realname==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.mobile==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
     }else{
       this.addOrder(this.data.maintain,this.data.mobile,this.data.realname)
     }

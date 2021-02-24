@@ -106,7 +106,34 @@ Page({
     })
   },
   bddhFn:function(){
-    this.myCooperate(this.data.realname,this.data.age,this.data.experience,this.data.workspace,this.data.mobile)
+    if(this.data.realname==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.age==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入年龄',
+      })
+    }else if(this.data.workspace==""){
+      wx.showToast({
+        icon:'none',
+        title: '请选择城市',
+      })
+    }else if(this.data.experience==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入工作经验',
+      })
+    }else if(this.data.mobile==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else{
+      this.myCooperate(this.data.realname,this.data.age,this.data.experience,this.data.workspace,this.data.mobile)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

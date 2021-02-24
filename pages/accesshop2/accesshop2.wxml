@@ -1,0 +1,33 @@
+<!--pages/accesshop2/accesshop2.wxml-->
+<navbar params="{{params}}" />
+<view class="category" style="margin-top:{{navH}}rpx">
+  <!-- 左边 -->
+  <view class="category-left" style="height:{{scrollH}}rpx">
+    <block wx:for="{{getCataegoryNavList}}" wx:key="index">
+      <view class="category-nav {{item.cate_id==activeIndex?'active':''}}" bindtap="leftNavFn"
+        data-id="{{item.cate_id}}" data-title="{{item.cate_name}}">{{item.cate_name}}</view>
+    </block>
+  </view>
+  <!-- 右边 -->
+  <view class="category-right">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore">
+      <view class="right-text">{{rightTitle}}</view>
+      <!-- 内容 -->
+      <view class="content" wx:if="{{wuShuju}}">
+        <block wx:for="{{getCataegoryContent}}" wx:key="index">
+          <view class="right-content">
+            <navigator url="/pages/peijdetail/peijdetail?good_id={{item.good_id}}">
+              <view class="con-img">
+                <image mode="aspectFit" src="{{item.good_image}}"></image>
+              </view>
+              <view class="con-name">{{item.good_name}}</view>
+              <view class="con-price">￥{{item.good_price}}</view>
+            </navigator>
+          </view>
+        </block>
+      </view>
+      <view wx:else class="wushujucs">暂无配件数据</view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+    </scroll-view>
+  </view>
+</view>

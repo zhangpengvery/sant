@@ -49,11 +49,13 @@
       <view class="xiandan">下单</view>
       <view class="dingj">线上交订金</view>
     </view>
+    <view class="iconfont icon-jiaobanchexiangqingye-jiantou jiant"></view>
     <view class="icon-left">
       <view class="iconfont icon-jiaobanchexiangqingye-qianhetong yuan"></view>
       <view class="xiandan">签合同</view>
       <view class="dingj">线下经销商选配签合同</view>
     </view>
+    <view class="iconfont icon-jiaobanchexiangqingye-jiantou jiant"></view>
     <view class="icon-left">
       <view class="iconfont icon-xinchedingdan yuan"></view>
       <view class="xiandan">提车</view>

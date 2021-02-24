@@ -1,0 +1,85 @@
+/* pages/accesshop2/accesshop2.wxss */
+.category{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.category-left{
+  width: 20%;
+  background: #F6F6F6;
+}
+.category-nav{
+  width: 100%;
+  height: 88rpx;
+  border-radius: 28rpx 0rpx 0rpx 28rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.active{
+  background: #fff;
+  color: #F9B236;
+}
+.category-right{
+  width: 80%;
+}
+.right-text{
+  width: 97%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-left: 3%;
+}
+.content{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.right-content{
+  position: relative;
+  width: 30%;
+  height: 210rpx;
+  background: #f9f9f9;
+  border-radius: 16rpx;
+  margin:0 0 20rpx 16rpx;
+  text-align: center;
+}
+.con-img{
+  margin-top: 10rpx;
+  width: 100%;
+  height: 130rpx;
+}
+.con-img image{
+  width: 100%;
+  height: 100%;
+}
+.con-name{
+  font-size: 20rpx;
+  color: #333;
+  margin: 10rpx 0 5rpx 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.con-price{
+  font-size: 20rpx;
+  color: #333;
+  font-weight: bold;
+}
+.dixian{
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushujucs{
+  width: 100%;
+  height: 200rpx;
+  line-height: 200rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}

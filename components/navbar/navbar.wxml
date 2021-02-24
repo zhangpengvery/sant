@@ -11,7 +11,7 @@
     <view class="navber-content" wx:if="{{params.navInput}}" style="width:{{params.w}}%;left:{{params.inpLeft}}rpx">
       <!-- 输入框 -->
       <navigator url="/pages/search/search">
-        <view class="input {{params.bg==true?'input-color':''}}"><text class="iconfont icon-lujing46 search-icon"></text></view>
+        <view class="input {{params.bg==true?'input-color':''}}"><text style="color:#CBCBCB">{{params.text}}</text><text class="iconfont icon-lujing46 search-icon"></text></view>
       </navigator>
     </view>
     <!-- 网站名 -->

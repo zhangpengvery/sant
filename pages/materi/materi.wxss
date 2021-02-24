@@ -8,20 +8,28 @@ page{
   justify-content: space-between;
   margin-bottom: 20rpx;
   width: 90%;
-  height: 40rpx;
-  padding: 150rpx 5%;
+  height: 150rpx;
+  padding: 150rpx 5% 30rpx 5%;
   background: linear-gradient(180deg, #FFCE7A 0%, #F9B236 100%);
 }
+.gclc-icon .jiant{
+  line-height: 90rpx;
+  color: #fff;
+  opacity: 0.5;
+}
 .icon-left{
+  display: flex;
+  flex-direction:column;
   text-align: center;
   align-items: center;
 }
 .icon-left .yuan{
   width: 80rpx;
   height: 80rpx;
+  color: #F9B236;
+  line-height: 80rpx;
   background: #fff;
   border-radius: 50%;
-  margin-left: 24rpx;
 }
 .icon-left .xiandan{
   color: #333;
@@ -48,7 +56,7 @@ page{
 .box .box-left{
   display: flex;
 }
-.iconfont{
+.box .iconfont{
   position: absolute;
   top: 0;
   right: 0;

@@ -1,6 +1,10 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/search/search",
+    "pages/searcall/searcall",
+    "pages/accesshop2/accesshop2",
+    "pages/myvip/myvip",
     "pages/recruit/recruit",
     "pages/live/live",
     "pages/swvideos/swvideos",
@@ -16,7 +20,6 @@
     "pages/joinsant/joinsant",
     "pages/jointhr/jointhr",
     "pages/jointow/jointow",
-    "pages/myvip/myvip",
     "pages/materi/materi",
     "pages/docum/docum",
     "pages/suggest/suggest",
@@ -59,7 +62,6 @@
     "pages/details/details",
     "pages/reqdetail/reqdetail",
     "pages/saledetail/saledetail",
-    "pages/search/search",
     "pages/verifica/verifica",
     "pages/index/index",
     "pages/logs/logs",
@@ -81,10 +83,10 @@
       "iconPath":"/assets/images/sywx.png",
       "selectedIconPath":"/assets/images/sy.png"
     },{
-      "pagePath": "pages/category/category",
-      "text":"分类",
-      "iconPath":"/assets/images/flwx.png",
-      "selectedIconPath":"/assets/images/fl.png"
+      "pagePath": "pages/accesshop2/accesshop2",
+      "text":"商城",
+      "iconPath":"/assets/images/scwx.png",
+      "selectedIconPath":"/assets/images/sc.png"
     },
     {
       "pagePath": "pages/maps/maps",

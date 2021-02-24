@@ -112,7 +112,39 @@ Page({
     })
   },
   bddhFn:function(){
-    this.myCooperate(this.data.realname,this.data.company_name,this.data.company_address,this.data.shop_area,this.data.station_area,this.data.mobile,this.data.type,this.data.code)
+    if(this.data.company_name==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入公司名称',
+      })
+    }else if(this.data.company_address==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入公司地址',
+      })
+    }else if(this.data.shop_area==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入店内面积',
+      })
+    }else if(this.data.station_area==""){
+      wx.showToast({
+        icon:'none',
+        title: '输入停车场面积',
+      })
+    }else if(this.data.realname==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.mobile==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else{
+      this.myCooperate(this.data.realname,this.data.company_name,this.data.company_address,this.data.shop_area,this.data.station_area,this.data.mobile,this.data.type,this.data.code)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

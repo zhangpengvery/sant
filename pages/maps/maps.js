@@ -262,9 +262,26 @@ Page({
   //人力
   getLingyuanMarkers() {
     let markers = [];
-    for (let item of this.data.userList) {
-      let marker = this.createMarker(item);
-      markers.push(marker)
+    if(this.data.type==1){
+      for (let item of this.data.userList) {
+        let marker = this.createMarker(item);
+        markers.push(marker)
+      }
+    }else if(this.data.type==2){
+      for (let item of this.data.userList) {
+        let marker = this.createMarker2(item);
+        markers.push(marker)
+      }
+    }else if(this.data.type==3){
+      for (let item of this.data.userList) {
+        let marker = this.createMarker3(item);
+        markers.push(marker)
+      }
+    }else if(this.data.type==4){
+      for (let item of this.data.userList) {
+        let marker = this.createMarker4(item);
+        markers.push(marker)
+      }
     }
     return markers;
   },
@@ -286,8 +303,47 @@ Page({
       id: point.id || 0,
       latitude: latitude,
       longitude: longitude,
+      width: 60,
+      height: 60,
+    };
+    return marker;
+  },
+  createMarker2(point) {
+    let latitude = point.lat;
+    let longitude = point.lng;
+    let marker = {
+      iconPath: "/assets/images/new_driver.png",
+      id: point.id || 0,
+      latitude: latitude,
+      longitude: longitude,
       width: 40,
       height: 40,
+    };
+    return marker;
+  },
+  createMarker3(point) {
+    let latitude = point.lat;
+    let longitude = point.lng;
+    let marker = {
+      iconPath: "/assets/images/dcy.png",
+      id: point.id || 0,
+      latitude: latitude,
+      longitude: longitude,
+      width: 40,
+      height: 51,
+    };
+    return marker;
+  },
+  createMarker4(point) {
+    let latitude = point.lat;
+    let longitude = point.lng;
+    let marker = {
+      iconPath: "/assets/images/cxzy.png",
+      id: point.id || 0,
+      latitude: latitude,
+      longitude: longitude,
+      width: 45,
+      height: 51,
     };
     return marker;
   },

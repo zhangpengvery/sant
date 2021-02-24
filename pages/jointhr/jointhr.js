@@ -78,7 +78,6 @@ Page({
     this.setData({
       good_type:e.detail.value
     })
-    console.log(this.data.good_type);
   },
   //电话
   bindPho:function(e){
@@ -107,7 +106,34 @@ Page({
     })
   },
   bddhFn:function(){
-    this.myCooperate(this.data.realname,this.data.company_name,this.data.company_address,this.data.good_type,this.data.mobile,this.data.type,this.data.code)
+    if(this.data.good_type==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入货品种类',
+      })
+    }else if(this.data.company_name==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入公司名称',
+      })
+    }else if(this.data.company_address==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入营业地址',
+      })
+    }else if(this.data.realname==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.mobile==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else{
+      this.myCooperate(this.data.realname,this.data.company_name,this.data.company_address,this.data.good_type,this.data.mobile,this.data.type,this.data.code)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

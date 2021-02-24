@@ -10,15 +10,25 @@ Page({
    */
   data: {
     navH:0,
+    key:""
   },
   back:function(){
     wx.navigateBack({
+    })
+  },
+  bindText:function(e){
+    this.setData({
+      key:e.detail.value
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.key);
+    this.setData({
+      key:options.key
+    })
     wx.getSystemInfo({
       success: (result) => {
          this.setData({

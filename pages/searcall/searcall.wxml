@@ -1,0 +1,49 @@
+<!--pages/searcall/searcall.wxml-->
+<view class="search-wipe" style="height:{{navH}}rpx">
+  <view class="nav-fater">
+    <!-- 地址 -->
+    <view class="address">
+      <text class="iconfont icon-dingwei"></text>
+      <text>郑州市</text>
+    </view>
+    <!-- 输入框父盒子 -->
+    <view class="navber-content">
+      <!-- 输入框 -->
+      <navigator url="/pages/search/search?key={{key}}" open-type="redirectTo">
+        <view class="input">{{key}}</view>
+      </navigator>
+    </view>
+  </view>
+</view>
+<view class="header" style="margin-top:{{navH}}rpx">
+  <view class="header-name {{active==1?'activecol':''}}" bindtap="bindLeftFn">整车</view>
+  <view class="header-name {{active==2?'activecol':''}}" bindtap="bindRightFn">配件</view>
+</view>
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscrolltolower="loadMore" wx:if="{{active==1}}">
+  <view class="list" wx:if="{{leftNull}}">
+    <block wx:for="{{leftList}}" wx:key="index">
+      <view class="list-content">
+        <navigator url="/pages/accedetail/accedetail?good_id={{item.good_id}}">
+          <image mode="scaleToFill" src="{{item.good_image}}"></image>
+        </navigator>
+        <text class="list-name">{{item.good_name}}</text>
+        <text class="list-price">{{item.good_price}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="textnull" wx:else>暂无{{key}}相关的整车</view>
+</scroll-view>
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscrolltolower="loadMore" wx:if="{{active==2}}">
+  <view class="list" wx:if="{{rightNull}}">
+    <block wx:for="{{rightList}}" wx:key="index">
+      <view class="list-content">
+        <navigator url="/pages/peijdetail/peijdetail?good_id={{item.good_id}}">
+          <image mode="scaleToFill" src="{{item.good_image}}"></image>
+        </navigator>
+        <text class="list-name">{{item.good_name}}</text>
+        <text class="list-price">{{item.good_price}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="textnull" wx:else>暂无{{key}}相关的配件</view>
+</scroll-view>

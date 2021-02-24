@@ -24,6 +24,7 @@ Page({
       fz: 34,
       navColor: 1,
       col: "#000",
+      text:"请输入您搜索的内容"
     },
     navH: 0,
     scrollH: 0,

@@ -23,10 +23,10 @@ Page({
       fw: "bold",
       navColor: 0,
       col: "#333",
-      title: "完善资料"
+      title: "上传证件"
     },
-    idcard_file:"",
-    drive_file:""
+    idcard_file:"/Upload/image/2021-02-23/6034ad193c146.png",
+    drive_file:"/Upload/image/2021-02-23/6034ad193c146.png"
   },
   jiaszFn: function () {
     var that = this
