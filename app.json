@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/mind/mind",
     "pages/home/home",
     "pages/search/search",
     "pages/searcall/searcall",
@@ -8,7 +9,6 @@
     "pages/recruit/recruit",
     "pages/live/live",
     "pages/swvideos/swvideos",
-    "pages/mind/mind",
     "pages/maps/maps",
     "pages/zcorders/zcorders",
     "pages/category/category",

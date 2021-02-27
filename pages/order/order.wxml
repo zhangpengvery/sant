@@ -32,7 +32,7 @@
               <view class="zhuangt" wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">待付款</view>
               <view class="zhuangt" wx:elif="{{item.order_state=='SELLER_PICK'}}">待发货</view>
               <view class="zhuangt" wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">待接单</view>
-              <view wx:elif="{{item.order_state==TRADE_CLOSED}}">
+              <view wx:elif="{{item.order_state=='TRADE_CLOSED'}}">
                 <view class="zhuangt" wx:if="{{item.return_type==2}}">退货成功</view>
                 <view class="zhuangt" wx:elif="{{item.return_type==1}}">退款成功</view>
                 <view class="zhuangt" wx:else>交易关闭</view>
@@ -74,25 +74,24 @@
               </view>
               <view wx:if="{{item.order_state=='TRADE_FINISH'}}">
                 <view class="footer-right">
-                  <view class="cancella">查看物流</view>
-                  <view class="payment">删除</view>
+                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella" class="payment">删除</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">
                 <view class="footer-right">
-                  <view bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
+                  <view bindtap="cancellFn" data-index="{{index}}" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
                   <view bindtap="bindGoPin" data-order_sn="{{item.order_sn}}" class="payment">立即付款</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='SELLER_DELIVER'}}">
                 <view wx:if="{{return_type==2&&return_state==5}}">
                   <view class="footer-right">
-                    <view class="payment">确认收款</view>
+                    <view class="payment">确认收货</view>
                   </view>
                 </view>
                 <view wx:else>
                   <view class="footer-right">
-                    <view class="cancella">确认收款</view>
+                    <view data-index="{{index}}" class="cancella" bindtap="bindLess" data-order_sn="{{item.order_sn}}">确认收货</view>
                     <view class="payment">查看物流</view>
                   </view>
                 </view>
@@ -111,7 +110,7 @@
               </view>
               <view wx:elif="{{item.order_state=='TRADE_CLOSED'}}">
                 <view class="footer-right">
-                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" class="cancella" class="payment">删除</view>
+                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella" class="payment">删除</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">
@@ -215,10 +214,10 @@
     </view>
   </swiper-item>
   <swiper-item>
-    <text>待收货</text>
+    <!-- <text>待收货</text> -->
   </swiper-item>
   <swiper-item>
-    <view class="content">
+    <!-- <view class="content">
       <view class="box">
         <view class="box-header">
           <view class="iconfont icon-dingdanbianhao1"></view>
@@ -244,7 +243,7 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
   </swiper-item>
 </swiper>
 <view class="right-box" wx:if="{{right_con}}">

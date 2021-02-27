@@ -77,14 +77,18 @@
     <view class="mask-jiahao" wx:if="{{showJiahao}}">
       <view class="mask-title">发布</view>
       <view class="mask-icon">
-        <view>
-          <view class="iconfont icon-quanminjingjiren icon-left"></view>
-          <text>我要招聘</text>
-        </view>
-        <view>
-          <view class="iconfont icon-qiuzhiguanli icon-right"></view>
-          <text>我要求职</text>
-        </view>
+        <navigator url="/pages/postoffer/postoffer">
+          <view>
+            <view class="iconfont icon-quanminjingjiren icon-left"></view>
+            <text>我要招聘</text>
+          </view>
+        </navigator>
+        <navigator url="/pages/postjob/postjob">
+          <view>
+            <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+            <text>我要求职</text>
+          </view>
+        </navigator>
       </view>
     </view>
     <!-- 乘号 -->

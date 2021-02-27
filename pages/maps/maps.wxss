@@ -163,6 +163,32 @@ page{
   border-radius: 308rpx;
   text-align: center;
 }
+.taking{
+  position: absolute;
+  bottom: 90rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #F9B236;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+}
+.user-no{
+  position: absolute;
+  bottom: 90rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #c55353;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+}
 .user-bx{
   position: absolute;
   bottom: 30rpx;
@@ -224,12 +250,20 @@ page{
   position: fixed;
   bottom: 0;
   left: 0;
-  width:  100%;
+  width: 100%;
   height: 740rpx;
   padding-top: 20rpx;
   background: #fff;
   box-shadow: 0px 0px 20rpx rgba(0, 0, 0, 0.07);
   border-radius: 20rpx 20rpx 0px 0px;
+}
+.order .order-no{
+  width: 100%;
+  height: 300rpx;
+  line-height: 300rpx;
+  text-align: center;
+  color: #a8a8a8;
+  font-size: 20rpx;
 }
 .order-top{
   width: 94%;
@@ -273,7 +307,7 @@ page{
 }
 .order-content{
   width: 100%;
-  height: 600rpx;
+  height: 530rpx;
   background: #f9f9f9;
   overflow: hidden;
 }
@@ -321,11 +355,11 @@ page{
   font-size: 44rpx;
   margin-bottom: 10rpx;
 }
-.order-footer .okactive{
-  color: #F9B236;
-}
 .order-footer .jiant2{
   color: #E3E2E2;
+}
+.order-footer .okactive{
+  color: #F9B236;
 }
 .user-con{
   position: relative;
@@ -339,4 +373,28 @@ page{
 .user-con .user{
   position: relative;
   display: flex;
+}
+.serv-order{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 700rpx;
+  background: #fff;
+  box-shadow: 0px 0px 20rpx rgba(0, 0, 0, 0.07);
+  border-radius: 20rpx 20rpx 0px 0px;
+}
+.serv-top{
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0 20%;
+  color: #9A9A9A;
+  font-size: 28rpx;
+}
+.serv-text{
+  border-bottom: 4rpx solid #F9B236;
+  color: #333;
 }

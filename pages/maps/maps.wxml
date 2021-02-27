@@ -107,10 +107,10 @@
   </scroll-view>
   <cover-image class="gozhong" src="/assets/images/dqwz.png" bindtap='clickControl'></cover-image>
 </view>
-<view wx:else class="order">
+<view wx:elif="{{active==2&&service==0}}" class="order">
   <view class="order-top">
     <view class="iconfont icon-zu1665 top-left"> <text> 我的订单</text></view>
-    <view class="top-right">全部订单 <text class="iconfont icon-xiangyou"></text></view>
+    <!-- <view class="top-right">全部订单 <text class="iconfont icon-xiangyou"></text></view> -->
   </view>
   <view class="order-tab">
     <view class="tab-title xian">一键报修</view>
@@ -118,7 +118,7 @@
     <view class="tab-title">一键派单</view>
     <view class="tab-title">一键保险</view> -->
   </view>
-  <view class="order-content">
+  <view class="order-content" wx:if="{{userOrder}}">
     <view class="con-top">服务倒计时</view>
     <view class="time-w">
       <text class="time">{{hr}}</text>
@@ -128,17 +128,17 @@
       <text class="time">{{sec}}</text>
     </view>
     <view class="order-footer">
-      <view class="footer-box okactive">
+      <view class="footer-box {{broList.status>=0?'okactive':''}}">
         <view class="iconfont icon-fuwu"></view>
-        <view>已接单</view>
+        <view>待接单</view>
       </view>
-      <view class="iconfont icon-taishifuwu-jiantou jiant2"></view>
-      <view class="footer-box">
-        <view class="iconfont icon-taishifuwu-jinhangzhong-moren"></view>
+      <view class="iconfont icon-taishifuwu-jiantou jiant2 {{broList.status>=1?'okactive':''}}"></view>
+      <view class="footer-box {{broList.status>=1?'okactive':''}}">
+        <view class="iconfont icon-taishifuwu-jinhangzhong-moren "></view>
         <view>进行中</view>
       </view>
-      <view class="iconfont icon-taishifuwu-jiantou jiant2"></view>
-      <view class="footer-box">
+      <view class="iconfont icon-taishifuwu-jiantou jiant2 {{broList.status==2?'okactive':''}}"></view>
+      <view class="footer-box {{broList.status==2?'okactive':''}}">
         <view class="iconfont icon-zujian202"></view>
         <view>已完成</view>
       </view>
@@ -160,7 +160,60 @@
           </view>
         </view>
       </view>
+      <view wx:if="{{userNo}}" class="user-no" data-id="{{broList.id}}" bindtap="bindNoFn">取消订单</view>
+      <view class="taking" wx:if="{{broList.status==1}}" bindtap="bindComplete" data-id="{{broList.id}}">完成</view>
       <view class="user-pho" data-pho="{{broList.user_mobile}}">拨打电话</view>
+    </view>
+  </view>
+  <view class="order-no" wx:else>暂无订单</view>
+</view>
+<view wx:else class="serv-order">
+  <view class="serv-top">
+    <view bindtap="bindSerFn" class="{{seractive==1?'serv-text':''}}">未完成</view>
+    <view bindtap="bindSerFn2" class="{{seractive==2?'serv-text':''}}">已完成</view>
+  </view>
+  <view class="order-content">
+    <view class="con-top">服务倒计时</view>
+    <view class="time-w">
+      <text class="time">{{hr}}</text>
+      <text class="time1">:</text>
+      <text class="time">{{min}}</text>
+      <text class="time1">:</text>
+      <text class="time">{{sec}}</text>
+    </view>
+    <view class="order-footer">
+      <view class="footer-box {{getServiceInfo.status>=0?'okactive':''}}">
+        <view class="iconfont icon-fuwu"></view>
+        <view>待接单</view>
+      </view>
+      <view class="iconfont icon-taishifuwu-jiantou jiant2 {{getServiceInfo.status>=1?'okactive':''}}"></view>
+      <view class="footer-box {{getServiceInfo.status>=1?'okactive':''}}">
+        <view class="iconfont icon-taishifuwu-jinhangzhong-moren "></view>
+        <view>进行中</view>
+      </view>
+      <view class="iconfont icon-taishifuwu-jiantou jiant2 {{getServiceInfo.status==2?'okactive':''}}"></view>
+      <view class="footer-box {{getServiceInfo.status==2?'okactive':''}}">
+        <view class="iconfont icon-zujian202"></view>
+        <view>已完成</view>
+      </view>
+    </view>
+    <view class="user-con">
+      <view class="user">
+        <view class="user-img">
+          <image mode="aspectFill" src="{{getServiceInfo.avator}}"></image>
+        </view>
+        <view class="user-xx">
+          <view class="user-name">{{getServiceInfo.user_name}}</view>
+        </view>
+      </view>
+      <view class="goging">
+        <view class="gogingleft">
+          <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{getServiceInfo.user_mobile}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="user-pho" bindtap="binduserPho" data-pho="{{getServiceInfo.user_mobile}}">拨打电话</view>
+      <view class="taking" wx:if="{{getServiceInfo.status==0}}" bindtap="bindTaking" data-id="{{getServiceInfo.id}}">接单</view>
     </view>
   </view>
 </view>

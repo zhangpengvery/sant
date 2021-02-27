@@ -1,24 +1,37 @@
 <!--pages/home/home.wxml-->
 <navbar params="{{params}}" />
 <scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscrolltolower="loadMore" bindscroll="scrollPage">
-  <view class="header" style="margin-top:{{navH}}rpx">
-    <image src="/assets/images/homecunjie.png"></image>
-  </view>
   <view class="home-navimg" hidden="{{hidden}}">
+    <image src="/assets/images/202102251536.png"></image>
   </view>
+  <swiper class="header" indicator-dots="true" autoplay="true" style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#C47C00" circular="true">
+    <swiper-item>
+      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374ac66115c.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374aeee6bb1.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374b6441f62.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374b7fbc481.png"></image>
+    </swiper-item>
+  </swiper>
   <!-- 小图标 -->
   <view class="icon-fater">
     <block wx:for="{{getIndexIcons}}" wx:key="index">
       <view class="icon-conent">
         <navigator url="{{item.url}}">
           <view class="icon-img">
-            <image src="{{item.icon}}"></image>
+            <image mode="aspectFit" src="{{item.icon}}"></image>
           </view>
         </navigator>
         <text>{{item.text}}</text>
       </view>
     </block>
   </view>
+  <view class="layer"></view>
   <!-- 保养服务 -->
   <view class="home-options">
     <view class="iconfont icon-lujing534" style="color:#3DB988"></view>
@@ -37,6 +50,7 @@
       <image src="/assets/images/1628.png"></image>
     </view>
   </view>
+  <view class="layer2"></view>
   <!-- 热卖配件 -->
   <view class="options-fater">
     <view class="options-header">
@@ -66,6 +80,7 @@
       </block>
     </view>
   </view>
+  <view class="layer2"></view>
   <!-- 限时促销 -->
   <view class="home-options">
     <view class="iconfont icon-lujing535" style="color:#F8D444"></view>
@@ -108,6 +123,7 @@
       <image src="/assets/images/1632.png"></image>
     </view>
   </view>
+  <view class="layer2"></view>
   <!-- 二手车推荐 -->
   <view class="home-options">
     <view class="iconfont icon-jianqu24" style="color:#F39B35"></view>

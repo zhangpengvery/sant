@@ -82,17 +82,32 @@ Page({
     })
   },
   changeSwiper:function(e){
+    var a=e.currentTarget.dataset.current
     this.setData({
-      currentIndex:e.currentTarget.dataset.current
+      currentIndex:e.currentTarget.dataset.current,
+      getOrderList:[],
+      getOrderOne:[],
+
     })
+    if(a==0){
+      this.getOrderList(this.data.p,this.data.good_type)
+    }else if(a==1){
+      this.getOrderOne(this.data.p2,this.data.good_type)
+    }
   },
   //订单列表
   async getOrderList(p,good_type){
+    wx.showLoading({
+      title: '加载中...',
+    })
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
       p:p,
       type:"all",
       good_type:good_type
     })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
     this.setData({
       getOrderList:this.data.getOrderList.concat(result.data.datas.list)
     })
@@ -100,20 +115,26 @@ Page({
   },
   //代付款订单
   async getOrderOne(p,good_type){
+    wx.showLoading({
+      title: '加载中...',
+    })
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
       p:p,
       type:"waitpay",
       good_type:good_type
     })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
     this.setData({
       getOrderOne:this.data.getOrderOne.concat(result.data.datas.list)
     })
     console.log(this.data.getOrderOne);
   },
   //代发货订单
-  async getOrderTow(good_type){
+  async getOrderTow(p,good_type){
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
-      p:1,
+      p:p,
       type:"waitpay",
       good_type:good_type
     })
@@ -141,39 +162,78 @@ Page({
     requestApi1(app.globalData.post_url+"/index.php/Api/Order/cancleOrder",{
       order_sn:order_sn
     }).then(res=>{
-      this.getOrderList(this.data.good_type)
     })
   },
+  //全部取消订单
   cancellFn:function(e){
     var that=this
     var order_sn=e.currentTarget.dataset.order_sn
+    var index=e.currentTarget.dataset.index
+    var list=this.data.getOrderList
+    list[index].order_state='TRADE_CLOSED'
     wx.showModal({
-      title:'是否取消改订单',
+      title:'是否取消该订单',
       success(res){
         if(res.confirm){
+          that.setData({
+            getOrderList:list
+          })
           that.cancleOrder(order_sn)
-          that.getOrderList(that.data.good_type)
         }
       }
     })
+    console.log(index);
   },
   //删除订单
   deleteOrder(order_sn){
     requestApi1(app.globalData.post_url+"/index.php/Api/Order/deleteOrder",{
       order_sn:order_sn
     }).then(res=>{
-      this.getOrderList(this.data.good_type)
     })
   },
+  //确认收货
+  userFinished(order_sn){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Order/userFinished",{
+      order_sn:order_sn
+    }).then(res=>{
+      console.log(res);
+    })
+  },
+  //全部删除点击
   deleteFn:function(e){
     var that=this
     var order_sn=e.currentTarget.dataset.order_sn
+    var index=e.currentTarget.dataset.index
+    var list=this.data.getOrderList
+    list.splice(index,1)
     wx.showModal({
-      title:'是否删除改订单',
+      title:'是否删除该订单',
       success(res){
         if(res.confirm){
+          that.setData({
+            getOrderList:list
+          })
           that.deleteOrder(order_sn)
-          that.getOrderList(this.data.good_type)
+        }
+      }
+    })
+    console.log(index);
+  },
+  //确认收货点击
+  bindLess:function(e){
+    var that=this
+    var order_sn=e.currentTarget.dataset.order_sn
+    var index=e.currentTarget.dataset.index
+    var list=this.data.getOrderList
+    list[index].order_state='TRADE_FINISH'
+    wx.showModal({
+      title:'是否确认收货',
+      success(res){
+        if(res.confirm){
+          that.setData({
+            getOrderList:list
+          })
+          that.userFinished(order_sn)
         }
       }
     })
@@ -238,12 +298,15 @@ Page({
       good_type:options.good_type
     })
     this.getOrderList(this.data.p,this.data.good_type)
-    this.getOrderOne(this.data.p2,this.data.good_type)
     wx.getSystemInfo({
       success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =(clientHeight * ratio)-100-app.globalData.navbarHeight
          this.setData({
           navH:app.globalData.navbarHeight,
-          scrollH:result.windowHeight*(750/result.windowWidth)-100-app.globalData.navbarHeight
+          scrollH:ScrH
          })
       },
     })

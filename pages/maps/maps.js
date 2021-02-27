@@ -37,6 +37,7 @@ Page({
     userList: [],
     repairList:[],
     broList:[],
+    getServiceInfo:[],
     starpageY:0,
     chenpageY:0,
     service_uid:0,
@@ -45,6 +46,10 @@ Page({
     min: 0,
     sec: 0,
     end:0,
+    userNo:false,
+    userOrder:true,
+    service:0,
+    seractive:1,
   },
   scrTopFn:function(e){
     this.setData({
@@ -183,6 +188,7 @@ Page({
       active: 1,
     })
   },
+  //订单管理点击
   bindDdgl:function(){
     if(wx.getStorageSync('token')==[]){
       wx.navigateTo({
@@ -194,7 +200,7 @@ Page({
       })
     }
   },
-  //订单管理点击
+  //一键报修点击
   bindYjbx: function (e) {
     if(wx.getStorageSync('token')==[]){
       wx.navigateTo({
@@ -209,12 +215,15 @@ Page({
   },
   //一键报修
   postRepair(service_uid){
+    var that=this
     requestApi1(app.globalData.post_url+"/index.php/Api/Map/repair",{
       service_uid:service_uid
     }).then(res=>{
       this.setData({
-        broList:res.data,
-        active: 2
+        active: 2,
+        userOrder:true
+      },function(){
+        that.getRepairInfo()
       })
       console.log(res);
     })
@@ -239,6 +248,16 @@ Page({
     var that=this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairInfo")
     console.log(result);
+    if(result.data.hours>=2&&result.data.status!=-1){
+      this.setData({
+        userNo:true
+      })
+    }
+    if(result.data.code==400){
+      this.setData({
+        userOrder:false
+      })
+    }
     this.setData({
       broList: result.data,
       end:result.data.create_time
@@ -511,7 +530,16 @@ Page({
       animation: true,
     })
   },
-  countdown() {  //设定倒计时
+  //设定倒计时
+  countdown() {  
+    if(this.data.broList.status==2||this.data.getServiceInfo.status==2){
+      this.setData({
+        hr:"已",
+        min:"完",
+        sec:"成",
+      })
+    return
+    }
     var end_time = this.data.end*1000+7200000;
     var msec =end_time - Date.parse(new Date());
     if(msec>0){
@@ -534,15 +562,105 @@ Page({
       this.setData({
         hr:"已",
         min:"超",
-        sec:"时"
+        sec:"时",
+        userNo:true
       })
     }
+  },
+  cancleService(id){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Map/cancle_service",{
+      id:id
+    }).then(res=>{
+      wx.showToast({
+        title: '取消订单成功',
+      })
+      this.setData({
+        userNo:false,
+        userOrder:false
+      })
+    })
+  },
+  //判断是工作人员还是用户
+  async getUserInfo() {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
+    this.setData({
+      service:result.data.datas.user_info.user_is_service
+    })
+    console.log(this.data.service);
+    if(result.data.datas.user_info.user_is_service==0){
+      this.getRepairInfo()
+    }else if(result.data.datas.user_info.user_is_service==1){
+      this.getServiceInfo()
+    }
+  },
+  bindNoFn:function(e){
+    console.log(e.currentTarget.dataset.id);
+    var that=this
+    wx.showModal({
+      content:'是否取消订单',
+      success(res){
+        if(res.confirm){
+          that.cancleService(e.currentTarget.dataset.id)
+        }
+      }
+    })
+  },
+  bindSerFn:function(){
+    this.setData({
+      seractive:1
+    })
+  },
+  bindSerFn2:function(){
+    this.setData({
+      seractive:2
+    })
+  },
+  binduserPho:function(e){
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.pho,
+    })
+  },
+  //服务人员当前订单
+  async getServiceInfo() {
+    var that=this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getServiceInfo")
+    this.setData({
+      getServiceInfo:result.data,
+      end:result.data.create_time
+    },function(){
+      that.countdown()
+    })
+    console.log(this.data.getServiceInfo);
+  },
+  confirmService(id){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Map/confirmService",{
+      id:id
+    }).then(res=>{
+      this.getServiceInfo()
+      console.log(res);
+    })
+  },
+  bindTaking:function(e){
+    this.confirmService(e.currentTarget.dataset.id)
+  },
+  //用户确认完成
+  confirmFuwu(id){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Map/confirmFuwu",{
+      id:id
+    }).then(res=>{
+      console.log(res);
+      this.getRepairInfo()
+    })
+  },
+  //用户点击完成
+  bindComplete:function(e){
+    this.confirmFuwu(e.currentTarget.dataset.id)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getRepairInfo()
+    this.getUserInfo()
     wx.hideTabBar({
       animation : true,
     })

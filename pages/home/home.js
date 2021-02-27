@@ -22,7 +22,7 @@ Page({
       l: 50,
       fz: 34,
       fw: "bold",
-      navColor: 1,
+      navColor: 0,
       col: "#fff",
       title: "三泰之家"
     },
@@ -133,13 +133,16 @@ Page({
     }
   },
   scrollPage: function (e) {
+    var s='params.navColor'
     if (e.detail.scrollTop > 50) {
       this.setData({
-        hidden: true
+        hidden: true,
+        [s]:1
       })
-    } else {
+    } else if(e.detail.scrollTop<50){
       this.setData({
-        hidden: false
+        hidden: false,
+        [s]:0
       })
     }
   },

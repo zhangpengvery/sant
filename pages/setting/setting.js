@@ -47,7 +47,7 @@ Page({
   },
   phoFn: function () {
     wx.makePhoneCall({
-      phoneNumber: '10086',
+      phoneNumber: '4009007819',
     })
   },
   ljzfFn: function () {

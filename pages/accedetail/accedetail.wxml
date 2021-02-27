@@ -12,10 +12,10 @@
 <view class="details">
   <view class="details-text">{{getPartsInfo.good_name}}<view class="iconfont icon-zhuanfa"></view>
   </view>
-  <view class="details-jg">￥45.00万</view>
+  <view class="details-jg">￥{{getPartsInfo.good_price}}</view>
   <view class="details-bzd">
-    <view>累计销量：10</view>
-    <view>库存：272</view>
+    <view>累计销量：{{getPartsInfo.good_sort}}</view>
+    <view>库存：{{getPartsInfo.good_stock}}</view>
     <view>地区：郑州市</view>
   </view>
 </view>

@@ -62,8 +62,6 @@ Page({
           rightNull:false
         })
       }
-      console.log(that.data.leftList);
-      console.log(that.data.rightList);
     })
   },
   bindLeftFn:function(){

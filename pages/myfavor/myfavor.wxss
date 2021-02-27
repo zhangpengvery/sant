@@ -160,8 +160,10 @@ page{
 .cart-footer .gobuy{
   border: 1rpx solid #F9B236;
   color: #F9B236;
-  width: 30%;
+  width: 20%;
+  height: 60rpx;
   border-radius: 50rpx;
-  line-height: 88rpx;
+  line-height: 60rpx;
   text-align: center;
+  margin-right: 30rpx;
 }

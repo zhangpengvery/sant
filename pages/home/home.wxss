@@ -5,20 +5,25 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 470rpx;
+  height: 460rpx;
   z-index: -1;
-  background: linear-gradient(180deg, #F9B236 0%, #F9B236 62%, rgba(249, 178, 54, 0) 100%);
+}
+.home-navimg image{
+  width: 100%;
+  height: 100%;
 }
 .header{
+  width: 100%;
+  height: 310rpx;
   position: relative;
   color: #fff;
   font-size: 30rpx;
-  margin-left: 3%;
   z-index: 1;
 }
 .header image{
-  width: 260rpx;
-  height: 60rpx;
+  width: 90%;
+  height: 100%;
+  margin-left: 10%;
 }
 .home-swiper{
   height: 400rpx;
@@ -37,17 +42,14 @@
 }
 .icon-fater{
   position: relative;
-  width: 94%;
+  width: 100%;
   height: 336rpx;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   text-align: center;
-  margin: 0 3%;
   margin-top: 20rpx;
   background: #FFFFFF;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  border-radius: 14px;
   z-index: 1;
 }
 .icon-fater .icon-conent{
@@ -56,24 +58,28 @@
   flex-direction: column;
   width: 25%;
   height: 168rpx;
+  align-items: center;
 }
 .icon-fater .icon-conent text{
   color: #343232;
-  font-size: 24rpx;
+  font-size: 26rpx;
   font-weight: 400;
 }
 .icon-fater .icon-conent .icon-img{
   width: 80rpx;
   height: 80rpx;
-  line-height: 102rpx;
-  margin-left: 49rpx;
+  line-height: 120rpx;
   margin-bottom: 15rpx;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }
 .icon-fater .icon-conent .icon-img image{
-  width: 48rpx;
-  height: 44rpx;
+  width: 100%;
+  height: 100%;
+}
+.layer{
+  width: 100%;
+  height: 20rpx;
+  background: #F6F6F6;
 }
 .home-options{
   width: 94%;
@@ -95,7 +101,7 @@
   display: block;
   margin-left: 20rpx;
   color: #343232;
-  font-size: 17px;
+  font-size: 34rpx;
   font-weight: bold;
 }
 .bp-fater{
@@ -108,7 +114,7 @@
 .bp-fater .bp-img{
   position: relative;
   width: 48%;
-  color: #fff;
+  color: #333;
 }
 .bp-fater .img-title{
   position: absolute;
@@ -203,9 +209,15 @@
   width: 100%;
   height: 100%;
 }
+.layer2{
+  width: 100%;
+  height: 20rpx;
+  margin-top: 40rpx;
+  background: #f6f6f6;
+}
 .options-fater{
   width: 94%;
-  margin: 50rpx 3% 0 3%;
+  margin: 30rpx 3% 0 3%;
   height: 445rpx;
   text-align: center;
   background: #FFBA43;
