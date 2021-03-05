@@ -25,7 +25,7 @@
               <view class="iconfont icon-dingdanbianhao1"></view>
               <view class="bianh">订单编号：{{item.order_sn}}</view>
               <view class="zhuangt" wx:if="{{item.order_state=='TRADE_FINISH'}}">交易完成</view>
-              <view wx:elif="{{item.order_state==SELLER_DELIVER}}">
+              <view wx:elif="{{item.order_state=='SELLER_DELIVER'}}">
                 <view class="zhuangt" wx:if="{{item.return_type==2&&return_state==5}}">退货失败</view>
                 <view class="zhuangt" wx:else>待收货</view>
               </view>
@@ -163,7 +163,7 @@
                 <text class="body-jg">￥{{item.order_amount}}</text>
               </view>
               <view class="footer-right">
-                <view class="cancella" bindtap="cancellFn" data-order_sn="{{item.order_sn}}" class="cancella">取消订单
+                <view class="cancella2" data-index="{{index}}" bindtap="cancellFn2" data-order_sn="{{item.order_sn}}" class="cancella">取消订单
                 </view>
                 <view data-order_sn="{{item.order_sn}}" bindtap="bindGoPin" class="payment">立即付款</view>
               </view>

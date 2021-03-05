@@ -260,7 +260,43 @@ Page({
     })
   },
   bddhFn: function () {
-    this.postaddApply(this.data.apply_title, this.data.jt_id, this.data.js_id, this.data.je_id, this.data.apply_company, this.data.apply_message, this.data.selectAreaId, this.data.contact_name, this.data.contact_tel)
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else if(this.data.apply_title==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入标题',
+      })
+    }else if(this.data.contact_name==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.contact_tel==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else if(this.data.selectAreaId==null){
+      wx.showToast({
+        icon:'none',
+        title: '请选择地址',
+      })
+    }else if(this.data.apply_company==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入公司名字',
+      })
+    }else if(this.data.apply_message==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入留言',
+      })
+    }else{
+      this.postaddApply(this.data.apply_title, this.data.jt_id, this.data.js_id, this.data.je_id, this.data.apply_company, this.data.apply_message, this.data.selectAreaId, this.data.contact_name, this.data.contact_tel)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

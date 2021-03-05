@@ -37,6 +37,4 @@
     <switch class="switchcss" color="#F9B236" bindchange="switchFn"></switch>
   </view>
 </view>
-<navigator url="/pages/address/address">
-  <view class="ljfb" bindtap="bddhFn">保存</view>
-</navigator>
+<view class="ljfb" bindtap="bddhFn">保存</view>

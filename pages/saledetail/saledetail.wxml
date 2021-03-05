@@ -13,7 +13,7 @@
     <view class="user-name">姓名：{{getSaleInfo.contact_name}}</view>
     <view class="user-name">手机：{{getSaleInfo.contact_tel}}</view>
     <view class="user-name">地址：{{getSaleInfo.province}}{{getSaleInfo.city}}{{getSaleInfo.area_name}}</view>
-    <view class="user-name">发布时间：2020-12-12  09：50：32</view>
+    <view class="user-name">发布时间：{{allDay}}</view>
   </view>
 </view>
 <view class="footer">

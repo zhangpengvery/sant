@@ -1,8 +1,8 @@
 <!--pages/rental/rental.wxml-->
 <navbar params="{{params}}" />
 <view class="header" style="margin-top:{{navH}}rpx">
-  <view class="box {{leftActive==true?'box-left':''}}" bindtap="recruitFn">出租列表</view>
-  <view class="box {{rightActive==true?'box-right':''}}" bindtap="jobFn">求租列表</view>
+  <view class="box {{leftActive==true?'box-left':''}}" bindtap="recruitFn">求租列表</view>
+  <view class="box {{rightActive==true?'box-right':''}}" bindtap="jobFn">出租列表</view>
 </view>
 <view class="aui-content">
   <view class="juli-left {{color==true?'active':''}}" bindtap="distanceFn">
@@ -120,23 +120,8 @@
 </view>
 <!-- 乘号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
-<!-- 商品列表 -->
-<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx" wx:if="{{listLeft}}">
-  <view class="list">
-    <block wx:for="{{getAllHireLists}}" wx:key="index">
-      <view class="list-content">
-        <navigator url="/pages/hiredetail/hiredetail?hire_id={{item.hire_id}}">
-          <image mode="aspectFill" src="{{item.image_url}}"></image>
-          <text class="list-name">{{item.hire_title}}</text>
-          <view class="list-city">位置：<text>{{item.province_name}}</text><text>{{item.city_name}}</text></view>
-          <text class="list-price">{{item.hire_price}}</text>
-        </navigator>
-      </view>
-    </block>
-  </view>
-</scroll-view>
 <!-- 求租列表 -->
-<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx" wx:if="{{listRight}}">
+<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listLeft}}">
   <view class="list-right">
     <block wx:for="{{getAllHireforLists}}" wx:key="index">
       <navigator url="/pages/rendetail/rendetail?hf_id={{item.hf_id}}">
@@ -154,6 +139,21 @@
           </view>
         </view>
       </navigator>
+    </block>
+  </view>
+</scroll-view>
+<!-- 商品列表 -->
+<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listRight}}">
+  <view class="list">
+    <block wx:for="{{getAllHireLists}}" wx:key="index">
+      <view class="list-content">
+        <navigator url="/pages/hiredetail/hiredetail?hire_id={{item.hire_id}}">
+          <image mode="aspectFill" src="{{item.image_url}}"></image>
+          <text class="list-name">{{item.hire_title}}</text>
+          <view class="list-city">位置：<text>{{item.province_name}}</text><text>{{item.city_name}}</text></view>
+          <text class="list-price">{{item.hire_price}}</text>
+        </navigator>
+      </view>
     </block>
   </view>
 </scroll-view>

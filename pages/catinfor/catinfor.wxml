@@ -1,0 +1,56 @@
+<!--pages/catinfor/catinfor.wxml-->
+<view class="header" style="height:{{navH}}rpx">
+  <view class="header-inp">
+    <view class="iconfont icon-lujing46"></view>
+    <view class="inp-text">请输入车辆的VIN或车牌号</view>
+    <view class="inp-rigth">搜索</view>
+  </view>
+</view>
+<view class="yuan"></view>
+<view class="cart">
+  <view class="cart-cph">车牌号</view>
+  <view class="cart-name" bindtap="bindallshowFn">豫A5278F</view>
+  <view class="iconfont icon-zu261" bindtap="bindallshowFn"></view>
+  <view class="allshow">
+    <view class="carson" style="height:{{allshow}}rpx">豫A5278F</view>
+    <view class="carson" style="height:{{allshow}}rpx">豫A5278F</view>
+  </view>
+</view>
+<view class="allcar" bindtap="bindallcarFn">添加车辆</view>
+<view class="carcont">
+  <view class="carleft">
+    <view class="left-top">SLX29389</view>
+    <view class="left-btm">VIN码</view>
+  </view>
+  <view class="shuxian"></view>
+  <view class="carleft">
+    <view class="left-top">1938.2KM</view>
+    <view class="left-btm">里程数</view>
+  </view>
+</view>
+<view class="footer">
+  <view class="footer-box" bindtap="bindincrease">
+    <view class="box-img">
+      <image mode="aspectFit" src="/assets/images/xin-red.png"></image>
+    </view>
+    <view class="box-text">车辆定位</view>
+  </view>
+  <view class="footer-box" bindtap="bindallTjcl">
+    <view class="box-img">
+      <image mode="aspectFit" src="/assets/images/xin-red.png"></image>
+    </view>
+    <view class="box-text">轨迹回放</view>
+  </view>
+  <view class="footer-box">
+    <view class="box-img">
+      <image mode="aspectFit" src="/assets/images/xin-red.png"></image>
+    </view>
+    <view class="box-text">里程统计</view>
+  </view>
+  <view class="footer-box">
+    <view class="box-img">
+      <image mode="aspectFit" src="/assets/images/xin-red.png"></image>
+    </view>
+    <view class="box-text">车辆管理</view>
+  </view>
+</view>

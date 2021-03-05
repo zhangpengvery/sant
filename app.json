@@ -1,7 +1,12 @@
 {
   "pages":[
-    "pages/mind/mind",
     "pages/home/home",
+    "pages/allding/allding",
+    "pages/maps/maps",
+    "pages/catinfor/catinfor",
+    "pages/tjclcar/tjclcar",
+    "pages/position/position",
+    "pages/mind/mind",
     "pages/search/search",
     "pages/searcall/searcall",
     "pages/accesshop2/accesshop2",
@@ -9,7 +14,6 @@
     "pages/recruit/recruit",
     "pages/live/live",
     "pages/swvideos/swvideos",
-    "pages/maps/maps",
     "pages/zcorders/zcorders",
     "pages/category/category",
     "pages/stores/stores",
@@ -111,5 +115,8 @@
     "scope.userLocation": {
       "desc": "你的位置信息将用于定位当前省份"
     }
-  }
+  },
+  "requiredBackgroundModes": [
+    "location"
+  ]
 }

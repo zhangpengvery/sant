@@ -181,7 +181,32 @@ Page({
   },
 
   bddhFn:function(){
-    this.postaddAddress(this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone,this.data.is_def)
+    if(this.data.true_name==""){
+      wx.showToast({
+        icon:'none',
+        title: '请填写收货人',
+      })
+    }else if(this.data.phone==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else if(this.data.selectAreaId==null){
+      wx.showToast({
+        icon:'none',
+        title: '请选择地址',
+      })
+    }else if(this.data.address==""){
+      wx.showToast({
+        icon:'none',
+        title: '请填写详细地址',
+      })
+    }else{
+      this.postaddAddress(this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone,this.data.is_def)
+      wx.navigateTo({
+        url: '/pages/address/address',
+      })
+    }
   },
   bindBoard:function(e){
     this.setData({

@@ -26,6 +26,8 @@ Page({
     },
     navH:0,
     phone:'',
+    alltime:"",
+    allDay:"",
     getHireInfo:[],
     getSaleImg:[]
   },
@@ -62,6 +64,7 @@ Page({
     })
   },
   async getHireInfo(hire_id){
+    var that=this
     wx.showLoading({
       title: '加载中...',
     })
@@ -74,7 +77,10 @@ Page({
     this.setData({
       getSaleInfo:result.data.data,
       getSaleImg:result.data.data.pics,
-      phone:result.data.data.contact_tel
+      phone:result.data.data.contact_tel,
+      alltime:result.data.data.add_time
+    },function(){
+      that.formatDate()
     })
     console.log(this.data.getSaleInfo);
   },
@@ -94,6 +100,19 @@ Page({
       console.log(res);
     })
   },
+  formatDate() {
+    var date = new Date(Number(this.data.alltime)*1000);
+    var YY = date.getFullYear() + '-';
+    var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+    var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+    var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+    var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+    console.log(YY+MM+DD+"  "+hh+mm+ss);
+    this.setData({
+      allDay:YY+MM+DD+"  "+hh+mm+ss
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -106,6 +125,7 @@ Page({
          })
       },
     })
+    // this.formatDate()
   },
 
   /**

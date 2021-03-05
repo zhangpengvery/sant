@@ -1,0 +1,88 @@
+/* pages/allding/allding.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #F9F9F9;
+}
+.user-con{
+  position: relative;
+  width: 90%;
+  height: 170rpx;
+  padding: 30rpx 2% 0 2%;
+  margin: 20rpx 3% 0 3%;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.user-con .user{
+  position: relative;
+  display: flex;
+}
+.user .user-img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.user-img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.user-xx{
+  margin-left: 20rpx;
+}
+.user-name{
+  font-size: 30prx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.user-pj{
+  font-size: 20rpx;
+  color: #F9B236;
+}
+.juli{
+  position: absolute;
+  color: #999;
+  font-size: 20rpx;
+  right: 20rpx;
+  top: 10rpx;
+}
+.goging{
+  margin-left: 100rpx;
+  display: flex;
+}
+.gogingleft{
+  width: 330rpx;
+}
+.gogingleft .icon{
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #ACACAC;
+}
+.gogingleft .icon text{
+  color: #666;
+}
+.user-pho{
+  position: absolute;
+  bottom: 30rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #F9B236;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+}
+.taking{
+  position: absolute;
+  bottom: 90rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #F9B236;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+}

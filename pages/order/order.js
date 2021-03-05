@@ -184,6 +184,26 @@ Page({
     })
     console.log(index);
   },
+  //待支付取消订单
+  cancellFn2:function(e){
+    var that=this
+    var order_sn=e.currentTarget.dataset.order_sn
+    var index=e.currentTarget.dataset.index
+    var list=this.data.getOrderOne
+    list.splice(index,1)
+    wx.showModal({
+      title:'是否取消该订单',
+      success(res){
+        if(res.confirm){
+          that.setData({
+            getOrderOne:list
+          })
+          that.cancleOrder(order_sn)
+        }
+      }
+    })
+    console.log(index);
+  },
   //删除订单
   deleteOrder(order_sn){
     requestApi1(app.globalData.post_url+"/index.php/Api/Order/deleteOrder",{

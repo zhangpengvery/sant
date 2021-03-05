@@ -1,0 +1,150 @@
+/* pages/catinfor/catinfor.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.header{
+  width: 100%;
+  position: relative;
+}
+.header-inp{
+  display: flex;
+  padding-left: 20rpx;
+  align-items: center;
+  width: 476rpx;
+  height: 60rpx;
+  position: absolute;
+  bottom: 20rpx;
+  left: 20rpx;
+  background: #f4f4f4;
+  border-radius: 136rpx;
+  color: #CBCBCB;
+  font-size: 26rpx;
+}
+.inp-text{
+  margin: 0 30rpx 0 10rpx;
+}
+.inp-rigth{
+  width: 92rpx;
+  height: 48rpx;
+  background: #F9B236;
+  color: #fff;
+  border-radius: 136rpx;
+  line-height: 48rpx;
+  text-align: center;
+}
+.yuan{
+  width: 314rpx;
+  height: 314rpx;
+  background: #F9B236;
+  opacity: 0.19;
+  border-radius: 50%;
+  margin: 20rpx auto 30rpx auto;
+}
+.cart{
+  position: relative;
+  width: 40%;
+  margin: 0 30%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+.cart .cart-cph{
+  font-size: 22rpx;
+  color: #B7B7B7;
+}
+.cart .cart-name{
+  font-size: 40rpx;
+  color: #333;
+  margin: 0 10rpx;
+  font-weight: bold;
+}
+.cart .iconfont{
+  font-size: 11rpx;
+  color: #858585;
+}
+.allcar{
+  width: 20%;
+  height: 40rpx;
+  margin: 10rpx 40% 50rpx 40%;
+  border: 1rpx solid #F9B236;
+  border-radius: 94rpx;
+  color: #F9B236;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+.allshow{
+  position: absolute;
+  top: 56rpx;
+  left: 70rpx;
+  width: 222rpx;
+  height: auto;
+  background: #fff;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 6rpx;
+}
+.carson{
+  width: 204rpx;
+  margin: 0 9rpx;
+  line-height: 64rpx;
+  text-align: center;
+  color: #333;
+  overflow: hidden;
+  transition:all linear .3s;
+  font-size: 26rpx;
+}
+.carcont{
+  width: 60%;
+  height: 90rpx;
+  margin: 0 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.carleft{
+  display: flex;
+  height: 90rpx;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+}
+.shuxian{
+  height: 48rpx;
+  border: 1rpx solid #EFEFEF;
+}
+.carleft .left-top{
+  font-size: 30rpx;
+  color: #333;
+}
+.carleft .left-btm{
+  font-size: 22rpx;
+  color: #A1A1A1;
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  height: 160rpx;
+  margin: 60rpx 5% 0 5%;
+}
+.footer-box{
+  display: flex;
+  flex-direction: column;
+  width: 154rpx;
+  height: 154rpx;
+  border-radius: 16rpx;
+  background: #F8F8F8;
+  text-align: center;
+  align-items: center;
+}
+.box-img{
+  width: 60rpx;
+  height: 60rpx;
+  margin: 20rpx 0;
+}
+.box-img image{
+  width: 100%;
+  height: 100%;
+}
+.box-text{
+  color: #333;
+  font-size: 26rpx;
+}

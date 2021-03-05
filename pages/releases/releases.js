@@ -132,9 +132,6 @@ Page({
       console.log(res);
     })
   },
-  bddhFn:function(){
-    this.postAddSale(this.data.pics,this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId,this.data.sale_title,this.data.contact_name,this.data.contact_tel,this.data.sale_price,this.data.sale_message)
-  },
   //获取省份列表
   getProvince: function () {
     let that = this
@@ -259,6 +256,50 @@ Page({
         break
     }
     that.setData(data)  //更新数据
+  },
+  bddhFn:function(){
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else if(this.data.pics==null){
+      wx.showToast({
+        icon:'none',
+        title: '请选择照片',
+      })
+    }else if(this.data.sale_title==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入标题',
+      })
+    }else if(this.data.contact_name==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.contact_tel==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else if(this.data.selectAreaId==null){
+      wx.showToast({
+        icon:'none',
+        title: '请选择地址',
+      })
+    }else if(this.data.sale_price==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入价格',
+      })
+    }else if(this.data.sale_message==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入留言',
+      })
+    }else{
+      this.postAddSale(this.data.pics,this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId,this.data.sale_title,this.data.contact_name,this.data.contact_tel,this.data.sale_price,this.data.sale_message)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

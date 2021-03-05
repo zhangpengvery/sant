@@ -1,0 +1,7 @@
+<!--pages/tjclcar/tjclcar.wxml-->
+<view class="box">
+  <view class="box-inp">
+    <view class="title">VIN码：</view>
+    <input type="text" bindinput="bindTextFn" placeholder="请输入车辆VIN码" />
+  </view>
+</view>

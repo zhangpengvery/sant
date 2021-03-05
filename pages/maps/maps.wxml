@@ -5,7 +5,7 @@
     style="width: 100%; height: 100%;" bindmarkertap="markertap"></map>
 </view>
 <view class="mapbox" hover-class="none" wx:else style="width: 100%; height: 100%;">
-  <map id="map2" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
+  <map id="map2" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers2}}" scale="10" show-location="true"
     style="width: 100%; height: 100%;" bindmarkertap="repairtap"></map>
 </view>
 <view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx"
@@ -55,7 +55,7 @@
               </view>
             </view>
           </view>
-          <view class="user-pho" data-pay="is_pay" bindtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
+          <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
           </view>
           <view wx:if="{{type==1}}" data-service_uid="{{item.user_id}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
         </view>
@@ -110,7 +110,7 @@
 <view wx:elif="{{active==2&&service==0}}" class="order">
   <view class="order-top">
     <view class="iconfont icon-zu1665 top-left"> <text> 我的订单</text></view>
-    <!-- <view class="top-right">全部订单 <text class="iconfont icon-xiangyou"></text></view> -->
+    <view class="top-right" bindtap="bindAllddFn">全部订单 <text class="iconfont icon-xiangyou"></text></view>
   </view>
   <view class="order-tab">
     <view class="tab-title xian">一键报修</view>

@@ -1,0 +1,23 @@
+<!--pages/allding/allding.wxml-->
+<block wx:for="{{repairList}}" wx:key="index">
+  <view class="user-con">
+    <view class="user">
+      <view class="user-img">
+        <image mode="aspectFill" src="{{item.avator}}"></image>
+      </view>
+      <view class="user-xx">
+        <view class="user-name">{{item.user_name}}</view>
+        <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+      </view>
+      <view class="juli">{{item.create_time}}</view>
+    </view>
+    <view class="goging">
+      <view class="gogingleft">
+        <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{item.user_mobile}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="taking" wx:if="{{item.status==1}}" bindtap="bindComplete" data-id="{{item.id}}">完成</view>
+    <view class="user-pho" bindtap="bindPho" data-pho="{{item.user_mobile}}">拨打电话</view>
+  </view>
+</block>

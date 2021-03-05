@@ -25,7 +25,7 @@ Page({
       title:"发布出租"
     },
     navH:0,
-    pics:"",
+    pics:null,
     imageList: [],
     province_list: null,
     province_name: null,
@@ -133,7 +133,48 @@ Page({
     })
   },
   bddhFn:function(){
-    this.postAddHire(this.data.pics,this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId,this.data.hire_title,this.data.contact_name,this.data.contact_tel,this.data.hire_price,this.data.hire_message)
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else if(this.data.pics==null){
+      wx.showToast({
+        icon:'none',
+        title: '请选择照片',
+      })
+    }else if(this.data.hire_title==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入标题',
+      })
+    }else if(this.data.contact_name==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.contact_tel==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else if(this.data.selectAreaId==null){
+      wx.showToast({
+        icon:'none',
+        title: '请选择地址',
+      })
+    }else if(this.data.hire_price==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入价格',
+      })
+    }else if(this.data.hire_message==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入留言',
+      })
+    }else{
+      this.postAddHire(this.data.pics,this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId,this.data.hire_title,this.data.contact_name,this.data.contact_tel,this.data.hire_price,this.data.hire_message)
+    }
   },
   //获取省份列表
   getProvince: function () {

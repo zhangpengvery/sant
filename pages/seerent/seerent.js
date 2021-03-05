@@ -218,7 +218,43 @@ Page({
     })
   },
   bddhFn:function(){
-    this.postAddHireFor(this.data.selectAreaId,this.data.for_title,this.data.contact_name,this.data.contact_tel,this.data.price,this.data.for_message)
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else if(this.data.for_message==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入留言',
+      })
+    }else if(this.data.for_title==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入标题',
+      })
+    }else if(this.data.contact_name==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入姓名',
+      })
+    }else if(this.data.contact_tel==0){
+      wx.showToast({
+        icon:'none',
+        title: '请输入手机号',
+      })
+    }else if(this.data.selectAreaId==null){
+      wx.showToast({
+        icon:'none',
+        title: '请选择地址',
+      })
+    }else if(this.data.price==""){
+      wx.showToast({
+        icon:'none',
+        title: '请输入价格',
+      })
+    }else{
+      this.postAddHireFor(this.data.selectAreaId,this.data.for_title,this.data.contact_name,this.data.contact_tel,this.data.price,this.data.for_message)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

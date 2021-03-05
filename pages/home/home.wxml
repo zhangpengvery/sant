@@ -35,7 +35,7 @@
   <!-- 保养服务 -->
   <view class="home-options">
     <view class="iconfont icon-lujing534" style="color:#3DB988"></view>
-    <text>保养服务</text>
+    <text>上门服务</text>
   </view>
   <!-- 蓝粉双图 -->
   <view class="bp-fater">
@@ -151,7 +151,7 @@
 </scroll-view>
 <view class="urgent" bindtap="urgentFn">
   <view class="iconfont icon-dianhua"></view>
-  <view class="urgent-text">紧急救援</view>
+  <view class="urgent-text">紧急报修</view>
 </view>
 <view class="service" bindtap="serviceFn">
   <view class="iconfont icon-quanminjingjiren"></view>

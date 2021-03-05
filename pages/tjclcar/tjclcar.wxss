@@ -1,0 +1,25 @@
+/* pages/tjclcar/tjclcar.wxss */
+page{
+  background: #f6f6f6;
+}
+.box{
+  width: 92%; 
+  height: 600rpx;
+  margin: 20rpx 4%;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.box-inp{
+  display: flex;
+  align-items: center;
+  width: 94%;
+  height: 90rpx;
+  margin: 20rpx 3% 0 3%;
+  border: 1rpx solid #F4F4F4;
+  border-radius: 124rpx;
+  font-size: 28rpx;
+}
+.title{
+  margin-left: 20rpx;
+}
