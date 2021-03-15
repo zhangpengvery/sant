@@ -101,7 +101,7 @@
 <!-- 乘号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 商品列表 -->
-<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{listLeft}}" bindscrolltolower="loadMore">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listLeft}}" bindscrolltolower="loadMore">
   <view class="list">
     <block wx:for="{{getAllSaleList}}" wx:key="index">
       <view class="list-content">
@@ -115,7 +115,7 @@
     </block>
   </view>
 </scroll-view>
-<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{listRight}}" bindscrolltolower="loadMore2">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listRight}}" bindscrolltolower="loadMore2">
   <view class="list-right" >
     <block wx:for="{{getSaleforLists}}" wx:key="index">
       <navigator url="/pages/reqdetail/reqdetail?sf_id={{item.sf_id}}">

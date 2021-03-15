@@ -1,0 +1,10 @@
+<!--pages/track/track.wxml-->
+<text>pages/track/track.wxml</text>
+<view class="section">
+  <view class="section__title">日期选择器</view>
+  <picker mode="date" value="{{time}}" start="2015-09-01" end="2022-12-31" bindchange="bindDateChange">
+    <view class="picker">
+      当前选择: {{time}}
+    </view>
+  </picker>
+</view>

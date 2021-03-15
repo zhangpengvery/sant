@@ -17,7 +17,7 @@
   style="height:{{scrollH}}rpx">
   <swiper-item>
     <!-- 全部 -->
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
       <view class="content">
         <block wx:for="{{getOrderList}}" wx:key="index">
           <view class="box">
@@ -115,7 +115,7 @@
               </view>
               <view wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">
                 <view class="footer-right">
-                  <view class="payment">退款</view>
+                  <view class="payment">待接单</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='SELLER_PICK'}}">

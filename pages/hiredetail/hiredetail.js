@@ -108,7 +108,6 @@ Page({
     var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
     var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
     var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-    console.log(YY+MM+DD+"  "+hh+mm+ss);
     this.setData({
       allDay:YY+MM+DD+"  "+hh+mm+ss
     })

@@ -44,6 +44,5 @@ App({
     navbarHeight:0,
     base_url:"https://api.jbccs.com/api",
     post_url:"https://jbccs.com",
-    txj_url:"http://www.sqtxj.com:10037"
   }
 })

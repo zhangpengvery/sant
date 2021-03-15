@@ -2,7 +2,7 @@
 <navbar params="{{params}}" />
 <scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscrolltolower="loadMore" bindscroll="scrollPage">
   <view class="home-navimg" hidden="{{hidden}}">
-    <image src="/assets/images/202102251536.png"></image>
+    <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
   </view>
   <swiper class="header" indicator-dots="true" autoplay="true" style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#C47C00" circular="true">
     <swiper-item>

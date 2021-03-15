@@ -1,6 +1,6 @@
 <!--pages/allding/allding.wxml-->
 <block wx:for="{{repairList}}" wx:key="index">
-  <view class="user-con">
+  <view class="user-con" bindtap="bindonFn">
     <view class="user">
       <view class="user-img">
         <image mode="aspectFill" src="{{item.avator}}"></image>
@@ -13,11 +13,49 @@
     </view>
     <view class="goging">
       <view class="gogingleft">
-        <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{item.user_mobile}}</text>
+        <view class="iconfont icon-mendian-dianhua icon"> <text  catchtap="bindPho" data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
         </view>
       </view>
     </view>
-    <view class="taking" wx:if="{{item.status==1}}" bindtap="bindComplete" data-id="{{item.id}}">完成</view>
-    <view class="user-pho" bindtap="bindPho" data-pho="{{item.user_mobile}}">拨打电话</view>
+    <view class="user-pho" catchtap="bindpinjFn" data-user_id="{{item.user_id}}">评价</view>
+    <view class="taking" wx:if="{{item.status==1}}" catchtap="bindComplete" data-id="{{item.id}}">完成</view>
+    <view wx:else class="user-dal" catchtap="binddalFn" data-id="{{item.id}}" data-index="{{index}}">删除</view>
   </view>
 </block>
+<view class="footer" style="bottom:{{footerbtm}}rpx">
+  <view class="header-foot">
+    <view class="fbpj">发表评价</view>
+    <view class="tjiao" bindtap="bindgotj">提交</view>
+  </view>
+  <view class='assess-star'>
+    <view class="text-left">服务质量</view>
+    <view class='star-wrap'>
+      <view class='star-item' wx:for="{{stars}}" wx:key="index"
+        style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;'
+        data-index="{{index}}" catchtap='starClick'></view>
+    </view>
+    <view class='star-desc'>{{starDesc}}</view>
+  </view>
+  <view class='assess-star'>
+    <view class="text-left">服务及时性</view>
+    <view class='star-wrap'>
+      <view class='star-item' wx:for="{{stars2}}" wx:key="index"
+        style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;'
+        data-index="{{index}}" catchtap='starClick2'></view>
+    </view>
+    <view class='star-desc'>{{starDesc2}}</view>
+  </view>
+  <view class='assess-star'>
+    <view class="text-left">服务态度</view>
+    <view class='star-wrap'>
+      <view class='star-item' wx:for="{{stars3}}" wx:key="index"
+        style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;'
+        data-index="{{index}}" catchtap='starClick3'></view>
+    </view>
+    <view class='star-desc'>{{starDesc3}}</view>
+  </view>
+  <view class="content">
+    <textarea bindinput="bindcontext" placeholder="感觉怎么样？跟大家分享一下吧~" value="{{content}}" ></textarea>
+    <view class="textnum"><text>{{content.length}}</text>/200</view>
+  </view>
+</view>

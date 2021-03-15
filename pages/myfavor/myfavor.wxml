@@ -22,11 +22,9 @@
         <icon type="success_circle" size="20" color="#F9B236" wx:if="{{item.isSelect}}"></icon>
         <icon type="circle" size="20" wx:else></icon>
       </view>
-      <navigator url="/pages/goodsdetail/goodsdetail?goods_id={{item.cart_id}}">
-        <view class="cart-img">
-          <image mode="aspectFill" src="{{item.favor_image}}"></image>
-        </view>
-      </navigator>
+      <view class="cart-img" bindtap="bindgoingFn" data-favor_type="{{item.favor_type}}" data-favor_data="{{item.favor_data}}">
+        <image mode="aspectFill" src="{{item.favor_image}}"></image>
+      </view>
       <view class="goods-info">
         <view class="goods-title">{{item.favor_name}}</view>
         <view class="goods-other">

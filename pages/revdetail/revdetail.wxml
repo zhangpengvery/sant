@@ -1,0 +1,21 @@
+<!--pages/revdetail/revdetail.wxml-->
+<view class="user">
+  <view class="content-user">
+      <view class="user-tx">
+        <image src="{{getInfo.avatar}}"></image>
+      </view>
+      <view class="user-zl">
+        <view class="user-name">{{getInfo.user_name}}</view>
+        <view class="user-img">
+          <image src="/assets/images/ptvip.png"></image>
+          <text class="vip-text">v1普通会员</text>
+        </view>
+      </view>
+    </view>
+    <view class="users-name">姓名：{{getInfo.user_name}}</view>
+    <view class="users-name">手机：{{getInfo.mobile}}</view>
+    <view class="users-name">地址：{{getInfo.province}}{{getInfo.cityname}}{{getInfo.area_name}}</view>
+    <view class="users-name">发布时间：{{allDay}}</view>
+    <view class="users-name liuyan">留言：{{getInfo.content}}</view>
+</view>
+<view class="bddh" data-pho="{{getInfo.mobile}}" bindtap="bddhFn">拨打电话</view>

@@ -13,6 +13,8 @@ Page({
     type: 1,
     longitude: 0,
     latitude: 0,
+    longitude2: 0,
+    latitude2: 0,
     scrH: 540,
     boxH: 180,
     scrY: false,
@@ -36,6 +38,7 @@ Page({
     markers: [],
     markers2: [],
     userList: [],
+    userList2: [],
     repairList: [],
     broList: [],
     getServiceInfo: [],
@@ -75,7 +78,7 @@ Page({
     }, function () {
       if (that.data.scrH == 540) {
         var sliding = that.data.starpageY - that.data.chenpageY;
-        if (sliding > 30) {
+        if (sliding > 30&&that.data.showBox) {
           that.setData({
             scrH: 1080,
             boxH: 720,
@@ -108,7 +111,7 @@ Page({
     })
   },
   bindTapFn: function () {
-    if (this.data.scrH == 540) {
+    if (this.data.scrH == 540&&this.data.showBox) {
       this.setData({
         scrH: 1080,
         boxH: 720,
@@ -306,27 +309,10 @@ Page({
   //人力
   getLingyuanMarkers() {
     let markers = [];
-    if (this.data.type == 1) {
-      for (let item of this.data.userList) {
+      for (let item of this.data.userList2) {
         let marker = this.createMarker(item);
         markers.push(marker)
       }
-    } else if (this.data.type == 2) {
-      for (let item of this.data.userList) {
-        let marker = this.createMarker2(item);
-        markers.push(marker)
-      }
-    } else if (this.data.type == 3) {
-      for (let item of this.data.userList) {
-        let marker = this.createMarker3(item);
-        markers.push(marker)
-      }
-    } else if (this.data.type == 4) {
-      for (let item of this.data.userList) {
-        let marker = this.createMarker4(item);
-        markers.push(marker)
-      }
-    }
     return markers;
   },
   //服务站
@@ -349,6 +335,7 @@ Page({
       longitude: longitude,
       width: 60,
       height: 60,
+      joinCluster:true
     };
     return marker;
   },
@@ -402,6 +389,7 @@ Page({
       longitude: longitude,
       width: 40,
       height: 40,
+      joinCluster:true
     };
     return marker;
   },
@@ -446,6 +434,8 @@ Page({
   bindFwz: function () {
     var that = this
     this.setData({
+      scrH:540,
+      showGao:false,
       showBox: false,
       showFwz: false
     }, function () {
@@ -498,8 +488,8 @@ Page({
     wx.request({
       url: 'https://jbccs.com/index.php/Api/Map/getMapDatas',
       data: {
-        lng: this.data.longitude,
-        lat: this.data.latitude,
+        lng: this.data.longitude2,
+        lat: this.data.latitude2,
         type: this.data.type
       },
       method: "GET",
@@ -509,7 +499,7 @@ Page({
       },
       success: (res) => {
         this.setData({
-          userList: res.data.datas.user_list,
+          userList2: res.data.datas.user_list,
         }, function () {
           that.setData({
             markers: that.getLingyuanMarkers()
@@ -734,9 +724,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getSetting({
-      withSubscriptions: true,
-    })
     this.getUserInfo()
     wx.hideTabBar({
       animation: true,
@@ -764,6 +751,15 @@ Page({
       },
     })
     this.startSetInter()
+    let mapCtx=wx.createMapContext('map2')
+    mapCtx.initMarkerCluster({
+      enableDefaultStyle:true,
+      zoomOnClick:true,
+      gridSize:60,
+      complete(res){
+        console.log(res);
+      }
+    })
   },
 
   /**
@@ -777,12 +773,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that=this
     wx.startLocationUpdate({
       success: (res) => {
         wx.onLocationChange((res) => {
           this.setData({
-            latitude: res.latitude,
-            longitude: res.longitude
+            latitude2: res.latitude,
+            longitude2: res.longitude
           })
         });
       },

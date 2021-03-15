@@ -1,0 +1,162 @@
+/* pages/myrevie/myrevie.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #f6f6f6;
+}
+.header{
+  width: 94%;
+  height: 100rpx;
+  padding: 0 3%;
+  display: flex;
+  justify-content: space-around;
+  line-height: 100rpx;
+  background: #fff;
+  align-items: center;
+}
+.nav-box{
+  position: relative;
+  font-size: 30rpx;
+}
+.active{
+  color: #F9B236;
+}
+.nav-xian{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translate(-50%);
+  width: 28rpx;
+  height: 4rpx;
+}
+.bgactive{
+  background: #F9B236;
+}
+.content{
+  position: relative;
+  width: 94%;
+  height: 230rpx;
+  margin: 20rpx 3% 0 3%;
+  border-radius: 20rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.user-tx{
+  display: flex;
+  justify-content: end;
+  margin-left: 20rpx;
+  align-items: center;
+  margin-top: 30rpx;
+}
+.yuan{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.yuan image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.user-name{
+  font-size: 32rpx;
+  color: #333;
+  margin-left: 10rpx;
+}
+.db-time{
+  color: #B4B4B4;
+  font-size: 26rpx;
+  margin: 20rpx 0 20rpx 85rpx;
+}
+.db-address{
+  color: #333;
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-left: 85rpx;
+}
+ /* 加号 */
+ .jiahao{
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  margin-left: -46rpx;
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 50%;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 82rpx;
+  font-size: 60rpx;
+  z-index: 10;
+}
+.mask-jiahao{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 450rpx;
+  background: #fff;
+  z-index: 20;
+  border-radius: 60rpx 60rpx 0px 0px;
+}
+.chahao{
+ position: fixed;
+ bottom: 40rpx;
+ left: 50%;
+ transform: translate(-50%);
+ color: #F9B236;
+ font-size: 90rpx;
+ z-index: 30;
+}
+.mask-title{
+  text-align: center;
+  font-size: 36rpx;
+  color: #333;
+  margin: 20rpx 0;
+}
+.mask-icon{
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.mask-icon .iconfont{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #F9B236;
+  color: #fff;
+  line-height: 120rpx;
+  font-size: 50rpx;
+  margin-bottom: 20rpx;
+}
+.mask-icon text{
+  font-size: 28rpx;
+}
+.delete{
+  width: 74rpx;
+  height: 36rpx;
+  position: absolute;
+  bottom: 90rpx;
+  right: 40rpx;
+  border: 2rpx solid #BA1515;
+  border-radius: 128rpx;
+  color: #BA1515;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 36rpx;
+}
+.editor{
+  width: 74rpx;
+  height: 36rpx;
+  position: absolute;
+  bottom: 145rpx;
+  right: 40rpx;
+  border: 2rpx solid #333;
+  border-radius: 128rpx;
+  font-size: 20rpx;
+  color: #333;
+  text-align: center;
+  line-height: 36rpx;
+}

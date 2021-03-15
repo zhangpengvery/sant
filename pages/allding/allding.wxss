@@ -63,11 +63,24 @@ page{
 .user-pho{
   position: absolute;
   bottom: 30rpx;
-  right: 20rpx;
+  right: 150rpx;
   width: 120rpx;
   height: 50rpx;
   line-height: 50rpx;
   background: #F9B236;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+}
+.user-dal{
+  position: absolute;
+  bottom: 30rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: red;
   color: #fff;
   font-size: 20rpx;
   border-radius: 308rpx;
@@ -85,4 +98,81 @@ page{
   font-size: 20rpx;
   border-radius: 308rpx;
   text-align: center;
+}
+.footer{
+  position: fixed;
+  left: 0;
+  width: 94%;
+  padding: 0 3%;
+  height: 650rpx;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+  border-radius: 20rpx 20rpx 0px 0px;
+  transition: all ease 0.3s;
+}
+.header-foot{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fbpj{
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.tjiao{
+  font-size: 26rpx;
+  color: #F9B236;
+}
+.assess-star{
+  width: 95%;
+  height: 50rpx;
+  margin-left: 5%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.text-left{
+  text-align: justify;
+  width: 150rpx;
+  text-align-last:justify;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.star-wrap{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 0 20rpx;
+}
+.star-item{
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 10rpx;
+}
+.star-desc{
+  font-size: 30rpx;
+  font-weight: 400;
+  text-align: center;
+  font-size: 26rpx;
+}
+.content{
+  position: relative;
+  width: 94%;
+  height: 310rpx;
+  padding: 20rpx 3%;
+  border-radius: 20rpx;
+  background: #f9f9f9;
+  margin-top: 30rpx;
+}
+.textnum{
+  position: absolute;
+  bottom: 20rpx;
+  right: 30rpx;
+  font-size: 26rpx;
+  color: #858585;
+}
+.textnum text{
+  color: #F9B236;
 }

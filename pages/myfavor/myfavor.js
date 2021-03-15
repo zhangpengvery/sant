@@ -175,6 +175,26 @@ Page({
       this.myFavorList(this.data.type)
     })
   },
+  bindgoingFn:function(e){
+    console.log(e);
+    if(e.currentTarget.dataset.favor_type=='entire'){
+      wx.navigateTo({
+        url: '/pages/accedetail/accedetail?good_id='+e.currentTarget.dataset.favor_data,
+      })
+    }else if(e.currentTarget.dataset.favor_type=='parts'){
+      wx.navigateTo({
+        url: '/pages/peijdetail/peijdetail?good_id='+e.currentTarget.dataset.favor_data,
+      })
+    }else if(e.currentTarget.dataset.favor_type=='hire'){
+      wx.navigateTo({
+        url: '/pages/hiredetail/hiredetail?hire_id='+e.currentTarget.dataset.favor_data,
+      })
+    }else if(e.currentTarget.dataset.favor_type=='sale'){
+      wx.navigateTo({
+        url: '/pages/saledetail/saledetail?sale_id='+e.currentTarget.dataset.favor_data,
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

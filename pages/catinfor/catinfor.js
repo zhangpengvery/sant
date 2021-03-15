@@ -9,19 +9,26 @@ Page({
    * 页面的初始数据
    */
   data: {
+    active:0,
     navH:0,
     allshow:0,
     allactive:0,
+    addressList:[],
+    dixian:true
   },
-  tokenFn(userName,password){
-    requestApi1(app.globalData.txj_url+"/api/login",{
-      userName:'hncm',
-      password:'123321abc*'
-    }).then(res=>{
+  tokenFn(){
+    requestApi1(app.globalData.base_url+"/txjLogin",).then(res=>{
+      var timestamp=Date.parse(new Date())
+      var expiration=timestamp+1200000
       wx.setStorage({
-        data: res.data.data.token,
+        data: res.data.data.data.token,
         key: 'txj-token',
       })
+      wx.setStorage({
+        data: expiration,
+        key: 'txjTime',
+      })
+      console.log(res);
     })
   },
   bindallshowFn:function(){
@@ -44,23 +51,46 @@ Page({
   },
   bindincrease:function(e){
     wx.navigateTo({
-      url: '/pages/position/position',
+      url: '/pages/position/position?vin='+e.currentTarget.dataset.vin,
     })
   },
-  bindallTjcl:function(){
+  bindallTjcl:function(e){
     wx.navigateTo({
-      url: '/pages/index/index',
+      url: '/pages/track/track?vin='+e.currentTarget.dataset.vin,
+    })
+  },
+  async addressList() {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Car/address_list")
+    if(result.data.datas.car_list.length==0){
+      this.setData({
+        dixian:false
+      })
+    }
+    this.setData({
+      addressList: result.data.datas.car_list
+    })
+    console.log(this.data.addressList);
+  },
+  bindtabCar:function(e){
+    // console.log(e.currentTarget.dataset.index);
+    this.setData({
+      active:e.currentTarget.dataset.index,
+      allshow:0,
+      allactive:0,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.addressList()
+    var timestamp=Date.parse(new Date())
     if(wx.getStorageSync('txj-token')==[]){
       this.tokenFn()
-    }else{
-      console.log(2);
+    }else if(timestamp>wx.getStorageSync('txjTime')){
+      this.tokenFn()
     }
+    // this.tokenFn()
     this.setData({
       navH:app.globalData.navbarHeight,
     })

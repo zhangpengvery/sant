@@ -53,7 +53,6 @@ Page({
     }
   },
   bindUrlFn:function(e){
-    console.log(e.currentTarget.dataset.url);
     if(wx.getStorageSync('token')==[]){
       wx.navigateTo({
         url: '/pages/login/login',

@@ -1,44 +1,75 @@
 <!--pages/joinsant/joinsant.wxml-->
-<view class="header-img">
-  <image src="https://www.jbccs.com/Public/Wap/image/zp-big.jpg"></image>
+<view class="iconfont icon-ziyuan2 home" style="top:{{TopH}}px" bindtap="bindGohome">首页</view>
+<view class="mapbox" hover-class="none" style="width: 100%; height: 100%;">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
+    style="width: 100%; height: 100%;" bindmarkertap="markertap"></map>
 </view>
-<view class="body-img">
-  <view class="img-box" bindtap="joinFn">
-    <image src="https://www.jbccs.com/Public/Wap/image/jm-s-1.png"></image>
-  </view>
-  <view class="img-box" bindtap="joinTowfn">
-    <image src="https://www.jbccs.com/Public/Wap/image/jm-s-2.png"></image>
-  </view>
-</view>
-<navigator url="/pages/jointhr/jointhr">
-  <view class="join">
-    <view class="join-box">
-      <view class="iconfont icon-woyaozhaopin join1"></view>
+<view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx"
+  wx:if="{{active==1}}">
+  <view class="iconfont icon-xiala jiant" bindtap="bindTapFn"></view>
+  <view class="gclc-icon">
+    <view class="icon-left" bindtap="bindJrzy">
+      <view class="iconfont icon-taishifuwu-jinrongzhuanyuan yuan yuan3"></view>
+      <view class="xiandan">金融专员</view>
     </view>
-    <view class="join-text">
-      <view class="title">供应商入驻</view>
-      <view class="text">资源共享，合作共赢</view>
+    <view class="icon-left" bindtap="bindCxzy">
+      <view class="iconfont icon-taishifuwu-chexianzhuanyuan yuan yuan4"></view>
+      <view class="xiandan">车险专员</view>
     </view>
-    <view class="iconfont icon-xiangyou"></view>
+    <view class="icon-left" bindtap="bindJsq">
+      <view class="iconfont icon-taishifuwu-chenmasongche yuan yuan2"></view>
+      <view class="xiandan">计算器</view>
+    </view>
   </view>
-</navigator>
-<view class="join">
-  <view class="join-box">
-    <view class="iconfont icon-zixundingdan join2"></view>
-  </view>
-  <view class="join-text" bindtap="joinFn">
-    <view class="title">服务小哥加盟</view>
-    <view class="text">招聘信息，持续发布</view>
-  </view>
-  <view class="iconfont icon-xiangyou"></view>
-</view>
-<view class="join" bindtap="goGzhFn">
-  <view class="join-box">
-    <view class="iconfont icon-zixundingdan join3"></view>
-  </view>
-  <view class="join-text">
-    <view class="title">公司招聘</view>
-    <view class="text">招聘信息，持续发布</view>
-  </view>
-  <view class="iconfont icon-xiangyou"></view>
+  <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" binddragging="scrTopFn"
+    bindscroll="scrBtnFn">
+    <block wx:if="{{showGao}}">
+      <block wx:for="{{userList}}" wx:key="item">
+        <view class="box-con">
+          <view class="user">
+            <view class="user-img">
+              <image mode="aspectFill" src="{{item.avator}}"></image>
+            </view>
+            <view class="user-xx">
+              <view class="user-name">{{item.user_name}}</view>
+              <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+            </view>
+            <view class="juli">距您{{item.distance}}km</view>
+          </view>
+          <view class="goging">
+            <view class="gogingleft">
+              <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{item.user_mobile}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
+          </view>
+          <view wx:if="{{type==1}}" data-service_uid="{{item.user_id}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
+        </view>
+      </block>
+    </block>
+    <block wx:elif="{{showBox}}">
+      <view class="box-con">
+        <view class="user">
+          <view class="user-img">
+            <image mode="aspectFill" src="{{avator}}"></image>
+          </view>
+          <view class="user-xx">
+            <view class="user-name">{{name}}</view>
+            <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+          </view>
+          <view class="juli">距您{{distance}}km</view>
+        </view>
+        <view class="goging">
+          <view class="gogingleft">
+            <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{user_mobile}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
+        <view wx:if="{{type==1}}" data-service_uid="{{service_uid}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
+      </view>
+    </block>
+  </scroll-view>
+  <cover-image class="gozhong" src="/assets/images/dqwz.png" bindtap='clickControl'></cover-image>
 </view>

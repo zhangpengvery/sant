@@ -56,7 +56,8 @@ Page({
     getOrderList:[],
     getOrderOne:[],
     getOrderTow:[],
-    getOrderInfo:[]
+    getOrderInfo:[],
+    triggered:false
   },
   navLeftFn:function(){
     this.setData({
@@ -87,7 +88,6 @@ Page({
       currentIndex:e.currentTarget.dataset.current,
       getOrderList:[],
       getOrderOne:[],
-
     })
     if(a==0){
       this.getOrderList(this.data.p,this.data.good_type)
@@ -112,6 +112,24 @@ Page({
       getOrderList:this.data.getOrderList.concat(result.data.datas.list)
     })
     console.log(result.data.datas.list);
+  },
+  //下拉刷新
+  async getOrderList2(p,good_type){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
+      p:p,
+      type:"all",
+      good_type:good_type
+    })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
+    this.setData({
+      getOrderList:result.data.datas.list,
+      triggered:false
+    })
   },
   //代付款订单
   async getOrderOne(p,good_type){
@@ -309,6 +327,14 @@ Page({
       p2: ++this.data.p2
     })
     this.getOrderOne(this.data.p2,this.data.good_type)
+  },
+  refresherFn:function(){
+    var that=this
+    this.setData({
+      p:1,
+    },function(){
+      that.getOrderList2(that.data.p,that.data.good_type)
+    })
   },
   /**
    * 生命周期函数--监听页面加载

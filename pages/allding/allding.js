@@ -10,7 +10,109 @@ Page({
    */
   data: {
     List:[],
-    repairList:[]
+    repairList:[],
+    footerbtm:-650,
+    starDesc: '待评价',
+    starDesc2: '待评价',
+    starDesc3: '待评价',
+    star_o:0,
+    star_t:0,
+    star_th:0,
+    content:"",
+    uid:0,
+    stars: [{
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常差',
+      fen:1
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '较差',
+      fen:2
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '一般',
+      fen:3
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '好',
+      fen:4
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常好',
+      fen:5
+    }],
+    stars2: [{
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常差',
+      fen:1
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '较差',
+      fen:2
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '一般',
+      fen:3
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '好',
+      fen:4
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常好',
+      fen:5
+    }],
+    stars3: [{
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常差',
+      fen:1
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '较差',
+      fen:2
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '一般',
+      fen:3
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '好',
+      fen:4
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常好',
+      fen:5
+    }]
   },
   async getRepairList() {
     var that=this
@@ -39,6 +141,7 @@ Page({
     var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
     let getrepair = {
       id:point.id,
+      user_id:point.user_id,
       avator:point.avator,
       create_time:YY+MM+DD,
       status:point.status,
@@ -47,19 +150,146 @@ Page({
     };
     return getrepair;
   },
-  // formatDate :function () {
-  //   var date = new Date(1614333718000);
-  //   var YY = date.getFullYear() + '-';
-  //   var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  //   var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
-  //   var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-  //   var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-  //   var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-  //   console.log(YY+MM+DD+""+hh+mm+ss);
-  // },
   bindPho:function(e){
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.pho,
+    })
+  },
+  // 选择评价星星
+  starClick: function(e) {
+    var that = this;
+    for (var i = 0; i < that.data.stars.length; i++) {
+      var allItem = 'stars[' + i + '].flag';
+      that.setData({
+        [allItem]: 2
+      })
+    }
+    var index = e.currentTarget.dataset.index;
+    for (var i = 0; i <= index; i++) {
+      var item = 'stars[' + i + '].flag';
+      that.setData({
+        [item]: 1
+      })
+    }
+    this.setData({
+      starDesc: this.data.stars[index].message,
+      star_o:this.data.stars[index].fen
+    })
+  },
+  starClick2: function(e) {
+    var that = this;
+    for (var i = 0; i < that.data.stars2.length; i++) {
+      var allItem = 'stars2[' + i + '].flag';
+      that.setData({
+        [allItem]: 2
+      })
+    }
+    var index = e.currentTarget.dataset.index;
+    for (var i = 0; i <= index; i++) {
+      var item = 'stars2[' + i + '].flag';
+      that.setData({
+        [item]: 1
+      })
+    }
+    this.setData({
+      starDesc2: this.data.stars2[index].message,
+      star_t:this.data.stars2[index].fen
+    })
+  },
+  starClick3: function(e) {
+    var that = this;
+    for (var i = 0; i < that.data.stars3.length; i++) {
+      var allItem = 'stars3[' + i + '].flag';
+      that.setData({
+        [allItem]: 2
+      })
+    }
+    var index = e.currentTarget.dataset.index;
+    for (var i = 0; i <= index; i++) {
+      var item = 'stars3[' + i + '].flag';
+      that.setData({
+        [item]: 1
+      })
+    }
+    this.setData({
+      starDesc3: this.data.stars3[index].message,
+      star_th:this.data.stars3[index].fen
+    })
+  },
+  bindcontext:function(e){
+    this.setData({
+      content:e.detail.value
+    })
+  },
+  bindpinjFn:function(e){
+    console.log(e.currentTarget.dataset.user_id);
+    this.setData({
+      uid:e.currentTarget.dataset.user_id,
+      footerbtm:0
+    })
+  },
+  Mapstar(star_o,star_t,star_th,uid,content){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Map/star",{
+      star_o:star_o,
+      star_t:star_t,
+      star_th:star_th,
+      uid:uid,
+      content:content
+    }).then(res=>{
+      wx.redirectTo({
+        url: '/pages/allding/allding',
+      })
+    })
+  },
+  bindgotj:function(){
+    if(this.data.star_o==0){
+      wx.showToast({
+        title: '请点击评价',
+      })
+    }else if(this.data.star_t==0){
+      wx.showToast({
+        title: '请点击评价',
+      })
+    }else if(this.data.star_th==0){
+      wx.showToast({
+        title: '请点击评价',
+      })
+    }else if(this.data.content==""){
+      wx.showToast({
+        title: '请填写评价',
+      })
+    }else{
+      this.Mapstar(this.data.star_o,this.data.star_t,this.data.star_th,this.data.uid,this.data.content)
+    }
+  },
+  bindonFn:function(){
+    this.setData({
+      footerbtm:-650
+    })
+  },
+  Mapdel(id){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Map/del",{
+      id:id
+    }).then(res=>{
+
+    })
+  },
+  binddalFn:function(e){
+    var that=this
+    var id=e.currentTarget.dataset.id
+    var index=e.currentTarget.dataset.index
+    var list=this.data.repairList
+    list.splice(index,1)
+    wx.showModal({
+      title:'是否删除该订单',
+      success(res){
+        if(res.confirm){
+          that.setData({
+            repairList:list
+          })
+          that.Mapdel(id)
+        }
+      }
     })
   },
   /**

@@ -1,0 +1,63 @@
+<!--pages/clockin/clockin.wxml-->
+<view class="header">
+  <view class="box">
+    <view class="header-yuan">{{name}}</view>
+    <view>
+      <view class="header-name">{{user.user_name}}</view>
+      <view class="header-text">中兴办公人员考勤</view>
+    </view>
+  </view>
+  <view class="box-fatr">
+    <view class="box2" bindtap="bindstatisFn">
+      <view class="iconfont icon-zu1865"></view>
+      <view class="header-rigth">统计</view>
+    </view>
+    <view class="box2" bindtap="bindshenqFn">
+      <view class="iconfont icon-zu1865"></view>
+      <view class="header-rigth">申请</view>
+    </view>
+  </view>
+</view>
+<view class="content">
+  <view class="box3">
+    <view class="time">
+      <view class="sb-time">上班08:30</view>
+      <view class="sbdk-time">
+        <block wx:if="{{getCheck==null}}">
+          <view class="time-text">未打卡</view>
+        </block>
+        <block wx:else>
+          <view class="iconfont icon-zujian202 time-yuan"></view>
+          <view class="time-text">{{getCheck.r_time}}已打卡</view>
+        </block>
+      </view>
+    </view>
+    <view class="time">
+      <view class="sb-time">下班17:30</view>
+      <view class="sbdk-time">
+        <block wx:if="{{getCheck2==null}}">
+          <view class="time-text">未打卡</view>
+        </block>
+        <block wx:else>
+          <view class="iconfont icon-zujian202 time-yuan"></view>
+          <view class="time-text">{{getCheck2.r_time}}已打卡</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="clockin {{active==0?'clockin2':''}}" bindtap="bindclockinFn">
+    <view class="clockin-text">{{clockin}}</view>
+    <view class="clockin-time">{{currentTime}}</view>
+  </view>
+  <view class="scope">
+    <block wx:if="{{active==1}}">
+      <view class="iconfont icon-zujian202 time-yuan"></view>
+      <view class="clockin-scope">已进入考勤范围：</view>
+      <view class="scope-address">中兴新业港</view>
+    </block>
+    <block wx:else>
+      <view class="clockin-scope">未进入考勤范围：</view>
+      <view class="scope-address">外勤打卡</view>
+    </block>
+  </view>
+</view>

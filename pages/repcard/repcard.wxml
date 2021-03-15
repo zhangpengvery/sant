@@ -1,0 +1,16 @@
+<!--pages/repcard/repcard.wxml-->
+<view class="header">
+  <view class="time">
+    <text class="red">* </text>
+    <text>补卡时间</text>
+  </view>
+  <view class="time-box">{{r_data}}  {{r_time}}</view>
+</view>
+<view class="content">
+  <view class="time">
+    <text class="red">* </text>
+    <text>补卡理由</text>
+  </view>
+  <textarea class="text-ly" value="{{bkly}}"></textarea>
+</view>
+<view class="ljfb" bindtap="bddhFn">提交</view>

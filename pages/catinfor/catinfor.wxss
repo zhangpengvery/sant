@@ -31,12 +31,18 @@
   text-align: center;
 }
 .yuan{
-  width: 314rpx;
+  width: 450rpx;
   height: 314rpx;
-  background: #F9B236;
+  /* background: #F9B236;
   opacity: 0.19;
-  border-radius: 50%;
+  border-radius: 50%; */
   margin: 20rpx auto 30rpx auto;
+  border-radius: 20rpx;
+}
+.yuan image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
 }
 .cart{
   position: relative;
@@ -111,8 +117,13 @@
   border: 1rpx solid #EFEFEF;
 }
 .carleft .left-top{
+  width: 200rpx;
+  height: 50rpx;
   font-size: 30rpx;
   color: #333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .carleft .left-btm{
   font-size: 22rpx;

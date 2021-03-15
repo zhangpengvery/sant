@@ -16,7 +16,7 @@
       <view class="iconfont icon-taishifuwu-fuwuguanjia yuan yuan1"></view>
       <view class="xiandan">服务管家</view>
     </view>
-    <view class="icon-left" bindtap="bindCmsc">
+    <!-- <view class="icon-left" bindtap="bindCmsc">
       <view class="iconfont icon-taishifuwu-chenmasongche yuan yuan2"></view>
       <view class="xiandan">辰马送车</view>
     </view>
@@ -27,10 +27,14 @@
     <view class="icon-left" bindtap="bindCxzy">
       <view class="iconfont icon-taishifuwu-chexianzhuanyuan yuan yuan4"></view>
       <view class="xiandan">车险专员</view>
+    </view> -->
+    <view class="icon-left" bindtap="bindFwz">
+      <view class="iconfont icon-zu1889 yuan yuan4"></view>
+      <view class="xiandan">陕汽服务站</view>
     </view>
     <view class="icon-left" bindtap="bindFwz">
-      <view class="iconfont icon-taishifuwu-fuwuzhan yuan yuan5"></view>
-      <view class="xiandan">服务站</view>
+      <view class="iconfont icon-zu1888 yuan yuan5"></view>
+      <view class="xiandan">重汽服务站</view>
     </view>
   </view>
   <view class="text">已为您匹配距离最近的服务管家</view>

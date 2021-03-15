@@ -1,9 +1,61 @@
 <!--pages/logistic/logistic.wxml-->
-<view class="box-img">
-  <image src="https://www.jbccs.com//Upload/Upload/Pictures/2020-12-29/5feae74159346.jpg"></image>
+<view class="iconfont icon-ziyuan2 home" style="top:{{TopH}}px" bindtap="bindGohome">首页</view>
+<view class="mapbox" hover-class="none" style="width: 100%; height: 100%;">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="14" show-location="true"
+    style="width: 100%; height: 100%;" bindmarkertap="markertap"></map>
 </view>
-<view class="box">
-  <image src="https://jbccs.com/Upload/image/2021-01-30/60151386d08d2.png"></image>
+<view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx"
+  wx:if="{{active==1}}">
+  <view class="iconfont icon-xiala jiant" bindtap="bindTapFn"></view>
+  <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" binddragging="scrTopFn"
+    bindscroll="scrBtnFn">
+    <block wx:if="{{showGao}}">
+      <block wx:for="{{userList}}" wx:key="item">
+        <view class="box-con">
+          <view class="user">
+            <view class="user-img">
+              <image mode="aspectFill" src="{{item.avator}}"></image>
+            </view>
+            <view class="user-xx">
+              <view class="user-name">{{item.user_name}}</view>
+              <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+            </view>
+            <view class="juli">距您{{item.distance}}km</view>
+          </view>
+          <view class="goging">
+            <view class="gogingleft">
+              <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{item.user_mobile}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
+          </view>
+          <view wx:if="{{type==1}}" data-service_uid="{{item.user_id}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
+        </view>
+      </block>
+    </block>
+    <block wx:elif="{{showBox}}">
+      <view class="box-con">
+        <view class="user">
+          <view class="user-img">
+            <image mode="aspectFill" src="{{avator}}"></image>
+          </view>
+          <view class="user-xx">
+            <view class="user-name">{{name}}</view>
+            <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+          </view>
+          <view class="juli">距您{{distance}}km</view>
+        </view>
+        <view class="goging">
+          <view class="gogingleft">
+            <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{user_mobile}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
+        <view wx:if="{{type==1}}" data-service_uid="{{service_uid}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
+      </view>
+    </block>
+  </scroll-view>
+  <cover-image class="gozhong" src="/assets/images/dqwz.png" bindtap='clickControl'></cover-image>
 </view>
-<view class="text">联系人：杨经理</view>
-<view class="text" bindtap="bindphoFn">电话：<text style="color:#F9B236">176133159555</text></view>

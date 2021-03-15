@@ -25,13 +25,12 @@ Page({
       title:"求租详情"
     },
     navH:0,
-    phone:'17550970313',
     getSaleInfo:[],
     getSaleList:[]
   },
-  bddhFn:function(){
+  bddhFn:function(e){
     wx.makePhoneCall({
-      phoneNumber: this.data.phone,
+      phoneNumber: e.currentTarget.dataset.pho,
     })
   },
   async getHireforInfo(hf_id){

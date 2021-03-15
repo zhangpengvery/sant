@@ -1,0 +1,31 @@
+<!--pages/addshen/addshen.wxml-->
+<view class="content">
+  <view class="box">
+    <view class="box-title">姓名</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindName" placeholder="请输入姓名" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">手机</view>
+    <view class="box-inp">
+      <input type="number" bindinput="bindPho" placeholder="请输入手机号" />
+    </view>
+  </view>
+  <view class="box">
+    <view  class="box-title">办理城市</view>
+    <view class="box-inp">
+      <picker bindchange="changeRegin" bindcolumnchange="bindRegionColumnChange" mode = "multiSelector" value="{{region}}" range='{{multiArray}}'>
+        <view class="picker" wx:if="{{addressCity}}">{{addressCity[0]}} - {{addressCity[1]}} - {{addressCity[2]}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box box2">
+    <view class="box-title">留言</view>
+    <view class="box-inp box-da">
+      <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" />
+    </view>
+  </view>
+</view>
+<view class="ljfb" bindtap="bddhFn">立即发布</view>

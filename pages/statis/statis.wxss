@@ -1,0 +1,44 @@
+/* pages/statis/statis.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #F6F6F6;
+}
+.footer{
+  width: 94%;
+  margin: 0 3%;
+  background: #fff;
+  border-radius: 0 0 20rpx 20rpx;
+}
+.footer-text{
+  font-size: 24rpx;
+  color: #999;
+  padding-top: 10rpx;
+  text-indent: 3%;
+}
+.footer-time{
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 94%;
+  padding: 40rpx 3%;
+}
+.clockintime{
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+.yuan{
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: #999;
+  margin-right: 20rpx;
+}
+.xian{
+  position: absolute;
+  top: -40rpx;
+  left: 28rpx;
+  height: 80rpx;
+  border-left: 2rpx solid #cbcbcb;
+}

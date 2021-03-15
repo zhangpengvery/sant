@@ -10,43 +10,56 @@ Page({
    */
   data: {
     latitude:39.90960456049752,
-    longitude:116.3972282409668
+    longitude:116.3972282409668,
+    markers:[
+      {
+        id:0,
+        latitude:39.90960456049752,
+        longitude:116.3972282409668,
+        iconPath:"/assets/images/stcar.png",
+        width:45,
+        height:35
+      }
+    ]
   },
-  // getUserLocation() {
-  //   wx.getSetting({
-  //     success(res) {
-  //       console.log(res)
-  //       if (res.authSetting['scope.userLocationBackground']) {
-  //         wx.startLocationUpdateBackground({
-  //           success: (res) => {
-  //             console.log('startLocationUpdate-res', res)
-  //           },
-  //           fail: (err) => {
-  //             console.log('startLocationUpdate-err', err)
-  //           }
-  //         })
-  //       } else {
-  //         if (res.authSetting['scope.userLocation'] == false) {
-  //           console.log('打开设置页面去授权')
-  //         } else {
-  //           wx.startLocationUpdateBackground({
-  //             success: (res) => {
-  //               console.log('startLocationUpdate-res', res)
-  //             },
-  //             fail: (err) => {
-  //               console.log('startLocationUpdate-err', err)
-  //             }
-  //           })
-  //         }
-  //       }
-  //     }
-  //   })
-  // },
+  txjLocation(vins,token){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    requestApi1(app.globalData.base_url+"/txjLocation",{
+      vins:vins,
+      token:token
+    }).then(res=>{
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      var lat="markers[" + 0 + "].latitude";
+      var lng="markers[" + 0 + "].longitude"
+      this.setData({
+        latitude:res.data.data.data[0].lat,
+        longitude:res.data.data.data[0].lng,
+        [lat]:res.data.data.data[0].lat,
+        [lng]:res.data.data.data[0].lng,
+        txjLocation:res.data.data.data[0]
+      })
+      console.log(res);
+    })
+  },
+  bindgo:function(e){
+    wx.openLocation({
+      latitude: Number(e.currentTarget.dataset.lat),
+      longitude: Number(e.currentTarget.dataset.lng),
+      scale: 18,
+      name: e.currentTarget.dataset.address,
+      address: e.currentTarget.dataset.address
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log(options.vin);
+    this.txjLocation(options.vin,wx.getStorageSync('txj-token'))
   },
 
   /**

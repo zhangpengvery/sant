@@ -1,7 +1,23 @@
 <!--pages/tjclcar/tjclcar.wxml-->
-<view class="box">
-  <view class="box-inp">
-    <view class="title">VIN码：</view>
-    <input type="text" bindinput="bindTextFn" placeholder="请输入车辆VIN码" />
+<view class="text">上传行驶证</view>
+<view class="jsz" bindtap="xingszFn">
+  <image mode="scaleToFill" src="https://jbccs.com/{{drive_file}}"></image>
+</view>
+<view class="kaiguan">
+  <view class="box">
+    <view class="box-title">车辆类型</view>
+    <view bindtap="gerenFn" class="yuan {{car_type==1?'huang':''}}"></view>
+    <view class="left">个人</view>
+    <view bindtap="gongsFn" class="yuan {{car_type==2?'huang':''}}"></view>
+    <view class="left">企业</view>
   </view>
 </view>
+<view class="kaiguan">
+  <view class="box-footer">
+    <view class="footer-text">设为默认地址</view>
+    <switch class="switchcss" color="#F9B236" bindchange="switchFn"></switch>
+  </view>
+</view>
+<navigator url="/pages/mind/mind">
+  <view class="ljfb" bindtap="bddhFn">确定上传</view>
+</navigator>
