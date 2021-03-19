@@ -1,0 +1,72 @@
+<!--pages/findetail/findetail.wxml-->
+<navbar params="{{params}}" />
+<view class="home-navimg">
+  <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+</view>
+<view class="header-img" style="margin-top:{{navH}}rpx">
+  <image src="https://jbccs.com/./Upload/image/2021-03-19/60545f83aa39b.png"></image>
+  <view wx:if="{{status==0}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  待处理</view>
+  <view wx:if="{{status==1}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  处理中</view>
+  <view wx:if="{{status==-1}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已取消</view>
+  <view wx:if="{{status==4}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已转接</view>
+  <view wx:if="{{status==2||status==3}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已完成</view>
+</view>
+<view class="footer">
+  <view class="footer-box">
+    <view class="iconfont icon-jiedan"></view>
+    <view class="box-right">
+      <view class="box-text">接单日期</view>
+      <view class="box-time">{{time}}</view>
+    </view>
+  </view>
+  <view class="footer-box">
+    <view class="xian"></view>
+    <view class="iconfont icon-yuyue"></view>
+    <view class="box-right">
+      <view class="box-text">预约调查日期</view>
+      <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+        <view class="box-time">{{date}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="footer-box">
+    <view class="xian"></view>
+    <view class="iconfont icon-wancheng"></view>
+    <view class="box-right">
+      <view class="box-text">调查状态</view>
+      <picker bindchange="bindPickerChange" value="{{array['arrayIndex']}}" range="{{array}}" range-key="{{'text'}}">
+        <view>{{array[arrayIndex].text}}</view>
+      </picker>
+      <!-- <view wx:if="{{status==2}}">部分完成</view>
+      <view wx:if="{{status==3}}">全部完成</view> -->
+    </view>
+  </view>
+  <view class="xititle" wx:if="{{status>1&status!=4}}">调查详情</view>
+  <view class="xqtext" wx:if="{{status>1&status!=4}}">
+    <textarea class="xqval" bindinput="bindXingq" value="{{getOrder.content}}"></textarea>
+  </view>
+  <view class="bai"></view>
+</view>
+<view class="user">
+  <view class="user-box">
+    <view class="user-name">客户姓名</view>
+    <view class="user-pho">{{getOrder.user_name}}</view>
+  </view>
+  <view class="user-box">
+    <view class="user-name">联系方式</view>
+    <view class="user-pho">{{getOrder.user_mobile}}</view>
+  </view>
+  <view class="user-text">
+    <view class="user-name">家访地址</view>
+    <view class="user-pho">{{getOrder.province}}{{getOrder.cityname}}{{getOrder.area_name}}{{getOrder.address}}</view>
+  </view>
+</view>
+<view class="content">
+  <view class="box">
+    <view class="title">销售人员：{{getOrder.uname}}</view>
+    <view class="pho"><text class="iconfont icon-mendian-dianhua"></text> {{getOrder.tel}}</view>
+    <view class="bddh" bindtap="bindPho" data-pho="{{getOrder.tel}}">拨打电话</view>
+  </view>
+</view>
+<view class="zhuan" wx:if="{{status==0}}" bindtap="deleteFn">转接</view>
+<view class="ljfb" wx:if="{{content.length>0}}" bindtap="bddhFn">立即发布</view>

@@ -1,0 +1,47 @@
+/* pages/switch/switch.wxss */
+@import "/assets/fonts/iconfont.wxss";
+.box{
+  width: 90%;
+  margin: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+}
+.box-title{
+  width: 20%;
+  color: #333;
+  font-size: 28rpx;
+  text-align: justify;
+  text-align-last:justify;
+}
+.box-inp{
+  width: 32%;
+  position: relative;
+}
+.box-inp .iconfont{
+  position: absolute;
+  top: 0;
+  right: 0rpx;
+  font-size: 26rpx;
+  color: #F9B236;
+}
+.picker{
+  font-size: 26rpx;
+}
+.ljfb{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+}

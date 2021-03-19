@@ -200,3 +200,11 @@ page{
   right: 0;
   color: #BA1515;
 }
+.kong{
+  width: 100%;
+  height: 600rpx;
+  text-align: center;
+  line-height: 600rpx;
+  font-size: 24rpx;
+  color: #ababab;
+}

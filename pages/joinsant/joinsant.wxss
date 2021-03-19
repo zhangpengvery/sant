@@ -60,7 +60,7 @@ page{
   background-image: linear-gradient(-45deg,#4fbec7,#87CED6);
 }
 .icon-left .yuan2{
-  background-image: linear-gradient(-45deg,#706fa9,#8694c9);
+  background-image: linear-gradient(-45deg,#3197A9,#48B8D5);
 }
 .icon-left .yuan3{
   background-image: linear-gradient(-45deg,#5282c3,#5fa3d9);
@@ -245,6 +245,13 @@ page{
   position: absolute;
   right: 30rpx;
   top: -90rpx;
+}
+.golist{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  right: 16rpx;
+  top: -200rpx;
 }
 .order{
   position: fixed;

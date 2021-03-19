@@ -10,8 +10,8 @@
 <swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
   <!-- 我要代办 -->
   <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx">
-      <block wx:for="{{markers}}" wx:key="index">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" wx:if="{{markers.length>=1}}">
+      <block wx:for="{{markers}}" wx:key="index" >
         <view class="content">
           <view class="user-tx">
             <view class="yuan">
@@ -28,10 +28,11 @@
         </view>
       </block>
     </scroll-view>
+    <view wx:else class="kong">暂无数据</view>
   </swiper-item>
   <!-- 我能代办 -->
   <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" wx:if="{{markers2.length>=1}}">
       <block wx:for="{{markers2}}" wx:key="index">
         <view class="content">
           <view class="user-tx">
@@ -49,6 +50,7 @@
         </view>
       </block>
     </scroll-view>
+    <view wx:else class="kong">暂无数据</view>
   </swiper-item>
 </swiper>
 <!-- 加号 -->

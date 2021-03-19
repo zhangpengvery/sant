@@ -1,0 +1,87 @@
+<!--pages/counter/counter.wxml-->
+<navbar params="{{params}}" />
+<view class="home-navimg">
+  <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+</view>
+<!-- <view class="header" style="margin-top:{{navH}}rpx">
+  <view class="nav-box {{currentIndex==0?'active':''}}" data-current="0" bindtap="changeSwiper">
+    知总款算月供
+  </view>
+</view> -->
+<swiper class="swiper-order" bindchange="changeTab"  current="{{currentIndex}}" style="height:{{scrollH}}rpx;margin-top:{{navH}}rpx">
+  <!-- 知利率算月供 -->
+  <swiper-item>
+    <view class="header-box">
+      <view class="box">
+        <view class="box-title">贷款金额（元）</view>
+        <view class="box-inp">
+          <input type="digit" bindinput="bindyuan" placeholder="请输入贷款金额" value="{{jiner}}" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="box-title">贷款期限（月）</view>
+        <view class="box-inp">
+          <picker bindchange="bindTypeChange" value="{{typeList['typeIndex']}}" range="{{typeList}}"
+            range-key="{{'time'}}">
+            <view class="picker">{{typeList[typeIndex].time}}</view>
+            <view class="iconfont icon-tubiao2-14"></view>
+          </picker>
+        </view>
+      </view>
+      <view class="box">
+        <view class="box-title">手续费率（%）</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindliyu" placeholder="请输入年利率" disabled="true" value="2%" />
+        </view>
+      </view>
+    </view>
+    <view class="btn">
+      <view class="btn-left" bindtap="binddal">清空</view>
+      <view class="btn-left btn-right" bindtap="bindjusuan">计算</view>
+    </view>
+    <view class="header-box">
+      <view class="box">
+        <view class="box-title">日还款额</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindName" placeholder="0.00" disabled="true" value="{{rihuan}}" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="box-title">月还款额</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindName" placeholder="0.00" disabled="true" value="{{yuehuan}}" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="box-title">总还款额</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindName" placeholder="0.00" disabled="true" value="{{zonghuan}}" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="box-title">利息总额</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindName" placeholder="0.00" disabled="true" value="{{lizong}}" />
+        </view>
+      </view>
+      <!-- <view class="box">
+        <view class="box-title">手续费率</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindName" placeholder="0.00%" disabled="true" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="box-title">年手续费率</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindName" placeholder="0.00%" disabled="true" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="box-title">月息</view>
+        <view class="box-inp">
+          <input type="text" bindinput="bindName" placeholder="0.00" disabled="true" />
+        </view>
+      </view> -->
+    </view>
+  </swiper-item>
+</swiper>

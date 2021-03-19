@@ -1,0 +1,12 @@
+<!--pages/switch/switch.wxml-->
+<view class="box">
+  <view class="box-title">调查人员</view>
+  <view class="box-inp">
+    <picker bindchange="bindTypeChange" value="{{markers['typeIndex']}}" range="{{markers}}"
+      range-key="{{'user_name'}}">
+      <view class="picker">{{markers[typeIndex].user_name}}</view>
+      <view class="iconfont icon-tubiao2-14"></view>
+    </picker>
+  </view>
+</view>
+<view class="ljfb" bindtap="bddhFn">确认</view>

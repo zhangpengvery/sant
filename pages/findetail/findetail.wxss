@@ -1,0 +1,196 @@
+/* pages/findetail/findetail.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #f6f6f6;
+}
+.home-navimg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500rpx;
+  z-index: -1;
+}
+.home-navimg image{
+  width: 100%;
+  height: 100%;
+}
+.header-img{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 250rpx;
+  align-items: center;
+}
+.header-img image{
+  width: 35%;
+  height: 100%;
+}
+.zhuangt{
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.content{
+  width: 94%;
+  margin: 20rpx 3% 160rpx 3%;
+  border-radius: 20rpx;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+.box{
+  position: relative;
+  width: 90%;
+  margin: 0 5%;
+  height: 130rpx;
+  border-bottom: 1rpx solid #F4F4F4;
+}
+.title{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+}
+.pho{
+  font-size: 24rpx;
+  color: #F9B236;
+  margin-top: 20rpx;
+}
+.pho .iconfont{
+  font-size: 24rpx;
+  color: #aaa;
+}
+.bddh{
+  width: 120rpx;
+  height: 44rpx;
+  position: absolute;
+  bottom: 40rpx;
+  right: 40rpx;
+  border: 2rpx solid #F9B236;
+  border-radius: 128rpx;
+  font-size: 20rpx;
+  color: #F9B236;
+  text-align: center;
+  line-height: 44rpx;
+}
+.footer{
+  width: 94%;
+  margin: 0 3%;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+.footer-box{
+  position: relative;
+  width: 95%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
+  height: 120rpx;
+  align-items: center;
+}
+.footer-box .iconfont{
+  color: #F9B236;
+  font-size: 50rpx;
+}
+.box-right{
+  width: 80%;
+  padding-right: 5%;
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #F4F4F4;
+  font-size: 30rpx;
+}
+.xian{
+  position: absolute;
+  top: -24rpx;
+  left: 20rpx;
+  height: 45rpx;
+  border: 1rpx dashed #F9B236;
+}
+.xititle{
+  font-size: 32rpx;
+  margin: 20rpx 5%;
+}
+.xqtext{
+  width: 86%;
+  height: 160rpx;
+  margin: 0 4%;
+  background: #f8f8f8;
+  font-size: 24rpx;
+  border-radius: 16rpx;
+  padding: 20rpx 3%;
+}
+.xqval{
+  width: 100%;
+  height: 160rpx;
+}
+.bai{
+  width: 100%;
+  height: 30rpx;
+}
+.ljfb{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+}
+.zhuan{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  color: #F9B236;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+  border: 1rpx solid #F9B236;
+  background: #fff;
+}
+.user{
+  width: 94%;
+  margin: 0 3%;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+.user-box{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 90%;
+  height: 100rpx;
+  padding: 0 5%;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+.user-name{
+  width: 20%;
+  font-size: 26rpx;
+  color: #777777;
+}
+.user-pho{
+  width: 70%;
+  font-size: 30rpx;
+}
+.user-text{
+  display: flex;
+  width: 90%;
+  height: 150rpx;
+  padding: 20rpx 5% 0 5%;
+}

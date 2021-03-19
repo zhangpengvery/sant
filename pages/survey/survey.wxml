@@ -1,0 +1,47 @@
+<!--pages/survey/survey.wxml-->
+<view class="header-box">
+  <view class="box">
+    <view class="box-title">调查人员</view>
+    <view class="box-inp">
+      <picker bindchange="bindTypeChange" value="{{markers['typeIndex']}}" range="{{markers}}"
+        range-key="{{'user_name'}}">
+        <view class="picker">{{markers[typeIndex].user_name}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">客户姓名</view>
+    <view class="box-inp">
+      <input type="text" bindinput="bindName" placeholder="请输入" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">联系方式</view>
+    <view class="box-inp">
+      <input type="digit" bindinput="bindPho" placeholder="请输入" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">台数</view>
+    <view class="box-inp">
+      <input type="digit" bindinput="bindNum" placeholder="请输入" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title">所在地区</view>
+    <view class="box-inp2">
+      <picker bindchange="changeRegin" bindcolumnchange="bindRegionColumnChange" mode = "multiSelector" value="{{region}}" range='{{multiArray}}'>
+        <view class="picker" wx:if="{{addressCity}}">{{addressCity[0]}} - {{addressCity[1]}} - {{addressCity[2]}}</view>
+        <view class="iconfont icon-tubiao2-14"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="box2">
+    <view class="box-title">详细地址</view>
+    <view class="box-inp3">
+      <textarea type="text" class="da-inp" bindinput="bindaddress" placeholder="200字以内" maxlength="200" />
+    </view>
+  </view>
+</view>
+<view class="ljfb" bindtap="bddhFn">提交</view>

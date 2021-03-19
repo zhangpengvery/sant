@@ -17,9 +17,8 @@
         </view>
       </view>
     </view>
-    <view class="user-pho" catchtap="bindpinjFn" data-user_id="{{item.user_id}}">评价</view>
-    <view class="taking" wx:if="{{item.status==1}}" catchtap="bindComplete" data-id="{{item.id}}">完成</view>
-    <view wx:else class="user-dal" catchtap="binddalFn" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+    <view class="user-pho" wx:if="{{item.s_status==null&&item.status!=0}}" catchtap="bindpinjFn" data-index="{{index}}" data-user_id="{{item.user_id}}" data-repair_id="{{item.id}}">评价</view>
+    <view wx:if="{{item.status>1||item.status==-1}}" class="user-dal" catchtap="binddalFn" data-id="{{item.id}}" data-index="{{index}}">删除</view>
   </view>
 </block>
 <view class="footer" style="bottom:{{footerbtm}}rpx">
@@ -30,32 +29,32 @@
   <view class='assess-star'>
     <view class="text-left">服务质量</view>
     <view class='star-wrap'>
-      <view class='star-item' wx:for="{{stars}}" wx:key="index"
-        style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;'
-        data-index="{{index}}" catchtap='starClick'></view>
+      <image class='star-item' wx:for="{{stars}}" wx:key="index"
+        src="{{item.flag==1?item.lightImg:item.blackImg}}"
+        data-index="{{index}}" catchtap='starClick'></image>
     </view>
     <view class='star-desc'>{{starDesc}}</view>
   </view>
   <view class='assess-star'>
     <view class="text-left">服务及时性</view>
     <view class='star-wrap'>
-      <view class='star-item' wx:for="{{stars2}}" wx:key="index"
-        style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;'
-        data-index="{{index}}" catchtap='starClick2'></view>
+      <image class='star-item' wx:for="{{stars2}}" wx:key="index"
+        src="{{item.flag==1?item.lightImg:item.blackImg}}"
+        data-index="{{index}}" catchtap='starClick2'></image>
     </view>
     <view class='star-desc'>{{starDesc2}}</view>
   </view>
   <view class='assess-star'>
     <view class="text-left">服务态度</view>
     <view class='star-wrap'>
-      <view class='star-item' wx:for="{{stars3}}" wx:key="index"
-        style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;'
-        data-index="{{index}}" catchtap='starClick3'></view>
+      <image class='star-item' wx:for="{{stars3}}" wx:key="index"
+        src="{{item.flag==1?item.lightImg:item.blackImg}}"
+        data-index="{{index}}" catchtap='starClick3'></image>
     </view>
     <view class='star-desc'>{{starDesc3}}</view>
   </view>
   <view class="content">
-    <textarea bindinput="bindcontext" placeholder="感觉怎么样？跟大家分享一下吧~" value="{{content}}" ></textarea>
+    <textarea fixed="true" bindinput="bindcontext" placeholder="感觉怎么样？跟大家分享一下吧~" value="{{content}}" adjust-position="false"></textarea>
     <view class="textnum"><text>{{content.length}}</text>/200</view>
   </view>
 </view>

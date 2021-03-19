@@ -9,7 +9,7 @@
 </view>
 <swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
   <swiper-item>
-    <view class="recruit-content">
+    <view class="recruit-content" wx:if="{{myRecruitList.length>=1}}">
       <block wx:for="{{myRecruitList}}" wx:key="index">
         <view class="content-box">
           <view class="content-title">{{item.recruit_title}}</view>
@@ -28,31 +28,10 @@
         </view>
       </block>
     </view>
-    <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
-    <!-- 加号 -->
-    <view class="jiahao" bindtap="jiahaoFn">+</view>
-    <view class="mask-jiahao" wx:if="{{showJiahao}}">
-      <view class="mask-title">发布</view>
-      <view class="mask-icon">
-        <navigator url="/pages/postoffer/postoffer">
-          <view>
-            <view class="iconfont icon-quanminjingjiren icon-left"></view>
-            <text>我要招聘</text>
-          </view>
-        </navigator>
-        <navigator url="/pages/postjob/postjob">
-          <view>
-            <view class="iconfont icon-qiuzhiguanli icon-right"></view>
-            <text>我要求职</text>
-          </view>
-        </navigator>
-      </view>
-    </view>
-    <!-- 乘号 -->
-    <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
+    <view wx:else class="kong">暂无数据</view>
   </swiper-item>
   <swiper-item>
-    <view class="recruit-content">
+    <view class="recruit-content" wx:if="{{myApplyList.length>=1}}">
       <block wx:for="{{myApplyList}}" wx:key="index">
         <view class="content-box">
           <view class="content-title">{{item.apply_title}}</view>
@@ -71,27 +50,28 @@
         </view>
       </block>
     </view>
-    <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
-    <!-- 加号 -->
-    <view class="jiahao" bindtap="jiahaoFn">+</view>
-    <view class="mask-jiahao" wx:if="{{showJiahao}}">
-      <view class="mask-title">发布</view>
-      <view class="mask-icon">
-        <navigator url="/pages/postoffer/postoffer">
-          <view>
-            <view class="iconfont icon-quanminjingjiren icon-left"></view>
-            <text>我要招聘</text>
-          </view>
-        </navigator>
-        <navigator url="/pages/postjob/postjob">
-          <view>
-            <view class="iconfont icon-qiuzhiguanli icon-right"></view>
-            <text>我要求职</text>
-          </view>
-        </navigator>
-      </view>
-    </view>
-    <!-- 乘号 -->
-    <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
+    <view wx:else class="kong">暂无数据</view>
   </swiper-item>
 </swiper>
+<view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
+<!-- 加号 -->
+<view class="jiahao" bindtap="jiahaoFn">+</view>
+<view class="mask-jiahao" wx:if="{{showJiahao}}">
+  <view class="mask-title">发布</view>
+  <view class="mask-icon">
+    <navigator url="/pages/postoffer/postoffer">
+      <view>
+        <view class="iconfont icon-quanminjingjiren icon-left"></view>
+        <text>我要招聘</text>
+      </view>
+    </navigator>
+    <navigator url="/pages/postjob/postjob">
+      <view>
+        <view class="iconfont icon-qiuzhiguanli icon-right"></view>
+        <text>我要求职</text>
+      </view>
+    </navigator>
+  </view>
+</view>
+<!-- 乘号 -->
+<view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>

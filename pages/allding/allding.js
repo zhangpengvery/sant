@@ -20,6 +20,8 @@ Page({
     star_th:0,
     content:"",
     uid:0,
+    index:0,
+    repair_id:0,
     stars: [{
       lightImg: '/assets/images/xuanzxin.png',
       blackImg: '/assets/images/morenxin.png',
@@ -112,7 +114,38 @@ Page({
       flag: 0,
       message: '非常好',
       fen:5
-    }]
+    }],
+    stars4: [{
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常差',
+      fen:1
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '较差',
+      fen:2
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '一般',
+      fen:3
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '好',
+      fen:4
+    }, {
+      lightImg: '/assets/images/xuanzxin.png',
+      blackImg: '/assets/images/morenxin.png',
+      flag: 0,
+      message: '非常好',
+      fen:5
+    }],
   },
   async getRepairList() {
     var that=this
@@ -142,6 +175,7 @@ Page({
     let getrepair = {
       id:point.id,
       user_id:point.user_id,
+      s_status:point.s_status,
       avator:point.avator,
       create_time:YY+MM+DD,
       status:point.status,
@@ -225,41 +259,63 @@ Page({
     console.log(e.currentTarget.dataset.user_id);
     this.setData({
       uid:e.currentTarget.dataset.user_id,
-      footerbtm:0
+      footerbtm:0,
+      index:e.currentTarget.dataset.index,
+      repair_id:e.currentTarget.dataset.repair_id
     })
   },
-  Mapstar(star_o,star_t,star_th,uid,content){
+  Mapstar(star_o,star_t,star_th,uid,content,repair_id){
     requestApi1(app.globalData.post_url+"/index.php/Api/Map/star",{
       star_o:star_o,
       star_t:star_t,
       star_th:star_th,
       uid:uid,
-      content:content
+      content:content,
+      repair_id:repair_id
     }).then(res=>{
-      wx.redirectTo({
-        url: '/pages/allding/allding',
+      wx.showToast({
+        title: '评价成功',
       })
+      console.log(res);
     })
   },
   bindgotj:function(){
     if(this.data.star_o==0){
       wx.showToast({
+        icon:'none',
         title: '请点击评价',
       })
     }else if(this.data.star_t==0){
       wx.showToast({
+        icon:'none',
         title: '请点击评价',
       })
     }else if(this.data.star_th==0){
       wx.showToast({
+        icon:'none',
         title: '请点击评价',
       })
     }else if(this.data.content==""){
       wx.showToast({
+        icon:'none',
         title: '请填写评价',
       })
     }else{
-      this.Mapstar(this.data.star_o,this.data.star_t,this.data.star_th,this.data.uid,this.data.content)
+      var index=this.data.index
+      var list =this.data.repairList
+      list[index].s_status=1
+      this.setData({
+        repairList:list,
+        footerbtm:-650,
+        stars:this.data.stars4,
+        stars2:this.data.stars4,
+        stars3:this.data.stars4,
+        content:"",
+        starDesc:"待评价",
+        starDesc2:"待评价",
+        starDesc3:"待评价"
+      })
+      this.Mapstar(this.data.star_o,this.data.star_t,this.data.star_th,this.data.uid,this.data.content,this.data.repair_id)
     }
   },
   bindonFn:function(){
@@ -270,8 +326,6 @@ Page({
   Mapdel(id){
     requestApi1(app.globalData.post_url+"/index.php/Api/Map/del",{
       id:id
-    }).then(res=>{
-
     })
   },
   binddalFn:function(e){

@@ -1,0 +1,53 @@
+<!--pages/surdetail/surdetail.wxml-->
+<navbar params="{{params}}" />
+<view class="home-navimg">
+  <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+</view>
+<view class="header-img" style="margin-top:{{navH}}rpx">
+  <image src="https://jbccs.com/./Upload/image/2021-03-19/60545f83aa39b.png"></image>
+  <view wx:if="{{status==0}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  待处理</view>
+  <view wx:if="{{status==-1}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已取消</view>
+  <view wx:if="{{status==4}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已转接</view>
+  <view wx:if="{{status==2||status==3}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已完成</view>
+</view>
+<view class="content">
+  <view class="box">
+    <view class="title">调查人员：{{getSeller.uname}}</view>
+    <view class="pho"><text class="iconfont icon-mendian-dianhua"></text> {{getSeller.tel}}</view>
+    <view class="bddh" bindtap="bindPho" data-pho="{{getSeller.tel}}">拨打电话</view>
+  </view>
+  <view class="box">
+    <view class="title">客户：{{getSeller.user_name}}</view>
+    <view class="pho"><text class="iconfont icon-mendian-dianhua"></text> {{getSeller.user_mobile}}</view>
+    <view class="bddh" bindtap="bindPho" data-pho="{{getSeller.user_mobile}}">拨打电话</view>
+  </view>
+</view>
+<view class="footer">
+  <view class="footer-box">
+    <view class="iconfont icon-jiedan"></view>
+    <view class="box-right">
+      <view class="box-text">接单日期</view>
+      <view class="box-time">{{time}}</view>
+    </view>
+  </view>
+  <view class="footer-box" wx:if="{{status>0&status!=4}}">
+    <view class="xian"></view>
+    <view class="iconfont icon-yuyue"></view>
+    <view class="box-right">
+      <view class="box-text">预约调查日期</view>
+      <view class="box-time">2021-3-15</view>
+    </view>
+  </view>
+  <view class="footer-box" wx:if="{{status>1&status!=4}}">
+    <view class="xian"></view>
+    <view class="iconfont icon-wancheng"></view>
+    <view class="box-right">
+      <view class="box-text">调查完成</view>
+      <view wx:if="{{status==2}}">部分完成</view>
+      <view wx:if="{{status==3}}">全部完成</view>
+    </view>
+  </view>
+  <view class="xititle"  wx:if="{{status>1&status!=4}}">调查详情</view>
+  <view class="xqtext" wx:if="{{status>1&status!=4}}">详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情</view>
+  <view class="bai"></view>
+</view>
