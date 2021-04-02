@@ -37,7 +37,7 @@
   <view class="box">
     <view class="box-title">价格</view>
     <view class="box-inp">
-      <input type="text" bindinput="bindCompany" placeholder="请输入你的公司名称" />
+      <input type="text" bindinput="bindCompany" placeholder="请输入价格" />
     </view>
   </view>
 </view>

@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page:1,
     TopH: 0,
     type: 1,
     longitude: 0,
@@ -31,7 +32,7 @@ Page({
     text: "",
     shop_address: "",
     is_pay: 0,
-    showGao: false,
+    showGao: true,
     showFwz: true,
     showBox: true,
     scrslid: true,
@@ -40,6 +41,7 @@ Page({
     userList: [],
     userList2: [],
     repairList: [],
+    repairList2:[],
     broList: [],
     getServiceInfo: [],
     starpageY: 0,
@@ -78,12 +80,12 @@ Page({
     }, function () {
       if (that.data.scrH == 540) {
         var sliding = that.data.starpageY - that.data.chenpageY;
-        if (sliding > 30&&that.data.showBox) {
+        if (sliding > 30) {
           that.setData({
             scrH: 1080,
             boxH: 720,
             scrY: true,
-            showGao: true
+            // showGao: true
           })
         } else if (sliding < -30) {
           that.setData({
@@ -97,7 +99,7 @@ Page({
             scrH: 540,
             boxH: 180,
             scrY: false,
-            showGao: false
+            // showGao: false
           })
         }
       } else if (that.data.scrH == 280) {
@@ -111,7 +113,7 @@ Page({
     })
   },
   bindTapFn: function () {
-    if (this.data.scrH == 540&&this.data.showBox) {
+    if (this.data.scrH == 540) {
       this.setData({
         scrH: 1080,
         boxH: 720,
@@ -175,28 +177,6 @@ Page({
       showFwz: true,
       showBox: true,
       type: 2
-    })
-    this.userListFn()
-  },
-  bindJrzy: function () {
-    if (this.data.showFwz == false) {
-      this.startSetInter()
-    }
-    this.setData({
-      showFwz: true,
-      showBox: true,
-      type: 3
-    })
-    this.userListFn()
-  },
-  bindCxzy: function () {
-    if (this.data.showFwz == false) {
-      this.startSetInter()
-    }
-    this.setData({
-      showFwz: true,
-      showBox: true,
-      type: 4
     })
     this.userListFn()
   },
@@ -329,12 +309,12 @@ Page({
     let latitude = point.lat;
     let longitude = point.lng;
     let marker = {
-      iconPath: "/assets/images/xg-on.png",
+      iconPath: point.id==0?"/assets/images/xg-quan.png":"/assets/images/xg-on.png",
       id: point.id || 0,
       latitude: latitude,
       longitude: longitude,
-      width: 60,
-      height: 60,
+      width: point.id==0?78:60,
+      height:point.id==0?72:60,
       joinCluster:true
     };
     return marker;
@@ -349,32 +329,6 @@ Page({
       longitude: longitude,
       width: 40,
       height: 40,
-    };
-    return marker;
-  },
-  createMarker3(point) {
-    let latitude = point.lat;
-    let longitude = point.lng;
-    let marker = {
-      iconPath: "/assets/images/dcy.png",
-      id: point.id || 0,
-      latitude: latitude,
-      longitude: longitude,
-      width: 40,
-      height: 51,
-    };
-    return marker;
-  },
-  createMarker4(point) {
-    let latitude = point.lat;
-    let longitude = point.lng;
-    let marker = {
-      iconPath: "/assets/images/cxzy.png",
-      id: point.id || 0,
-      latitude: latitude,
-      longitude: longitude,
-      width: 45,
-      height: 51,
     };
     return marker;
   },
@@ -434,7 +388,7 @@ Page({
   bindFwz: function () {
     var that = this
     this.setData({
-      scrH:540,
+      // scrH:540,
       showGao:false,
       showBox: false,
       showFwz: false
@@ -517,6 +471,7 @@ Page({
     wx.request({
       url: 'https://jbccs.com/index.php/Api/Map/getStationDatas',
       data: {
+        page:0,
         lng: this.data.longitude,
         lat: this.data.latitude
       },
@@ -545,6 +500,34 @@ Page({
         })
       }
     })
+  },
+  repairFn2: function () {
+    wx.request({
+      url: 'https://jbccs.com/index.php/Api/Map/getStationDatas',
+      data: {
+        page:this.data.page,
+        lng: this.data.longitude,
+        lat: this.data.latitude
+      },
+      header: {
+        "content-type": "application/json",
+        'XX-Token': wx.getStorageSync('token'),
+      },
+      method: "GET",
+      success: (res) => {
+        this.setData({
+          repairList2:this.data.repairList2.concat(res.data.datas)
+        })
+      }
+    })
+  },
+  loadMore() {
+    if (this.data.showBox==false) {
+      this.setData({
+        page: ++this.data.page
+      })
+      this.repairFn2()
+    }
   },
   bindgoDitu: function (e) {
     wx.openLocation({
@@ -724,6 +707,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.repairFn2()
     this.getUserInfo()
     wx.hideTabBar({
       animation: true,

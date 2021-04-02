@@ -32,7 +32,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: [0,0,0],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -96,6 +96,9 @@ Page({
       contact_tel:result.data.data.info.contact_tel,
       price:result.data.data.info.price,
       for_message:result.data.data.info.for_message,
+      'addressCity[0]':result.data.data.info.province_name,
+      'addressCity[1]':result.data.data.info.city_name,
+      'addressCity[2]':result.data.data.info.area_name,
     })
     console.log(this.data.getSaleInfo);
   },
@@ -110,7 +113,13 @@ Page({
       area_id:area_id,
       price:price,
     }).then(res=>{
-      console.log(res);
+      if(res.statusCode==200){
+        wx.showToast({
+          title: '修改成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
     })
   },
   bddhFn:function(){

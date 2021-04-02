@@ -15,6 +15,7 @@ page{
   margin: 0 3%;
   background: #fff;
   border-radius: 20rpx;
+  font-size: 30rpx;
 }
 .suggest{
   width: 100%;
@@ -29,6 +30,7 @@ page{
   background: #fff;
   border-radius: 20rpx;
   align-items: center;
+  font-size: 30rpx;
 }
 .footer-text{
   font-weight: bold;

@@ -26,7 +26,12 @@
           </view>
         </block>
       </view>
-      <view wx:else class="wushujucs">暂无配件数据</view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kongbai.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
       <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
     </scroll-view>
   </view>

@@ -9,10 +9,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page:1,
+    page2:1,
     navH: 0,
     scrollH: 0,
     currentIndex: 0,
     getSellerList: [],
+    getSellerList2: [],
     markers: [],
     markers2: [],
   },
@@ -20,23 +23,82 @@ Page({
     wx.navigateBack()
   },
   changeSwiper: function (e) {
+    var that=this
     this.setData({
       currentIndex: e.currentTarget.dataset.current,
     })
+    if(this.data.currentIndex==0){
+      this.setData({
+        page2:1,
+        getSellerList2:[]
+      },function(){
+        that.getSellerListLeft2(1)
+      })
+    }else if(this.data.currentIndex==1){
+      this.setData({
+        page:1,
+        getSellerList:[]
+      },function(){
+        that.getSellerList2(1)
+      })
+    }
   },
   changeTab:function(e){
     this.setData({
       currentIndex:e.detail.current
     })
   },
-  async getSellerList() {
+  async getSellerListLeft(page) {
     var that = this
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getSellerList")
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getSellerListLeft",{
+      page:page
+    })
     this.setData({
-      getSellerList: result.data.datas
+      getSellerList:this.data.getSellerList.concat(result.data.datas)
     }, function () {
       that.setData({
         markers: that.getLingyuanMarkers(),
+      })
+    })
+    console.log(result.data.datas);
+  },
+  async getSellerListLeft2(page) {
+    var that = this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getSellerListLeft",{
+      page:page
+    })
+    this.setData({
+      getSellerList:result.data.datas
+    }, function () {
+      that.setData({
+        markers: that.getLingyuanMarkers(),
+      })
+    })
+    console.log(result.data.datas);
+  },
+  async getSellerList2(page) {
+    var that = this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getSellerList",{
+      page:page
+    })
+    this.setData({
+      getSellerList2:result.data.datas
+    }, function () {
+      that.setData({
+        markers2:that.getLingyuanMarkers2()
+      })
+    })
+    console.log(result.data.datas);
+  },
+  async getSellerList(page) {
+    var that = this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getSellerList",{
+      page:page
+    })
+    this.setData({
+      getSellerList2:this.data.getSellerList2.concat(result.data.datas)
+    }, function () {
+      that.setData({
         markers2:that.getLingyuanMarkers2()
       })
     })
@@ -45,20 +107,16 @@ Page({
   getLingyuanMarkers() {
     let markers = [];
     for (let item of this.data.getSellerList) {
-      if(item.status==0||item.status==1){
         let marker = this.createMarker(item);
         markers.push(marker)
-      }
     }
     return markers;
   },
   getLingyuanMarkers2() {
     let markers = [];
-    for (let item of this.data.getSellerList) {
-      if(item.status==2||item.status==3||item.status==4||item.status==-1){
+    for (let item of this.data.getSellerList2) {
         let marker = this.createMarker2(item);
         markers.push(marker)
-      }
     }
     return markers;
   },
@@ -74,6 +132,7 @@ Page({
       time: time,
       order_id: point.order_id,
       status: point.status,
+      sorts:point.sorts
     };
     return marker;
   },
@@ -121,13 +180,16 @@ Page({
       var id = e.currentTarget.dataset.id
       var index = e.currentTarget.dataset.index
       var list = this.data.markers
+      var list2=this.data.getSellerList
       list.splice(index, 1)
+      list2.splice(index,1)
       wx.showModal({
         title: '是否取消该订单',
         success(res) {
           if (res.confirm) {
             that.setData({
-              markers: list
+              markers: list,
+              getSellerList:list2
             })
             that.cancleOrder(id)
           }
@@ -137,13 +199,15 @@ Page({
       var id = e.currentTarget.dataset.id
       var index = e.currentTarget.dataset.index
       var list = this.data.markers2
+      var list2=this.data.getSellerList2
       list.splice(index, 1)
       wx.showModal({
         title: '是否删除该订单',
         success(res) {
           if (res.confirm) {
             that.setData({
-              markers2: list
+              markers2: list,
+              getSellerList2:list2
             })
             that.scanDel(id)
           }
@@ -159,17 +223,65 @@ Page({
       console.log(res);
     })
   },
+  //加急
+  scanSorts(id){
+    wx.showLoading({
+      title: '加急中...',
+    })
+    requestApi1(app.globalData.post_url+"/index.php/Api/Scan/sorts",{
+      id:id
+    }).then(res=>{
+      this.getSellerListLeft2(this.data.page)
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      console.log(res);
+    })
+  },
+  nojiaji:function(e){
+    var list=this.data.markers
+    var index=e.currentTarget.dataset.index
+    list[index].sorts=0
+    this.setData({
+      markers:list,
+      page:1
+    })
+    this.scanSorts(e.currentTarget.dataset.id)
+  },
+  yesjiaji:function(e){
+    var list=this.data.markers
+    var index=e.currentTarget.dataset.index
+    list[index].sorts=1
+    this.setData({
+      markers:list,
+      page:1
+    })
+    this.scanSorts(e.currentTarget.dataset.id)
+  },
+  loadMore() {
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getSellerListLeft(this.data.page)
+  },
+  loadMore2() {
+    this.setData({
+      page2: ++this.data.page2
+    })
+    this.getSellerList(this.data.page2)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSellerList()
+    this.getSellerListLeft(this.data.page)
+    // this.getSellerList(this.data.page2)
     wx.getSystemInfo({
       success: (result) => {
         let clientHeight = result.windowHeight;
         let clientWidth = result.windowWidth;
         let ratio = 750 / clientWidth;
-        let ScrH = (clientHeight * ratio) - 100
+        let ScrH = (clientHeight * ratio) - 100 
         this.setData({
           navH: app.globalData.navbarHeight,
           scrollH: ScrH

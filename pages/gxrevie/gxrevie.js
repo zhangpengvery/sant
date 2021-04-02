@@ -16,7 +16,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: [0,0,0],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -52,7 +52,10 @@ Page({
       realname:result.data.datas.realname,
       mobile:result.data.datas.mobile,
       selectAreaId:result.data.datas.area_id,
-      content:result.data.datas.content
+      content:result.data.datas.content,
+      'addressCity[0]':result.data.datas.province,
+      'addressCity[1]':result.data.datas.cityname,
+      'addressCity[2]':result.data.datas.area_name,
     })
   },
   SheneeditFor(id,realname,mobile,area_id,content){

@@ -31,7 +31,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: ['请选择','请选择','请选择'],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -40,13 +40,14 @@ Page({
     getUserInfo: [],
     user_img: "",
     user_truename: "",
-    user_qq: 0,
-    user_wechat: 0,
+    user_name:"",
+    user_qq: "",
+    user_wechat: "",
     user_email: "",
-    user_license_num: 0,
+    user_license_num: "",
     user_plate_num: "",
     user_station: "",
-    user_carnum: 0,
+    user_carnum: "",
     user_car_brand: "",
     countryList: ['陕汽', '亚特', '唐宏', '其他'],
     countryIndex: 0,
@@ -59,6 +60,13 @@ Page({
   },
   async getUserInfo() {
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
+    if(result.data.datas.user_info.user_province!=null){
+      this.setData({
+        'addressCity[0]':result.data.datas.user_info.user_province,
+        'addressCity[1]':result.data.datas.user_info.user_city,
+        'addressCity[2]':result.data.datas.user_info.user_district,
+      })
+    }
     this.setData({
       getUserInfo: result.data.datas.user_info,
       selectAreaId:result.data.datas.user_info.user_district_id,
@@ -221,6 +229,11 @@ Page({
       user_truename:e.detail.value
     })
   },
+  bindname2:function(e){
+    this.setData({
+      user_name:e.detail.value
+    })
+  },
   bindqq:function(e){
     this.setData({
       user_qq:e.detail.value
@@ -256,9 +269,10 @@ Page({
       user_carnum:e.detail.value
     })
   },
-  editUserInfo(user_truename,user_qq,user_wechat,user_district_id,user_email,user_license_num,user_plate_num,user_station,user_carnum,user_car_brand){
+  editUserInfo(user_truename,user_name,user_qq,user_wechat,user_district_id,user_email,user_license_num,user_plate_num,user_station,user_carnum,user_car_brand){
     requestApi1(app.globalData.post_url+"/index.php/Api/User/editUserInfo",{
       user_truename:user_truename,
+      user_name:user_name,
       user_qq:user_qq,
       user_wechat:user_wechat,
       user_district_id:user_district_id,
@@ -273,7 +287,19 @@ Page({
     })
   },
   bddhFn:function(){
-    this.editUserInfo(this.data.user_truename,this.data.user_qq,this.data.user_wechat,this.data.selectAreaId,this.data.user_email,this.data.user_license_num,this.data.user_plate_num,this.data.user_station,this.data.user_carnum,this.data.user_car_brand)
+    if(this.data.user_truename==""){
+      wx.showToast({
+        icon:"none",
+        title: '请输入姓名',
+      })
+    }else if(this.data.user_wechat==""){
+      wx.showToast({
+        icon:"none",
+        title: '请输入微信',
+      })
+    }else{
+      this.editUserInfo(this.data.user_truename,this.data.user_name,this.data.user_qq,this.data.user_wechat,this.data.selectAreaId,this.data.user_email,this.data.user_license_num,this.data.user_plate_num,this.data.user_station,this.data.user_carnum,this.data.user_car_brand)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

@@ -155,13 +155,19 @@
   right: 30rpx;
   color: #F9B236;
 }
-.kong{
+.wushujucs{
   width: 100%;
-  text-align: center;
-}
-.kong .kong-box{
   margin-top: 300rpx;
-  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
   color: #ababab;
-  font-size: 20rpx;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
 }

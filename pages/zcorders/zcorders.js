@@ -122,8 +122,65 @@ Page({
     })
   },
   gobuyFn:function(){
-  this.addOrder(this.data.person_type,this.data.realname,this.data.id_number,this.data.company,this.data.company_id,this.data.city,this.data.mobile,this.data.id)
-},
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else if(this.data.person_type==1){
+      if(this.data.realname==""){
+        wx.showToast({
+          icon:'none',
+          title: '请输入姓名',
+        })
+      }else if(this.data.id_number==0){
+        wx.showToast({
+          icon:'none',
+          title: '请输入证件号码',
+        })
+      }else if(this.data.city==""){
+        wx.showToast({
+          icon:'none',
+          title: '请输入城市',
+        })
+      }else if(this.data.mobile==0){
+        wx.showToast({
+          icon:'none',
+          title: '请输入联系电话',
+        })
+      }else{
+        this.addOrder(this.data.person_type,this.data.realname,this.data.id_number,this.data.company,this.data.company_id,this.data.city,this.data.mobile,this.data.id)
+      }
+    }else if(this.data.person_type==2){
+      if(this.data.realname==""){
+        wx.showToast({
+          icon:'none',
+          title: '请输入姓名',
+        })
+      }else if(this.data.company==""){
+        wx.showToast({
+          icon:'none',
+          title: '请输入企业名称',
+        })
+      }else if(this.data.company_id==""){
+        wx.showToast({
+          icon:'none',
+          title: '请输入企业代码',
+        })
+      }else if(this.data.city==""){
+        wx.showToast({
+          icon:'none',
+          title: '请输入城市',
+        })
+      }else if(this.data.mobile==0){
+        wx.showToast({
+          icon:'none',
+          title: '请输入联系电话',
+        })
+      }else{
+        this.addOrder(this.data.person_type,this.data.realname,this.data.id_number,this.data.company,this.data.company_id,this.data.city,this.data.mobile,this.data.id)
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

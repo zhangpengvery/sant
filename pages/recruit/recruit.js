@@ -55,7 +55,9 @@ Page({
     commonColor:false,
     showzhiwei:false,
     showcity:false,
-    showyaoqiu:false
+    showyaoqiu:false,
+    dixian:false,
+    dixian2:false,
   },
   //职位点击
   distanceFn:function(e){
@@ -158,6 +160,11 @@ Page({
       if(res.statusCode==200){
         wx.hideLoading()
       }
+      if(res.data.data.list.length==0){
+        this.setData({
+          dixian:true
+        })
+      }
       this.setData({
         postRecruitList:this.data.postRecruitList.concat(res.data.data.list),
         postSalaryList:res.data.data.salary,
@@ -168,12 +175,12 @@ Page({
     })
   },
   //求职接口
-  getJobRecruitLists(page2,ja_city_id,ja_type_id,ja_ex_id,ja_salary_id	){
+  getJobRecruitLists(page,ja_city_id,ja_type_id,ja_ex_id,ja_salary_id	){
     wx.showLoading({
       title: '加载中...',
     })
     requestApi1(app.globalData.base_url+"/getJobRecruitLists",{
-      page2:page2,
+      page:page,
       ja_city_id:ja_city_id,
       ja_type_id:ja_type_id,
       ja_ex_id:ja_ex_id,
@@ -181,6 +188,11 @@ Page({
     }).then(res=>{
       if(res.statusCode==200){
         wx.hideLoading()
+      }
+      if(res.data.data.list.length==0){
+        this.setData({
+          dixian2:true
+        })
       }
       this.setData({
         getJobRecruitLists:this.data.getJobRecruitLists.concat(res.data.data.list),

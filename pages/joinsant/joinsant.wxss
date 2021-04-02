@@ -247,11 +247,14 @@ page{
   top: -90rpx;
 }
 .golist{
-  width: 100rpx;
-  height: 100rpx;
+  width: 70rpx;
+  height: 70rpx;
   position: absolute;
-  right: 16rpx;
-  top: -200rpx;
+  right: 30rpx;
+  top: -180rpx;
+}
+.golist2{
+  top: -270rpx;
 }
 .order{
   position: fixed;

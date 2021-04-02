@@ -58,7 +58,9 @@ Page({
     getDischargeList:[],
     getSaleforLists:[],
     leng_up:0,
-    price_up:0
+    price_up:0,
+    dixian:false,
+    dixian2:false,
   },
   recruitFn:function(e){
     this.setData({
@@ -270,6 +272,11 @@ Page({
       if(result.statusCode==200){
         wx.hideLoading()
       }
+      if(result.data.data.list.length==0){
+        this.setData({
+          dixian:true
+        })
+      }
       this.setData({
         getAllSaleList:this.data.getAllSaleList.concat(result.data.data.list),
         getBrandList:result.data.data.brand_list,
@@ -280,12 +287,12 @@ Page({
         getDischargeList:result.data.data.discharge_list
       })
     },
-    async getAllSaleforLists(page2,salefor_brand_id,salefor_age_id,salefor_chassis_id,salefor_drive_id,salefor_source_id,salefor_discharge_id,age_up,price_up){
+    async getAllSaleforLists(page,salefor_brand_id,salefor_age_id,salefor_chassis_id,salefor_drive_id,salefor_source_id,salefor_discharge_id,age_up,price_up){
       wx.showLoading({
         title: '加载中...',
       })
       let result=await requestApi(app.globalData.base_url+"/getAllSaleforLists",{
-        page2:page2,
+        page:page,
         salefor_brand_id:salefor_brand_id,
         salefor_age_id:salefor_age_id,
         salefor_chassis_id:salefor_chassis_id,
@@ -298,9 +305,15 @@ Page({
       if(result.statusCode==200){
         wx.hideLoading()
       }
+      if(result.data.data.list.length==0){
+        this.setData({
+          dixian2:true
+        })
+      }
       this.setData({
         getSaleforLists:this.data.getSaleforLists.concat(result.data.data.list)
       })
+      console.log(result);
     },
     //滑动到底部
     loadMore(){

@@ -9,32 +9,94 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page:1,
+    page2:1,
     navH: 0,
     scrollH: 0,
     currentIndex: 0,
     getScanerList: [],
+    getScanerList2: [],
     markers: [],
     markers2: [],
   },
   changeSwiper: function (e) {
+    var that=this
     this.setData({
       currentIndex: e.currentTarget.dataset.current,
     })
+    if(this.data.currentIndex==0){
+      this.setData({
+        page2:1,
+        getScanerList2:[]
+      },function(){
+        that.getScanerListLeft2(1)
+      })
+    }else if(this.data.currentIndex==1){
+      this.setData({
+        page:1,
+        getScanerList:[]
+      },function(){
+        that.getScanerList2(1)
+      })
+    }
   },
   changeTab:function(e){
     this.setData({
       currentIndex:e.detail.current
     })
   },
-  async getScanerList() {
+  async getScanerListLeft(page) {
     var that = this
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getScanerList")
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getScanerListLeft",{
+      page:page
+    })
     this.setData({
-      getScanerList: result.data.datas
+      getScanerList:this.data.getScanerList.concat(result.data.datas)
     }, function () {
       that.setData({
         markers: that.getLingyuanMarkers(),
-        markers2:that.getLingyuanMarkers2()
+      })
+    })
+    console.log(result.data.datas);
+  },
+  async getScanerListLeft2(page) {
+    var that = this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getScanerListLeft",{
+      page:page
+    })
+    this.setData({
+      getScanerList:result.data.datas
+    }, function () {
+      that.setData({
+        markers: that.getLingyuanMarkers(),
+      })
+    })
+    console.log(result.data.datas);
+  },
+  async getScanerList2(page) {
+    var that = this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getScanerList",{
+      page:page
+    })
+    this.setData({
+      getScanerList2:result.data.datas
+    }, function () {
+      that.setData({
+        markers2: that.getLingyuanMarkers2(),
+      })
+    })
+    console.log(result.data.datas);
+  },
+  async getScanerList(page) {
+    var that = this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getScanerList",{
+      page:page
+    })
+    this.setData({
+      getScanerList2:this.data.getScanerList2.concat(result.data.datas)
+    }, function () {
+      that.setData({
+        markers2: that.getLingyuanMarkers2(),
       })
     })
     console.log(result.data.datas);
@@ -42,20 +104,16 @@ Page({
   getLingyuanMarkers() {
     let markers = [];
     for (let item of this.data.getScanerList) {
-      if(item.status==0||item.status==1){
-        let marker = this.createMarker(item);
-        markers.push(marker)
-      }
+      let marker = this.createMarker(item);
+      markers.push(marker)
     }
     return markers;
   },
   getLingyuanMarkers2() {
     let markers = [];
-    for (let item of this.data.getScanerList) {
-      if(item.status==2||item.status==3||item.status==4||item.status==-1){
-        let marker = this.createMarker2(item);
-        markers.push(marker)
-      }
+    for (let item of this.data.getScanerList2) {
+      let marker = this.createMarker2(item);
+      markers.push(marker)
     }
     return markers;
   },
@@ -71,6 +129,7 @@ Page({
       time: time,
       order_id: point.order_id,
       status: point.status,
+      sorts:point.sorts
     };
     return marker;
   },
@@ -130,13 +189,16 @@ Page({
       var id = e.currentTarget.dataset.id
       var index = e.currentTarget.dataset.index
       var list = this.data.markers2
+      var list2=this.data.getScanerList2
       list.splice(index, 1)
+      list2.splice(index,1)
       wx.showModal({
         title: '是否删除该订单',
         success(res) {
           if (res.confirm) {
             that.setData({
-              markers2: list
+              markers2: list,
+              getScanerList2:list2
             })
             that.scanDel(id)
           }
@@ -155,11 +217,24 @@ Page({
   back(){
     wx.navigateBack()
   },
+  loadMore() {
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getScanerListLeft(this.data.page)
+  },
+  loadMore2() {
+    this.setData({
+      page2: ++this.data.page2
+    })
+    this.getScanerList(this.data.page2)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getScanerList()
+    this.getScanerListLeft(this.data.page)
+    // this.getScanerList(this.data.page2)
     wx.getSystemInfo({
       success: (result) => {
         let clientHeight = result.windowHeight;

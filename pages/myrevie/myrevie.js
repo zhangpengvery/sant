@@ -28,7 +28,8 @@ Page({
     getMyLists:[],
     getMyForLists:[],
     markers:[],
-    markers2:[]
+    markers2:[],
+    showMaxmaks:false
   },
   changeSwiper: function (e) {
     var that=this
@@ -198,13 +199,22 @@ Page({
     this.setData({
       showJiahao:true,
       showChahao:true,
+      showMaxmaks:true
     })
   },
   //底部叉号
   chahaoFn:function(){
     this.setData({
       showChahao:false,
-      showJiahao:false
+      showJiahao:false,
+      showMaxmaks:false
+    })
+  },
+  maxmaskFn:function(){
+    this.setData({
+      showJiahao:false,
+      showMaxmaks:false,
+      showChahao:false
     })
   },
   //我要审车

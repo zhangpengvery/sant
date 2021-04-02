@@ -40,7 +40,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: [0,0,0],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -222,7 +222,10 @@ Page({
       apply_company: result.data.data.apply_info.apply_company,
       jt_id: result.data.data.apply_info.job_type_id,
       js_id: result.data.data.apply_info.apply_salary,
-      je_id: result.data.data.apply_info.apply_experince
+      je_id: result.data.data.apply_info.apply_experince,
+      'addressCity[0]':result.data.data.apply_info.province_name,
+      'addressCity[1]':result.data.data.apply_info.city_name,
+      'addressCity[2]':result.data.data.apply_info.area_name,
     })
   },
   //标题内容
@@ -272,7 +275,7 @@ Page({
         var title = res.data.msg
         wx.showToast({
           title: title,
-          icon: 'error',
+          icon: 'success',
           duration: 2000
         })
       }

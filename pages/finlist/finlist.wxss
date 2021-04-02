@@ -71,12 +71,18 @@ page{
 .bgactive{
   background: #F9B236;
 }
+.box{
+  width: 100%;
+  height: auto;
+  margin:  0 auto;  
+  overflow: hidden;
+}
 .content{
   position: relative;
-  width: 88%;
+  width: 80%;
   height: 230rpx;
   margin: 20rpx 3% 0 3%;
-  padding: 0 3%;
+  padding: 0 7%;
   border-radius: 20rpx;
   background: #fff;
   overflow: hidden;
@@ -145,4 +151,31 @@ page{
 }
 .zhuangt2{
   background: #aaa;
+}
+.left-img{
+  position: absolute;
+  top: -2rpx;
+  left: -6rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+.left-img image{
+  width: 100%;
+  height: 100%;
+}
+.wushujucs{
+  margin-top: 300rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
 }

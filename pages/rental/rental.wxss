@@ -186,12 +186,12 @@
 .showyaoqiu-fater{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: end;
   text-align: center;
   align-items: center;
 }
 .showyaoqiu-fater .showyaoqiu-box{
-  width: 132rpx;
+  width: 130rpx;
   height: 44rpx;
   background: #f4f4f4;
   color: #333;

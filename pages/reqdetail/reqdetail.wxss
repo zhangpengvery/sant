@@ -15,10 +15,14 @@
   overflow: hidden;
 }
 .con-header .header-title{
+  padding-right: 30%;
   margin: 40rpx 20rpx 20rpx 20rpx;
   position: relative;
   font-size: 34rpx;
   color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .header-title .header-jg{
   position: absolute;

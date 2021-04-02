@@ -33,7 +33,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: ['0','0','0'],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -101,8 +101,12 @@ Page({
       sale_price:result.data.data.sale_price,
       sale_message:result.data.data.sale_message,
       sale_id:result.data.data.sale_id,
-      uc_id:result.data.data.uc_id
+      uc_id:result.data.data.uc_id,
+      'addressCity[0]':result.data.data.province,
+      'addressCity[1]':result.data.data.city,
+      'addressCity[2]':result.data.data.area_name,
     })
+    console.log(result.data.data);
   },
   //修改出售信息
   postEditSale(pics,province_id,city_id,area_id,sale_title,contact_name,contact_tel,sale_price,sale_message,sale_id,uc_id){
@@ -119,7 +123,13 @@ Page({
       sale_id:sale_id,
       uc_id:uc_id
     }).then(res=>{
-      console.log(res);
+      if(res.statusCode==200){
+        wx.showToast({
+          title: '修改成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
     })
   },
   bddhFn:function(){

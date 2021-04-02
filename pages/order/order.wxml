@@ -17,8 +17,9 @@
   style="height:{{scrollH}}rpx">
   <swiper-item>
     <!-- 全部 -->
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
-      <view class="content">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <view class="content" wx:if="{{getOrderList.length>0}}">
         <block wx:for="{{getOrderList}}" wx:key="index">
           <view class="box">
             <view class="box-header">
@@ -74,12 +75,14 @@
               </view>
               <view wx:if="{{item.order_state=='TRADE_FINISH'}}">
                 <view class="footer-right">
-                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella" class="payment">删除</view>
+                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella"
+                    class="payment">删除</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">
                 <view class="footer-right">
-                  <view bindtap="cancellFn" data-index="{{index}}" data-order_sn="{{item.order_sn}}" class="cancella">取消订单</view>
+                  <view bindtap="cancellFn" data-index="{{index}}" data-order_sn="{{item.order_sn}}" class="cancella">
+                    取消订单</view>
                   <view bindtap="bindGoPin" data-order_sn="{{item.order_sn}}" class="payment">立即付款</view>
                 </view>
               </view>
@@ -91,7 +94,8 @@
                 </view>
                 <view wx:else>
                   <view class="footer-right">
-                    <view data-index="{{index}}" class="cancella" bindtap="bindLess" data-order_sn="{{item.order_sn}}">确认收货</view>
+                    <view data-index="{{index}}" class="cancella" bindtap="bindLess" data-order_sn="{{item.order_sn}}">
+                      确认收货</view>
                     <view class="payment">查看物流</view>
                   </view>
                 </view>
@@ -110,7 +114,8 @@
               </view>
               <view wx:elif="{{item.order_state=='TRADE_CLOSED'}}">
                 <view class="footer-right">
-                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella" class="payment">删除</view>
+                  <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella"
+                    class="payment">删除</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">
@@ -127,12 +132,18 @@
           </view>
         </block>
       </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
     </scroll-view>
   </swiper-item>
   <!-- 待付款 -->
   <swiper-item>
     <scroll-view bindscrolltolower="loadMore" scroll-y="true" style="height:{{scrollH}}rpx">
-      <view class="content">
+      <view class="content" wx:if="{{getOrderOne.length>0}}">
         <block wx:for="{{getOrderOne}}" wx:key="index">
           <view class="box">
             <view class="box-header">
@@ -163,7 +174,8 @@
                 <text class="body-jg">￥{{item.order_amount}}</text>
               </view>
               <view class="footer-right">
-                <view class="cancella2" data-index="{{index}}" bindtap="cancellFn2" data-order_sn="{{item.order_sn}}" class="cancella">取消订单
+                <view class="cancella2" data-index="{{index}}" bindtap="cancellFn2" data-order_sn="{{item.order_sn}}"
+                  class="cancella">取消订单
                 </view>
                 <view data-order_sn="{{item.order_sn}}" bindtap="bindGoPin" class="payment">立即付款</view>
               </view>
@@ -171,11 +183,17 @@
           </view>
         </block>
       </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
     </scroll-view>
   </swiper-item>
   <!-- 待发货 -->
   <swiper-item>
-    <view class="content">
+    <view class="content" wx:if="{{getOrderTow.length>0}}">
       <block wx:for="{{getOrderTow}}" wx:key="index">
         <view class="box">
           <view class="box-header">
@@ -212,8 +230,20 @@
         </view>
       </block>
     </view>
+    <view wx:else class="wushujucs">
+      <view class="wushu-img">
+        <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+      </view>
+      <view>暂无数据</view>
+    </view>
   </swiper-item>
   <swiper-item>
+    <view class="wushujucs">
+      <view class="wushu-img">
+        <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+      </view>
+      <view>暂无数据</view>
+    </view>
     <!-- <text>待收货</text> -->
   </swiper-item>
   <swiper-item>
@@ -244,6 +274,12 @@
         </view>
       </view>
     </view> -->
+    <view class="wushujucs">
+      <view class="wushu-img">
+        <image src="/assets/images/kong.png"></image>
+      </view>
+      <view>暂无数据</view>
+    </view>
   </swiper-item>
 </swiper>
 <view class="right-box" wx:if="{{right_con}}">

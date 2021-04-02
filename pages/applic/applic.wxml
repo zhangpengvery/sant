@@ -1,20 +1,23 @@
 <!--pages/applic/applic.wxml-->
-<view class="box" wx:if="{{getFailLists.length>0}}">
+<view class="box" wx:if="{{num>0}}">
   <view class="header">
     <view class="header-left">待处理异常</view>
-    <view class="header-right">{{getFailLists.length}}个</view>
+    <view class="header-right">{{num}}个</view>
   </view>
-  <block wx:for="{{getFailLists}}" wx:key="index">
-    <view class="con-text">
-      <view class="text-box">
-        <view class="text-qk">缺卡：</view>
-        <view class="text-time">{{item.r_date}} {{item.r_time}}</view>
+  <scroll-view style="height:{{winH}}rpx" scroll-y="true" bindscrolltolower="loadMore">
+    <block wx:for="{{getFailLists}}" wx:key="index">
+      <view class="con-text">
+        <view class="text-box">
+          <view class="text-qk">缺卡：</view>
+          <view class="text-time">{{item.r_date}} {{item.r_time}}</view>
+        </view>
+        <navigator url="/pages/repcard/repcard?r_data={{item.r_date}}&r_time={{item.r_time}}&id={{item.id}}">
+          <view class="chuli">去处理</view>
+        </navigator>
       </view>
-      <navigator url="/pages/repcard/repcard?r_data={{item.r_date}}&r_time={{item.r_time}}&id={{item.id}}">
-        <view class="chuli">去处理</view>
-      </navigator>
-    </view>
-  </block>
+    </block>
+    <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+  </scroll-view>
 </view>
 <view class="box" wx:else>
   <view class="header">

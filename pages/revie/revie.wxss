@@ -136,3 +136,29 @@ page{
 .mask-icon text{
   font-size: 28rpx;
 }
+.wushujucs{
+  margin-top: 300rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
+}
+.max-mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  z-index: 3;
+  opacity: 0.7;
+ }

@@ -56,6 +56,11 @@ Page({
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getOrderInfoScaner",{
       order_id:order_id
     })
+    if(result.data.content!=null){
+      this.setData({
+        content:result.data.content
+      })
+    }
     this.setData({
       getOrder: result.data,
       status:result.data.status
@@ -77,7 +82,7 @@ Page({
       var DD2 = (date2.getDate() < 10 ? '0' + (date2.getDate()) : date2.getDate());
       var time2 = YY2 + MM2 + DD2
     }
-    if(this.data.getOrder.book_time!=null){
+    if(this.data.getOrder.book_time!=null&&this.data.getOrder.book_time.length>0){
       this.setData({
         date:this.data.getOrder.book_time
       })
@@ -107,7 +112,14 @@ Page({
       status:status,
       book_time:book_time
     }).then(res=>{
-      console.log(res);
+      if(res.data.datas==1){
+        this.setData({
+          status:1
+        })
+        wx.showToast({
+          title: '设置成功',
+        })
+      }
     })
   },
   setStatusTwo(id,s_type,content){
@@ -119,7 +131,7 @@ Page({
   },
   bindDateChange: function(e) {
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
     })
     this.setStatusOne(this.data.order_id,this.data.status,e.detail.value)
   },
@@ -128,6 +140,7 @@ Page({
       arrayIndex: e.detail.value,
       status:this.data.array[e.detail.value].status
     })
+    this.setStatusTwo(this.data.order_id,this.data.arrayIndex,this.data.content)
   },
   bindXingq:function(e){
     this.setData({
@@ -136,6 +149,9 @@ Page({
   },
   bddhFn:function(){
     this.setStatusTwo(this.data.order_id,this.data.arrayIndex,this.data.content)
+    wx.redirectTo({
+      url: '/pages/finlist/finlist',
+    })
   },
   //转接订单点击
   deleteFn: function (e) {

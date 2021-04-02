@@ -40,7 +40,7 @@ Page({
     city_name:null,
     area_list:null,
     area_name:null,
-    addressCity:null,
+    addressCity:[0,0,0],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId:null,
@@ -94,8 +94,12 @@ Page({
       recruit_age:result.data.data.recruit_info.recruit_age,
       jt_id:result.data.data.recruit_info.job_type_id,
       js_id:result.data.data.recruit_info.recruit_salary,
-      je_id:result.data.data.recruit_info.recruit_experince
+      je_id:result.data.data.recruit_info.recruit_experince,
+      'addressCity[0]':result.data.data.recruit_info.province_name,
+      'addressCity[1]':result.data.data.recruit_info.city_name,
+      'addressCity[2]':result.data.data.recruit_info.area_name,
     })
+    console.log(result.data.data.recruit_info);
   },
   //各种数据
   async getJobBasicData(){

@@ -28,6 +28,9 @@ page{
   color: #333;
   font-weight: 500;
 }
+.clockintimered{
+  color: rgb(190, 4, 4);
+}
 .yuan{
   width: 16rpx;
   height: 16rpx;

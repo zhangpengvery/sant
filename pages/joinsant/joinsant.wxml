@@ -16,10 +16,10 @@
       <view class="iconfont icon-taishifuwu-chexianzhuanyuan yuan yuan4"></view>
       <view class="xiandan">车险专员</view>
     </view>
-    <view class="icon-left" bindtap="bindJsq">
+    <!-- <view class="icon-left" bindtap="bindJsq">
       <view class="iconfont icon-zu1919 yuan yuan2"></view>
       <view class="xiandan">计算器</view>
-    </view>
+    </view> -->
   </view>
   <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" binddragging="scrTopFn"
     bindscroll="scrBtnFn">
@@ -44,7 +44,7 @@
           </view>
           <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
           </view>
-          <view wx:if="{{service==1}}" data-user_id="{{item.user_id}}" data-index="{{index}}" bindtap="bindYjpd" class="user-bx">派单</view>
+          <view wx:if="{{service==1&&type==3}}" data-user_id="{{item.user_id}}" data-index="{{index}}" bindtap="bindYjpd" class="user-bx">派单</view>
         </view>
       </block>
     </block>
@@ -67,12 +67,15 @@
           </view>
         </view>
         <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
-        <view wx:if="{{service==1}}" data-user_id="{{user_id}}" bindtap="bindYjpd" data-index="0" class="user-bx">派单</view>
+        <view wx:if="{{service==1&&type==3}}" data-user_id="{{user_id}}" bindtap="bindYjpd" data-index="0" class="user-bx">派单</view>
       </view>
     </block>
   </scroll-view>
   <cover-image class="gozhong" src="/assets/images/dqwz.png" bindtap='clickControl'></cover-image>
   <cover-view class="golist" wx:if="{{service==1||scaner==1}}" bindtap="bindGolist">
-    <cover-image src="https://jbccs.com/./Upload/image/2021-03-18/605316f3850da.png"></cover-image>
+    <cover-image src="/assets/images/20210326161610.png"></cover-image>
   </cover-view>
+  <!-- <cover-view class="golist golist2" wx:if="{{service==1||scaner==1}}" bindtap="bind">
+    <cover-image src="/assets/images/20210326161610.png"></cover-image>
+  </cover-view> -->
 </view>

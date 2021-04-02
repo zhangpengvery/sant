@@ -8,21 +8,23 @@
 <Calendar id="Calendar" bind:select="select"></Calendar>
 <view class="footer">
   <view class="footer-text">规则：固定上下班 冬季上班时间 08：30-17：30</view>
-  <view class="footer-text">共1次卡，工时0小时</view>
+  <!-- <view class="footer-text">共1次卡，工时0小时</view> -->
   <view class="footer-time" wx:if="{{getwork_on!=null}}">
     <view class="yuan"></view>
     <view class="clockintime" wx:if="{{getwork_on.status==5}}">上班  {{getwork_on.r_time}}(补卡)</view>
-    <view class="clockintime" wx:elif="{{getwork_on.status==2}}">上班  {{getwork_on.r_time}}(迟到)</view>
+    <view class="clockintime clockintimered" wx:elif="{{getwork_on.status==2}}">上班  {{getwork_on.r_time}}(迟到)</view>
     <view class="clockintime" wx:elif="{{getwork_on.status==0||getwork_on.status==4}}">未打卡</view>
     <view class="clockintime" wx:elif="{{getwork_on.status==1}}">上班  {{getwork_on.r_time}}</view>
+    <view class="clockintime" wx:if="{{getwork_on.q_type==2}}">  (外勤)</view>
   </view>
   <view class="footer-time" wx:if="{{getwork_off!=null}}">
     <view class="xian"></view>
     <view class="yuan"></view>
     <view class="clockintime" wx:if="{{getwork_off.status==5}}">下班  {{getwork_off.r_time}}(补卡)</view>
-    <view class="clockintime" wx:if="{{getwork_off.status==2}}">下班  {{getwork_off.r_time}}(迟到)</view>
+    <view class="clockintime clockintimered" wx:elif="{{getwork_off.status==6}}">下班  {{getwork_off.r_time}}(早退)</view>
     <view class="clockintime" wx:elif="{{getwork_off.status==0||getwork_off.status==4}}">未打卡</view>
     <view class="clockintime" wx:elif="{{getwork_off.status==1}}">下班  {{getwork_off.r_time}}</view>
+    <view class="clockintime" wx:if="{{getwork_off.q_type==2}}">  (外勤)</view>
   </view>
   <view class="footer-time" wx:if="{{getwork_on==null&&getwork_off==null}}">
     <view class="clockintime">暂无打卡数据</view>

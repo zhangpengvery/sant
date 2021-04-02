@@ -25,7 +25,8 @@
   </view>
 </view>
 <view class="mask" wx:if="{{showMask}}" bindtap="maskFn"></view>
-<scroll-view wx:if="{{getPartsList.length>0}}" scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore">
+<scroll-view wx:if="{{getPartsList.length>0}}" scroll-y="true" style="height:{{scrollH}}rpx"
+  bindscrolltolower="loadMore">
   <view class="list">
     <block wx:for="{{getPartsList}}" wx:key="index">
       <view class="list-content">
@@ -40,6 +41,9 @@
     </block>
   </view>
 </scroll-view>
-<view class="kong" style="height:{{scrollH}}rpx" wx:else>
-  <view class="kong-box">暂无配件信息</view>
+<view wx:else class="wushujucs">
+  <view class="wushu-img">
+    <image src="/assets/images/kongbai.png"></image>
+  </view>
+  <view>暂无数据</view>
 </view>

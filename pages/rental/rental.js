@@ -52,6 +52,7 @@ Page({
     age_up:0,
     price_up:0,
     jiageActtiv:0,
+    cityActive: 16,
     getAllHireLists:[],
     getBrandList:[],
     getChassisList:[],

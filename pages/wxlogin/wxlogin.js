@@ -8,6 +8,9 @@ Page({
 
   },
   getUserInfo: function (e) {
+    wx.showLoading({
+      title: '登录中...',
+    })
     if (e.detail.errMsg.length == 14) {
       wx.request({
         url: 'https://api.jbccs.com/api/wxLogin',
@@ -19,6 +22,9 @@ Page({
         },
         method: 'POST',
         success: (res => {
+          if(res.statusCode==200){
+            wx.hideLoading()
+          }
           wx.setStorage({
             data: res.data.data.token,
             key: 'token',

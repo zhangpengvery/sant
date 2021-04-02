@@ -11,6 +11,6 @@
     <text class="red">* </text>
     <text>补卡理由</text>
   </view>
-  <textarea class="text-ly" value="{{bkly}}"></textarea>
+  <textarea class="text-ly" bindinput="bindBkly" placeholder="请填写补卡理由"></textarea>
 </view>
 <view class="ljfb" bindtap="bddhFn">提交</view>

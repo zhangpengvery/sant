@@ -12,7 +12,12 @@ Page({
     id:0,
     r_data:"",
     r_time:"",
-    bkly:"忘记打卡"
+    bkly:""
+  },
+  bindBkly:function(e){
+    this.setData({
+      bkly:e.detail.value
+    })
   },
   bddhFn:function(){
     if(this.data.bkly==""){
@@ -32,9 +37,11 @@ Page({
         wx.showToast({
           title: '补卡成功',
         })
-        wx.redirectTo({
-          url: '/pages/applic/applic',
-        })
+        setTimeout(function() {
+          wx.redirectTo({
+            url: '/pages/applic/applic',
+          })
+        }, 2000)
       }else{
         wx.showToast({
           title: '补卡失败',

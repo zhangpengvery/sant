@@ -15,14 +15,15 @@
   <view class="showcs {{activexiao==1?'huang':''}}" bindtap="showChus" data-id="0">出售</view>
   <view class="showcs {{activexiao==2?'huang':''}}" bindtap="showCz" data-id="1">出租</view>
 </view>
-<view class="body">
+<view class="body" wx:if="{{myFavorList.length>0}}">
   <block wx:for="{{myFavorList}}" wx:key="index">
     <view class="cart-goods">
       <view class="cart-icon" bindtap="changeSelect" data-index="{{index}}">
         <icon type="success_circle" size="20" color="#F9B236" wx:if="{{item.isSelect}}"></icon>
         <icon type="circle" size="20" wx:else></icon>
       </view>
-      <view class="cart-img" bindtap="bindgoingFn" data-favor_type="{{item.favor_type}}" data-favor_data="{{item.favor_data}}">
+      <view class="cart-img" bindtap="bindgoingFn" data-favor_type="{{item.favor_type}}"
+        data-favor_data="{{item.favor_data}}">
         <image mode="aspectFill" src="{{item.favor_image}}"></image>
       </view>
       <view class="goods-info">
@@ -33,6 +34,12 @@
       </view>
     </view>
   </block>
+</view>
+<view wx:else class="wushujucs">
+  <view class="wushu-img">
+    <image src="/assets/images/kong.png"></image>
+  </view>
+  <view>暂无数据</view>
 </view>
 <view class="cart-footer" wx:if="{{dian}}">
   <view class="cart-icon" bindtap="selectAllFn">

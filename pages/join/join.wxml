@@ -5,22 +5,30 @@
 <view class="title">加盟流程</view>
 <view class="gclc-icon">
   <view class="icon-left">
-    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="yuan">
+      <image src="/assets/images/2.png"></image>
+    </view>
     <view class="xiandan">网上申请</view>
   </view>
   <view class="iconfont icon-taishifuwu-jiantou jiant"></view>
   <view class="icon-left">
-    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="yuan">
+      <image src="/assets/images/4.png"></image>
+    </view>
     <view class="xiandan">投递简历</view>
   </view>
   <view class="iconfont icon-taishifuwu-jiantou jiant"></view>
   <view class="icon-left">
-    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="yuan">
+      <image src="/assets/images/6.png"></image>
+    </view>
     <view class="xiandan">面试</view>
   </view>
   <view class="iconfont icon-taishifuwu-jiantou jiant"></view>
   <view class="icon-left">
-    <view class="iconfont icon-woyaozhaopin yuan"></view>
+    <view class="yuan">
+      <image src="/assets/images/3.png"></image>
+    </view>
     <view class="xiandan">offer</view>
   </view>
 </view> 

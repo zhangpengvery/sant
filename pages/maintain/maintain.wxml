@@ -8,7 +8,7 @@
   <view class="title-text">请选择套餐</view>
 </view>
 <view class="content">
-  <view class="con-fater">
+  <view class="con-fater" bindtap="xuanzTopFn">
     <view class="con-img">
       <image src="https://www.jbccs.com/Public/Wap/image/by-sz.png"></image>
     </view>
@@ -17,9 +17,9 @@
       <view class="con-jg">￥800</view>
       <view class="con-pj">液压油+齿轮油+液压滤芯</view>
     </view>
-    <view class="xuanz {{maintain==1?'bgxuanz':''}}" bindtap="xuanzTopFn">√</view>
+    <view class="xuanz {{maintain==1?'bgxuanz':''}}">√</view>
   </view>
-  <view class="con-fater">
+  <view class="con-fater"  bindtap="xuanzBtmFn">
     <view class="con-img">
       <image src="https://www.jbccs.com/Public/Wap/image/by-dp.png"></image>
     </view>
@@ -28,7 +28,7 @@
       <view class="con-jg">￥770</view>
       <view class="con-pj">1个18L机油+2个4L机油+2个机油滤芯</view>
     </view>
-    <view class="xuanz {{maintain==2?'bgxuanz':''}}" bindtap="xuanzBtmFn">√</view>
+    <view class="xuanz {{maintain==2?'bgxuanz':''}}">√</view>
   </view>
 </view>
 <view class="title">

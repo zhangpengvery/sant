@@ -24,6 +24,7 @@
 <view class="showcity" wx:if="{{showCity}}">
   <scroll-view scroll-y="true" style="height:500rpx;width:30%">
     <view class="city-content">
+      <view class="city-box {{cityActive==0?'cityac':''}}" bindtap="rightBoxFn" data-id="0">全部</view>
       <block wx:for="{{getCityList}}" wx:key="index">
         <view class="city-box {{cityActive==item.area_id?'cityac':''}}" bindtap="SaveFn" data-id="{{item.area_id}}">
           {{item.area_name}}</view>

@@ -28,12 +28,18 @@
   color: #E3E2E2;
 }
 .icon-left{
+  display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
 }
 .icon-left .yuan{
-  font-size: 80rpx;
-  color: #F9B236;
+  width: 80rpx;
+  height: 80rpx;
+}
+.yuan image{
+  width: 100%;
+  height: 100%;
 }
 .icon-left .xiandan{
   color: #333;

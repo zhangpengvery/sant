@@ -71,12 +71,18 @@ page{
 .bgactive{
   background: #F9B236;
 }
+.box{
+  width: 100%;
+  height: auto;
+  margin:  0 auto;  
+  overflow: hidden;
+}
 .content{
   position: relative;
-  width: 88%;
+  width: 80%;
   height: 230rpx;
   margin: 20rpx 3% 0 3%;
-  padding: 0 3%;
+  padding: 0 7%;
   border-radius: 20rpx;
   background: #fff;
   overflow: hidden;
@@ -145,4 +151,61 @@ page{
 }
 .zhuangt2{
   background: #aaa;
+}
+.left-img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90rpx;
+  height: 90rpx;
+}
+.left-img image{
+  width: 100%;
+  height: 100%;
+}
+.switch-kai{
+  position: absolute;
+  top: 20rpx;
+  right: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100rpx;
+  padding: 0 5rpx;
+  height: 40rpx;
+  border-radius: 22rpx;
+  background: #F9B236;
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 40rpx;
+}
+.tuoyuan{
+  width: 26rpx;
+  height: 26rpx;
+  border-radius: 50%;
+  background: #fff;
+}
+.switch-guan{
+  background: #fff;
+  color: #F9B236;
+  border: 1rpx solid #aaa;
+}
+.tuoyuan2{
+  border: 1rpx solid #aaa;
+}
+.wushujucs{
+  margin-top: 300rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
 }

@@ -55,12 +55,16 @@
   </view>
 </view>
 <view class="footer1">
-  <view>意向金￥5000</view>
-  <view>交5000购车时抵10000！！！</view>
+  <view class="footer-box">
+    <view class="box-num">支付信息</view>
+    <view class="box-text">意向金</view>
+    <view class="iconfont icon-lujing1090"><text>  交5000购车时抵10000</text></view>
+  </view>
+  <view style="color:#BA1515">￥5000.00</view>
 </view>
 <view class="footer">
   <view class="footer-lfet">
-    <view class="money">合计：￥5000</view>
+    <view class="money">合计：<text>￥5000.00</text></view>
   </view>
   <view class="gobuy" bindtap="gobuyFn">结算</view>
 </view>

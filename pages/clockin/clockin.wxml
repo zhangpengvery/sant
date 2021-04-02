@@ -9,7 +9,7 @@
   </view>
   <view class="box-fatr">
     <view class="box2" bindtap="bindstatisFn">
-      <view class="iconfont icon-zu1865"></view>
+      <view class="iconfont icon-shouhuodizhi-bianji box2icon"></view>
       <view class="header-rigth">统计</view>
     </view>
     <view class="box2" bindtap="bindshenqFn">
@@ -18,7 +18,7 @@
     </view>
   </view>
 </view>
-<view class="content">
+<view class="content" style="height:{{winH}}rpx;">
   <view class="box3">
     <view class="time">
       <view class="sb-time">上班08:30</view>
@@ -45,7 +45,7 @@
       </view>
     </view>
   </view>
-  <view class="clockin {{active==0?'clockin2':''}}" bindtap="bindclockinFn">
+  <view class="clockin {{active==2?'clockin2':active==3?'clockin3':''}}" bindtap="bindclockinFn">
     <view class="clockin-text">{{clockin}}</view>
     <view class="clockin-time">{{currentTime}}</view>
   </view>
@@ -55,9 +55,13 @@
       <view class="clockin-scope">已进入考勤范围：</view>
       <view class="scope-address">中兴新业港</view>
     </block>
-    <block wx:else>
+    <block wx:elif="{{active==2}}">
       <view class="clockin-scope">未进入考勤范围：</view>
       <view class="scope-address">外勤打卡</view>
     </block>
+    <block wx:elif="{{active==3}}">
+      <view class="clockin-scope">手机定位服务关闭,请打开后重新进入</view>
+    </block>
   </view>
 </view>
+<view open-type="openSetting" wx:if="{{active==3}}" class="tipe"></view>

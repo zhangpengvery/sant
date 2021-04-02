@@ -176,7 +176,6 @@ Page({
     })
   },
   bindgoingFn:function(e){
-    console.log(e);
     if(e.currentTarget.dataset.favor_type=='entire'){
       wx.navigateTo({
         url: '/pages/accedetail/accedetail?good_id='+e.currentTarget.dataset.favor_data,

@@ -10,6 +10,12 @@
       </view>
       <view class="iconfont icon-xiangyou gobuy"></view>
     </view>
+    <navigator url="/pages/materi/materi">
+      <view class="box">
+        <view>个人信息</view>
+        <view class="iconfont icon-xiangyou gobuy"></view>
+      </view>
+    </navigator>
     <navigator url="/pages/address/address">
       <view class="box">
         <view>地址管理</view>
@@ -18,10 +24,12 @@
     </navigator>
   </view>
   <view style="margin-top:20rpx">
-    <view class="box">
-      <view>账号安全</view>
-      <view class="iconfont icon-xiangyou gobuy"></view>
-    </view>
+    <navigator url="/pages/safety/safety?user_mobile={{getUserInfo.user_mobile}}">
+      <view class="box">
+        <view>账号安全</view>
+        <view class="iconfont icon-xiangyou gobuy"></view>
+      </view>
+    </navigator>
     <navigator url="/pages/myvip/myvip">
       <view class="box">
         <view>三泰会员</view>

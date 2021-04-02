@@ -29,16 +29,18 @@ Page({
     time:"",
     time2:"",
     status:0,
+    content:"",
+    textcon:""
   },
-
   async getSellerList(order_id) {
     var that=this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getOrderInfoSeller",{
       order_id:order_id
-    })  
+    })
     this.setData({
       getSeller: result.data,
-      status:result.data.status
+      status:result.data.status,
+      content:result.data.content
     },function(){
       that.cjTime()
     })
@@ -56,6 +58,11 @@ Page({
       var MM2 = (date2.getMonth() + 1 < 10 ? '0' + (date2.getMonth() + 1) : date2.getMonth() + 1) + '-';
       var DD2 = (date2.getDate() < 10 ? '0' + (date2.getDate()) : date2.getDate());
       var time2 = YY2 + MM2 + DD2
+    }
+    if(this.data.content!=null){
+      this.setData({
+        textcon:this.data.content
+      })
     }
     this.setData({
       time:time,

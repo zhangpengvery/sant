@@ -48,6 +48,9 @@ page{
   color: #5A5A5A;
   font-size: 40rpx;
 }
+.box2 .box2icon{
+  font-size: 38rpx;
+}
 .box2 .header-rigth{
   color: #999;
   font-size: 20rpx;
@@ -55,7 +58,6 @@ page{
 }
 .content{
   width: 88%;
-  height: 1000rpx;
   margin: 0 3%;
   padding: 0 3%;
   background: #fff;
@@ -112,6 +114,10 @@ page{
   background: linear-gradient(180deg, #7daeff 0%, #568fef 100%);
   box-shadow: 0px 6px 6px rgba(54, 145, 249, 0.34);
 }
+.clockin3{
+  background: linear-gradient(180deg, #B7BFCA 0%, #959CAC 100%);
+  box-shadow: 0px 6px 6px rgba(225,228,233, 0.34);
+}
 .clockin-text{
   font-size: 38rpx;
   font-weight: 500;
@@ -133,4 +139,11 @@ page{
 }
 .scope-address{
   color: #5E5E5E;
+}
+.tipe{
+  position: fixed;
+  bottom: 50rpx;
+  width: 90%;
+  padding: 0 5%;
+  text-align: center;
 }

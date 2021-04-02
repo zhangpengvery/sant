@@ -21,6 +21,12 @@
     <view wx:if="{{item.status>1||item.status==-1}}" class="user-dal" catchtap="binddalFn" data-id="{{item.id}}" data-index="{{index}}">删除</view>
   </view>
 </block>
+<view class="wushujucs" wx:if="{{repairList.length==0}}">
+  <view class="wushu-img">
+    <image src="/assets/images/kong.png"></image>
+  </view>
+  <view>暂无数据</view>
+</view>
 <view class="footer" style="bottom:{{footerbtm}}rpx">
   <view class="header-foot">
     <view class="fbpj">发表评价</view>

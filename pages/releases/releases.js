@@ -25,7 +25,7 @@ Page({
       title:"发布出售"
     },
     navH:0,
-    pics:null,
+    pics:"",
     imageList: [],
     province_list: null,
     province_name: null,
@@ -33,7 +33,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: ['请输入','请输入','请输入'],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -129,7 +129,13 @@ Page({
       sale_price:sale_price,
       sale_message:sale_message
     }).then(res=>{
-      console.log(res);
+      if(res.statusCode==200){
+        wx.showToast({
+          title: '上传成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
     })
   },
   //获取省份列表

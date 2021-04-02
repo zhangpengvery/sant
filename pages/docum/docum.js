@@ -26,7 +26,9 @@ Page({
       title: "上传证件"
     },
     idcard_file:"/Upload/image/2021-02-23/6034ad193c146.png",
-    drive_file:"/Upload/image/2021-02-23/6034ad193c146.png"
+    drive_file:"/Upload/image/2021-02-23/6034ad193c146.png",
+    idcard:0,
+    drive:0
   },
   jiaszFn: function () {
     var that = this
@@ -46,7 +48,8 @@ Page({
             var data = JSON.parse(res.data)
             console.log(data);
             that.setData({
-              idcard_file:data.datas.result
+              idcard_file:data.datas.result,
+              idcard:1
             })
           }
         })
@@ -71,7 +74,8 @@ Page({
             var data = JSON.parse(res.data)
             console.log(data);
             that.setData({
-              drive_file: data.datas.result
+              drive_file: data.datas.result,
+              drive:1
             })
           }
         })
@@ -83,11 +87,29 @@ Page({
       idcard_file:idcard_file,
       drive_file:drive_file
     }).then(res=>{
-      console.log(res);
+      if(res.data.datas==1){
+        wx.showToast({
+          icon:'success',
+          title: '上传成功',
+        })
+      }
+      console.log(res.data.datas);
     })
   },
   bddhFn:function(){
-    this.uploadIdCard(this.data.idcard_file,this.data.drive_file)
+    if(this.data.idcard==0){
+      wx.showToast({
+        icon:'none',
+        title: '请上传驾驶证',
+      })
+    }else if(this.data.drive==0){
+      wx.showToast({
+        icon:'none',
+        title: '请上传行驶证',
+      })
+    }else if(this.data.drive==1&&this.data.idcard==1){
+      this.uploadIdCard(this.data.idcard_file,this.data.drive_file)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

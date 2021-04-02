@@ -31,7 +31,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: ['请输入','请输入','请输入'],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -211,7 +211,7 @@ Page({
       if(res.statusCode==200){
         wx.showToast({
           title: '上传成功',
-          icon: 'error',
+          icon: 'success',
           duration: 2000
         })
       }

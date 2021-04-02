@@ -89,8 +89,14 @@ page{
   align-items: center;
 }
 .footer-box .iconfont{
-  color: #F9B236;
+  color: #AAAAAA;
   font-size: 50rpx;
+}
+.footer-box .huang{
+  color: #F9B236;
+}
+.huang{
+  color: #F9B236;
 }
 .box-right{
   width: 80%;
@@ -107,6 +113,9 @@ page{
   top: -24rpx;
   left: 20rpx;
   height: 45rpx;
+  border: 1rpx dashed #aaa;
+}
+.huangxian{
   border: 1rpx dashed #F9B236;
 }
 .xititle{

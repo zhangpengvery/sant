@@ -26,7 +26,12 @@
         </view>
       </block>
     </view>
-    <view wx:else class="kong">暂无数据</view>
+    <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
   </swiper-item>
   <swiper-item>
     <view class="right-list" wx:if="{{myHireForList.length>=1}}">
@@ -50,7 +55,12 @@
         </view>
       </block>
     </view>
-    <view wx:else class="kong">暂无数据</view>
+    <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
   </swiper-item>
 </swiper>
 <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>

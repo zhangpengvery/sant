@@ -15,7 +15,7 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: ['请选择','请选择','请选择'],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
@@ -272,6 +272,9 @@ Page({
       })
     }else{
       this.scanAdd(this.data.user_id,this.data.user_name,this.data.user_mobile,this.data.selectAreaId,this.data.address,this.data.car_nums)
+      wx.redirectTo({
+        url: '/pages/surlist/surlist',
+      })
     }
   },
   /**

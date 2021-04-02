@@ -46,9 +46,10 @@ Page({
     }
     this.setData({
       getSaleInfo:result.data.data.info,
-      getSaleList:result.data.data.new_3
+      getSaleList:result.data.data.new_3,
+      phone:result.data.data.info.contact_tel
     })
-    console.log(this.data.getSaleList);
+    console.log(this.data.getSaleInfo);
     
   },
   /**

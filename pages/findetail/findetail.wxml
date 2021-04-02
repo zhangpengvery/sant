@@ -5,45 +5,46 @@
 </view>
 <view class="header-img" style="margin-top:{{navH}}rpx">
   <image src="https://jbccs.com/./Upload/image/2021-03-19/60545f83aa39b.png"></image>
-  <view wx:if="{{status==0}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  待处理</view>
-  <view wx:if="{{status==1}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  处理中</view>
-  <view wx:if="{{status==-1}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已取消</view>
-  <view wx:if="{{status==4}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已转接</view>
-  <view wx:if="{{status==2||status==3}}" class="zhuangt"><text class="iconfont icon-lujing533"></text>  已完成</view>
+  <view wx:if="{{status==0}}" class="zhuangt"><text class="iconfont icon-shijian"></text>  已接单</view>
+  <view wx:if="{{status==-1}}" class="zhuangt"><text class="iconfont icon-shijian"></text>  已取消</view>
+  <view wx:if="{{status==1}}" class="zhuangt"><text class="iconfont icon-shijian"></text>  已预约</view>
+  <view wx:if="{{status==4}}" class="zhuangt"><text class="iconfont icon-shijian"></text>  已转办</view>
+  <view wx:if="{{status==2}}" class="zhuangt"><text class="iconfont icon-shijian"></text>  部分完成</view>
+  <view wx:if="{{status==3}}" class="zhuangt"><text class="iconfont icon-shijian"></text>  已完成</view>
 </view>
 <view class="footer">
   <view class="footer-box">
-    <view class="iconfont icon-jiedan"></view>
+    <view class="iconfont icon-jiedan huang"></view>
     <view class="box-right">
       <view class="box-text">接单日期</view>
       <view class="box-time">{{time}}</view>
     </view>
   </view>
   <view class="footer-box">
-    <view class="xian"></view>
-    <view class="iconfont icon-yuyue"></view>
+    <view class="xian {{status>0&status!=4?'huangxian':''}}"></view>
+    <view class="iconfont icon-yuyue {{status>0&status!=4?'huang':''}}"></view>
     <view class="box-right">
       <view class="box-text">预约调查日期</view>
-      <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}" bindchange="bindDateChange" disabled="{{status==-1||status==4||status==3?true:false}}">
         <view class="box-time">{{date}}</view>
       </picker>
+      <view class="iconfont icon-xiangyou xiala"></view>
     </view>
   </view>
   <view class="footer-box">
-    <view class="xian"></view>
-    <view class="iconfont icon-wancheng"></view>
+    <view class="xian {{status>1&status!=4?'huangxian':''}}"></view>
+    <view class="iconfont icon-wancheng {{status==3?'huang':''}}"></view>
     <view class="box-right">
       <view class="box-text">调查状态</view>
-      <picker bindchange="bindPickerChange" value="{{array['arrayIndex']}}" range="{{array}}" range-key="{{'text'}}">
+      <picker bindchange="bindPickerChange" value="{{array['arrayIndex']}}" range="{{array}}" range-key="{{'text'}}" disabled="{{status==-1||status==4||status==3?true:false}}">
         <view>{{array[arrayIndex].text}}</view>
       </picker>
-      <!-- <view wx:if="{{status==2}}">部分完成</view>
-      <view wx:if="{{status==3}}">全部完成</view> -->
+      <view class="iconfont icon-xiangyou xiala"></view>
     </view>
   </view>
   <view class="xititle" wx:if="{{status>1&status!=4}}">调查详情</view>
   <view class="xqtext" wx:if="{{status>1&status!=4}}">
-    <textarea class="xqval" bindinput="bindXingq" value="{{getOrder.content}}"></textarea>
+    <textarea disabled="{{status==-1||status==4||status==3?true:false}}" class="xqval" bindinput="bindXingq" value="{{getOrder.content}}"></textarea>
   </view>
   <view class="bai"></view>
 </view>
@@ -55,6 +56,7 @@
   <view class="user-box">
     <view class="user-name">联系方式</view>
     <view class="user-pho">{{getOrder.user_mobile}}</view>
+    <view class="bddh" style="top:30rpx" bindtap="bindPho" data-pho="{{getOrder.user_mobile}}">拨打电话</view>
   </view>
   <view class="user-text">
     <view class="user-name">家访地址</view>
@@ -68,5 +70,5 @@
     <view class="bddh" bindtap="bindPho" data-pho="{{getOrder.tel}}">拨打电话</view>
   </view>
 </view>
-<view class="zhuan" wx:if="{{status==0}}" bindtap="deleteFn">转接</view>
-<view class="ljfb" wx:if="{{content.length>0}}" bindtap="bddhFn">立即发布</view>
+<view class="zhuan" wx:if="{{status==0}}" bindtap="deleteFn">转办</view>
+<view class="ljfb" wx:if="{{content.length>0&&status!=3}}" bindtap="bddhFn">提交</view>

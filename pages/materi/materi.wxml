@@ -23,12 +23,16 @@
       <view class="toxiang">
         <image src="{{user_img}}"></image>
       </view>
-      <view class="gai"> ></view>
+      <view class="iconfont icon-xiangyou gai"></view>
     </view>
   </view>
   <view class="box">
-    <view class="footer-text">用户名</view>
+    <view class="footer-text">姓名</view>
     <input type="text" bindinput="bindname" value="{{getUserInfo.user_truename}}" placeholder="请输入真实姓名" />
+  </view>
+  <view class="box">
+    <view class="footer-text">用户名</view>
+    <input type="text" bindinput="bindname2" value="{{getUserInfo.user_name}}" placeholder="请输入用户名" />
   </view>
   <view class="box">
     <view class="footer-text">QQ</view>

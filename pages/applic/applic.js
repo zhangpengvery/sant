@@ -9,20 +9,50 @@ Page({
    * 页面的初始数据
    */
   data: {
+    num:0,
+    page:1,
+    winH:0,
+    dixian:false,
     getFailLists:[]
   },
-  async getFailLists() {
-    let result = await requestApi(app.globalData.post_url + "/index.php/api/check/getFailLists")
-    this.setData({
-      getFailLists: result.data.datas
+  async getFailLists(page) {
+    let result = await requestApi(app.globalData.post_url + "/index.php/api/check/getFailLists",{
+      page:page
     })
-    console.log(result);
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }else{
+      this.setData({
+        num:result.data.datas.total,
+        getFailLists:this.data.getFailLists.concat(result.data.datas.list)
+      })
+    }
+  },
+  loadMore() {
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getFailLists(this.data.page)
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getFailLists()
+    this.getFailLists(this.data.page)
+    wx.getSystemInfo({
+      success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =(clientHeight * ratio)-110
+        this.setData({
+          winH:ScrH
+        })
+      },
+    })
   },
 
   /**

@@ -1,4 +1,5 @@
 /* pages/zcorders/zcorders.wxss */
+@import "/assets/fonts/iconfont.wxss";
 page{
   background: #f4f4f4;
 }
@@ -73,13 +74,34 @@ page{
   line-height: 60rpx;
 }
 .footer1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 88%;
-  height: 110rpx;
+  height: 150rpx;
   margin: 0 3%;
   margin-top: 20rpx;
   padding: 20rpx 3%;
   background: #fff;
   border-radius: 20rpx;
+  overflow: hidden;
+}
+.footer-box{
+  font-size: 30rpx;
+}
+.footer-box .iconfont{
+  color: rgb(214,214,214);
+  font-size: 22rpx;
+}
+.footer-box .iconfont text{
+  font-size: 22rpx;
+  color: #F9B236;
+}
+.box-num{
+  font-weight: bold;
+}
+.box-text{
+  margin: 20rpx 0 10rpx 0;
 }
 .footer{
   display: flex;
@@ -103,7 +125,11 @@ page{
   margin-right: 20rpx;
 }
 .money{
-  color: #EC5D27;
+  color: #333;
+  font-size: 28rpx;
+}
+.money text{
+  color: #BA1515;
   font-size: 34rpx;
 }
 .gobuy{

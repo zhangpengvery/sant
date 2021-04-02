@@ -4,18 +4,19 @@
   <view class="home-navimg" hidden="{{hidden}}">
     <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
   </view>
-  <swiper class="header" indicator-dots="true" autoplay="true" style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#C47C00" circular="true">
+  <swiper class="header" indicator-dots="true" autoplay="true" style="margin-top:{{navH}}rpx"
+    indicator-color="rgba(255, 255, 255)" indicator-active-color="#C47C00" circular="true">
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374ac66115c.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-04-01/6065a28104fdf.png"></image>
     </swiper-item>
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374aeee6bb1.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-04-01/6065a284b2fae.png"></image>
     </swiper-item>
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374b6441f62.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-04-01/6065a2dbcbf84.png"></image>
     </swiper-item>
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-02-25/60374b7fbc481.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-03-31/606452c211da7.png"></image>
     </swiper-item>
   </swiper>
   <!-- 小图标 -->
@@ -150,10 +151,8 @@
   <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
 </scroll-view>
 <view class="urgent" bindtap="urgentFn">
-  <view class="iconfont icon-dianhua"></view>
-  <view class="urgent-text">紧急报修</view>
+  <image src="/assets/images/jinjijy.png"></image>
 </view>
-<view class="service" bindtap="serviceFn">
-  <view class="iconfont icon-quanminjingjiren"></view>
-  <view class="urgent-text">客服</view>
-</view>
+<button class="service" open-type="contact" style="padding:0;width: 120rpx;background: rgba(255, 255, 255, 0);height: 90rpx;">
+  <image src="/assets/images/zixun.png"></image>
+</button>

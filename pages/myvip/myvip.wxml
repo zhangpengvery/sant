@@ -51,20 +51,20 @@
   </view>
   <view class="tequan" >
     <view class="tequan-box">
-      <view class="iconfont icon-zixundingdan"></view>
+      <view class="iconfont icon-chakanwanzhenghaoma-01"></view>
       <view class="tequan-text" style="font-size:16rpx">查看完整号码</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-tuijiangouche"></view>
+      <view class="iconfont icon-huiyuantouxian-01"></view>
       <view class="tequan-text">会员头衔</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="iconfont icon-denglutequan-01"></view>
       <view class="tequan-text">登录特权</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-quanminjingjiren"></view>
-      <view class="tequan-text">登录特权</view>
+      <view class="iconfont icon-zhuanshukefu-01"></view>
+      <view class="tequan-text">专属客服</view>
     </view>
   </view>
 </block>
@@ -78,20 +78,20 @@
   </view>
   <view class="tequan" >
     <view class="tequan-box">
-      <view class="iconfont icon-zixundingdan"></view>
+      <view class="iconfont icon-chakanwanzhenghaoma-01"></view>
       <view class="tequan-text" style="font-size:16rpx">查看完整号码</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-tuijiangouche"></view>
+      <view class="iconfont icon-huiyuantouxian-01"></view>
       <view class="tequan-text">会员头衔</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="iconfont icon-denglutequan-01"></view>
       <view class="tequan-text">登录特权</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-quanminjingjiren"></view>
-      <view class="tequan-text">登录特权</view>
+      <view class="iconfont icon-zhuanshukefu-01"></view>
+      <view class="tequan-text">专属客服</view>
     </view>
   </view>
 </block>
@@ -105,20 +105,20 @@
   </view>
   <view class="tequan" >
     <view class="tequan-box">
-      <view class="iconfont icon-zixundingdan"></view>
+      <view class="iconfont icon-chakanwanzhenghaoma-01"></view>
       <view class="tequan-text" style="font-size:16rpx">查看完整号码</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-tuijiangouche"></view>
+      <view class="iconfont icon-huiyuantouxian-01"></view>
       <view class="tequan-text">会员头衔</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-quanminjingjiren"></view>
+      <view class="iconfont icon-denglutequan-01"></view>
       <view class="tequan-text">登录特权</view>
     </view>
     <view class="tequan-box">
-      <view class="iconfont icon-quanminjingjiren"></view>
-      <view class="tequan-text">登录特权</view>
+      <view class="iconfont icon-zhuanshukefu-01"></view>
+      <view class="tequan-text">专属客服</view>
     </view>
   </view>
 </block>

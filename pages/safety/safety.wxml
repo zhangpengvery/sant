@@ -1,0 +1,28 @@
+<!--pages/safety/safety.wxml-->
+<view class="user" wx:if="{{active==1}}">
+  <view class="user-text">当前绑定手机号</view>
+  <view class="user-pho">{{user_mobile}}</view>
+  <view class="xgsj" bindtap="xgjFn">修改手机号</view>
+</view>
+<view class="num" wx:elif="{{active==2}}">
+  <view class="num-text">请输入你需要绑定的新手机号</view>
+  <view class="num-pho">
+    <view class="num-photext">新手机号</view>
+    <input class="num-inp" bindinput="bindphoFn" type="text" placeholder="请输入新手机号" maxlength="11" />
+  </view>
+</view>
+<view wx:if="{{active==2}}" class="getcode" bindtap="getCode">获取验证码</view>
+<view class="user" wx:if="{{active==3}}">
+  <view class="code-pho">请输入验证码</view>
+  <view class="code-text">短信已发送至  {{mobile}}</view>
+</view>
+<view class="content" wx:if="{{active==3}}">
+  <input class="content-inp" maxlength="4" focus="{{focus}}" bindinput="verificaFn" />
+  <view class="cheshi" bindtap="dianji">{{code}}</view>
+  <view hidden="{{one}}" class="heng hengOne"></view>
+  <view hidden="{{tow}}" class="heng hengTow"></view>
+  <view hidden="{{three}}" class="heng hengThree"></view>
+  <view hidden="{{four}}" class="heng hengFour"></view>
+</view>
+<view class="cxhq" wx:if="{{active==3}}" bindtap="getCode">{{codetext}}</view>
+<view class="back" bindtap="bindback" wx:if="{{active==3}}">返回</view>
