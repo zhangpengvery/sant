@@ -1,0 +1,183 @@
+/* pages/orsear/orsear.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #f6f6f6;
+}
+.nav-fater{
+  position: relative;
+  width: 100%;
+  display: flex;
+  background: #fff;
+}
+.back{
+  position: absolute;
+  bottom: 20rpx;
+  margin: 0 20rpx;
+}
+.navber-content{
+  position: absolute;
+  line-height: 60rpx;
+  left: 60rpx;
+  bottom: 10rpx;
+  width: 350rpx;
+  font-size: 26rpx;
+}
+.navber-content input{
+  padding-left: 60rpx;
+  border-radius: 136rpx;
+  width: 80%;
+  height: 60rpx;
+  background: #f5f5f5;
+}
+.navber-content .searchicon{
+  position: absolute;
+  top: 2rpx;
+  left: 20rpx;
+  color: #1A1311;
+}
+.sosuo{
+  position: absolute;
+  bottom: 20rpx;
+  left: 400rpx;
+  margin-left: 20rpx;
+  color: #F9B236;
+  font-size: 28rpx;
+}
+.box{
+  width: 100%;
+  height: auto;
+  margin:  0 auto;  
+  overflow: hidden;
+}
+.content{
+  position: relative;
+  width: 80%;
+  height: 230rpx;
+  margin: 20rpx 3% 0 3%;
+  padding: 0 7%;
+  border-radius: 20rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.user-name{
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+.db-time{
+  color: #aaa;
+  font-size: 22rpx;
+  margin: 20rpx 0 30rpx 0;
+}
+.db-address{
+  color: #aaa;
+  font-size: 22rpx;
+}
+.delete{
+  width: 120rpx;
+  height: 44rpx;
+  position: absolute;
+  bottom: 40rpx;
+  right: 190rpx;
+  border: 2rpx solid #aaa;
+  border-radius: 128rpx;
+  color: #777;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 44rpx;
+}
+.editor{
+  width: 120rpx;
+  height: 44rpx;
+  position: absolute;
+  bottom: 40rpx;
+  right: 40rpx;
+  border: 2rpx solid #F9B236;
+  border-radius: 128rpx;
+  font-size: 20rpx;
+  color: #F9B236;
+  text-align: center;
+  line-height: 44rpx;
+}
+.zhuangt{
+  position: absolute;
+  top: 20rpx;
+  right: 0;
+  width: 100rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background: #F9B236;
+  color: #fff;
+  font-size: 22rpx;
+  border-radius: 22rpx 0px 0px 22rpx;
+}
+.zhuangt2{
+  background: #aaa;
+}
+.left-img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90rpx;
+  height: 90rpx;
+}
+.left-img image{
+  width: 100%;
+  height: 100%;
+}
+.switch-kai{
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100rpx;
+  padding: 0 5rpx;
+  height: 40rpx;
+  border-radius: 22rpx;
+  background: #F9B236;
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 40rpx;
+}
+.tuoyuan{
+  width: 26rpx;
+  height: 26rpx;
+  border-radius: 50%;
+  background: #fff;
+}
+.switch-guan{
+  background: #fff;
+  color: #F9B236;
+  border: 1rpx solid #aaa;
+}
+.tuoyuan2{
+  border: 1rpx solid #aaa;
+}
+.wushujucs{
+  margin-top: 300rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
+}
+.dixian{
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+  line-height: 50rpx;
+}

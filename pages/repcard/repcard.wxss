@@ -29,9 +29,12 @@ page {
   border-radius: 20rpx;
   overflow: hidden;
 }
-.text-ly{
-  font-size: 32rpx;
+.textfw{
   font-weight: bold;
+}
+.text-ly{
+  height: 180rpx;
+  font-size: 32rpx;
   margin-left: 30rpx;
 }
 .ljfb{

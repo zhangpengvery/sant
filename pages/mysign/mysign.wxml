@@ -1,0 +1,51 @@
+<!--pages/mysign/mysign.wxml-->
+<view class="map-box" hover-class="none" style="width: 100%; height: 300rpx;">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true"
+    style="width: 100%; height: 300rpx;"></map>
+  <view class="user">
+    <view class="user-tx">
+      <image src="{{userList.avator}}"></image>
+    </view>
+    <view class="user-name">{{userList.user_name}}</view>
+    <view class="user-total">本月签到<text>{{total}}</text>次</view>
+  </view>
+</view>
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{getMyLists.length>0}}" bindscrolltolower="loadMore">
+  <block wx:for="{{getMyLists}}" wx:key="index">
+    <view class="list-time">{{item.title}}</view>
+    <view class="list">
+      <block wx:for="{{item.items}}" wx:key="index">
+        <view class="list-box" bindtap="bindgodet" data-id="{{item.id}}">
+          <view class="list-header">
+            <view class="list-tx">{{item.mark_time}}   {{item.title}}</view>
+          </view>
+          <view class="list-content">
+            <view class="list-title">签到地点</view>
+            <view class="list-text">{{item.title}}，{{item.address}}</view>
+            <view class="list-title" wx:if="{{item.pic.length>0}}" style="margin-top:20rpx">签到图片</view>
+            <image mode="aspectFit" class="list-img" data-img="{{item.pic}}" catchtap="catbagImg"
+              wx:if="{{item.pic.length>0}}" src="{{item.pic}}"></image>
+            <view class="list-title" style="margin-top:20rpx">拜访对象</view>
+            <view class="list-text">{{item.client_name}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+</scroll-view>
+<view wx:else class="wushujucs">
+  <view class="wushu-img">
+    <image src="/assets/images/kong.png"></image>
+  </view>
+  <view>暂无签到数据</view>
+</view>
+<view class="gittime">
+  <picker mode="date" value="{{mark_date}}" bindchange="bindDateChange" fields="month">
+    <view class="gittime-box">
+      <view class="iconfont icon-shijian"></view>
+      <view class="picker">{{mark_date}}</view>
+      <view class="iconfont icon-tubiao2-14"></view>
+    </view>
+  </picker>
+</view>

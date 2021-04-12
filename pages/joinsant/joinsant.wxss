@@ -253,6 +253,13 @@ page{
   right: 30rpx;
   top: -180rpx;
 }
+.alllist{
+  width: 70rpx;
+  height: 70rpx;
+  position: absolute;
+  left: 30rpx;
+  top: -90rpx;
+}
 .golist2{
   top: -270rpx;
 }

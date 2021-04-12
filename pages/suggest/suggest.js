@@ -10,7 +10,7 @@ Page({
    */
   data: {
     content:"",
-    mobile:0,
+    mobile:"",
   },
   //建议
   suggestFn:function(e){
@@ -29,14 +29,33 @@ Page({
       mobile:mobile,
       content:content
     }).then(res=>{
-      wx.showToast({
-        icon:'none',
-        title: '感谢您的反馈',
-      })
+      if(res.data.datas==1){
+        wx.showToast({
+          icon:'none',
+          title: '感谢您的反馈',
+        })
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '提交失败',
+        })
+      }
     })
   },
   bddhFn:function(){
-    this.Adviceadd(this.data.mobile,this.data.content)
+    if(this.data.content==""){
+      wx.showToast({
+        icon:"none",
+        title: '请填写手机号',
+      })
+    }else if(this.data.content==""){
+      wx.showToast({
+        icon:"none",
+        title: '请填写建议',
+      })
+    }else{
+      this.Adviceadd(this.data.mobile,this.data.content)
+    }
   },
   /**
    * 生命周期函数--监听页面加载

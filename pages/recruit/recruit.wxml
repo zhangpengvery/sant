@@ -83,8 +83,9 @@
 <!-- 叉号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 招聘 -->
-<scroll-view scroll-y="true" style="height:{{ScrH}}rpx;background: #F4F4F4" bindscrolltolower="loadMore" wx:if="{{leftActive}}">
-  <view class="recruit-content">
+<scroll-view scroll-y="true" style="height:{{ScrH}}rpx;background: #F4F4F4" bindscrolltolower="loadMore"
+  wx:if="{{leftActive}}">
+  <view class="recruit-content" wx:if="{{postRecruitList.length>0}}">
     <block wx:for="{{postRecruitList}}" wx:key="index">
       <navigator url="/pages/details/details?ja_id={{item.ja_id}}">
         <view class="content-box">
@@ -101,11 +102,18 @@
       </navigator>
     </block>
   </view>
+  <view wx:else class="wushujucs">
+    <view class="wushu-img">
+      <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+    </view>
+    <view>暂无数据</view>
+  </view>
   <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
 </scroll-view>
 <!-- 求职 -->
-<scroll-view scroll-y="true" style="height:{{ScrH}}rpx;background: #F4F4F4" bindscrolltolower="loadMore2" wx:if="{{rightActive}}">
-  <view class="recruit-content">
+<scroll-view scroll-y="true" style="height:{{ScrH}}rpx;background: #F4F4F4" bindscrolltolower="loadMore2"
+  wx:if="{{rightActive}}">
+  <view class="recruit-content" wx:if="{{getJobRecruitLists.length>0}}">
     <block wx:for="{{getJobRecruitLists}}" wx:key="index">
       <navigator url="/pages/qzdetails/qzdetails?jr_id={{item.jr_id}}">
         <view class="content-box">
@@ -122,6 +130,12 @@
         </view>
       </navigator>
     </block>
+  </view>
+  <view wx:else class="wushujucs">
+    <view class="wushu-img">
+      <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+    </view>
+    <view>暂无数据</view>
   </view>
   <view wx:if="{{dixian2}}" class="dixian">我也是有底线的！</view>
 </scroll-view>

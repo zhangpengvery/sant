@@ -14,8 +14,8 @@ Page({
       navTitle: true,
       navInput: false,
       r: 249,
-      g: 176,
-      b: 49,
+      g: 188,
+      b: 80,
       w: 20,
       l: 50,
       fz: 34,
@@ -52,12 +52,10 @@ Page({
     var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
     var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
     var time = YY + MM + DD
-    if (this.data.getSeller.complete_time != null) {
-      var date2 = new Date(Number(this.data.getSeller.complete_time) * 1000);
-      var YY2 = date2.getFullYear() + '-';
-      var MM2 = (date2.getMonth() + 1 < 10 ? '0' + (date2.getMonth() + 1) : date2.getMonth() + 1) + '-';
-      var DD2 = (date2.getDate() < 10 ? '0' + (date2.getDate()) : date2.getDate());
-      var time2 = YY2 + MM2 + DD2
+    if (this.data.getSeller.book_time != null) {
+      this.setData({
+        time2:this.data.getSeller.book_time
+      })
     }
     if(this.data.content!=null){
       this.setData({
@@ -65,14 +63,32 @@ Page({
       })
     }
     this.setData({
-      time:time,
-      time2:time2
+      time:time
     })
   },
   bindPho: function (e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.pho,
     })
+  },
+  bddhFn:function(e){
+    wx.navigateTo({
+      url: '/pages/surdetail/surdetail?order_id='+e.currentTarget.dataset.order_id,
+    })
+  },
+  scrollPage: function (e) {
+    var s='params.navColor'
+    if (e.detail.scrollTop > 50) {
+      this.setData({
+        hidden: true,
+        [s]:1
+      })
+    } else if(e.detail.scrollTop<50){
+      this.setData({
+        hidden: false,
+        [s]:0
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -81,6 +97,17 @@ Page({
     this.getSellerList(options.order_id)
     this.setData({
       navH: app.globalData.navbarHeight,
+    })
+    wx.getSystemInfo({
+      success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =clientHeight * ratio
+        this.setData({
+          winH:ScrH
+        })
+      },
     })
   },
 

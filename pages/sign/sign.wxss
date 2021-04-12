@@ -1,0 +1,109 @@
+/* pages/sign/sign.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #F6F6F6;
+}
+.address{
+  width: 90%;
+  height: 80rpx;
+  margin: 0 5%;
+  font-size: 24rpx;
+  color: #777;
+  line-height: 80rpx;
+}
+.address text{
+  color: #333;
+  font-weight: 500;
+}
+.box{
+  position: relative;
+  width: 90%;
+  padding: 0 5%;
+  background: #fff;
+  height: 120rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.box-text{
+  margin-top: 20rpx;
+  color: #777;
+  font-size: 26rpx;
+}
+.mizi{
+  position: absolute;
+  left: 18rpx;
+  top: 16rpx;
+  color: #F9B236;
+}
+.box2{
+  width: 90%;
+  height: 84rpx;
+  padding: 0 5%;
+  background: #fff;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+.box2-text{
+  margin-right: 20rpx;
+}
+.box2 input{
+  font-size: 32rpx;
+}
+.box3{
+  width: 90%;
+  height: 250rpx;
+  padding: 0 5%;
+  background: #fff;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.box3-text{
+  margin: 10rpx 0;
+}
+.box3 .box-inp{
+  width: 100%;
+  height: 180rpx;
+  font-size: 32rpx;
+}
+.box4{
+  width: 90%;
+  height: 84rpx;
+  padding: 0 5%;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box4-img{
+  width: 90%;
+  padding: 20rpx 5%;
+  height: 160rpx;
+  background: #fff;
+}
+.box4-img image{
+  width: 120rpx;
+  height: 120rpx;
+  border: 1rpx solid #cccccc;
+}
+.box4 .iconfont{
+  color: #F9B236;
+}
+.ljfb{
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 94%;
+  margin: 0 3%;
+  height: 94rpx;
+  border-radius: 94rpx;
+  background: #F9B236;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+}

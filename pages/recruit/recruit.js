@@ -160,7 +160,7 @@ Page({
       if(res.statusCode==200){
         wx.hideLoading()
       }
-      if(res.data.data.list.length==0){
+      if(res.data.data.list.length==0&&this.data.page>1){
         this.setData({
           dixian:true
         })
@@ -189,7 +189,7 @@ Page({
       if(res.statusCode==200){
         wx.hideLoading()
       }
-      if(res.data.data.list.length==0){
+      if(res.data.data.list.length==0&&this.data.page2>1){
         this.setData({
           dixian2:true
         })

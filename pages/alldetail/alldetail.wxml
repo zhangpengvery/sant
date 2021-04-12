@@ -1,0 +1,84 @@
+<!--pages/alldetail/alldetail.wxml-->
+<navbar params="{{params}}" />
+<scroll-view scroll-y="true" style="height:{{winH}}rpx"  bindscroll="scrollPage">
+  <view class="home-navimg">
+    <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+  </view>
+  <view class="header-img" style="margin-top:{{navH}}rpx">
+    <image src="https://jbccs.com/./Upload/image/2021-03-19/60545f83aa39b.png"></image>
+    <view wx:if="{{status==0}}" class="zhuangt"><text class="iconfont icon-daiwancheng"></text> 已接单</view>
+    <view wx:if="{{status==-1}}" class="zhuangt"><text class="iconfont icon-daiwancheng"></text> 已取消</view>
+    <view wx:if="{{status==1}}" class="zhuangt"><text class="iconfont icon-daiwancheng"></text> 已预约</view>
+    <view wx:if="{{status==4}}" class="zhuangt"><text class="iconfont icon-yizhuanban1"></text> 已转办</view>
+    <view wx:if="{{status==2}}" class="zhuangt"><text class="iconfont icon-yiwancheng"></text> 部分完成</view>
+    <view wx:if="{{status==3}}" class="zhuangt"><text class="iconfont icon-yiwancheng"></text> 已完成</view>
+  </view>
+  <view class="content">
+    <view class="box">
+      <view class="title">销售人员：{{getSeller.xs_uname}}</view>
+      <view class="pho"><text class="iconfont icon-mendian-dianhua"></text> {{getSeller.xs_tel}}</view>
+      <view class="bddh" bindtap="bindPho" data-pho="{{getSeller.xs_tel}}">拨打电话</view>
+    </view>
+    <view class="box">
+      <view class="title">调查人员：{{getSeller.uname}}</view>
+      <view class="pho"><text class="iconfont icon-mendian-dianhua"></text> {{getSeller.tel}}</view>
+      <view class="bddh" bindtap="bindPho" data-pho="{{getSeller.tel}}">拨打电话</view>
+    </view>
+    <view class="box" wx:if="{{status==4}}">
+      <view class="title">转办人员：{{getSeller.zb_name}}</view>
+      <view class="pho"><text class="iconfont icon-mendian-dianhua"></text> {{getSeller.zb_tel}}</view>
+      <view class="bddh" bindtap="bindPho" data-pho="{{getSeller.zb_tel}}">拨打电话</view>
+    </view>
+    <!-- <view class="box">
+    <view class="title">客户：{{getSeller.user_name}}</view>
+    <view class="pho"><text class="iconfont icon-mendian-dianhua"></text> {{getSeller.user_mobile}}</view>
+    <view class="bddh" bindtap="bindPho" data-pho="{{getSeller.user_mobile}}">拨打电话</view>
+  </view> -->
+  </view>
+  <view class="footer" wx:if="{{status!=4}}">
+    <view class="footer-box">
+      <view class="iconfont icon-jiedan huang"></view>
+      <view class="box-right">
+        <view class="box-text">接单日期</view>
+        <view class="box-time">{{time}}</view>
+      </view>
+    </view>
+    <view class="footer-box">
+      <view class="xian {{status>0&status!=4?'huangxian':''}}"></view>
+      <view class="iconfont icon-yuyue {{status>0&status!=4?'huang':''}}"></view>
+      <view class="box-right">
+        <view class="box-text">预约调查日期</view>
+        <view class="box-time">{{time2}}</view>
+      </view>
+    </view>
+    <view class="footer-box">
+      <view class="xian {{status>1&status!=4?'huangxian':''}}"></view>
+      <view class="iconfont icon-wancheng {{status==3?'huang':''}}"></view>
+      <view class="box-right">
+        <view class="box-text">调查结果</view>
+        <view wx:if="{{status==2}}">部分完成</view>
+        <view wx:if="{{status==3}}">全部完成</view>
+      </view>
+    </view>
+    <view class="xititle">调查详情</view>
+    <view class="xqtext">{{textcon}}</view>
+    <view class="bai"></view>
+  </view>
+  <view class="user">
+    <view class="user-box">
+      <view class="user-name">客户姓名</view>
+      <view class="user-pho">{{getSeller.user_name}}</view>
+    </view>
+    <view class="user-box">
+      <view class="user-name">联系方式</view>
+      <view class="user-pho">{{getSeller.user_mobile}}</view>
+      <view class="bddh" style="top:30rpx" bindtap="bindPho" data-pho="{{getSeller.user_mobile}}">拨打电话</view>
+    </view>
+    <view class="user-text">
+      <view class="user-name">家访地址</view>
+      <view class="user-pho">{{getSeller.province}}{{getSeller.cityname}}{{getSeller.area_name}}{{getSeller.address}}
+      </view>
+    </view>
+  </view>
+  <view class="ljfb" wx:if="{{status==4}}" data-order_id="{{getSeller.zb_order_id}}" bindtap="bddhFn">转办详情</view>
+</scroll-view>

@@ -1,0 +1,85 @@
+<!--pages/alllist/alllist.wxml-->
+<view class="nav-fater" style="height:{{navH}}rpx">
+  <!-- 返回 -->
+  <view class="iconfont icon-ziyuan2 back" bindtap="back"></view>
+  <!-- 输入框父盒子 -->
+  <view class="navber-content">
+    <!-- 输入框 -->
+    <input type="text" placeholder="请输入关键字" bindinput="bindText" />
+    <view class="iconfont icon-lujing46 searchicon"></view>
+  </view>
+  <view class="soanniu" bindtap="bindsosuo">搜索</view>
+  <view class="sosuo" bindtap="bindsanxuan" wx:if="{{saixuan==0}}">
+    <view class="iconfont icon-shaixuan"></view>
+    <view class="sosuo-text">筛选</view>
+  </view>
+  <view class="sosuo" bindtap="bindsanxuan" wx:else>
+    <view class="iconfont icon-yishaixuan"></view>
+    <view class="sosuo-text">已筛选</view>
+  </view>
+</view>
+<scroll-view scroll-y="true" style="height:{{scrollH}}rpx" wx:if="{{markers.length>0}}" bindscrolltolower="loadMore"
+  refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+  <view class="box">
+    <block wx:for="{{markers}}" wx:key="index">
+      <view class="content">
+        <view class="user-name">{{item.user_name}}</view>
+        <view class="db-time">订单编号：{{item.order_id}}</view>
+        <view class="db-address">创建日期：{{item.time}}</view>
+        <view class="db-address" wx:if="{{item.complete_time!=null}}">完成日期：{{item.time2}}</view>
+        <navigator url="/pages/alldetail/alldetail?order_id={{item.order_id}}">
+          <view class="editor" data-order_id="{{item.order_id}}">订单详情</view>
+        </navigator>
+        <view class="left-img" wx:if="{{item.status==-1}}">
+          <image src="/assets/images/yiquxiao.png"></image>
+        </view>
+        <view class="left-img" wx:if="{{item.status==0}}">
+          <image src="/assets/images/yijiedan.png"></image>
+        </view>
+        <view class="left-img" wx:if="{{item.status==1}}">
+          <image src="/assets/images/yiyuyue.png"></image>
+        </view>
+        <view class="left-img" wx:if="{{item.status==2}}">
+          <image src="/assets/images/bufenwanc.png"></image>
+        </view>
+        <view class="left-img" wx:if="{{item.status==3}}">
+          <image src="/assets/images/yiwancheng.png"></image>
+        </view>
+        <view class="left-img" wx:if="{{item.status==4}}">
+          <image src="/assets/images/yizhuanban.png"></image>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+  </view>
+</scroll-view>
+<view wx:else class="wushujucs">
+  <view class="wushu-img">
+    <image src="/assets/images/kong.png"></image>
+  </view>
+  <view>暂无数据</view>
+</view>
+<view class="screen" style="right:{{right==0?'-90%':'0'}}">
+  <view class="showyaoqiu-text">按时间</view>
+  <view class="showyaoqiu-fater">
+    <view class="showyaoqiu-box {{time==1?'exxuanz':''}}" data-id="1" bindtap="timeFn">今天</view>
+    <view class="showyaoqiu-box {{time==2?'exxuanz':''}}" data-id="2" bindtap="timeFn">一周内</view>
+    <view class="showyaoqiu-box {{time==3?'exxuanz':''}}" data-id="3" bindtap="timeFn">1个月内</view>
+    <view class="showyaoqiu-box {{time==4?'exxuanz':''}}" data-id="4" bindtap="timeFn">3个月内</view>
+    <view class="showyaoqiu-box {{time==5?'exxuanz':''}}" data-id="5" bindtap="timeFn">3个月以上</view>
+  </view>
+  <view class="showyaoqiu-text">按状态</view>
+  <view class="showyaoqiu-fater">
+    <view class="showyaoqiu-box {{status=='-1'?'exxuanz':''}}" data-id="-1" bindtap="statusFn">已取消</view>
+    <view class="showyaoqiu-box {{status==='0'?'exxuanz':''}}" data-id="0" bindtap="statusFn">已接单</view>
+    <view class="showyaoqiu-box {{status=='1'?'exxuanz':''}}" data-id="1" bindtap="statusFn">已预约</view>
+    <view class="showyaoqiu-box {{status=='2'?'exxuanz':''}}" data-id="2" bindtap="statusFn">部分完成</view>
+    <view class="showyaoqiu-box {{status=='3'?'exxuanz':''}}" data-id="3" bindtap="statusFn">已完成</view>
+    <view class="showyaoqiu-box {{status=='4'?'exxuanz':''}}" data-id="4" bindtap="statusFn">已转办</view>
+  </view>
+  <view class="button">
+    <view class="button-box" bindtap="chongzhi">重置</view>
+    <view class="button-box button-rig" bindtap="bindok">确定</view>
+  </view>
+</view>
+<view class="blk" bindtap="bindmkr" wx:if="{{right==1}}"></view>

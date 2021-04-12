@@ -1,0 +1,29 @@
+<!--pages/sign/sign.wxml-->
+<view class="address">当前企业：<text>郑州三泰实业有限公司
+</text></view>
+<view class="box">
+  <view class="box-text">签到时间</view>
+  <view>{{time}}</view>
+  <view class="mizi">*</view>
+</view>
+<view class="box">
+  <view class="box-text">签到地点</view>
+  <view>{{title}}</view>
+  <view class="mizi">*</view>
+</view>
+<view class="box2">
+  <view class="box2-text">拜访对象</view>
+  <input placeholder-style="font-size: 32rpx" type="text" bindinput="bindname" placeholder="请输入拜访对象" />
+</view>
+<view class="box3">
+  <view class="box3-text">备注</view>
+  <textarea class="box-inp" bindinput="bindbeizu" placeholder="请输入"></textarea>
+</view>
+<view class="box4" bindtap="jiaszFn">
+  <view>签到图片</view>
+  <view class="iconfont icon-xiangji"></view>
+</view>
+<view class="box4-img" wx:if="{{picact==1}}">
+  <image mode="aspectFit" src="{{pic}}"></image>
+</view>
+<view class="ljfb" bindtap="bddhFn">提交</view>

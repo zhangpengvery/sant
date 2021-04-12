@@ -336,6 +336,11 @@ Page({
       that.getOrderList2(that.data.p,that.data.good_type)
     })
   },
+  bindnavFn:function(e){
+    wx.redirectTo({
+      url: '/pages/order/order?good_type='+e.currentTarget.dataset.good_type,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

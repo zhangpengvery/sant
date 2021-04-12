@@ -2,15 +2,15 @@
 <view class="header">
   <view class="time">
     <text class="red">* </text>
-    <text>补卡时间</text>
+    <text class="textfw">补卡时间</text>
   </view>
   <view class="time-box">{{r_data}}  {{r_time}}</view>
 </view>
 <view class="content">
   <view class="time">
     <text class="red">* </text>
-    <text>补卡理由</text>
+    <text class="textfw">补卡理由</text>
   </view>
-  <textarea class="text-ly" bindinput="bindBkly" placeholder="请填写补卡理由"></textarea>
+  <textarea class="text-ly" bindinput="bindBkly" placeholder="请填写补卡理由" fixed="true" adjust-position="false"></textarea>
 </view>
 <view class="ljfb" bindtap="bddhFn">提交</view>

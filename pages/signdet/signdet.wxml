@@ -1,0 +1,30 @@
+<!--pages/signdet/signdet.wxml-->
+<view class="map-box" hover-class="none" style="width: 100%; height: 580rpx;">
+  <map id="map" longitude="{{Details.lng}}" latitude="{{Details.lat}}" scale="14" show-location="true" markers="{{markers}}"
+    style="width: 100%; height: 580rpx;"></map>
+    <view class="user">
+    <view class="user-tx">
+      <image src="{{Details.avator}}"></image>
+    </view>
+    <view class="user-name">{{Details.user_name}}</view>
+  </view>
+</view>
+<scroll-view scroll-y="true" style="height:{{winH}}rpx">
+  <view class="list-time">{{Details.mark_date}}</view>
+  <view class="list">
+    <view class="list-box" bindtap="bindgodet" data-id="{{item.id}}">
+      <view class="list-header">
+        <view class="list-tx">{{Details.mark_time}}   {{Details.title}}</view>
+      </view>
+      <view class="list-content">
+        <view class="list-title">签到地点</view>
+        <view class="list-text">{{Details.title}}，{{Details.address}}</view>
+        <view class="list-title" wx:if="{{Details.pic.length>0}}" style="margin-top:20rpx">签到图片</view>
+        <image mode="aspectFit" class="list-img" data-img="{{Details.pic}}" catchtap="catbagImg"
+          wx:if="{{Details.pic.length>0}}" src="{{Details.pic}}"></image>
+        <view class="list-title" style="margin-top:20rpx">拜访对象</view>
+        <view class="list-text">{{Details.client_name}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,38 @@
+<!--pages/signin/signin.wxml-->
+<view class="header">
+  <view class="header-time"><text class="iconfont icon-shijian"></text> {{getMark.show_date}}</view>
+  <view class="header-time"><text class="iconfont icon-qiye"></text> 当前企业：郑州三泰实业有限公司</view>
+</view>
+<view class="map-box">
+  <view class="map-header">
+    <view class="map-name">{{name}}</view>
+    <view class="maprigth" bindtap="bindweit">地点微调</view>
+  </view>
+  <view hover-class="none" style="width: 100%; height: 180rpx;">
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true"
+      style="width: 100%; height: 180rpx;"></map>
+  </view>
+</view>
+<view class="clockin" bindtap="bindsigninFn">
+  <view class="clockin-text">签到</view>
+  <view class="clockin-time">{{time}}</view>
+</view>
+<view class="scope">
+  <block wx:if="{{getMark.times==0}}">
+    <view class="clockin-scope">您今日还未签到</view>
+  </block>
+  <block wx:elif="{{getMark.times>0}}">
+    <view class="iconfont icon-zujian202 time-yuan"></view>
+    <view class="clockin-scope">今日您已签到 <text>{{getMark.times}}</text> 次</view>
+  </block>
+</view>
+<view class="footer">
+  <view class="footer-box active">
+    <image class="footer-img" mode="aspectFit" src="/assets/images/qiandao.png"></image>
+    <view>签到</view>
+  </view>
+  <view class="footer-box" bindtap="bindsign">
+    <image class="footer-img" mode="aspectFit" src="/assets/images/tongjiweixuan.png"></image>
+    <view>统计</view>
+  </view>
+</view>

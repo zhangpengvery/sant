@@ -22,6 +22,7 @@ Page({
   bddhFn:function(){
     if(this.data.bkly==""){
       wx.showToast({
+        icon:'none',
         title: '请填写补卡理由',
       })
     }else{
@@ -44,6 +45,7 @@ Page({
         }, 2000)
       }else{
         wx.showToast({
+          icon:'error',
           title: '补卡失败',
         })
       }

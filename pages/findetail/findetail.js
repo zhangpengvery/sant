@@ -14,8 +14,8 @@ Page({
       navTitle: true,
       navInput: false,
       r: 249,
-      g: 176,
-      b: 49,
+      g: 188,
+      b: 80,
       w: 20,
       l: 50,
       fz: 34,
@@ -25,10 +25,6 @@ Page({
       title: "订单详情"
     },
     array:[
-      {
-        index:0,
-        text:"未完成"
-      },
       {
         index:1,
         text:"部分完成",
@@ -48,13 +44,18 @@ Page({
     time2:"",
     status:0,
     date: '请选择-请选择-请选择',
-    content:""
+    content:"",
+    id:0,
+    shuru:0,
+    winH:0,
+    arraytype:'未完成'
   },
 
-  async getOrderInfoScaner(order_id) {
+  async getOrderInfoScaner(order_id,status) {
     var that=this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Scan/getOrderInfoScaner",{
-      order_id:order_id
+      order_id:order_id,
+      status:status
     })
     if(result.data.content!=null){
       this.setData({
@@ -63,7 +64,8 @@ Page({
     }
     this.setData({
       getOrder: result.data,
-      status:result.data.status
+      status:result.data.status,
+      id:result.data.id,
     },function(){
       that.cjTime()
     })
@@ -93,11 +95,13 @@ Page({
     })
     if(this.data.status==2){
       this.setData({
-        arrayIndex:1
+        arrayIndex:0,
+        arraytype:'部分完成'
       })
     }else if(this.data.status==3){
       this.setData({
-        arrayIndex:2
+        arrayIndex:1,
+        arraytype:'全部完成'
       })
     }
   },
@@ -113,45 +117,67 @@ Page({
       book_time:book_time
     }).then(res=>{
       if(res.data.datas==1){
-        this.setData({
-          status:1
-        })
+        this.getOrderInfoScaner(this.data.order_id,this.data.status)
         wx.showToast({
+          icon:'none',
+          title: '设置成功',
+        })
+      }
+      console.log(res);
+    })
+  },
+  setStatusTwo(id,s_type){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Scan/setStatusTwo",{
+      id:id,
+      s_type:s_type
+    }).then(res=>{
+      console.log(res);
+      if(res.data.datas==1){
+        this.getOrderInfoScaner(this.data.order_id)
+        wx.showToast({
+          icon:'none',
           title: '设置成功',
         })
       }
     })
   },
-  setStatusTwo(id,s_type,content){
-    requestApi1(app.globalData.post_url+"/index.php/Api/Scan/setStatusTwo",{
+  setContent(id,content){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Scan/setContent",{
       id:id,
-      s_type:s_type,
       content:content
+    }).then(res=>{
+      console.log(res);
+      if(res.data.datas==1){
+        this.getOrderInfoScaner(this.data.order_id)
+        wx.showToast({
+          icon:'none',
+          title: '设置成功',
+        })
+      }
     })
   },
   bindDateChange: function(e) {
     this.setData({
       date: e.detail.value,
     })
-    this.setStatusOne(this.data.order_id,this.data.status,e.detail.value)
+    this.setStatusOne(this.data.id,this.data.status,e.detail.value)
   },
   bindPickerChange: function(e) {
+    var s_type=this.data.array[e.detail.value].index;
     this.setData({
       arrayIndex: e.detail.value,
-      status:this.data.array[e.detail.value].status
+      arraytype:this.data.array[e.detail.value].text
     })
-    this.setStatusTwo(this.data.order_id,this.data.arrayIndex,this.data.content)
+    this.setStatusTwo(this.data.id,s_type)
   },
   bindXingq:function(e){
     this.setData({
-      content:e.detail.value
+      content:e.detail.value,
+      shuru:1
     })
   },
   bddhFn:function(){
-    this.setStatusTwo(this.data.order_id,this.data.arrayIndex,this.data.content)
-    wx.redirectTo({
-      url: '/pages/finlist/finlist',
-    })
+    this.setContent(this.data.id,this.data.content)
   },
   //转接订单点击
   deleteFn: function (e) {
@@ -159,14 +185,44 @@ Page({
       url: '/pages/switch/switch?id='+e.currentTarget.dataset.id,
     })
   },
+  bdxqFn:function(e){
+    wx.navigateTo({
+      url: '/pages/surdetail/surdetail?order_id='+e.currentTarget.dataset.order_id,
+    })
+  },
+  scrollPage: function (e) {
+    var s='params.navColor'
+    if (e.detail.scrollTop > 50) {
+      this.setData({
+        hidden: true,
+        [s]:1
+      })
+    } else if(e.detail.scrollTop<50){
+      this.setData({
+        hidden: false,
+        [s]:0
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getOrderInfoScaner(options.order_id)
+    this.getOrderInfoScaner(options.order_id,options.status)
     this.setData({
-      order_id:options.id,
+      order_id:options.order_id,
       navH: app.globalData.navbarHeight,
+    })
+    wx.getSystemInfo({
+      success: (result) => {
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =clientHeight * ratio
+        this.setData({
+          winH:ScrH
+        })
+      },
     })
   },
 

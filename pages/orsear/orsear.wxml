@@ -1,0 +1,100 @@
+<!--pages/orsear/orsear.wxml-->
+<view class="nav-fater" style="height:{{navH}}rpx">
+  <!-- 返回 -->
+  <view class="iconfont icon-ziyuan2 back" bindtap="back"></view>
+  <!-- 输入框父盒子 -->
+  <view class="navber-content">
+    <!-- 输入框 -->
+    <input type="text" placeholder="请输入您要搜索的内容" focus="true" bindinput="bindText" />
+    <view class="iconfont icon-lujing46 searchicon"></view>
+  </view>
+  <view class="sosuo" bindtap="bindsosuo">搜索</view>
+</view>
+<scroll-view scroll-y="true" style="height:{{scrollH}}rpx" wx:if="{{type==2}}" bindscrolltolower="loadMore">
+  <view class="box">
+    <block wx:for="{{markers}}" wx:key="index">
+      <view class="content">
+        <view class="user-name">{{item.user_name}}</view>
+        <view class="db-time">订单编号：{{item.order_id}}</view>
+        <view class="db-address">创建日期：{{item.time}}</view>
+        <view class="db-address" wx:if="{{item.complete_time!=null}}">完成日期：{{item.time2}}</view>
+        <view class="delete" wx:if="{{item.status==-1||item.status==3||item.status==4}}" data-index="{{index}}"
+          data-id="{{item.id}}" bindtap="deleteFn">删除订单</view>
+        <view class="delete" wx:if="{{item.status==0}}" data-index="{{index}}" data-id="{{item.id}}" bindtap="zhuanjFn">
+          转办订单</view>
+        <navigator url="/pages/findetail/findetail?order_id={{item.order_id}}&status={{item.status}}">
+          <view class="editor">订单详情</view>
+        </navigator>
+        <view class="zhuangt zhuangt2" wx:if="{{item.status==-1}}">已取消</view>
+        <view class="zhuangt zhuangt2" wx:if="{{item.status==4}}">已转办</view>
+        <view class="zhuangt zhuangt2" wx:if="{{item.status==3}}">已完成</view>
+        <view class="zhuangt" wx:if="{{item.status==0}}">已接单</view>
+        <view class="zhuangt" wx:if="{{item.status==1}}">已预约</view>
+        <view class="zhuangt" wx:if="{{item.status==2}}">部分完成</view>
+        <view class="left-img" wx:if="{{item.sorts==1}}">
+          <image src="/assets/images/20210326122033.png"></image>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+  </view>
+  <view wx:if="{{wushuju}}" class="wushujucs">
+    <view class="wushu-img">
+      <image src="/assets/images/kong.png"></image>
+    </view>
+    <view>暂无数据</view>
+  </view>
+</scroll-view>
+<scroll-view scroll-y="true" style="height:{{scrollH}}rpx" wx:if="{{type==1}}" bindscrolltolower="loadMore2">
+  <view class="box">
+    <block wx:for="{{markers}}" wx:key="index">
+      <view class="content">
+        <view class="user-name">{{item.user_name}}</view>
+        <view class="db-time">订单编号：{{item.order_id}}</view>
+        <view class="db-address">{{item.time}}</view>
+        <view class="delete" wx:if="{{item.status==0}}" data-index="{{index}}" data-id="{{item.id}}"
+          bindtap="deleteFn2">取消订单</view>
+        <view class="delete" wx:if="{{item.status==-1||item.status==4||item.status==3}}" data-index="{{index}}"
+          data-id="{{item.id}}" bindtap="deleteFn">删除订单</view>
+        <navigator url="/pages/surdetail/surdetail?order_id={{item.order_id}}">
+          <view class="editor" data-order_id="{{item.order_id}}">订单详情</view>
+        </navigator>
+        <view class="left-img" wx:if="{{item.status==-1}}">
+              <image src="/assets/images/yiquxiao.png"></image>
+            </view>
+            <view class="left-img" wx:if="{{item.status==0}}">
+              <image src="/assets/images/yijiedan.png"></image>
+            </view>
+            <view class="left-img" wx:if="{{item.status==1}}">
+              <image src="/assets/images/yiyuyue.png"></image>
+            </view>
+            <view class="left-img" wx:if="{{item.status==2}}">
+              <image src="/assets/images/bufenwanc.png"></image>
+            </view>
+            <view class="left-img" wx:if="{{item.status==3}}">
+              <image src="/assets/images/yiwancheng.png"></image>
+            </view>
+            <view class="left-img" wx:if="{{item.status==4}}">
+              <image src="/assets/images/yizhuanban.png"></image>
+            </view>
+        <view class="switch-kai" wx:if="{{item.sorts==1&&item.status<2&&item.status!=-1}}" bindtap="nojiaji2"
+          data-id="{{item.id}}" data-index="{{index}}">
+          <view>已加急</view>
+          <view class="tuoyuan"></view>
+        </view>
+        <view class="switch-kai switch-guan" wx:if="{{item.sorts==0&&item.status<2&&item.status!=-1}}"
+          bindtap="yesjiaji2" data-id="{{item.id}}" data-index="{{index}}">
+          <view class="tuoyuan tuoyuan2"></view>
+          <view>加急</view>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+  </view>
+  <view wx:if="{{wushuju}}" class="wushujucs">
+    <view class="wushu-img">
+      <image src="/assets/images/kong.png"></image>
+    </view>
+    <view>暂无数据</view>
+  </view>
+</scroll-view>

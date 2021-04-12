@@ -153,6 +153,11 @@
 <view class="urgent" bindtap="urgentFn">
   <image src="/assets/images/jinjijy.png"></image>
 </view>
+<!-- <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=1">
+  <view class="service">
+  <image src="/assets/images/jinjijy.png"></image>
+</view>
+</navigator> -->
 <button class="service" open-type="contact" style="padding:0;width: 120rpx;background: rgba(255, 255, 255, 0);height: 90rpx;">
   <image src="/assets/images/zixun.png"></image>
 </button>

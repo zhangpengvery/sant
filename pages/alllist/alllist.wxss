@@ -1,0 +1,230 @@
+/* pages/alllist/alllist.wxss */
+@import "/assets/fonts/iconfont.wxss";
+page{
+  background: #f6f6f6;
+}
+.nav-fater{
+  position: relative;
+  width: 100%;
+  display: flex;
+  background: #fff;
+}
+.back{
+  position: absolute;
+  bottom: 20rpx;
+  margin: 0 20rpx;
+}
+.navber-content{
+  position: absolute;
+  line-height: 60rpx;
+  left: 60rpx;
+  bottom: 10rpx;
+  width: 350rpx;
+  font-size: 26rpx;
+}
+.navber-content input{
+  padding-left: 60rpx;
+  border-radius: 136rpx;
+  width: 56%;
+  height: 60rpx;
+  background: #f5f5f5;
+}
+.navber-content .searchicon{
+  position: absolute;
+  top: 2rpx;
+  left: 20rpx;
+  color: #1A1311;
+}
+.soanniu{
+  position: absolute;
+  bottom: 20rpx;
+  left: 340rpx;
+  color: #F9B236;
+  font-size: 28rpx;
+}
+.sosuo{
+  width: 114rpx;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  position: absolute;
+  bottom: 20rpx;
+  left: 400rpx;
+  margin-left: 20rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+.sosuo-text{
+  font-size: 22rpx;
+  margin-left: 10rpx;
+}
+.box{
+  width: 100%;
+  height: auto;
+  margin:  0 auto;
+  overflow: hidden;
+}
+.content{
+  position: relative;
+  width: 80%;
+  height: 230rpx;
+  margin: 20rpx 3% 0 3%;
+  padding: 0 7%;
+  border-radius: 20rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.user-name{
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+.db-time{
+  color: #aaa;
+  font-size: 22rpx;
+  margin: 20rpx 0 30rpx 0;
+}
+.db-address{
+  color: #aaa;
+  font-size: 22rpx;
+}
+.editor{
+  width: 120rpx;
+  height: 44rpx;
+  position: absolute;
+  bottom: 40rpx;
+  right: 40rpx;
+  border: 2rpx solid #F9B236;
+  border-radius: 128rpx;
+  font-size: 20rpx;
+  color: #F9B236;
+  text-align: center;
+  line-height: 44rpx;
+}
+.kong{
+  width: 100%;
+  height: 600rpx;
+  text-align: center;
+  line-height: 600rpx;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.zhuangt{
+  position: absolute;
+  top: 20rpx;
+  right: 0;
+  width: 100rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background: #F9B236;
+  color: #fff;
+  font-size: 22rpx;
+  border-radius: 22rpx 0px 0px 22rpx;
+}
+.left-img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90rpx;
+  height: 90rpx;
+}
+.left-img image{
+  width: 100%;
+  height: 100%;
+}
+.wushujucs{
+  margin-top: 300rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
+}
+.dixian{
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+  line-height: 50rpx;
+}
+.screen{
+  position: fixed;
+  width: 80%;
+  padding:5%;
+  background: #fff;
+  height: 85%;
+  border-radius: 20rpx 0 0 0;
+  bottom: 0;
+  z-index: 100;
+  transition: all linear 0.5s;
+}
+.screen .showyaoqiu-text{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.showyaoqiu-fater{
+  display: flex;
+  height: 170rpx;
+  flex-wrap: wrap;
+  justify-content: end;
+  text-align: center;
+  align-items: center;
+}
+.showyaoqiu-fater .showyaoqiu-box{
+  width: 150rpx;
+  height: 44rpx;
+  background: #f4f4f4;
+  color: #333;
+  font-size: 26rpx;
+  border-radius: 136rpx;
+  line-height: 44rpx;
+  margin: 0 20rpx;
+  border: 1rpx solid #f4f4f4;
+}
+.showyaoqiu-fater  .exxuanz{
+  border: 1rpx solid #F9B236;
+  background: #FDF6EC;
+  color: #F9B236;
+}
+.blk{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #707070;
+  z-index: 10;
+  opacity: 0.6;
+}
+.button{
+  width: 90%;
+  margin: 20rpx 5% 0 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.button-box{
+  width: 45%;
+  height: 60rpx;
+  border-radius: 94rpx;
+  border: 1rpx solid #aaa;
+  color: #777;
+  font-size: 32rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.button-rig{
+  border: 1rpx solid #F9B236;
+  color: #fff;
+  background: #F9B236;
+}

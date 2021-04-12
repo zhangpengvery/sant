@@ -51,6 +51,7 @@ Page({
     userOrder: true,
     service: 0,
     scaner:0,
+    manager:0,
     seractive: 1,
     timer: '',
   },
@@ -342,7 +343,8 @@ Page({
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
     this.setData({
       service: result.data.datas.user_info.user_is_seller,
-      scaner: result.data.datas.user_info.user_is_scaner
+      scaner: result.data.datas.user_info.user_is_scaner,
+      manager:result.data.datas.user_info.user_is_scaner_manager
     })
     console.log(result.data.datas.user_info);
   },
@@ -393,6 +395,16 @@ Page({
         url: '/pages/finlist/finlist',
       })
     }
+  },
+  bindalllist:function(){
+    wx.navigateTo({
+      url: '/pages/alllist/alllist',
+    })
+  },
+  bindpaidan:function(){
+    wx.navigateTo({
+      url: '/pages/survey2/survey2',
+    })
   },
   /**
    * 生命周期函数--监听页面加载

@@ -16,9 +16,15 @@ Page({
     getFailLists:[]
   },
   async getFailLists(page) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     let result = await requestApi(app.globalData.post_url + "/index.php/api/check/getFailLists",{
       page:page
     })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
     if(result.data.datas.list.length==0){
       this.setData({
         dixian:true

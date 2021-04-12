@@ -286,25 +286,32 @@
   <view class="rders">
     <view class="rders-title">其他订单</view>
   </view>
-  <view class="rders">
+  <view class="rders" data-good_type="2" bindtap="bindnavFn">
     <view class="rders-box">
       <view class="iconfont icon-xinchedingdan car"></view>
       <view class="rders-text">新车订单</view>
     </view>
-    <view class="goback">></view>
+    <view class="iconfont icon-xiangyou goback"></view>
   </view>
-  <view class="rders">
+  <view class="rders" data-good_type="3" bindtap="bindnavFn">
     <view class="rders-box">
       <view class="iconfont icon-zixundingdan car1"></view>
       <view class="rders-text">资讯订单</view>
     </view>
-    <view class="goback">></view>
+    <view class="iconfont icon-xiangyou goback"></view>
   </view>
-  <view class="rders">
+  <view class="rders" data-good_type="4" bindtap="bindnavFn">
     <view class="rders-box">
       <view class="iconfont icon-baoyangdingdan car2"></view>
       <view class="rders-text">保养订单</view>
     </view>
-    <view class="goback">></view>
+    <view class="iconfont icon-xiangyou goback"></view>
+  </view>
+  <view class="rders" data-good_type="1" bindtap="bindnavFn">
+    <view class="rders-box">
+      <view class="iconfont icon-zu50 car3"></view>
+      <view class="rders-text">配件订单</view>
+    </view>
+    <view class="iconfont icon-xiangyou goback"></view>
   </view>
 </view>

@@ -3,13 +3,22 @@
     "pages/home/home",
     "pages/finlist/finlist",
     "pages/surlist/surlist",
+    "pages/alllist/alllist",
+    "pages/orsear/orsear",
+    "pages/teamsign/teamsign",
+    "pages/signin/signin",
+    "pages/signdet/signdet",
+    "pages/mysign/mysign",
+    "pages/sign/sign",
     "pages/setting/setting",
     "pages/safety/safety",
     "pages/joinsant/joinsant",
     "pages/switch/switch",
     "pages/findetail/findetail",
     "pages/surdetail/surdetail",
+    "pages/alldetail/alldetail",
     "pages/survey/survey",
+    "pages/survey2/survey2",
     "pages/allding/allding",
     "pages/counter/counter",
     "pages/myrevie/myrevie",
@@ -36,8 +45,6 @@
     "pages/accesshop2/accesshop2",
     "pages/myvip/myvip",
     "pages/recruit/recruit",
-    "pages/live/live",
-    "pages/swvideos/swvideos",
     "pages/zcorders/zcorders",
     "pages/stores/stores",
     "pages/stordetail/stordetail",
@@ -134,6 +141,12 @@
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于定位当前省份"
+    }
+  },
+  "plugins": {
+    "live-player-plugin": {
+        "version": "1.2.10",
+        "provider": "wx2b03c6e691cd7370"
     }
   },
   "requiredBackgroundModes": [
