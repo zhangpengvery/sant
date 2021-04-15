@@ -1,5 +1,13 @@
 /* pages/teamsign/teamsign.wxss */
 @import "/assets/fonts/iconfont.wxss";
+.user{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300rpx;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.38) 67%, rgba(255, 255, 255, 0.7) 100%);
+}
 .header{
   width: 100%;
   height: 120rpx;
@@ -172,6 +180,17 @@
 }
 .picker{
   margin: 0 8rpx;
+}
+.history{
+  position: fixed;
+  right: 20rpx;
+  top: 230rpx;
+  color: #F9B236;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.history text{
+  font-size: 22rpx;
 }
 .wushujucs{
   width: 100%;

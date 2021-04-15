@@ -2,6 +2,7 @@
 <view hover-class="none" style="width: 100%; height: 300rpx;">
   <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true"
     style="width: 100%; height: 300rpx;"></map>
+    <view class="user"></view>
 </view>
 <view class="header">
   <view class="header-box {{active==1?'active':''}}" data-id="1" bindtap="bindtab">
@@ -82,3 +83,4 @@
     </view>
   </picker>
 </view>
+<view class="history" bindtap="historyFn">签到历史分布 <text class="iconfont icon-xiangyou"></text></view>

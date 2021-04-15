@@ -32,7 +32,8 @@
     <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore3" refresher-enabled="true"
       bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
       <view class="box" wx:if="{{markers3.length>0}}">
-        <block wx:for="{{markers3}}" wx:key="index">      <view class="content">
+        <block wx:for="{{markers3}}" wx:key="index">
+          <view class="content">
             <view class="user-name">{{item.user_name}}</view>
             <view class="db-time">订单编号：{{item.order_id}}</view>
             <view class="db-address">{{item.time}}</view>
@@ -61,12 +62,12 @@
             <view class="left-img" wx:if="{{item.status==4}}">
               <image src="/assets/images/yizhuanban.png"></image>
             </view>
-            <view class="switch-kai" wx:if="{{item.sorts==1&&item.status<2&&item.status!=-1}}" bindtap="nojiaji2"
+            <view class="switch-kai" wx:if="{{item.sorts==1&&item.status<3&&item.status!=-1}}" bindtap="nojiaji2"
               data-id="{{item.id}}" data-index="{{index}}">
               <view>已加急</view>
               <view class="tuoyuan"></view>
             </view>
-            <view class="switch-kai switch-guan" wx:if="{{item.sorts==0&&item.status<2&&item.status!=-1}}"
+            <view class="switch-kai switch-guan" wx:if="{{item.sorts==0&&item.status<3&&item.status!=-1}}"
               bindtap="yesjiaji2" data-id="{{item.id}}" data-index="{{index}}">
               <view class="tuoyuan tuoyuan2"></view>
               <view>加急</view>
@@ -106,12 +107,11 @@
             <view class="left-img" wx:if="{{item.status==2}}">
               <image src="/assets/images/bufenwanc.png"></image>
             </view>
-            <view class="switch-kai" wx:if="{{item.sorts==1}}" bindtap="nojiaji" data-id="{{item.id}}"
-              data-index="{{index}}">
+            <view class="switch-kai" wx:if="{{item.sorts==1&&item.status<3&&item.status!=-1}}" bindtap="nojiaji" data-id="{{item.id}}" data-index="{{index}}">
               <view>已加急</view>
               <view class="tuoyuan"></view>
             </view>
-            <view class="switch-kai switch-guan" wx:if="{{item.sorts==0}}" bindtap="yesjiaji" data-id="{{item.id}}"
+            <view class="switch-kai switch-guan" wx:if="{{item.sorts==0&&item.status<3&&item.status!=-1}}" bindtap="yesjiaji" data-id="{{item.id}}"
               data-index="{{index}}">
               <view class="tuoyuan tuoyuan2"></view>
               <view>加急</view>

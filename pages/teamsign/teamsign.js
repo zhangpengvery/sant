@@ -85,6 +85,11 @@ Page({
       url: '/pages/mysign/mysign?user_id='+e.currentTarget.dataset.user_id,
     })
   },
+  historyFn:function(){
+    wx.navigateTo({
+      url: '/pages/history/history?mark_date='+this.data.date,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,11 +1,12 @@
 {
   "pages":[
-    "pages/home/home",
     "pages/finlist/finlist",
     "pages/surlist/surlist",
+    "pages/home/home",
+    "pages/teamsign/teamsign",
+    "pages/history/history",
     "pages/alllist/alllist",
     "pages/orsear/orsear",
-    "pages/teamsign/teamsign",
     "pages/signin/signin",
     "pages/signdet/signdet",
     "pages/mysign/mysign",

@@ -31,7 +31,7 @@ Page({
     city_name:null,
     area_list:null,
     area_name:null,
-    addressCity:null,
+    addressCity:['请选择','请选择','请选择'],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId:null,

@@ -181,6 +181,9 @@ Page({
     })
   },
   scanAdd(j_user_id,user_name,user_mobile,area_id,address,car_nums){
+    wx.showLoading({
+      title: '提交中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Scan/add",{
       j_user_id:j_user_id,
       user_name:user_name,
@@ -189,9 +192,21 @@ Page({
       address:address,
       car_nums:car_nums
     }).then(res=>{
+      console.log(res);
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
       if(res.data.datas==1){
         wx.showToast({
           title: '提交成功',
+        })
+        wx.redirectTo({
+          url: '/pages/surlist/surlist',
+        })
+      }else if(res.data.code==400){
+        wx.showToast({
+          icon:'none',
+          title: res.data.datas.error,
         })
       }
     })
@@ -219,9 +234,6 @@ Page({
       })
     }else{
       this.scanAdd(this.data.user_id,this.data.user_name,this.data.user_mobile,this.data.selectAreaId,this.data.address,this.data.car_nums)
-      wx.redirectTo({
-        url: '/pages/surlist/surlist',
-      })
     }
   },
   /**

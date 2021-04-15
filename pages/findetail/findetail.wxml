@@ -37,7 +37,7 @@
       <view class="iconfont icon-wancheng {{status==3?'huang':''}}"></view>
       <view class="box-right">
         <view class="box-text">调查状态</view>
-        <picker bindchange="bindPickerChange" value="{{arrayIndex}}" range="{{array}}" range-key="{{'text'}}">
+        <picker bindchange="bindPickerChange" value="{{arrayIndex}}" range="{{array}}" range-key="{{'text'}}" mode="selector">
           <view>{{arraytype}}</view>
         </picker>
         <view class="iconfont icon-xiangyou xiala"></view>
@@ -76,7 +76,7 @@
       <view class="bddh" bindtap="bindPho" data-pho="{{getOrder.zb_tel}}">拨打电话</view>
     </view>
   </view>
-  <view class="zhuan" wx:if="{{status==0}}" bindtap="deleteFn">转办</view>
+  <view class="zhuan" wx:if="{{status==0}}" data-id="{{getOrder.id}}" bindtap="deleteFn">转办</view>
   <view class="ljfb" wx:if="{{shuru==1}}" bindtap="bddhFn">提交</view>
   <view class="ljfb" data-order_id="{{getOrder.zb_order_id}}" wx:if="{{status==4}}" bindtap="bdxqFn">转办详情</view>
 </scroll-view>

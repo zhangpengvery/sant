@@ -53,7 +53,7 @@ Page({
       time:0,
       right:0,
       status:"",
-      dixian3:true,
+      dixian3:false,
       saixuan:0
     },function(){
       if(that.data.currentIndex==0){
@@ -412,6 +412,7 @@ Page({
     var list2=this.data.getScanerList3
     list.splice(index, 1)
     list2.splice(index,1)
+    console.log(id);
     wx.showModal({
       title: '是否删除该订单',
       success(res) {

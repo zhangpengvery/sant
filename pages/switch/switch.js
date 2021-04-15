@@ -21,13 +21,23 @@ Page({
     ],
   },
   scanTrans(trans_id,id){
+    wx.showLoading({
+      title: '转办中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Scan/trans",{
       trans_id:trans_id,
       id:id
     }).then(res=>{
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
       if(res.data.datas==1){
         wx.redirectTo({
           url: '/pages/finlist/finlist',
+        })
+      }else{
+        wx.showToast({
+          title: '转办失败',
         })
       }
     })

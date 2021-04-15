@@ -59,7 +59,7 @@ Page({
       time:0,
       right:0,
       status:"",
-      dixian3:true,
+      dixian3:false,
       saixuan:0
     },function(){
       if(that.data.currentIndex==0){
@@ -370,6 +370,11 @@ Page({
           icon: 'none',
           title: '取消成功',
         })
+        if(this.data.currentIndex==0){
+          this.getSellerSearchLists2(1,this.data.time,this.data.status)
+        }else if(this.data.currentIndex==1){
+          this.getSellerListLeft2(1,this.data.time,this.data.status)
+        }
       }
     })
   },

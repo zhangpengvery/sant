@@ -111,11 +111,15 @@ Page({
     })
   },
   setStatusOne(id,status,book_time){
+    wx.showLoading({
+      title: '设置中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Scan/setStatusOne",{
       id:id,
       status:status,
       book_time:book_time
     }).then(res=>{
+      wx.hideLoading()
       if(res.data.datas==1){
         this.getOrderInfoScaner(this.data.order_id,this.data.status)
         wx.showToast({
@@ -127,11 +131,14 @@ Page({
     })
   },
   setStatusTwo(id,s_type){
+    wx.showLoading({
+      title: '设置中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Scan/setStatusTwo",{
       id:id,
       s_type:s_type
     }).then(res=>{
-      console.log(res);
+      wx.hideLoading()
       if(res.data.datas==1){
         this.getOrderInfoScaner(this.data.order_id)
         wx.showToast({
@@ -142,11 +149,14 @@ Page({
     })
   },
   setContent(id,content){
+    wx.showLoading({
+      title: '提交中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Scan/setContent",{
       id:id,
       content:content
     }).then(res=>{
-      console.log(res);
+      wx.hideLoading()
       if(res.data.datas==1){
         this.getOrderInfoScaner(this.data.order_id)
         wx.showToast({
