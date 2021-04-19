@@ -104,6 +104,24 @@
   font-size: 34rpx;
   font-weight: bold;
 }
+.home-flex{
+  width: 94%;
+  margin: 0 3%;
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  margin-top: 10rpx;
+}
+.home-re{
+  width: 94%;
+  margin: 0 3%;
+  height: 250rpx;
+}
+.home-re image{
+  width: 100%;
+  height: 250rpx;
+  border-radius: 20rpx;
+}
 .bp-fater{
   display: flex;
   width: 94%;
@@ -234,11 +252,8 @@
 .options-left{
   display: flex;
   height: 80rpx;
+  justify-content: center;
   align-items: center;
-}
-.options-left image{
-  width: 28rpx;
-  height: 28rpx;
 }
 .options-left .options-rmpj{
   font-size: 34rpx;
@@ -249,6 +264,13 @@
   font-size: 24rpx;
   color: #333;
   margin-right: 10rpx;
+}
+.options-left .iconfont{
+  color: #F9B236;
+  font-size: 26rpx;
+}
+.options-left .red{
+  color: rgb(236,93,39);
 }
 .options-new{
   width: 96%;

@@ -1,0 +1,76 @@
+<!--pages/evendeta/evendeta.wxml-->
+<import src="/wxParse/wxParse.wxml"></import>
+<image class="header-img" src="https://jbccs.com/.{{getInfo.img}}"></image>
+<view class="content">
+  <view class="title">
+    <view class="title-text">{{getInfo.title}}</view>
+    <button open-type="share" hover-class="none" class="buntt-css" style="width:40rpx;margin:0">
+      <view class="iconfont icon-zhuanfa"></view>
+    </button>
+  </view>
+  <view class="time">
+    <view class="time-box">
+      <image src="/assets/images/baotime.png"></image>
+      <view class="time-zi">距报名结束</view>
+      <view class="time-text">{{getInfo.days}}天</view>
+    </view>
+    <view class="time-box">
+      <image src="/assets/images/baonum.png"></image>
+      <view class="time-zi">已报名</view>
+      <view class="time-text">{{getInfo.p_nums}}人</view>
+    </view>
+    <view class="time-box">
+      <image src="/assets/images/baonum2.png"></image>
+      <view class="time-zi">可报名人数</view>
+      <view class="time-text">{{getInfo.total_nums}}人</view>
+    </view>
+  </view>
+  <view class="details">
+    <view class="details-title">
+      <view class="iconfont icon-shijian1"></view>
+      <view class="detitle-text">活动时间</view>
+    </view>
+    <view class="jianjie">{{getInfo.start_time}} 至 {{getInfo.end_time}}</view>
+    <view class="details-title">
+      <view class="iconfont icon-didian"></view>
+      <view class="detitle-text">活动地点</view>
+    </view>
+    <view class="jianjie">{{getInfo.address}}</view>
+    <view class="details-title">
+      <view class="iconfont icon-zhengce"></view>
+      <view class="detitle-text">取消政策</view>
+    </view>
+    <view class="jianjie">可随时退</view>
+  </view>
+</view>
+<view class="user">
+  <view class="user-box">
+    <view class="user-name">姓名</view>
+    <input type="text" bindinput="bindname" placeholder="请输入" />
+  </view>
+  <view class="user-box">
+    <view class="user-name">手机号</view>
+    <input type="number" maxlength="11" bindinput="bindpho" placeholder="请输入" />
+  </view>
+  <view class="baoming" bindtap="bindbao">我要报名</view>
+</view>
+<view class="dizhi">
+  <view class="dizhi-box">
+    <view class="iconfont icon-dianpu"></view>
+    <view class="dizhi-text">三泰汽车郑州总部</view>
+    <view class="iconfont icon-dianhua1 huang" bindtap="binddianhua"></view>
+  </view>
+  <view class="dizhi-box"  data-lat="{{getInfo.lat}}" data-lng="{{getInfo.lng}}" bindtap="goGoingFn" data-address="{{getInfo.address}}">
+    <view class="iconfont icon-didian"></view>
+    <view class="dizhi-text">{{getInfo.address}}</view>
+    <view class="iconfont icon-daohang huang"></view>
+  </view>
+</view>
+<!-- <template is="wxParse" data="{{wxParseData:content.nodes}}"/> -->
+<view class="guize">
+  <view class="hdgz">活动规则</view>
+  <view class="guize-text">*1.本次活动仅限在有效期内参与，过期无效</view>
+  <view class="guize-text">*2.本次活动仅限在有效期内参与，过期无效</view>
+  <view class="guize-text">*3.本次活动仅限在有效期内参与，过期无效</view>
+  <view class="guize-text">*4.本次活动仅限在有效期内参与，过期无效本次活动仅限在有效期内参与，过期无效本次活动仅限在</view>
+</view>

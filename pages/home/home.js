@@ -38,7 +38,8 @@ Page({
     dixian:false,
     getIndexIcons: [],
     getSwiperImages: [],
-    listData: []
+    listData: [],
+    getHotActivity:[]
   },
   //收藏点击
   shoucFn: function (e) {
@@ -93,6 +94,13 @@ Page({
     this.setData({
       getSwiperImages: result.data.data.pj_list
     })
+  },
+  async getHotActivity() {
+    let result = await requestApi(app.globalData.base_url + "/getHotActivity")
+    this.setData({
+      getHotActivity: result.data.data
+    })
+    console.log(this.data.getHotActivity);
   },
   //未登录二手
   postHomeBestListNo(page) {
@@ -193,10 +201,16 @@ Page({
       url: '/pages/allries/allries?cate_id2=0',
     })
   },
+  bindevenFn:function(){
+    wx.navigateTo({
+      url: '/pages/evenlist/evenlist',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getHotActivity()
     this.setData({
       user_id: wx.getStorageSync('user_id')
     })

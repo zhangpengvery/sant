@@ -76,7 +76,7 @@
     <cover-image src="/assets/images/20210326161610.png"></cover-image>
   </cover-view>
   <cover-view class="alllist" wx:if="{{manager==1}}" bindtap="bindalllist">
-    <cover-image src="/assets/images/alldingdan.png"></cover-image>
+    <cover-image src="https://jbccs.com/./Upload/image/2021-04-15/6077fc5312821.png"></cover-image>
   </cover-view>
   <cover-view class="golist golist2" wx:if="{{service==1&&type==3}}" bindtap="bindpaidan">
     <cover-image src="/assets/images/paidan.png"></cover-image>

@@ -1,6 +1,6 @@
 <!--pages/surdetail/surdetail.wxml-->
 <navbar params="{{params}}" />
-<scroll-view scroll-y="true" style="height:{{winH}}rpx"  bindscroll="scrollPage">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscroll="scrollPage">
   <view class="home-navimg">
     <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
   </view>
@@ -52,7 +52,20 @@
       <view class="box-right">
         <view class="box-text">调查结果</view>
         <view wx:if="{{status==2}}">部分完成</view>
-        <view wx:if="{{status==3}}">全部完成</view>
+        <view>
+          <view wx:if="{{status==3}}">全部完成</view>
+          <view wx:if="{{status==3}}">{{time3}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="footer-box">
+      <image src="https://jbccs.com/./Upload/image/2021-04-15/6077fc486f751.png"></image>
+      <view class="box-right">
+        <view class="box-text">调查机构</view>
+        <picker disabled="true" bindchange="bindPickerdcjg" value="{{arrayjrjgIndex}}" range="{{arrayjrjg}}"
+          range-key="{{'text'}}" mode="selector">
+          <view class="diaocjgtext">{{arrayjrjgtype}}</view>
+        </picker>
       </view>
     </view>
     <view class="xititle">调查详情</view>
@@ -60,6 +73,10 @@
     <view class="bai"></view>
   </view>
   <view class="user">
+    <view class="user-box" wx:if="{{status==4}}">
+      <view class="user-name">调查机构</view>
+      <view class="user-pho">{{arrayjrjgtype}}</view>
+    </view>
     <view class="user-box">
       <view class="user-name">客户姓名</view>
       <view class="user-pho">{{getSeller.user_name}}</view>
@@ -68,6 +85,10 @@
       <view class="user-name">联系方式</view>
       <view class="user-pho">{{getSeller.user_mobile}}</view>
       <view class="bddh" style="top:30rpx" bindtap="bindPho" data-pho="{{getSeller.user_mobile}}">拨打电话</view>
+    </view>
+    <view class="user-box">
+      <view class="user-name">台数</view>
+      <view class="user-pho">{{getSeller.car_nums}}</view>
     </view>
     <view class="user-text">
       <view class="user-name">家访地址</view>

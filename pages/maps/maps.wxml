@@ -20,7 +20,7 @@
       <view class="iconfont icon-zu1889 yuan yuan4"></view>
       <view class="xiandan">陕汽服务站</view>
     </view>
-    <view class="icon-left" bindtap="bindFwz">
+    <view class="icon-left" bindtap="bindFwzzq">
       <view class="iconfont icon-zu1888 yuan yuan5"></view>
       <view class="xiandan">重汽服务站</view>
     </view>

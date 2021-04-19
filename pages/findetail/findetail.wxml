@@ -39,7 +39,18 @@
         <view class="box-text">调查状态</view>
         <picker bindchange="bindPickerChange" value="{{arrayIndex}}" range="{{array}}" range-key="{{'text'}}" mode="selector">
           <view>{{arraytype}}</view>
+          <view wx:if="{{status==3}}">{{time2}}</view>
         </picker>
+        <view class="iconfont icon-xiangyou xiala"></view>
+      </view>
+    </view>
+    <view class="footer-box">
+      <image src="https://jbccs.com/./Upload/image/2021-04-15/6077fc486f751.png"></image>
+      <view class="box-right">
+        <view class="box-text">调查机构</view>
+        <picker bindchange="bindPickerdcjg" value="{{arrayjrjgIndex}}" range="{{arrayjrjg}}" range-key="{{'text'}}" mode="selector">
+        <view class="diaocjgtext">{{arrayjrjgtype}}</view>
+      </picker>
         <view class="iconfont icon-xiangyou xiala"></view>
       </view>
     </view>
@@ -50,6 +61,10 @@
     <view class="bai"></view>
   </view>
   <view class="user">
+    <view class="user-box" wx:if="{{status==4}}">
+      <view class="user-name">调查机构</view>
+      <view class="user-pho">{{arrayjrjgtype}}</view>
+    </view>
     <view class="user-box">
       <view class="user-name">客户姓名</view>
       <view class="user-pho">{{getOrder.user_name}}</view>
@@ -58,6 +73,10 @@
       <view class="user-name">联系方式</view>
       <view class="user-pho">{{getOrder.user_mobile}}</view>
       <view class="bddh" style="top:30rpx" bindtap="bindPho" data-pho="{{getOrder.user_mobile}}">拨打电话</view>
+    </view>
+    <view class="user-box">
+      <view class="user-name">台数</view>
+      <view class="user-pho">{{getOrder.car_nums}}</view>
     </view>
     <view class="user-text">
       <view class="user-name">家访地址</view>

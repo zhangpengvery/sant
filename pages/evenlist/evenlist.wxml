@@ -1,0 +1,14 @@
+<!--pages/evenlist/evenlist.wxml-->
+<scroll-view scroll-y="true" style="height:{{winH}}rpx">
+  <view class="list">
+    <block wx:for="{{getActivityLists}}" wx:key="index">
+      <view class="box" data-id="{{item.id}}" bindtap="bindevendal">
+        <image src="https://jbccs.com/.{{item.img}}"></image>
+        <view class="box-footer">
+          <view>{{item.title}}</view>
+          <view style="color:#FFBA43">查看</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

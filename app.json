@@ -1,8 +1,11 @@
 {
   "pages":[
+    "pages/home/home",
+    "pages/maps/maps",
+    "pages/evenlist/evenlist",
+    "pages/evendeta/evendeta",
     "pages/finlist/finlist",
     "pages/surlist/surlist",
-    "pages/home/home",
     "pages/teamsign/teamsign",
     "pages/history/history",
     "pages/alllist/alllist",
@@ -36,7 +39,6 @@
     "pages/applic/applic",
     "pages/statis/statis",
     "pages/repcard/repcard",
-    "pages/maps/maps",
     "pages/logistic/logistic",
     "pages/tjclcar/tjclcar",
     "pages/position/position",

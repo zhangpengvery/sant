@@ -91,6 +91,10 @@ page{
   height: 120rpx;
   align-items: center;
 }
+.footer-box image{
+  width: 60rpx;
+  height: 60rpx;
+}
 .footer-box .iconfont{
   color: #AAAAAA;
   font-size: 50rpx;

@@ -57,7 +57,9 @@ Page({
     service: 0,
     seractive: 1,
     timer: '',
+    typefwz:2
   },
+  //1重汽2陕汽
   scrTopFn: function (e) {
     this.setData({
       scrslid: true
@@ -298,9 +300,17 @@ Page({
   //服务站
   getrepairMarkers() {
     let markers = [];
-    for (let item of this.data.repairList) {
-      let marker = this.repairMarker(item);
-      markers.push(marker)
+    let index
+    if(this.data.typefwz==1){
+      for (index in this.data.repairList) {
+        let marker = this.repairMarker(this.data.repairList[index],index);
+        markers.push(marker)
+      }
+    }else{
+      for (index in this.data.repairList) {
+        let marker = this.repairMarker2(this.data.repairList[index],index);
+        markers.push(marker)
+      }
     }
     return markers;
   },
@@ -333,12 +343,26 @@ Page({
     return marker;
   },
   //服务站markers
-  repairMarker(point) {
+  repairMarker(point,index) {
+    let latitude = point.shop_lat;
+    let longitude = point.shop_lng;
+    let marker = {
+      iconPath: "/assets/images/zq.png",
+      id: Number(index),
+      latitude: latitude,
+      longitude: longitude,
+      width: 40,
+      height: 40,
+      joinCluster:true
+    };
+    return marker;
+  },
+  repairMarker2(point,index) {
     let latitude = point.shop_lat;
     let longitude = point.shop_lng;
     let marker = {
       iconPath: "/assets/images/sq.png",
-      id: Number(point.shop_id) || 0,
+      id: Number(index),
       latitude: latitude,
       longitude: longitude,
       width: 40,
@@ -369,12 +393,12 @@ Page({
   repairtap: function (e) {
     console.log(e.detail.markerId);
     var id = e.detail.markerId
-    var fwdistance = this.data.repairList[id - 1].distance;
-    var shop_name = this.data.repairList[id - 1].shop_name;
-    var shop_tel = this.data.repairList[id - 1].shop_tel;
-    var shop_address = this.data.repairList[id - 1].shop_address;
-    var shop_lat = this.data.repairList[id - 1].shop_lat;
-    var shop_lng = this.data.repairList[id - 1].shop_lng;
+    var fwdistance = this.data.repairList[id].distance;
+    var shop_name = this.data.repairList[id].shop_name;
+    var shop_tel = this.data.repairList[id].shop_tel;
+    var shop_address = this.data.repairList[id].shop_address;
+    var shop_lat = this.data.repairList[id].shop_lat;
+    var shop_lng = this.data.repairList[id].shop_lng;
     this.setData({
       scrH: 540,
       fwdistance: fwdistance,
@@ -391,7 +415,21 @@ Page({
       // scrH:540,
       showGao:false,
       showBox: false,
-      showFwz: false
+      showFwz: false,
+      typefwz:2
+    }, function () {
+      that.repairFn()
+      that.endInter()
+    })
+  },
+  bindFwzzq: function () {
+    var that = this
+    this.setData({
+      // scrH:540,
+      showGao:false,
+      showBox: false,
+      showFwz: false,
+      typefwz:1
     }, function () {
       that.repairFn()
       that.endInter()
@@ -473,7 +511,8 @@ Page({
       data: {
         page:0,
         lng: this.data.longitude,
-        lat: this.data.latitude
+        lat: this.data.latitude,
+        type:this.data.typefwz,
       },
       header: {
         "content-type": "application/json",
@@ -486,6 +525,7 @@ Page({
           wx.hideLoading()
         }
         this.setData({
+          markers2:[],
           repairList: res.data.datas,
           shop_name: res.data.datas[0].shop_name,
           fwdistance: res.data.datas[0].distance,
@@ -507,7 +547,8 @@ Page({
       data: {
         page:this.data.page,
         lng: this.data.longitude,
-        lat: this.data.latitude
+        lat: this.data.latitude,
+        type:this.data.typefwz
       },
       header: {
         "content-type": "application/json",

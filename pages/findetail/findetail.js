@@ -36,7 +36,50 @@ Page({
         status:3
       }
     ],
+    arrayjrjg:[
+      {
+        index:0,
+        text:"民生金租",
+      },
+      {
+        index:1,
+        text:"平安银行-郑州",
+      },
+      {
+        index:2,
+        text:"平安银行-东莞",
+      },
+      {
+        index:3,
+        text:"平安租赁",
+      },
+      {
+        index:4,
+        text:"九鼎金租",
+      },
+      {
+        index:5,
+        text:"德银租赁",
+      },
+      {
+        index:6,
+        text:"中原金控",
+      },
+      {
+        index:7,
+        text:"山重租赁",
+      },
+      {
+        index:8,
+        text:"郑州银行",
+      },
+      {
+        index:9,
+        text:"狮桥租赁",
+      }
+    ],
     arrayIndex:0,
+    arrayjrjgIndex:0,
     navH:0,
     order_id:0,
     getOrder:[],
@@ -48,7 +91,8 @@ Page({
     id:0,
     shuru:0,
     winH:0,
-    arraytype:'未完成'
+    arraytype:'未完成',
+    arrayjrjgtype:'选择机构'
   },
 
   async getOrderInfoScaner(order_id,status) {
@@ -59,7 +103,13 @@ Page({
     })
     if(result.data.content!=null){
       this.setData({
-        content:result.data.content
+        content:result.data.content,
+      })
+    }
+    if(result.data.fo>-1){
+      this.setData({
+        arrayjrjgIndex:result.data.fo,
+        arrayjrjgtype:this.data.arrayjrjg[result.data.fo].text
       })
     }
     this.setData({
@@ -158,10 +208,31 @@ Page({
     }).then(res=>{
       wx.hideLoading()
       if(res.data.datas==1){
+        wx.showToast({
+          icon:'none',
+          title: '设置成功',
+        })
+      }
+    })
+  },
+  scanSetfo(id,fo){
+    wx.showLoading({
+      title: '设置中...',
+    })
+    requestApi1(app.globalData.post_url+"/index.php/Api/Scan/setFo",{
+      id:id,
+      fo:fo
+    }).then(res=>{
+      wx.hideLoading()
+      if(res.data.datas==1){
         this.getOrderInfoScaner(this.data.order_id)
         wx.showToast({
           icon:'none',
           title: '设置成功',
+        })
+      }else if(res.data.code==400){
+        wx.showToast({
+          title: '设置失败',
         })
       }
     })
@@ -179,6 +250,14 @@ Page({
       arraytype:this.data.array[e.detail.value].text
     })
     this.setStatusTwo(this.data.id,s_type)
+  },
+  bindPickerdcjg:function(e){
+    var d_type=this.data.arrayjrjg[e.detail.value].index
+    this.setData({
+      arrayjrjgIndex:e.detail.value,
+      arrayjrjgtype:this.data.arrayjrjg[e.detail.value].text
+    })
+    this.scanSetfo(this.data.id,d_type)
   },
   bindXingq:function(e){
     this.setData({

@@ -9,7 +9,7 @@
   </block>
 </swiper>
 <view class="details">
-  <view class="details-text">{{getPartsInfo.good_name}}<view class="iconfont icon-zhuanfa"></view></view>
+  <view class="details-text">{{getPartsInfo.good_name}}<view class="iconfont icon-zhuanfa" bindtap="bindshare"></view></view>
   <view class="details-jg">￥{{getPartsInfo.good_price}}</view>
   <view class="details-bzd">
     <view>累计销量：{{getPartsInfo.good_sort}}</view>
@@ -91,3 +91,20 @@
     <view class="ljgm" bindtap="wxgobuy">立即购买</view>
   </view>
 </view>
+<view class="share" wx:if="{{share}}">
+  <view class="share-box">
+    <view class="share-left">
+      <view class="iconfont icon-shaixuan"></view>
+      <button class="buntt-css" style="width:200rpx;margin:0" open-type="share">转发到好友</button>
+    </view>
+    <view class="share-left" bindtap="bindcanvas">
+      <view class="iconfont icon-shaixuan"></view>
+      <view>生成图片分享</view>
+    </view>
+  </view>
+  <view class="share-footer">取消</view>
+</view>
+<view class='share-modal-bg'>
+  <image src='{{shareImg}}' class='share-img'></image>
+</view>
+<canvas  style="width: 286px;height: 480px;background:red;position: fixed;top: -10000px;" canvas-id="shareFrends"></canvas>

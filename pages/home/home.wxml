@@ -52,6 +52,23 @@
     </view>
   </view>
   <view class="layer2"></view>
+  <!-- 热门活动 -->
+  <view class="home-flex">
+    <view class="options-left">
+      <view class="iconfont icon-huodong" style="color:#F9B236"></view>
+      <view class="options-rmpj">热门活动</view>
+    </view>
+    <view class="options-left" bindtap="bindevenFn">
+      <view class="options-gd">更多</view>
+      <view class="iconfont icon-gengduo1"></view>
+    </view>
+  </view>
+  <view class="home-re">
+    <navigator url="/pages/evendeta/evendeta?id={{getHotActivity.id}}">
+      <image src="https://jbccs.com/.{{getHotActivity.img}}"></image>
+    </navigator>
+  </view>
+  <view class="layer2"></view>
   <!-- 热卖配件 -->
   <view class="options-fater">
     <view class="options-header">
@@ -61,7 +78,7 @@
       </view>
       <view class="options-left" bindtap="bindAddFn">
         <view class="options-gd">更多</view>
-        <image src="/assets/images/1629.png"></image>
+        <view class="iconfont icon-gengduo1 red"></view>
       </view>
     </view>
     <view class="options-new">
@@ -151,13 +168,14 @@
   <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
 </scroll-view>
 <view class="urgent" bindtap="urgentFn">
-  <image src="/assets/images/jinjijy.png"></image>
+  <image src="https://jbccs.com/./Upload/image/2021-04-15/6077fbd059a7d.png"></image>
 </view>
 <!-- <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=1">
   <view class="service">
   <image src="/assets/images/jinjijy.png"></image>
 </view>
 </navigator> -->
-<button class="service" open-type="contact" style="padding:0;width: 120rpx;background: rgba(255, 255, 255, 0);height: 90rpx;">
-  <image src="/assets/images/zixun.png"></image>
+<button class="service" open-type="contact"
+  style="padding:0;width: 120rpx;background: rgba(255, 255, 255, 0);height: 90rpx;">
+  <image src="https://jbccs.com/./Upload/image/2021-04-15/6077fbd8b28d6.png"></image>
 </button>
