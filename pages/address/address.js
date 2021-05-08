@@ -9,49 +9,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"收货地址"
-    },
-    navH:0,
     active:0,
     addres_id:0,
     is_def:0,
     getUserList:[],
+  },
+  binddef:function(e){
+    if(e.currentTarget.dataset.is_def==1){
+      wx.showToast({
+        title: '该地址已默认',
+      })
+    }else{
+      this.setDefaultress(e.currentTarget.dataset.addres_id)
+    }
   },
   longPressFn:function(e){
     var that=this;
     var addres_id=e.currentTarget.dataset.addres_id;
     var is_def=e.currentTarget.dataset.is_def;
     wx.showModal({
-      cancelText:'设为默认',
-      cancelColor:'#F9B236',
       confirmText:'删除',
       confirmColor:'#BA1515',
-      content:'修改这个地址',
+      content:'删除这个地址',
       success:function(res){
-        if(res.cancel && is_def==0){
-          that.setDefaultress(addres_id)
-          that.getUserList()
-        }
-        if(res.cancel &&is_def==1){
-          wx.showToast({
-            title: '该地址已默认',
-            icon: 'error',
-            duration: 2000
-          })
-        }
         if(res.confirm && is_def==0){
           that.deleteAddress(addres_id)
           that.getUserList()
@@ -67,9 +47,6 @@ Page({
     })
   },
   getUserList(){
-    wx.showLoading({
-      title: '加载中',
-    })
     wx.request({
       url: 'https://api.jbccs.com/api/getAddressLists',
       data:{}, 
@@ -78,9 +55,6 @@ Page({
         'XX-Token':wx.getStorageSync('token'),
       },
       success:(res)=>{
-        if(res.statusCode==200){
-          wx.hideLoading()
-        }
         this.setData({
           getUserList:res.data.data
         })
@@ -89,19 +63,50 @@ Page({
   },
   //设置默认
   setDefaultress(address_id){
+    wx.showLoading({
+      title: '设置中...',
+    })
     requestApi1(app.globalData.base_url+"/setDefaultAddress",{
       address_id:address_id
+    }).then(res=>{
+      console.log(res);
+      if(res.data.code==1){
+        wx.showToast({
+          title: '设置成功',
+        })
+        this.getUserList()
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '设置失败',
+        })
+      }
     })
   },
   //删除地址
   deleteAddress(address_id){
+    wx.showLoading({
+      title: '删除中...',
+    })
     requestApi1(app.globalData.base_url+"/deleteAddress",{
       address_id:address_id
+    }).then(res=>{
+      if(res.data.code==1){
+        wx.showToast({
+          title: '删除成功',
+        })
+        this.getUserList()
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '删除失败',
+        })
+      }
     })
   },
   bindShez:function(e){
     console.log(e.currentTarget.dataset.addres_id);
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/colldetail/colldetail?address_id=${e.currentTarget.dataset.addres_id}`,
     })
   },
@@ -109,12 +114,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserList()
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
-          navH:app.globalData.navbarHeight,
-          scrollH:result.windowHeight*(750/result.windowWidth)-100-app.globalData.navbarHeight
+          scrollH:result.windowHeight*(750/result.windowWidth)-100
          })
       },
     })
@@ -130,7 +133,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserList()
   },
 
   /**

@@ -19,7 +19,17 @@ Page({
     user_id:0,
     latitude:0,
     longitude:0,
-    dixian:false
+    dixian:false,
+    markers:[
+      {
+        id:0,
+        latitude:0,
+        longitude:0,
+        iconPath:"/assets/images/dizhi.png",
+        width:40,
+        height:40,
+      }
+    ]
   },
   gitdate:function(){
     var that=this
@@ -31,24 +41,17 @@ Page({
       mark_date:Y + '-'  + M,
       time:Y + '-'  + M+'-01'
     },function(){
-      if(that.data.user_id!=undefined){
-        that.getMyLists(that.data.time,that.data.page,that.data.user_id)
-      }else{
-        that.getMyLists2(that.data.time,that.data.page)
-      }
+      that.getMyLists2(that.data.time,that.data.page,that.data.user_id)
     })
   },
   bindDateChange: function(e) {
     var time=e.detail.value+'-01'
     this.setData({
       mark_date: e.detail.value,
-      time:time
+      time:time,
+      page:1
     })
-    if(this.data.user_id!=undefined){
-      this.getMyLists(time,1,this.data.user_id)
-    }else{
-      this.getMyLists2(time,1)
-    }
+    this.getMyLists2(time,1,this.data.user_id)
   },
   async getMyLists(mark_date,page,user_id) {
     wx.showLoading({
@@ -69,31 +72,30 @@ Page({
     }
     this.setData({
       total:result.data.datas.total,
-      userList:result.data.datas.user_info,
       getMyLists:this.data.getMyLists.concat(result.data.datas.mark_list)
     })
     console.log(result.data);
   },
-  async getMyLists2(mark_date,page) {
+  async getMyLists2(mark_date,page,user_id) {
     wx.showLoading({
       title: '加载中...',
     })
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/mark/getMyLists",{
       mark_date:mark_date,
       page:page,
+      user_id:user_id
     })
     if(result.statusCode==200){
       wx.hideLoading()
     }
-    if(result.data.datas.mark_list.length==0&&this.data.page>1){
-      this.setData({
-        dixian:true
-      })
-    }
     this.setData({
       total:result.data.datas.total,
       userList:result.data.datas.user_info,
-      getMyLists:this.data.getMyLists.concat(result.data.datas.mark_list)
+      getMyLists:result.data.datas.mark_list,
+      'markers[0].latitude':result.data.datas.mark_list[0].items[0].lat,
+      'markers[0].longitude':result.data.datas.mark_list[0].items[0].lng,
+      latitude:result.data.datas.mark_list[0].items[0].lat,
+      longitude:result.data.datas.mark_list[0].items[0].lng
     })
     console.log(result.data);
   },
@@ -111,11 +113,7 @@ Page({
     this.setData({
       page: ++this.data.page
     })
-    if(this.data.user_id!=undefined){
-      this.getMyLists(this.data.time,this.data.page,this.data.user_id)
-    }else{
-      this.getMyLists2(this.data.time,this.data.page)
-    }
+    this.getMyLists(this.data.time,this.data.page,this.data.user_id)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -135,17 +133,6 @@ Page({
           winH:ScrH
         })
       },
-    })
-    wx.getLocation({
-      type: 'gcj02',
-      success: (res) => {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        this.setData({
-          latitude: latitude,
-          longitude: longitude
-        })
-      }
     })
   },
 

@@ -29,7 +29,13 @@ Page({
     alltime:"",
     allDay:"",
     getHireInfo:[],
-    getSaleImg:[]
+    getSaleImg:[],
+    current:1
+  },
+  chengtab:function(e){
+    this.setData({
+      current:e.detail.current+1
+    })
   },
   //收藏点击
   shoucFn: function (e) {

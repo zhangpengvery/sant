@@ -53,6 +53,10 @@ page{
   text-align: center;
   overflow: hidden;
 }
+.clockin2{
+  background: linear-gradient(180deg, #B7BFCA 0%, #959CAC 100%);
+  box-shadow: 0px 6px 6px rgba(225,228,233, 0.34);
+}
 .clockin-text{
   font-size: 38rpx;
   font-weight: 500;

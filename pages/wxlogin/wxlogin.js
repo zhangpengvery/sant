@@ -5,56 +5,74 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    msg:"",
+    warn:false,
+    marker:false
   },
-  getUserInfo: function (e) {
-    wx.showLoading({
-      title: '登录中...',
+  bindguan:function(){
+    this.setData({
+      warn:false,
+      marker:false
     })
-    if (e.detail.errMsg.length == 14) {
-      wx.request({
-        url: 'https://api.jbccs.com/api/wxLogin',
-        data: {
-          mobile: wx.getStorageSync('phoneObj'),
-          open_id: wx.getStorageSync('openid'),
-          wechat_img: e.detail.userInfo.avatarUrl,
-          user_name: e.detail.userInfo.nickName
-        },
-        method: 'POST',
-        success: (res => {
-          if(res.statusCode==200){
+  },
+  getUserProfile(){
+    wx.getUserProfile({
+      desc:'用于完善会员资料',
+      lang :'zh_CN',
+      success:(res)=>{
+        wx.showLoading({
+          title: '登录中...',
+        })
+        wx.request({
+          url: 'https://api.jbccs.com/api/wxLogin',
+          data: {
+            mobile: wx.getStorageSync('phoneObj'),
+            open_id: wx.getStorageSync('openid'),
+            wechat_img: res.userInfo.avatarUrl,
+            user_name: res.userInfo.nickName,
+            union_id:wx.getStorageSync('unionid')
+          },
+          method: 'POST',
+          success: (res => {
             wx.hideLoading()
-          }
-          wx.setStorage({
-            data: res.data.data.token,
-            key: 'token',
-          })
-          wx.setStorage({
-            data:res.data.data.user,
-            key:'user',
-          })
-          wx.setStorage({
-            data: res.data.data.user.user_id,
-            key: 'user_id',
-          })
-          wx.removeStorage({
-            key: 'phoneObj',
-          })
-          wx.reLaunch({
-            url: '/pages/home/home',
-          })
-          wx.showTabBar({
-            animation: true,
+            if(res.data.code==1){
+              wx.setStorage({
+                data: res.data.data.token,
+                key: 'token',
+              })
+              wx.setStorage({
+                data:res.data.data.user,
+                key:'user',
+              })
+              wx.setStorage({
+                data: res.data.data.user.user_id,
+                key: 'user_id',
+              })
+              wx.removeStorage({
+                key: 'phoneObj',
+              })
+              wx.reLaunch({
+                url: '/pages/home/home',
+              })
+            }else{
+              this.setData({
+                msg:res.data.msg,
+                warn:true,
+                marker:true
+              })
+            }
           })
         })
-      })
-    } else {
-      wx.showToast({
-        icon: 'error',
-        title: '授权失败',
-      })
-    }
+      },
+      fail:(res)=>{
+        wx.showToast({
+          icon:'none',
+          title: '用户取消授权',
+        })
+      }
+    })
   },
+  
   // getUserInfo: function (e) {
   //   console.log(e)
   //   wx.request({

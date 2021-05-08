@@ -9,21 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"二手管理"
-    },
     tabNavlists:[{
       id:1,
       title:"我的出售"
@@ -31,15 +16,24 @@ Page({
       id:2,
       title:"我的求购"
     }],
-    navH:0,
+    page:1,
     scrollH:0,
     currentIndex:0,
     mySaleList:[],
-    mySaleForList:[]
+    mySaleForList:[],
+    triggered:false
   },
   changeTab:function(e){
+    var that=this
     this.setData({
-      currentIndex:e.detail.current
+      currentIndex:e.detail.current,
+      page:1
+    },function(){
+      if(that.data.currentIndex==0){
+        that.mySaleList2()
+      }else if(that.data.currentIndex==1){
+        that.mySaleForList2()
+      }
     })
   },
   changeSwiper:function(e){
@@ -72,7 +66,33 @@ Page({
     })
   },
   //出售列表
-  mySaleList(){
+  
+  mySaleList(page){
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: 'https://api.jbccs.com/api/mySaleList',
+      data:{
+        page:page
+      },
+      header: {
+        'content-type': 'application/json' ,
+        'XX-Token':wx.getStorageSync('token'),
+      },
+      success:(res)=>{
+        if(res.statusCode==200){
+          wx.hideLoading()
+        }
+        this.setData({
+          mySaleList:this.data.mySaleList.concat(res.data.data)
+        })
+        console.log(this.data.mySaleList);
+      }
+    })
+  },
+  //出售列表
+  mySaleList2(){
     wx.showLoading({
       title: '加载中',
     })
@@ -88,14 +108,40 @@ Page({
           wx.hideLoading()
         }
         this.setData({
-          mySaleList:res.data.data
+          mySaleList:res.data.data,
+          triggered:false
         })
         console.log(this.data.mySaleList);
       }
     })
   },
   //求购列表
-  mySaleForList(){
+  mySaleForList(page){
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: 'https://api.jbccs.com/api/mySaleForList',
+      data:{
+        page:page
+      },
+      header: {
+        'content-type': 'application/json' ,
+        'XX-Token':wx.getStorageSync('token'),
+      },
+      success:(res)=>{
+        if(res.statusCode==200){
+          wx.hideLoading()
+        }
+        this.setData({
+          mySaleForList:this.data.mySaleForList.concat(res.data.data)
+        })
+        console.log(this.data.mySaleForList);
+      }
+    })
+  },
+  //求购列表
+  mySaleForList2(){
     wx.showLoading({
       title: '加载中',
     })
@@ -111,7 +157,8 @@ Page({
           wx.hideLoading()
         }
         this.setData({
-          mySaleForList:res.data.data
+          mySaleForList:res.data.data,
+          triggered:false
         })
         console.log(this.data.mySaleForList);
       }
@@ -121,33 +168,39 @@ Page({
   deleteFn:function(e){
     var that=this;
     var uc_id=e.target.dataset.uc_id;
-    console.log(e.target.dataset.uc_id);
+    var index=e.currentTarget.dataset.index
+    var list=this.data.mySaleList
+    list.splice(index,1)
     wx.showModal({
       title: '是否删除',
       success(res){
         if (res.confirm){
+          that.setData({
+            mySaleList:list
+          })
           that.deleteSale(uc_id)
-          that.mySaleList()
         }
       }
     })
-    that.mySaleList()
   },
   //求购删除
   dadQgFn:function(e){
     var that=this;
     var sf_id=e.target.dataset.sf_id;
-    console.log(e.target.dataset.sf_id);
+    var index=e.currentTarget.dataset.index
+    var list=this.data.mySaleForList
+    list.splice(index,1)
     wx.showModal({
       title: '是否删除',
       success(res){
         if (res.confirm){
+          that.setData({
+            mySaleForList:list
+          })
           that.deleteSaleFor(sf_id)
-          that.mySaleForList()
         }
       }
     })
-    that.mySaleForList()
   },
   //出售删除
   deleteSale(uc_id){
@@ -161,17 +214,41 @@ Page({
       sf_id:sf_id
     })
   },
+  loadMore(){
+    this.setData({
+      page:++this.data.page
+    })
+    this.mySaleList(this.data.page)
+  },
+  loadMore2(){
+    this.setData({
+      page:++this.data.page
+    })
+    this.mySaleForList(this.data.page)
+  },
+  refresherFn:function(){
+    var that=this
+    this.setData({
+      page:1
+    },function(){
+      if(that.data.currentIndex==0){
+        that.mySaleList2()
+      }else if(that.data.currentIndex==1){
+        that.mySaleForList2()
+      }
+    })
+  },
+  stopChange(){
+    return false
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.mySaleList()
-    this.mySaleForList()
     wx.getSystemInfo({
       success: (result) => {
          this.setData({
-          navH:app.globalData.navbarHeight,
-          scrollH:result.windowHeight*(750/result.windowWidth)-100-app.globalData.navbarHeight
+          scrollH:result.windowHeight*(750/result.windowWidth)-100
          })
       },
     })
@@ -188,7 +265,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      page:1
+    })
+    if(this.data.currentIndex==0){
+      this.mySaleList2()
+    }else if(this.data.currentIndex==1){
+      this.mySaleForList2()
+    }
   },
 
   /**

@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"发布出租"
-    },
-    navH:0,
     pics:"",
     imageList: [],
     province_list: null,
@@ -59,22 +43,33 @@ Page({
         console.log(tempFilePaths[0]);
         var arr=[]
         for(var i=0;i<res.tempFilePaths.length;i++){
+          console.log(i);
           var imageUrl=res.tempFilePaths[i];
-          wx.uploadFile({
-            filePath: imageUrl,
-            name: 'file',
-            url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
-            header:{
-              "content-type": "application/x-www-form-urlencoded",
-              'XX-Token':wx.getStorageSync('token')
-            },
-            success:function(res){
-              var data = JSON.parse(res.data)
-              var pic=data.datas.result
-              that.setData({
-                pics:that.data.pics+pic+','
-              })
-            }
+          that.up(imageUrl,i)
+        }
+      }
+    })
+  },
+  up(url,index){
+    var that=this
+    wx.uploadFile({
+      filePath: url,
+      name: 'file',
+      url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
+      header:{
+        "content-type": "application/x-www-form-urlencoded",
+        'XX-Token':wx.getStorageSync('token')
+      },
+      success(res){
+        var data = JSON.parse(res.data)
+        var pic=data.datas.result
+        if(index==(that.data.imageList.length-1)){
+          that.setData({
+            pics:that.data.pics+pic
+          })
+        }else{
+          that.setData({
+            pics:that.data.pics+pic+','
           })
         }
       }
@@ -129,11 +124,22 @@ Page({
       hire_price:hire_price,
       hire_message:hire_message
     }).then(res=>{
-      if(res.statusCode==200){
+      console.log(res);
+      if(res.data.code==1){
         wx.showToast({
-          title: '修改成功',
+          title: '发布成功',
           icon: 'success',
-          duration: 2000
+          duration: 1500
+        })
+        setTimeout(function () {
+          wx.redirectTo({
+            url: '/pages/rental/rental'
+          })
+        }, 1500)
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '发布失败',
         })
       }
     })
@@ -312,13 +318,6 @@ Page({
    */
   onLoad: function (options) {
     this.getProvince()
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**

@@ -13,7 +13,7 @@
       style="width: 100%; height: 180rpx;"></map>
   </view>
 </view>
-<view class="clockin" bindtap="bindsigninFn">
+<view class="clockin {{active==2?'clockin2':''}}" bindtap="bindsigninFn">
   <view class="clockin-text">签到</view>
   <view class="clockin-time">{{time}}</view>
 </view>

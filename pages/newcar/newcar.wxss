@@ -111,18 +111,16 @@
 }
 .list .list-content{
   position: relative;
-  width: 44%;
-  height: 295rpx;
-  padding: 2%;
+  width: 48%;
+  height: 350rpx;
   border-radius: 20rpx;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
   margin-top: 20rpx;
 }
 .list .list-content image{
-  width: 284rpx;
-  height: 175rpx;
+  width: 100%;
+  height: 230rpx;
   border-radius: 10rpx 10rpx 0 0;
-  margin-top: 10rpx;
 }
 .list .list-content .list-name{
   text-align: left;

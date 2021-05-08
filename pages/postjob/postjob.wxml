@@ -1,6 +1,5 @@
 <!--pages/postjob/postjob.wxml-->
-<navbar params="{{params}}" />
-<view class="content" style="margin-top:{{navH}}rpx">
+<view class="content">
   <view class="box">
     <view class="box-title">求职标题</view>
     <view class="box-inp">

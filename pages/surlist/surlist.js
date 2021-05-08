@@ -40,7 +40,6 @@ Page({
       }else if(that.data.currentIndex==2){
         that.getSellerList2(1,that.data.time,that.data.status)
       }
-      
     })
   },
   timeFn:function(e){

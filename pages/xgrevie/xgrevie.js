@@ -69,9 +69,20 @@ Page({
     }).then(res=>{
       if(res.data.datas==1){
         wx.showToast({
+          icon:'success',
           title: '修改成功',
         })
-      } 
+        setTimeout(function () {
+          wx.navigateBack({
+            url: '/pages/myrevie/myrevie'
+          })
+        }, 1500)
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '修改失败',
+        })
+      }
     })
   },
   //获取省份列表

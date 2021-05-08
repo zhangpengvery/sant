@@ -42,6 +42,11 @@ Page({
     latitude: 0,
     longitude: 0
   },
+  bindUrl:function(e){
+    wx.redirectTo({
+      url: e.currentTarget.dataset.url,
+    })
+  },
   //隐藏距离模块点击
   juliFn: function (e) {
     this.postStoresList(this.data.city, this.data.longitude, this.data.latitude)

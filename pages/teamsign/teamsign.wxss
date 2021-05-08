@@ -208,3 +208,11 @@
   width: 100%;
   height: 100%;
 }
+.dixian{
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+  line-height: 50rpx;
+}

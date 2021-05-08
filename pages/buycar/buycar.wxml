@@ -1,14 +1,13 @@
 <!--pages/buycar/buycar.wxml-->
-<navbar params="{{params}}" />
-<view class="content" style="margin-top:{{navH}}rpx">
+<view class="content">
   <view class="box box2">
-    <view class="box-title">自我描述</view>
+    <view class="box-title">求购详情</view>
     <view class="box-inp box-da">
       <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" />
     </view>
   </view>
   <view class="box">
-    <view class="box-title">求租标题</view>
+    <view class="box-title">求购标题</view>
     <view class="box-inp">
       <input type="text" bindinput="bindTitle" placeholder="20字以内，必填" />
     </view>

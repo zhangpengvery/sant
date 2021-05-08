@@ -29,7 +29,8 @@ Page({
     getForLists:[],
     markers:[],
     markers2:[],
-    showMaxmaks:false
+    showMaxmaks:false,
+    triggered:false
   },
   changeSwiper: function (e) {
     var that=this
@@ -44,24 +45,6 @@ Page({
       this.setData({
         getForLists:[],
         currentIndex: e.currentTarget.dataset.current,
-      },function(){
-        that.getForLists()
-      })
-    }
-  },
-  changeTab:function(e){
-    var that=this
-    if(e.detail.current==0){
-      this.setData({
-        getLists:[],
-        currentIndex: e.detail.current,
-      },function(){
-        that.getLists()
-      })
-    }else if(e.detail.current==1){
-      this.setData({
-        getForLists:[],
-        currentIndex: e.detail.current,
       },function(){
         that.getForLists()
       })
@@ -234,7 +217,8 @@ Page({
       wx.hideLoading()
     }
     this.setData({
-      getLists: result.data.datas.list
+      getLists: result.data.datas.list,
+      triggered:false
     }, function () {
       that.setData({
         markers: that.getLingyuanMarkers()
@@ -309,13 +293,26 @@ Page({
       wx.hideLoading()
     }
     this.setData({
-      getForLists: result.data.datas.list
+      getForLists: result.data.datas.list,
+      triggered:false
     }, function () {
       that.setData({
         markers2: that.getLingyuanMarkers2()
       })
     })
     console.log(result);
+  },
+  refresherFn:function(){
+    var that=this
+    this.setData({
+      page:1,
+    },function(){
+      if(that.data.currentIndex==0){
+        that.getLists()
+      }else if(that.data.currentIndex==1){
+        that.getForLists()
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

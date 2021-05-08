@@ -1,6 +1,5 @@
 <!--pages/postjob/postjob.wxml-->
-<navbar params="{{params}}" />
-<view class="content" style="margin-top:{{navH}}rpx">
+<view class="content">
   <view class="box">
     <view class="box-title">收货人</view>
     <view class="box-inp">
@@ -37,4 +36,4 @@
     <switch class="switchcss" color="#F9B236" bindchange="switchFn" checked="{{is_def==1?true:false}}"     disabled="{{is_def==1?true:false}}"></switch>
   </view>
 </view>
-  <view class="ljfb" bindtap="bddhFn">保存</view>
+<view class="ljfb" bindtap="bddhFn">保存</view>

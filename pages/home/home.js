@@ -39,7 +39,9 @@ Page({
     getIndexIcons: [],
     getSwiperImages: [],
     listData: [],
-    getHotActivity:[]
+    getHotActivity:[],
+    triggered:false,
+    account:false
   },
   //收藏点击
   shoucFn: function (e) {
@@ -100,25 +102,19 @@ Page({
     this.setData({
       getHotActivity: result.data.data
     })
-    console.log(this.data.getHotActivity);
   },
   //未登录二手
   postHomeBestListNo(page) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     requestApi1(app.globalData.base_url + "/getSaleLists", {
       page: page,
       user_id: 0
     }).then(res => {
-      this.setData({
-        listData: this.data.listData.concat(res.data.data)
-      })
-    })
-  },
-  //登录二手
-  postHomeBestList(page, user_id) {
-    requestApi1(app.globalData.base_url + "/getSaleLists", {
-      page: page,
-      user_id: user_id
-    }).then(res => {
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
       if(res.data.data.length==0){
         this.setData({
           dixian:true
@@ -126,6 +122,71 @@ Page({
       }else{
         this.setData({
           listData: this.data.listData.concat(res.data.data)
+        })
+      }
+    })
+  },
+  //未登录二手
+  postHomeBestListNo2(page) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    requestApi1(app.globalData.base_url + "/getSaleLists", {
+      page: page,
+      user_id: 0
+    }).then(res => {
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      this.setData({
+        listData:res.data.data,
+        triggered:false
+      })
+    })
+  },
+  //登录二手
+  postHomeBestList(page, user_id) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    requestApi1(app.globalData.base_url + "/getSaleLists", {
+      page: page,
+      user_id: user_id
+    }).then(res => {
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      if(res.data.data.length==0){
+        this.setData({
+          dixian:true
+        })
+      }else{
+        this.setData({
+          listData: this.data.listData.concat(res.data.data)
+        })
+      }
+      console.log(res);
+    })
+  },
+  postHomeBestList2(page, user_id) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    requestApi1(app.globalData.base_url + "/getSaleLists", {
+      page: page,
+      user_id: user_id
+    }).then(res => {
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      if(res.data.data.length==0){
+        this.setData({
+          dixian:true
+        })
+      }else{
+        this.setData({
+          listData:res.data.data,
+          triggered:false
         })
       }
     })
@@ -142,12 +203,12 @@ Page({
   },
   scrollPage: function (e) {
     var s='params.navColor'
-    if (e.detail.scrollTop > 50) {
+    if (e.detail.scrollTop > 150) {
       this.setData({
         hidden: true,
         [s]:1
       })
-    } else if(e.detail.scrollTop<50){
+    } else if(e.detail.scrollTop<150){
       this.setData({
         hidden: false,
         [s]:0
@@ -206,36 +267,16 @@ Page({
       url: '/pages/evenlist/evenlist',
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.getHotActivity()
+  refresherFn:function(){
+    var that=this
     this.setData({
-      user_id: wx.getStorageSync('user_id')
-    })
-    this.getIndexIcons(),
-      this.getSwiperImages();
-    if (wx.getStorageSync('user_id') == []) {
-      this.postHomeBestListNo(this.data.page)
-    } else {
-      this.postHomeBestList(this.data.page, this.data.user_id)
-    }
-    //获取高度
-    // this.setData({
-    //   winH: app.globalData.windowHeigtn
-    // })
-    wx.getSystemInfo({
-      success: (result) => {
-        let clientHeight = result.windowHeight;
-        let clientWidth = result.windowWidth;
-        let ratio = 750 / clientWidth;
-        let ScrH =clientHeight * ratio
-        this.setData({
-          navH: app.globalData.navbarHeight,
-          winH:ScrH
-        })
-      },
+      page:1
+    },function(){
+      if (wx.getStorageSync('user_id') == []) {
+        that.postHomeBestListNo2(1)
+      } else {
+        that.postHomeBestList2(1, that.data.user_id)
+      }
     })
   },
   bindMain:function(){
@@ -246,6 +287,53 @@ Page({
   bindMain2:function(){
     wx.navigateTo({
       url: '/pages/maintain/maintain?id=2',
+    })
+  },
+  bindUrl:function(e){
+    wx.redirectTo({
+      url: e.currentTarget.dataset.url,
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(app.globalData.scene);
+    this.getHotActivity()
+    this.setData({
+      user_id: wx.getStorageSync('user_id'),
+      navH: app.globalData.navbarHeight,
+    })
+    this.getIndexIcons(),
+    this.getSwiperImages();
+    wx.getSystemInfo({
+      success: (result) => {
+        var scene=app.globalData.scene
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =clientHeight * ratio
+        if(scene==1047){
+          this.setData({
+            winH:ScrH-app.globalData.navbarHeight-164,
+            account:true
+          })
+        }else if(scene==1124){
+          this.setData({
+            winH:ScrH-app.globalData.navbarHeight-164,
+            account:true
+          })
+        }else if(scene==1038){
+          this.setData({
+            winH:ScrH-app.globalData.navbarHeight-164,
+            account:true
+          })
+        }else{
+          this.setData({
+            winH:ScrH-app.globalData.navbarHeight
+          })
+        }
+      },
     })
   },
   /**
@@ -264,14 +352,17 @@ Page({
         _this.getProvinceName(latitude, longitude)
       }
     })
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (wx.getStorageSync('user_id') == []) {
+      this.postHomeBestListNo2(this.data.page)
+    } else {
+      this.postHomeBestList2(this.data.page, this.data.user_id)
+    }
   },
 
   /**

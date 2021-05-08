@@ -1,6 +1,5 @@
 <!--pages/second/second.wxml-->
-<navbar params="{{params}}" />
-<view class="header" style="margin-top:{{navH}}rpx">
+<view class="header">
   <block wx:for="{{tabNavlists}}" wx:key="index">
     <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
       {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
@@ -8,59 +7,65 @@
   </block>
 </view>
 <swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
-  <swiper-item>
-    <view class="content" wx:if="{{mySaleList.length>=1}}">
-      <block wx:for="{{mySaleList}}" wx:key="index">
-        <view class="con-fater">
-          <view class="con-img">
-            <image src="{{item.image_url}}"></image>
+  <swiper-item catchtouchmove="stopChange">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+      <view class="content" wx:if="{{mySaleList.length>=1}}">
+        <block wx:for="{{mySaleList}}" wx:key="index">
+          <view class="con-fater">
+            <view class="con-img">
+              <image src="{{item.image_url}}"></image>
+            </view>
+            <view class="con-text">
+              <view class="con-title">{{item.sale_title}}</view>
+              <view class="con-jg">￥{{item.sale_price}}</view>
+            </view>
+            <view class="delete" data-uc_id="{{item.uc_id}}" bindtap="deleteFn" data-index="{{index}}">删除</view>
+            <navigator url="/pages/secmodify/secmodify?sale_id={{item.sale_id}}">
+              <view class="editor">编辑</view>
+            </navigator>
           </view>
-          <view class="con-text">
-            <view class="con-title">{{item.sale_title}}</view>
-            <view class="con-jg">￥{{item.sale_price}}</view>
-          </view>
-          <view class="delete" data-uc_id="{{item.uc_id}}" bindtap="deleteFn">删除</view>
-          <navigator url="/pages/secmodify/secmodify?sale_id={{item.sale_id}}">
-            <view class="editor">编辑</view>
-          </navigator>
-        </view>
-      </block>
-    </view>
-    <view wx:else class="wushujucs">
-      <view class="wushu-img">
-        <image src="/assets/images/kong.png"></image>
+        </block>
       </view>
-      <view>暂无数据</view>
-    </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
   </swiper-item>
-  <swiper-item>
-    <view class="right-list" wx:if="{{mySaleForList.length>=1}}">
-      <block wx:for="{{mySaleForList}}" wx:key="index">
-        <view class="right-content">
-          <view class="right-title">{{item.safe_title}}
-            <view class="right-jg">￥{{item.price}}</view>
+  <swiper-item catchtouchmove="stopChange">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore2" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+      <view class="right-list" wx:if="{{mySaleForList.length>=1}}">
+        <block wx:for="{{mySaleForList}}" wx:key="index">
+          <view class="right-content">
+            <view class="right-title">{{item.safe_title}}
+              <view class="right-jg">￥{{item.price}}</view>
+            </view>
+            <view class="right-name">
+              <text class="iconfont icon-quanminjingjiren"></text>
+              <text>求购人：{{item.contact_name}}</text>
+            </view>
+            <view class="right-name">
+              <text class="iconfont icon-dingwei"></text>
+              <text>位置：{{province_name}}{{item.city_name}}</text>
+            </view>
+            <view class="delete" data-sf_id="{{item.sf_id}}" bindtap="dadQgFn" data-index="{{index}}">删除</view>
+            <navigator url="/pages/reqmodify/reqmodify?sf_id={{item.sf_id}}">
+              <view class="editor">编辑</view>
+            </navigator>
           </view>
-          <view class="right-name">
-            <text class="iconfont icon-quanminjingjiren"></text>
-            <text>求购人：{{item.contact_name}}</text>
-          </view>
-          <view class="right-name">
-            <text class="iconfont icon-dingwei"></text>
-            <text>位置：{{province_name}}{{item.city_name}}</text>
-          </view>
-          <view class="delete" data-sf_id="{{item.sf_id}}" bindtap="dadQgFn">删除</view>
-          <navigator url="/pages/reqmodify/reqmodify?sf_id={{item.sf_id}}">
-            <view class="editor">编辑</view>
-          </navigator>
-        </view>
-      </block>
-    </view>
-    <view wx:else class="wushujucs">
-      <view class="wushu-img">
-        <image src="/assets/images/kong.png"></image>
+        </block>
       </view>
-      <view>暂无数据</view>
-    </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
   </swiper-item>
 </swiper>
 <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>

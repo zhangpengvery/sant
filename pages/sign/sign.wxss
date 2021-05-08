@@ -24,6 +24,13 @@ page{
   margin-bottom: 20rpx;
   overflow: hidden;
 }
+.weitiao{
+  position: absolute;
+  right: 40rpx;
+  top: 10rpx;
+  font-size: 26rpx;
+  color: #F9B236;
+}
 .box-text{
   margin-top: 20rpx;
   color: #777;

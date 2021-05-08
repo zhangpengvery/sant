@@ -63,25 +63,54 @@ Page({
       })
     }
   },
+  bindyuangong:function(e){
+    if(wx.getStorageSync('token')==[]){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }else if(this.data.user.user_is_worker==0){
+      wx.showToast({
+        icon:'none',
+        title: '没有访问权限',
+      })
+    }else{
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+      })
+    }
+  },
   gologinFn:function(){
     wx.navigateTo({
       url: '/pages/login/login',
+    })
+  },
+  async getUserInfo() {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
+    this.setData({
+      user: result.data.datas.user_info,
+    })
+    console.log(this.data.user);
+  },
+  bindUrl:function(e){
+    wx.redirectTo({
+      url: e.currentTarget.dataset.url,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMindIcons()
-    this.setData({
-      user:wx.getStorageSync('user')
-    })
+    // this.getMindIcons()
+    // this.setData({
+    //   user:wx.getStorageSync('user')
+    // })
     if(wx.getStorageSync('token')==[]){
       this.setData({
         login:false,
         userInfor:true
       })
     }else{
+      this.getUserInfo()
       this.setData({
         login:true,
         userInfor:false

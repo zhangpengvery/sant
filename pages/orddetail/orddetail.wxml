@@ -1,50 +1,136 @@
 <!--pages/orddetail/orddetail.wxml-->
+<view class="iconfont icon-ziyuan2 back" bindtap="backFn" style="top:{{backH-30}}rpx"></view>
 <view class="header">
-  <view class="iconfont icon-ziyuan2 back" bindtap="backFn" style="top:{{backH}}rpx"></view>
-  <view class="iconfont icon-dengdaifukuan title">等待付款</view>
+  <block wx:if="{{getOrderInfo.order_state=='TRADE_FINISH'}}">
+    <view class="title">交易完成</view>
+  </block>
+  <block wx:elif="{{getOrderInfo.order_state=='SELLER_DELIVER'}}">
+    <block wx:if="{{getOrderInfo.return_type==2&&getOrderInfo.return_state==5}}">
+      <view class="title">退货失败</view>
+    </block>
+    <block wx:else>
+      <view class="title">待收货</view>
+    </block>
+  </block>
+  <block wx:elif="{{getOrderInfo.order_state=='WAIT_USER_PAY'}}">
+    <view class="title">待付款</view>
+  </block>
+  <block wx:elif="{{getOrderInfo.order_state=='SELLER_PICK'}}">
+    <view class="title">待发货</view>
+  </block>
+  <block wx:elif="{{getOrderInfo.order_state=='USER_HAVE_PAID'}}">
+    <view class="title">待接单</view>
+  </block>
+  <block wx:elif="{{getOrderInfo.order_state=='TRADE_CLOSED'}}">
+    <block wx:if="{{getOrderInfo.return_type==2}}">
+      <view class="title">退货成功</view>
+    </block>
+    <block wx:elif="{{getOrderInfo.return_type==1}}">
+      <view class="title">退款成功</view>
+    </block>
+    <block wx:else>
+      <view class="title">交易关闭</view>
+    </block>
+  </block>
+  <block wx:elif="{{getOrderInfo.order_state=='AFTER_SERVICE'}}">
+    <block wx:if="{{getOrderInfo.return_type==2}}">
+      <block wx:if="{{getOrderInfo.return_state==5}}">
+        <view class="title">退货失败</view>
+      </block>
+      <block wx:elif="{{getOrderInfo.return_state==3}}">
+        <view class="title">退货成功</view>
+      </block>
+      <block wx:else>
+        <view class="title">退货中</view>
+      </block>
+    </block>
+    <block wx:else>
+      <block wx:if="{{getOrderInfo.deal_state==3}}">
+        <view class="title">退款失败</view>
+      </block>
+      <block wx:elif="{{getOrderInfo.deal_state==1}}">
+        <view class="title">退款成功</view>
+      </block>
+      <block wx:else>
+        <view class="title">退款中</view>
+      </block>
+    </block>
+  </block>
   <view class="header-text">
-    <view class="text-left">需付款：800.00</view>
-    <view class="text-left">剩余时间：12时23分29秒</view>
+    <view class="text-left">需付款：{{getOrderInfo.good_amount}}</view>
   </view>
   <view class="header-con">
     <view class="iconfont icon-dengdaifukuan-weizhi"></view>
     <view class="con-text">
-      <view class="text-top">河南省郑州市管城回族区经开中心广场宏观顾胡309号楼</view>
-      <view class="text-btm">陈铭：193****9382</view>
+      <view class="text-btm">{{getOrderInfo.address_name}}：{{getOrderInfo.address_tel}}</view>
+      <view class="text-top">{{getOrderInfo.address_info}}</view>
     </view>
-    <view class="dizhi"> > </view>
   </view>
 </view>
-<view class="product">
-  <view class="product-img">
-    <image mode="aspectFill" src="https://www.jbccs.com/Upload//Pictures/2020-11-25/5fbe18edb54be.png"></image>
+<view class="product" wx:for="{{getOrderInfo.order_good}}" wx:key="index">
+  <view class="product-img" bindtap="bindgood" data-good_id="{{item.good_id}}" data-good_cate="{{item.good_cate_1}}">
+    <image mode="aspectFill" src="{{item.good_image}}"></image>
   </view>
   <view class="product-text">
-    <view class="product-title">三泰之家上装保养</view>
-    <view class="product-jg">￥800</view>
+    <view class="product-title">{{item.good_name}}</view>
+    <view class="product-jg">￥{{item.good_price}}</view>
   </view>
-  <view class="shul">x1</view>
+  <view class="shul">x{{item.good_num}}</view>
 </view>
 <view class="body">
   <view class="body-title">订单信息</view>
-  <view class="body-text">订单编号：<text>ST293920382398490</text></view>
-  <view class="body-text">买家留言：<text>买家无留言</text></view>
-  <view class="body-text">创建时间：<text>2020-01-06 13：48：52</text></view>
+  <view class="body-text">订单编号：<text>{{getOrderInfo.order_sn}}</text></view>
+  <block wx:if="{{getOrderInfo.order_mark!=null}}">
+    <view class="body-text">买家留言：<text>{{getOrderInfo.order_mark}}</text></view>
+  </block>
+  <block wx:else>
+    <view class="body-text">买家留言：<text>买家无留言</text></view>
+  </block>
+  <view class="body-text">创建时间：<text>{{getOrderInfo.add_time_text}}</text></view>
   <view class="xian"></view>
   <view class="body-box">
     <view class="body-text">商品总价：</view>
-    <view class="body-text">￥800.00</view>
+    <view class="body-text">￥{{getOrderInfo.good_amount}}</view>
   </view>
   <view class="body-box">
-    <view class="body-text">运费：</view>
-    <view class="body-text">￥0.00</view>
+    <view class="body-text">邮费：</view>
+    <view class="body-text">￥{{getOrderInfo.deliver_fee}}</view>
   </view>
   <view class="body-box">
     <view class="body-text">订单总价：</view>
-    <view class="body-hong">￥800.00</view>
+    <view class="body-hong">￥{{getOrderInfo.order_amount}}</view>
   </view>
 </view>
-<view class="footer">
-  <view class="footer-left">取消订单</view>
-  <view class="footer-right">立即付款</view>
+<view class="footer" wx:if="{{getOrderInfo.order_state=='TRADE_FINISH'}}">
+  <view class="footer-left" data-order_sn="{{getOrderInfo.order_sn}}" bindtap="deleteFn">删除订单</view>
 </view>
+<view class="footer" wx:elif="{{getOrderInfo.order_state=='WAIT_USER_PAY'}}">
+  <view class="footer-left" data-order_sn="{{getOrderInfo.order_sn}}" bindtap="cancellFn">取消订单</view>
+  <view class="footer-right" bindtap="bindGoPin" data-order_sn="{{getOrderInfo.order_sn}}">立即付款</view>
+</view>
+<view class="footer" wx:elif="{{getOrderInfo.order_state=='SELLER_DELIVER'}}">
+  <block wx:if="{{getOrderInfo.return_type==2&&getOrderInfo.return_state==5}}">
+    <view class="footer-right">确认收货</view>
+  </block>
+  <block wx:else>
+    <view class="footer-left" data-order_sn="{{getOrderInfo.order_sn}}" bindtap="bindLess">确认收货</view>
+    <view class="footer-right" data-order_sn="{{getOrderInfo.order_sn}}" bindtap="lookwuliu">查看物流</view>
+  </block>
+</view>
+<view class="footer" wx:elif="{{getOrderInfo.order_state=='AFTER_SERVICE'}}">
+  <block wx:if="{{getOrderInfo.return_type==2}}">
+    <view class="footer-right">取消申请</view>
+  </block>
+  <!-- <block wx:else>
+    <view class="footer-right">订单详情</view>
+  </block> -->
+</view>
+<view class="footer" wx:elif="{{getOrderInfo.order_state=='TRADE_CLOSED'}}">
+  <view class="footer-right" data-order_sn="{{getOrderInfo.order_sn}}" bindtap="deleteFn">删除订单</view>
+</view>
+<view class="footer" wx:elif="{{getOrderInfo.order_state=='USER_HAVE_PAID'}}">
+  <view class="footer-right">待接单</view>
+</view>
+<!-- <view class="footer" wx:elif="{{getOrderInfo.order_state=='SELLER_PICK'}}">
+  <view class="footer-right">订单详情</view>
+</view> -->

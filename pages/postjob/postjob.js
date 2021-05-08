@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"发布求职"
-    },
-    navH:0,
     typeList:[],
     jt_id:1,
     typeIndex:0,
@@ -243,12 +227,22 @@ Page({
         contact_name:contact_name,
         contact_tel:contact_tel
       }).then(res=>{
-        if(res.statusCode==200){
+        if(res.data.code==1){
           var title=res.data.msg
           wx.showToast({
             title: title,
             icon: 'success',
-            duration: 2000
+            duration: 1500
+          })
+          setTimeout(function () {
+            wx.redirectTo({
+              url: '/pages/recruit/recruit'
+            })
+          }, 1500)
+        }else{
+          wx.showToast({
+            icon:'error',
+            title: '发布失败',
           })
         }
       })
@@ -293,13 +287,6 @@ Page({
   onLoad: function (options) {
     this.getProvince()
     this.getJobBasicData()
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**

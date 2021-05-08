@@ -9,7 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page:1,
+    winH:0,
+    mapH:0,
+    page: 1,
     TopH: 0,
     type: 1,
     longitude: 0,
@@ -41,7 +43,7 @@ Page({
     userList: [],
     userList2: [],
     repairList: [],
-    repairList2:[],
+    repairList2: [],
     broList: [],
     getServiceInfo: [],
     starpageY: 0,
@@ -57,7 +59,17 @@ Page({
     service: 0,
     seractive: 1,
     timer: '',
-    typefwz:2
+    typefwz: 2,
+    liandian: 0,
+    points: [{
+      latitude: 0,
+      longitude: 0
+    }, {
+      latitude: 0,
+      longitude: 0
+    }],
+    scale:16,
+    scale1:14
   },
   //1重汽2陕汽
   scrTopFn: function (e) {
@@ -90,8 +102,10 @@ Page({
             // showGao: true
           })
         } else if (sliding < -30) {
+          var hig=this.data.winH-280
           that.setData({
             scrH: 280,
+            mapH:hig
           })
         }
       } else if (that.data.scrH == 1080) {
@@ -106,9 +120,11 @@ Page({
         }
       } else if (that.data.scrH == 280) {
         var sliding3 = that.data.starpageY - that.data.chenpageY;
+        var hig=this.data.winH-540
         if (sliding3 > 30) {
           that.setData({
-            scrH: 540
+            scrH: 540,
+            mapH:hig
           })
         }
       }
@@ -120,18 +136,20 @@ Page({
         scrH: 1080,
         boxH: 720,
         scrY: true,
-        showGao: true
+        showGao: true,
       })
     } else if (this.data.scrH == 1080) {
       this.setData({
         scrH: 540,
         boxH: 180,
         scrY: false,
-        showGao: false
+        showGao: false,
       })
     } else if (this.data.scrH == 280) {
+      var hig=this.data.winH-540
       this.setData({
-        scrH: 540
+        scrH: 540,
+        mapH:hig
       })
     }
   },
@@ -246,8 +264,6 @@ Page({
   async getRepairInfo() {
     var that = this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairInfo")
-    console.log(result.data.hours);
-    console.log(result.data.status);
     if (result.data.hours >= 2 && result.data.status != -1) {
       this.setData({
         userNo: true
@@ -267,8 +283,6 @@ Page({
   },
   async getRepairInfo2() {
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairInfo")
-    console.log(result.data.hours);
-    console.log(result.data.status);
     if (result.data.hours >= 2 && result.data.status != -1) {
       this.setData({
         userNo: true
@@ -284,33 +298,33 @@ Page({
       wx.navigateTo({
         url: '/pages/login/login',
       })
-    } else {
-      console.log(1);
     }
   },
   //人力
   getLingyuanMarkers() {
     let markers = [];
-      for (let item of this.data.userList2) {
-        let marker = this.createMarker(item);
-        markers.push(marker)
-      }
+    for (let item of this.data.userList2) {
+      let marker = this.createMarker(item);
+      markers.push(marker)
+    }
     return markers;
   },
   //服务站
   getrepairMarkers() {
     let markers = [];
     let index
-    if(this.data.typefwz==1){
+    if (this.data.typefwz == 1) {
       for (index in this.data.repairList) {
-        let marker = this.repairMarker(this.data.repairList[index],index);
+        let marker = this.repairMarker(this.data.repairList[index], index);
         markers.push(marker)
       }
-    }else{
+      wx.hideLoading()
+    } else {
       for (index in this.data.repairList) {
-        let marker = this.repairMarker2(this.data.repairList[index],index);
+        let marker = this.repairMarker2(this.data.repairList[index], index);
         markers.push(marker)
       }
+      wx.hideLoading()
     }
     return markers;
   },
@@ -319,55 +333,41 @@ Page({
     let latitude = point.lat;
     let longitude = point.lng;
     let marker = {
-      iconPath: point.id==0?"/assets/images/xg-quan.png":"/assets/images/xg-on.png",
+      iconPath: point.id == 0 ? "/assets/images/xg-quan.png" : "/assets/images/xg-on.png",
       id: point.id || 0,
       latitude: latitude,
       longitude: longitude,
-      width: point.id==0?78:60,
-      height:point.id==0?72:60,
-      joinCluster:true
-    };
-    return marker;
-  },
-  createMarker2(point) {
-    let latitude = point.lat;
-    let longitude = point.lng;
-    let marker = {
-      iconPath: "/assets/images/new_driver.png",
-      id: point.id || 0,
-      latitude: latitude,
-      longitude: longitude,
-      width: 40,
-      height: 40,
+      width: point.id == 0 ? 78 : 60,
+      height: point.id == 0 ? 72 : 60,
     };
     return marker;
   },
   //服务站markers
-  repairMarker(point,index) {
+  repairMarker(point, index) {
     let latitude = point.shop_lat;
     let longitude = point.shop_lng;
     let marker = {
-      iconPath: "/assets/images/zq.png",
+      iconPath:index==0?"/assets/images/zq-one.png":"/assets/images/zq.png",
       id: Number(index),
       latitude: latitude,
       longitude: longitude,
-      width: 40,
-      height: 40,
-      joinCluster:true
+      width:index==0?48:40,
+      height:index==0?48:40,
+      joinCluster: true
     };
     return marker;
   },
-  repairMarker2(point,index) {
+  repairMarker2(point, index) {
     let latitude = point.shop_lat;
     let longitude = point.shop_lng;
     let marker = {
-      iconPath: "/assets/images/sq.png",
+      iconPath: index==0?"/assets/images/sq-one.png":"/assets/images/sq.png",
       id: Number(index),
       latitude: latitude,
       longitude: longitude,
-      width: 40,
-      height: 40,
-      joinCluster:true
+      width:index==0?48:40,
+      height:index==0?48:40,
+      joinCluster: true
     };
     return marker;
   },
@@ -412,27 +412,31 @@ Page({
   bindFwz: function () {
     var that = this
     this.setData({
-      // scrH:540,
-      showGao:false,
+      page:1,
+      showGao: false,
       showBox: false,
       showFwz: false,
-      typefwz:2
+      typefwz: 2,
+      markers2: [],
     }, function () {
       that.repairFn()
       that.endInter()
+      that.repairFn2(that.data.page,that.data.latitude,that.data.longitude,that.data.typefwz)
     })
   },
   bindFwzzq: function () {
     var that = this
     this.setData({
-      // scrH:540,
-      showGao:false,
+      page:1,
+      showGao: false,
       showBox: false,
       showFwz: false,
-      typefwz:1
+      typefwz: 1,
+      markers2: [],
     }, function () {
       that.repairFn()
       that.endInter()
+      that.repairFn2(that.data.page,that.data.latitude,that.data.longitude,that.data.typefwz)
     })
   },
   userListFn: function () {
@@ -453,10 +457,13 @@ Page({
         'XX-Token': wx.getStorageSync('token'),
       },
       success: (res) => {
-        console.log(res.data.datas);
         if (res.statusCode == 200) {
           wx.hideLoading()
         }
+        var lat2 = "points[" + 1 + "].latitude"
+        var lng2 = "points[" + 1 + "].longitude"
+        var lat3 = "points[" + 2 + "].latitude"
+        var lng3 = "points[" + 2 + "].longitude"
         this.setData({
           userList: res.data.datas.user_list,
           name: res.data.datas.user_list[0].user_name,
@@ -466,7 +473,12 @@ Page({
           text: res.data.datas.user_list[0].text,
           is_pay: res.data.datas.user_list[0].is_pay,
           service_uid: res.data.datas.user_list[0].user_id,
+          [lat2]:Number(res.data.datas.user_list[0].lat),
+          [lng2]:Number(res.data.datas.user_list[0].lng),
+          [lat3]:Number(res.data.datas.user_list[1].lat),
+          [lng3]:Number(res.data.datas.user_list[1].lng),
         }, function () {
+          that.includePoints()
           that.setData({
             markers: that.getLingyuanMarkers()
           })
@@ -505,14 +517,15 @@ Page({
     var that = this
     wx.showLoading({
       title: '加载中...',
+      mask: true
     })
     wx.request({
       url: 'https://jbccs.com/index.php/Api/Map/getStationDatas',
       data: {
-        page:0,
+        page: 0,
         lng: this.data.longitude,
         lat: this.data.latitude,
-        type:this.data.typefwz,
+        type: this.data.typefwz,
       },
       header: {
         "content-type": "application/json",
@@ -520,12 +533,11 @@ Page({
       },
       method: "GET",
       success: (res) => {
-        console.log(res);
-        if (res.statusCode == 200) {
-          wx.hideLoading()
-        }
+        var lat2 = "points[" + 1 + "].latitude"
+        var lng2 = "points[" + 1 + "].longitude"
+        var lat3 = "points[" + 2 + "].latitude"
+        var lng3 = "points[" + 2 + "].longitude"
         this.setData({
-          markers2:[],
           repairList: res.data.datas,
           shop_name: res.data.datas[0].shop_name,
           fwdistance: res.data.datas[0].distance,
@@ -533,7 +545,12 @@ Page({
           shop_address: res.data.datas[0].shop_address,
           shop_lat: res.data.datas[0].shop_lat,
           shop_lng: res.data.datas[0].shop_lng,
+          [lat2]:Number(res.data.datas[0].shop_lat),
+          [lng2]:Number(res.data.datas[0].shop_lng),
+          [lat3]:Number(res.data.datas[1].shop_lat),
+          [lng3]:Number(res.data.datas[1].shop_lng),
         }, function () {
+          that.includePoints()
           that.setData({
             markers2: that.getrepairMarkers()
           })
@@ -541,14 +558,14 @@ Page({
       }
     })
   },
-  repairFn2: function () {
+  repairFn2: function (page,lat,lng,type) {
     wx.request({
       url: 'https://jbccs.com/index.php/Api/Map/getStationDatas',
       data: {
-        page:this.data.page,
-        lng: this.data.longitude,
-        lat: this.data.latitude,
-        type:this.data.typefwz
+        page: page,
+        lat: lat,
+        lng: lng,
+        type: type
       },
       header: {
         "content-type": "application/json",
@@ -557,17 +574,17 @@ Page({
       method: "GET",
       success: (res) => {
         this.setData({
-          repairList2:this.data.repairList2.concat(res.data.datas)
+          repairList2: this.data.repairList2.concat(res.data.datas)
         })
       }
     })
   },
   loadMore() {
-    if (this.data.showBox==false) {
+    if (this.data.showBox == false) {
       this.setData({
         page: ++this.data.page
       })
-      this.repairFn2()
+      this.repairFn2(this.data.page,this.data.longitude,this.data.latitude,this.data.typefwz)
     }
   },
   bindgoDitu: function (e) {
@@ -591,9 +608,6 @@ Page({
   bindGohome: function () {
     wx.reLaunch({
       url: '/pages/home/home',
-    })
-    wx.showTabBar({
-      animation: true,
     })
   },
   //设定倒计时
@@ -744,24 +758,101 @@ Page({
       url: '/pages/allding/allding',
     })
   },
+  bindmapjia: function () {
+    if (this.data.showFwz == true) {
+      const mpCtx = wx.createMapContext("map");
+      mpCtx.getScale({
+        success:(res)=>{
+          var scal=res.scale+1
+          if(scal>19){
+            return
+          }else{
+            this.setData({
+              scale:scal
+            })
+          }
+        }
+      });
+    } else {
+      const mpCtx2 = wx.createMapContext("map2");
+      mpCtx2.getScale({
+        success:(res)=>{
+          var scal=res.scale+1
+          if(scal>19){
+            return
+          }else{
+            this.setData({
+              scale1:scal
+            })
+          }
+        }
+      });
+    }
+  },
+  bindmaphao: function () {
+    if (this.data.showFwz == true) {
+      const mpCtx = wx.createMapContext("map");
+      mpCtx.getScale({
+        success:(res)=>{
+          var scal=res.scale-1
+          if(scal<4){
+            return
+          }else{
+            this.setData({
+              scale:scal
+            })
+          }
+        }
+      });
+    } else {
+      const mpCtx2 = wx.createMapContext("map2");
+      mpCtx2.getScale({
+        success:(res)=>{
+          var scal=res.scale-1
+          if(scal<4){
+            return
+          }else{
+            this.setData({
+              scale1:scal
+            })
+          }
+        }
+      });
+    }
+  },
+  includePoints:function(){
+    this.mapCtx1 = wx.createMapContext("map");
+    this.mapCtx2 = wx.createMapContext("map2");
+    if(this.data.showFwz){
+      this.mapCtx1.includePoints({
+        padding: [ 80,],
+        points: this.data.points
+      })
+    }else{
+      this.mapCtx2.includePoints({
+        padding: [ 80,],
+        points: this.data.points
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.repairFn2()
     this.getUserInfo()
-    wx.hideTabBar({
-      animation: true,
-    })
     var that = this
     wx.getLocation({
       type: 'gcj02',
       success: (res) => {
+        var lat = "points[" + 0 + "].latitude"
+        var lon = "points[" + 0 + "].longitude"
         const latitude = res.latitude
         const longitude = res.longitude
         this.setData({
           latitude: latitude,
-          longitude: longitude
+          longitude: longitude,
+          [lat]: latitude,
+          [lon]: longitude
         }, function () {
           that.userListFn()
         })
@@ -769,36 +860,29 @@ Page({
     })
     wx.getSystemInfo({
       success: (result) => {
-        console.log(result.statusBarHeight);
+        let clientHeight = result.windowHeight;
+        let clientWidth = result.windowWidth;
+        let ratio = 750 / clientWidth;
+        let ScrH =clientHeight * ratio
         this.setData({
-          TopH: result.statusBarHeight + 10
+          winH:ScrH+app.globalData.navbarHeight-result.statusBarHeight,
+          TopH: result.statusBarHeight + 10,
+          mapH:ScrH-540+app.globalData.navbarHeight-result.statusBarHeight
         })
       },
     })
     this.startSetInter()
-    let mapCtx=wx.createMapContext('map2')
-    mapCtx.initMarkerCluster({
-      enableDefaultStyle:true,
-      zoomOnClick:true,
-      gridSize:60,
-      complete(res){
-        console.log(res);
-      }
-    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成wgs84
    */
   onReady: function () {
-
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that=this
+    var that = this
     wx.startLocationUpdate({
       success: (res) => {
         wx.onLocationChange((res) => {

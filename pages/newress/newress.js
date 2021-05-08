@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"新建收货地址"
-    },
-    navH:0,
     province_list:null,
     province_name:null,
     city_list:null,
@@ -203,9 +187,6 @@ Page({
       })
     }else{
       this.postaddAddress(this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone,this.data.is_def)
-      wx.navigateTo({
-        url: '/pages/address/address',
-      })
     }
   },
   bindBoard:function(e){
@@ -224,12 +205,33 @@ Page({
     })
   },
   postaddAddress(area_id,true_name,address,phone,is_def){
+    wx.showLoading({
+      title: '添加中...',
+    })
     requestApi1(app.globalData.base_url+"/addAddress",{
       area_id:area_id,
       true_name:true_name,
       address:address,
       phone:phone,
       is_def:is_def
+    }).then(res=>{
+      if(res.data.code==1){
+        wx.showToast({
+          icon:'success',
+          title: '添加成功',
+          duration:1500
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            url: '/pages/address/address',
+          })
+        }, 1500)
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '添加失败',
+        })
+      }
     })
   },
   /**
@@ -237,13 +239,6 @@ Page({
    */
   onLoad: function (options) {
     this.getProvince()
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**

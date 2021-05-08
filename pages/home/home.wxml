@@ -1,11 +1,14 @@
 <!--pages/home/home.wxml-->
 <navbar params="{{params}}" />
-<scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscrolltolower="loadMore" bindscroll="scrollPage">
-  <view class="home-navimg" hidden="{{hidden}}">
-    <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
-  </view>
-  <swiper class="header" indicator-dots="true" autoplay="true" style="margin-top:{{navH}}rpx"
-    indicator-color="rgba(255, 255, 255)" indicator-active-color="#C47C00" circular="true">
+<view class="home-navimg" hidden="{{hidden}}">
+  <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+</view>
+<official-account wx:if="{{account}}" style="position: fixed;bottom: -120rpx;left: 0;z-index: 10;width: 100%;height: 164rpx;"></official-account>
+<scroll-view scroll-y="true" style="height:{{winH}}rpx;margin-top:{{navH}}rpx" bindscrolltolower="loadMore"
+  bindscroll="scrollPage" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+  <swiper class="header" indicator-dots="true" autoplay="true" style="" indicator-color="rgba(255, 255, 255)"
+    indicator-active-color="#C47C00" circular="true">
     <swiper-item>
       <image src="https://jbccs.com/./Upload/image/2021-04-01/6065a28104fdf.png"></image>
     </swiper-item>
@@ -55,7 +58,7 @@
   <!-- 热门活动 -->
   <view class="home-flex">
     <view class="options-left">
-      <view class="iconfont icon-huodong" style="color:#F9B236"></view>
+      <view class="iconfont icon-huodong iconzuo" style="color:#F9B236"></view>
       <view class="options-rmpj">热门活动</view>
     </view>
     <view class="options-left" bindtap="bindevenFn">
@@ -73,7 +76,7 @@
   <view class="options-fater">
     <view class="options-header">
       <view class="options-left">
-        <view class="iconfont icon-lujing533" style="color:#EF543C"></view>
+        <view class="iconfont icon-lujing533 iconzuo" style="color:#EF543C"></view>
         <view class="options-rmpj">热卖配件</view>
       </view>
       <view class="options-left" bindtap="bindAddFn">
@@ -118,7 +121,7 @@
         <view style="font-size:28rpx">面议</view>
       </view>
       <view class="hhl-img">
-        <image mode="aspectFit" src="/assets/images/1634.png"></image>
+        <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-04-19/607d465733dad.png"></image>
       </view>
       <view class="hhl-ftext">交五千抵一万</view>
       <image src="/assets/images/1631.png"></image>
@@ -135,7 +138,7 @@
         <view style="font-size:28rpx">面议</view>
       </view>
       <view class="hhl-img">
-        <image mode="aspectFit" src="/assets/images/1633.jpg"></image>
+        <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-04-19/607d462a70071.jpg"></image>
       </view>
       <view class="hhl-ftext">交五千抵一万</view>
       <image src="/assets/images/1632.png"></image>
@@ -179,3 +182,26 @@
   style="padding:0;width: 120rpx;background: rgba(255, 255, 255, 0);height: 90rpx;">
   <image src="https://jbccs.com/./Upload/image/2021-04-15/6077fbd8b28d6.png"></image>
 </button>
+<view class="tabbar">
+  <view class="tabbar-box">
+    <image class="tabbar-img" src="/assets/images/sy.png"></image>
+    <view class="tabbar-text" style="color:#F9B236">首页</view>
+  </view>
+  <view class="tabbar-box" data-url="/pages/accesshop2/accesshop2" bindtap="bindUrl">
+    <image class="tabbar-img" src="/assets/images/scwx.png"></image>
+    <view class="tabbar-text">商城</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
+    <image class="tabbar-gif" src="/assets/images/14.gif"></image>
+    <view class="tabbar-text">泰式服务</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">
+    <image class="tabbar-img" src="/assets/images/mdwx.png"></image>
+    <view class="tabbar-text">门店</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/mind/mind">
+    <image class="tabbar-img" src="/assets/images/wdwx.png"></image>
+    <view class="tabbar-text">我的</view>
+  </view>
+  <view class="biank"></view>
+</view>

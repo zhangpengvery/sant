@@ -37,10 +37,14 @@
 </view>
 <view class="footer">
   <view class="footer-con">
-    <view class="name">姓名：</view>
-    <input class="name-inp" type="text" bindinput="bindName" />
-    <view class="phone">电话：</view>
-    <input class="phone-inp" type="number" bindinput="bindPho" />
+    <view class="footer-box">
+      <view class="name">姓名：</view>
+      <input style="border-bottom: 2rpx solid #c0c0c0;" class="name-inp" type="text" bindinput="bindName" placeholder="请输入姓名" />
+    </view>
+    <view class="footer-box">
+      <view class="phone">电话：</view>
+      <input class="phone-inp" maxlength="11" type="number" bindinput="bindPho" placeholder="请输入手机号" />
+    </view>
   </view>
 </view>
 <view class="lxdh">联系电话：400 900 7819</view>

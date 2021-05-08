@@ -65,6 +65,7 @@ Page({
     getRecruitList:[],
     rigthUrl:"https://jbccs.com/index.php/Api/Public/get_area?area_parent_id=16",
     city:0,
+    triggered:false
   },
   //出租列表
   recruitFn:function(e){
@@ -167,9 +168,9 @@ Page({
         price_up:0
       })
       if(this.data.leftActive){
-        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireforLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }else{
-        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }
     },
     juliFn2:function(e){
@@ -181,9 +182,9 @@ Page({
         price_up:1
       })
       if(this.data.leftActive){
-        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireforLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }else{
-        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }
     },
     juliFn3:function(e){
@@ -195,9 +196,9 @@ Page({
         price_up:0
       })
       if(this.data.leftActive){
-        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireforLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }else{
-        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }
     },
     juliFn4:function(e){
@@ -209,9 +210,9 @@ Page({
         age_up:1
       })
       if(this.data.leftActive){
-        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireforLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }else{
-        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }
     },
     juliFn5:function(e){
@@ -223,9 +224,9 @@ Page({
         age_up:0
       })
       if(this.data.leftActive){
-        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireforLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }else{
-        this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }
     },
     //品牌点击
@@ -272,7 +273,7 @@ Page({
         showcity:false,
       })
       if(this.data.leftActive){
-        this.getAllHireforLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
+        this.getAllHireforLists2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }else{
         this.getAllHireLists(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.city,this.data.age_up,this.data.price_up)
       }
@@ -308,8 +309,37 @@ Page({
       })
       console.log(result);
     },
+    //出租列表
+    async getAllHireLists2(page,hire_brand_id,hire_age_id,hire_chassis_id,hire_drive_id,hire_source_id,hire_discharge_id,hire_city_id,leng_up,price_up){
+      wx.showLoading({
+        title: '加载中...',
+      })
+      let result=await requestApi(app.globalData.base_url+"/getAllHireLists",{
+        page:page,
+        hire_brand_id:hire_brand_id,
+        hire_age_id:hire_age_id,
+        hire_chassis_id:hire_chassis_id,
+        hire_drive_id:hire_drive_id,
+        hire_source_id:hire_source_id,
+        hire_discharge_id:hire_discharge_id,
+        hire_city_id:hire_city_id,
+        leng_up:leng_up,
+        price_up:price_up
+      })
+      if(result.statusCode==200){
+        wx.hideLoading()
+      }
+      this.setData({
+        getAllHireLists:result.data.data.list,
+        triggered:false
+      })
+      console.log(result);
+    },
   //求租列表
   async getAllHireforLists(page,hirefor_brand_id,hirefor_age_id,hirefor_chassis_id,hirefor_drive_id,hirefor_source_id	,hirefor_discharge_id,hirefor_city_id,age_up,price_up){
+    wx.showLoading({
+      title: '加载中...',
+    })
       let result=await requestApi(app.globalData.base_url+"/getAllHireforLists",{
         page:page,
         hirefor_brand_id:hirefor_brand_id,
@@ -322,11 +352,33 @@ Page({
         age_up:age_up,
         price_up:price_up
       })
+      if(result.statusCode==200){
+        wx.hideLoading()
+      }
       this.setData({
         getAllHireforLists:result.data.data.list
       })
       console.log(this.data.getAllHireforLists);
   },
+  //求租列表
+  async getAllHireforLists2(page,hirefor_brand_id,hirefor_age_id,hirefor_chassis_id,hirefor_drive_id,hirefor_source_id	,hirefor_discharge_id,hirefor_city_id,age_up,price_up){
+    let result=await requestApi(app.globalData.base_url+"/getAllHireforLists",{
+      page:page,
+      hirefor_brand_id:hirefor_brand_id,
+      hirefor_age_id:hirefor_age_id,
+      hirefor_chassis_id:hirefor_chassis_id,
+      hirefor_drive_id:hirefor_drive_id,
+      hirefor_source_id:hirefor_source_id,
+      hirefor_discharge_id:hirefor_discharge_id,
+      hirefor_city_id:hirefor_city_id,
+      age_up:age_up,
+      price_up:price_up
+    })
+    this.setData({
+      getAllHireforLists:result.data.data.list,
+      triggered:false
+    })
+},
   //城市请求
   async getCityList(){
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Public/get_area")
@@ -368,9 +420,18 @@ Page({
       }
     })
   },
-    //滑动到底部
-    bindLanFn:function(){
-    },
+  refresherFn:function(){
+    var that=this
+    this.setData({
+      page:1,
+    },function(){
+      if(that.data.leftActive){
+        that.getAllHireforLists2(that.data.page,that.data.brandCss,that.data.ageCss,that.data.chassisCss,that.data.driveCss,that.data.sourceCss,that.data.dischargeCss,that.data.city,that.data.age_up,that.data.price_up)
+      }else if(that.data.rightActive){
+        that.getAllHireLists2(that.data.page,that.data.brandCss,that.data.ageCss,that.data.chassisCss,that.data.driveCss,that.data.sourceCss,that.data.dischargeCss,that.data.city,that.data.age_up,that.data.price_up)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

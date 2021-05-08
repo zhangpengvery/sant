@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"修改求职"
-    },
-    navH:0,
     typeList:[],
     jt_id:1,
     typeIndex:0,
@@ -52,26 +36,32 @@ Page({
     contact_tel:0,
     recruit_age:1,
     jr_id:0,
+    je_name:"",
+    jt_name:"",
+    js_name:""
   },
   //职位切换
   bindTypeChange: function(e) {
     this.setData({
       jt_id:this.data.typeList[e.detail.value].jt_id,
-      typeIndex:e.detail.value
+      typeIndex:e.detail.value,
+      jt_name:this.data.typeList[e.detail.value].job_name
     })
   },
   //经验切换
   bindExChange:function(e){
     this.setData({
       je_id:this.data.exList[e.detail.value].je_id,
-      exIndex:e.detail.value
+      exIndex:e.detail.value,
+      je_name:this.data.exList[e.detail.value].ex_name
     })
   },
   //薪资切换
   bindSalaryChange:function(e){
     this.setData({
       js_id:this.data.salaryList[e.detail.value].js_id,
-      salaryIndex:e.detail.value
+      salaryIndex:e.detail.value,
+      js_name:this.data.salaryList[e.detail.value].salary_name
     })
   },
   //求职详情
@@ -95,6 +85,9 @@ Page({
       jt_id:result.data.data.recruit_info.job_type_id,
       js_id:result.data.data.recruit_info.recruit_salary,
       je_id:result.data.data.recruit_info.recruit_experince,
+      jt_name:result.data.data.recruit_info.job_name,
+      je_name:result.data.data.recruit_info.ex_name,
+      js_name:result.data.data.recruit_info.salary_name,
       'addressCity[0]':result.data.data.recruit_info.province_name,
       'addressCity[1]':result.data.data.recruit_info.city_name,
       'addressCity[2]':result.data.data.recruit_info.area_name,
@@ -260,6 +253,9 @@ Page({
       })
     },
     editRecruit(jr_id,recruit_title,job_type_id,recruit_salary,recruit_experince,recruit_age,recruit_message,area_id,contact_name,contact_tel){
+      wx.showLoading({
+        title: '修改中...',
+      })
       requestApi1(app.globalData.base_url+"/editRecruit",{
         jr_id:jr_id,
         recruit_title:recruit_title,
@@ -272,15 +268,23 @@ Page({
         contact_name:contact_name,
         contact_tel:contact_tel
       }).then(res=>{
-        console.log(res);
-        // if(res.statusCode==200){
-        //   var title=res.data.msg
-        //   wx.showToast({
-        //     title: title,
-        //     icon: 'error',
-        //     duration: 2000
-        //   })
-        // }
+        if(res.data.code==1){
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            duration: 1500
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              url: '/pages/joblist/joblist'
+            })
+          }, 1500)
+        }else{
+          wx.showToast({
+            icon:'error',
+            title: '修改失败',
+          })
+        }
       })
     },
     bddhFn:function(){
@@ -296,13 +300,6 @@ Page({
     this.getProvince()
     this.geteditRecruit(options.jr_id)
     this.getJobBasicData()
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**

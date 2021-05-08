@@ -10,16 +10,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    time:"",
-    texttime:0,
-    longitude:0,
-    latitude:0,
-    name:"",
-    settime:"",
-    getMark:[],
-    address:""
+    time: "",
+    texttime: 0,
+    longitude: 0,
+    latitude: 0,
+    name: "",
+    settime: "",
+    getMark: [],
+    address: "",
+    active: 2,
+    seettime2: ""
   },
-  bindsign:function(){
+  bindsign: function () {
     wx.redirectTo({
       url: '/pages/teamsign/teamsign',
     })
@@ -27,38 +29,38 @@ Page({
   time() {
     clearTimeout(this.data.settime)
     var time = new Date(this.data.texttime);
-    var hour = (time.getHours() < 10 ? '0' + (time.getHours() ) : time.getHours())
-    var minute = (time.getMinutes() < 10 ? '0' + (time.getMinutes() ) : time.getMinutes())
-    var _currentTime=hour+' '+':'+' '+minute
+    var hour = (time.getHours() < 10 ? '0' + (time.getHours()) : time.getHours())
+    var minute = (time.getMinutes() < 10 ? '0' + (time.getMinutes()) : time.getMinutes())
+    var _currentTime = hour + ' ' + ':' + ' ' + minute
     var that = this
     this.setData({
       time: _currentTime,
     });
-    this.data.settime=setTimeout(function () {
+    this.data.settime = setTimeout(function () {
       that.getMark()
     }, 60000)
   },
-  bindweit:function(){
-    var that=this
+  bindweit: function () {
+    var that = this
     wx.chooseLocation({
       latitude: this.data.latitude,
-      longitude:this.data.longitude,
-      success :function(res){
+      longitude: this.data.longitude,
+      success: function (res) {
         var lat2 = res.latitude;
         var lng2 = res.longitude;
-        var lat1=that.data.latitude;
-        var lng1=that.data.longitude
-        if (Number(juli(lat1, lng1, lat2, lng2))>0.2){
+        var lat1 = that.data.latitude;
+        var lng1 = that.data.longitude
+        if (Number(juli(lat1, lng1, lat2, lng2)) > 0.2) {
           wx.showToast({
-            icon:'none',
+            icon: 'none',
             title: '位置不能离你大于200米',
           })
-        }else{
+        } else {
           that.setData({
-            name:res.name,
-            latitude:res.latitude,
-            longitude:res.longitude,
-            address:res.address
+            name: res.name,
+            latitude: res.latitude,
+            longitude: res.longitude,
+            address: res.address
           });
         }
       }
@@ -82,23 +84,30 @@ Page({
         console.log(res);
         this.setData({
           name: res.data.result.formatted_addresses.recommend,
-          address:res.data.result.address
+          address: res.data.result.address
         })
       },
     })
   },
-  bindsigninFn:function(){
-    wx.navigateTo({
-      url: '/pages/sign/sign?name='+this.data.name+'&time='+this.data.time+'&address='+this.data.address,
-    })
+  bindsigninFn: function () {
+    if (this.data.active == 1) {
+      wx.navigateTo({
+        url: '/pages/sign/sign?name=' + this.data.name + '&time=' + this.data.time + '&address=' + this.data.address,
+      })
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '请打开定位签到',
+      })
+    }
   },
   async getMark() {
-    var that=this
+    var that = this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Mark/getMark")
     this.setData({
       getMark: result.data.datas,
-      texttime:result.data.datas.now_time*1000
-    },function(){
+      texttime: result.data.datas.now_time * 1000
+    }, function () {
       that.time()
     })
     console.log(result);
@@ -107,34 +116,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMark()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    var that=this
+    var that = this
     wx.getLocation({
       type: 'gcj02',
       success: (res) => {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        this.setData({
-          latitude: latitude,
-          longitude: longitude
-        },function(){
-          that.getProvinceName(res.latitude,res.longitude)
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+          active: 1
+        }, function () {
+          that.getProvinceName(res.latitude, res.longitude)
+        })
+      },
+      fail: (res) => {
+        that.setData({
+          active: 2
         })
       }
     })
   },
 
   /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getMark()
   },
 
   /**

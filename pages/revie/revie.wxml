@@ -11,56 +11,62 @@
     <view class="city">城市切换</view>
   </picker>
 </view>
-<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
+<swiper class="swiper-order" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
   <!-- 我要代办 -->
   <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" wx:if="{{markers.length>0}}">
-      <block wx:for="{{markers}}" wx:key="index">
-        <navigator url="/pages/revdetail/revdetail?id={{item.id}}">
-          <view class="content">
-            <view class="user-tx">
-              <view class="yuan">
-                <image src="{{item.image_url}}"></image>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <view wx:if="{{markers.length>0}}" >
+        <block wx:for="{{markers}}" wx:key="index">
+          <navigator url="/pages/revdetail/revdetail?id={{item.id}}">
+            <view class="content">
+              <view class="user-tx">
+                <view class="yuan">
+                  <image src="{{item.image_url}}"></image>
+                </view>
+                <view class="user-name">{{item.user_name}}</view>
               </view>
-              <view class="user-name">{{item.user_name}}</view>
+              <view class="db-time">{{item.time}}</view>
+              <view class="db-address">提交 {{item.cityname}}-{{item.area_name}} 的车辆年审需求</view>
             </view>
-            <view class="db-time">{{item.time}}</view>
-            <view class="db-address">提交 {{item.cityname}}-{{item.area_name}} 的车辆年审需求</view>
-          </view>
-        </navigator>
-      </block>
-    </scroll-view>
-    <view wx:else class="wushujucs">
-      <view class="wushu-img">
-        <image src="/assets/images/kong.png"></image>
+          </navigator>
+        </block>
       </view>
-      <view>暂无数据</view>
-    </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
   </swiper-item>
   <!-- 我能代办 -->
   <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" wx:if="{{markers2.length>0}}">
-      <block wx:for="{{markers2}}" wx:key="index">
-        <navigator url="/pages/candetail/candetail?id={{item.id}}">
-          <view class="content">
-            <view class="user-tx">
-              <view class="yuan">
-                <image src="{{item.image_url}}"></image>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <view wx:if="{{markers2.length>0}}">
+        <block wx:for="{{markers2}}" wx:key="index">
+          <navigator url="/pages/candetail/candetail?id={{item.id}}">
+            <view class="content">
+              <view class="user-tx">
+                <view class="yuan">
+                  <image src="{{item.image_url}}"></image>
+                </view>
+                <view class="user-name">{{item.user_name}}</view>
               </view>
-              <view class="user-name">{{item.user_name}}</view>
+              <view class="db-time">{{item.time}}</view>
+              <view class="db-address">提交 {{item.cityname}}-{{item.area_name}} 的车辆年审服务</view>
             </view>
-            <view class="db-time">{{item.time}}</view>
-            <view class="db-address">提交 {{item.cityname}}-{{item.area_name}} 的车辆年审服务</view>
-          </view>
-        </navigator>
-      </block>
-    </scroll-view>
-    <view wx:else class="wushujucs">
-      <view class="wushu-img">
-        <image src="/assets/images/kong.png"></image>
+          </navigator>
+        </block>
       </view>
-      <view>暂无数据</view>
-    </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
   </swiper-item>
 </swiper>
 <!-- 加号 -->

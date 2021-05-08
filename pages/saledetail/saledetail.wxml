@@ -1,13 +1,16 @@
 <!--pages/saledetail/saledetail.wxml-->
 <navbar params="{{params}}" />
 <view class="content" style="margin-top:{{navH}}rpx">
-  <view class="header-img">
-    <image mode="aspectFill" src="{{getSaleImg[0].image_url}}"></image>
-  </view>
+  <view class="lunbonum">{{current}}/{{getSaleImg.length}}</view>
+  <swiper class="header-img" autoplay="true" circular="true" bindchange="chengtab">
+    <swiper-item wx:for="{{getSaleImg}}" wx:key="index">
+      <image src="{{item.image_url}}"></image>
+    </swiper-item>
+  </swiper>
   <view class="content-detail">
     <view class="detail-title">{{getSaleInfo.sale_title}}</view>
     <view class="detail-jg">{{getSaleInfo.sale_price}}</view>
-    <view class="detail-xq">{{getSaleInfo.sale_message}}</view>
+    <view class="detail-xq">详情：{{getSaleInfo.sale_message}}</view>
   </view>
   <view class="content-user">
     <view class="user-name">姓名：{{getSaleInfo.contact_name}}</view>

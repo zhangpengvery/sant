@@ -4,4 +4,13 @@
 <view class="img">
   <image src="/assets/images/log.jpg"></image>
 </view>
-<button class="btn" style="width:94%" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登录</button>
+<button class="btn" style="width:94%" bindtap="getUserProfile">微信登录</button>
+<view wx:if="{{warn}}" class="warn">
+  <view class="warn-title">提示</view>
+  <view class="warn-box">
+    <icon type="warn" color="rgb(247,98,96)"></icon>
+    <view class="warn-text">{{msg}}</view>
+  </view>
+  <view class="guan" bindtap="bindguan">确认</view>
+</view>
+<view class="marker" wx:if="{{marker}}"></view>

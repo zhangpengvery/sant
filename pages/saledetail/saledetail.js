@@ -29,7 +29,13 @@ Page({
     alltime:"",
     allDay:"",
     getSaleInfo:[],
-    getSaleImg:[]
+    getSaleImg:[],
+    current:1
+  },
+  chengtab:function(e){
+    this.setData({
+      current:e.detail.current+1
+    })
   },
   bddhFn:function(){
     wx.makePhoneCall({

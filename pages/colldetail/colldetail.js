@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"修改收货地址"
-    },
-    navH:0,
     province_list:null,
     province_name:null,
     city_list:null,
@@ -181,9 +165,7 @@ Page({
 
   bddhFn:function(){
     this.editAddress(this.data.address_id,this.data.selectAreaId,this.data.true_name,this.data.address,this.data.phone)
-    wx.redirectTo({
-      url: '/pages/address/address',
-    })
+    
   },
   bindBoard:function(e){
     this.setData({
@@ -239,11 +221,21 @@ Page({
       address:address,
       phone:phone
     }).then(res=>{
-      if(res.statusCode==200){
+      if(res.data.code==1){
         wx.showToast({
           title: '修改成功',
           icon: 'success',
-          duration: 2000
+          duration: 1500
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            url: '/pages/address/address',
+          })
+        }, 1500)
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '修改失败',
         })
       }
     })
@@ -257,13 +249,6 @@ Page({
     })
     this.getProvince()
     this.getAddressInfo(options.address_id)
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**

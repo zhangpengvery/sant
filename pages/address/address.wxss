@@ -58,3 +58,19 @@
   font-weight: bold;
   z-index: 10;
 }
+.wushujucs{
+  width: 100%;
+  margin-top: 300rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
+}

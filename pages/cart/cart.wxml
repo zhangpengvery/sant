@@ -14,14 +14,8 @@
       <view class="total">共{{cartLength}}件宝贝</view>
       <!-- 选择地址 -->
       <view class="sendcity">
-        <view class="sendcityleft">
-          <view class="iconfont icon-dengdaifukuan-weizhi"></view>
-          <view>{{cityDatas}}{{address}}</view>
-        </view>
-        <view>
-          <view wx:if="{{editor}}" bindtap="editorFn">编辑</view>
-          <view wx:else bindtap="completeFn">完成</view>
-        </view>
+        <view wx:if="{{editor}}" bindtap="editorFn">编辑</view>
+        <view wx:else bindtap="completeFn">完成</view>
       </view>
       <!-- 购物车内容 -->
       <block wx:for="{{cartListDatas}}" wx:key="index">

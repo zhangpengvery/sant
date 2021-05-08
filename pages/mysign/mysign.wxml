@@ -1,7 +1,6 @@
 <!--pages/mysign/mysign.wxml-->
 <view class="map-box" hover-class="none" style="width: 100%; height: 300rpx;">
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true"
-    style="width: 100%; height: 300rpx;"></map>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}" style="width: 100%; height: 300rpx;"></map>
   <view class="user">
     <view class="user-tx">
       <image src="{{userList.avator}}"></image>

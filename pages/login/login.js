@@ -112,7 +112,7 @@ Page({
           wx.request({
             url: 'https://api.jbccs.com/api/getJscode2session',
             data: {
-              code: res.code
+              code: res.code,
             },
             success(res) {
               that.setData({
@@ -121,6 +121,10 @@ Page({
               wx.setStorage({
                 data: res.data.data.openid,
                 key: 'openid',
+              })
+              wx.setStorage({
+                data: res.data.data.unionid,
+                key: 'unionid',
               })
             }
           })

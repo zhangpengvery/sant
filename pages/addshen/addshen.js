@@ -53,13 +53,14 @@ Page({
       if(res.data.datas==1){
         wx.showToast({
           title: '发布成功',
+          icon: 'success',
+          duration: 1500
         })
-        this.setData({
-          realname:"",
-          mobile:"",
-          selectAreaId:null,
-          content:""
-        })
+        setTimeout(function () {
+          wx.redirectTo({
+            url: '/pages/revie/revie'
+          })
+        }, 1500)
       } 
     })
   },

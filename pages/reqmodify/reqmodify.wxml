@@ -1,6 +1,5 @@
 <!--pages/reqmodify/reqmodify.wxml-->
-<navbar params="{{params}}" />
-<view class="content" style="margin-top:{{navH}}rpx">
+<view class="content">
   <view class="box">
     <view class="box-title">求购标题</view>
     <view class="box-inp">
@@ -35,7 +34,7 @@
     </view>
   </view>
   <view class="box box2">
-    <view class="box-title">自我描述</view>
+    <view class="box-title">求购详情</view>
     <view class="box-inp box-da">
       <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" value="{{getSaleInfo.safe_message}}" />
     </view>

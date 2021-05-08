@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "navbar":"/components/navbar/navbar"
-  },
-  "navigationStyle":"custom"
+  "navigationBarTitleText": "收货地址",
+  "usingComponents": {}
 }

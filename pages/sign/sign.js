@@ -31,6 +31,10 @@ Page({
   },
   //签到
   MarkAdd(lat,lng,address,client_name,pic,title,remark){
+    wx.showLoading({
+      title: '签到中...',
+      mask:true
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Mark/add",{
       lat:lat,
       lng:lng,
@@ -44,13 +48,14 @@ Page({
       wx.showToast({
         title: '签到成功',
         icon: 'none',
-        duration: 1000,
+        duration: 1500,
+        mask:true,
         success:()=>{
           setTimeout(()=> {
             wx.redirectTo({
               url:'/pages/teamsign/teamsign'
             })
-          },1000)
+          },1500)
         }
       })     
     })
@@ -92,6 +97,40 @@ Page({
         })
       }
     })
+  },
+  bindweit:function(){
+    var that=this
+    wx.chooseLocation({
+      latitude: this.data.lat,
+      longitude:this.data.lng,
+      success :function(res){
+        var lat2 = res.latitude;
+        var lng2 = res.longitude;
+        var lat1=that.data.lat;
+        var lng1=that.data.lng
+        if (Number(juli(lat1, lng1, lat2, lng2))>0.2){
+          wx.showToast({
+            icon:'none',
+            title: '位置不能离你大于200米',
+          })
+        }else{
+          that.setData({
+            title:res.name,
+            address:res.address
+          });
+        }
+      }
+    })
+    function juli(lat1, lng1, lat2, lng2) {
+      var radLat1 = lat1 * Math.PI / 180.0;
+      var radLat2 = lat2 * Math.PI / 180.0;
+      var a = radLat1 - radLat2;
+      var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+      var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+      s = s * 6378.137;
+      s = Math.round(s * 10000) / 10000;
+      return s
+    }
   },
   /**
    * 生命周期函数--监听页面加载

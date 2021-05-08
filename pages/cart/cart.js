@@ -10,8 +10,7 @@ Page({
    */
   data: {
     navH: "",//自定义头部高度
-    cityDatas: "",
-    address:"",
+    // address:[],
     widH: "",//页面可用高度
     editor:true,
     nogoods: false,
@@ -122,22 +121,16 @@ Page({
     })
   },
   //获取默认地址
-  async getAddressLists(){
-    let result=await requestApi(app.globalData.base_url+"/getAddressLists")
-    this.setData({
-      cityDatas:result.data.data[0].area_info,
-      address:result.data.data[0].address
-    })
-  },
+  // async getAddressLists(){
+  //   let result=await requestApi(app.globalData.base_url+"/getAddressLists")
+  //   this.setData({
+  //     address:result.data.data
+  //   })
+  //   console.log(result);
+  // },
   //购物车数据
   async getMyCart(){
-    wx.showLoading({
-      title: '加载中...',
-    })
     let result=await requestApi(app.globalData.base_url+"/myCart")
-    if(result.statusCode==200){
-      wx.hideLoading()
-    }
     this.setData({
       cartListDatas:result.data.data.list,
       cartLength:result.data.data.list.length
@@ -177,7 +170,7 @@ Page({
         data: this.data.id,
         key: 'id',
       })
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/confirmed/confirmed',
       })
     }
@@ -194,21 +187,33 @@ Page({
       }
     }
     this.deleteCart(cart_id)
-    this.getMyCart()
   },
   //删除商品
   deleteCart(cart_id){
+    wx.showLoading({
+      title: '删除中...',
+    })
     requestApi1(app.globalData.base_url+"/deleteCart",{
       cart_id:cart_id
+    }).then(res=>{
+      if(res.data.code==1){
+        wx.showToast({
+          title: '删除成功',
+        })
+        this.getMyCart()
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '删除失败',
+        })
+      }
     })
-    this.getMyCart()
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMyCart()
-    this.getAddressLists()
     this.setData({
       navH: app.globalData.navbarHeight,
       widH: app.globalData.windowHeigtn
@@ -226,7 +231,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.getMyCart()
   },
 
   /**

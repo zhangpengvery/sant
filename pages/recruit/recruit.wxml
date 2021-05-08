@@ -84,7 +84,8 @@
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 招聘 -->
 <scroll-view scroll-y="true" style="height:{{ScrH}}rpx;background: #F4F4F4" bindscrolltolower="loadMore"
-  wx:if="{{leftActive}}">
+  wx:if="{{leftActive}}" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
   <view class="recruit-content" wx:if="{{postRecruitList.length>0}}">
     <block wx:for="{{postRecruitList}}" wx:key="index">
       <navigator url="/pages/details/details?ja_id={{item.ja_id}}">
@@ -112,7 +113,8 @@
 </scroll-view>
 <!-- 求职 -->
 <scroll-view scroll-y="true" style="height:{{ScrH}}rpx;background: #F4F4F4" bindscrolltolower="loadMore2"
-  wx:if="{{rightActive}}">
+  wx:if="{{rightActive}}"  refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
   <view class="recruit-content" wx:if="{{getJobRecruitLists.length>0}}">
     <block wx:for="{{getJobRecruitLists}}" wx:key="index">
       <navigator url="/pages/qzdetails/qzdetails?jr_id={{item.jr_id}}">

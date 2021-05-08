@@ -50,20 +50,12 @@ page{
 }
 .cart-content .havegoods .sendcity{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 93%;
   height: 50rpx;
   line-height: 50rpx;
   padding: 0 3%;
   background: #fff;
-}
-.sendcity .sendcityleft{
-  font-size: 24rpx;
-  display: flex;
-}
-.sendcity .sendcityleft .iconfont{
-  color: #aaa;
-  margin-right: 10rpx;
 }
 .cart-goods{
   width: 94%;

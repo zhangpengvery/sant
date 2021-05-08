@@ -58,6 +58,7 @@ Page({
     showyaoqiu:false,
     dixian:false,
     dixian2:false,
+    triggered:false
   },
   //职位点击
   distanceFn:function(e){
@@ -174,6 +175,27 @@ Page({
       })
     })
   },
+  //招聘接口
+  postRecruitList2(page,ja_city_id,ja_type_id,ja_ex_id,ja_salary_id	){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    requestApi1(app.globalData.base_url+"/getJobSupplyLists",{
+      page:page,
+      ja_city_id:ja_city_id,
+      ja_type_id:ja_type_id,
+      ja_ex_id:ja_ex_id,
+      ja_salary_id:ja_salary_id
+    }).then(res=>{
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      this.setData({
+        postRecruitList:res.data.data.list,
+        triggered:false
+      })
+    })
+  },
   //求职接口
   getJobRecruitLists(page,ja_city_id,ja_type_id,ja_ex_id,ja_salary_id	){
     wx.showLoading({
@@ -199,6 +221,26 @@ Page({
       })
   })
   },
+  getJobRecruitLists2(page,ja_city_id,ja_type_id,ja_ex_id,ja_salary_id	){
+    wx.showLoading({
+      title: '加载中...',
+    })
+    requestApi1(app.globalData.base_url+"/getJobRecruitLists",{
+      page:page,
+      ja_city_id:ja_city_id,
+      ja_type_id:ja_type_id,
+      ja_ex_id:ja_ex_id,
+      ja_salary_id:ja_salary_id
+    }).then(res=>{
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      this.setData({
+        getJobRecruitLists:res.data.data.list,
+        triggered:false
+      })
+  })
+  },
   //职位点击
   typeFn:function(e){
     this.setData({
@@ -209,10 +251,10 @@ Page({
       showzhiwei:false
     })
     if(this.data.leftActive==true){
-      this.postRecruitList(this.data.page,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
+      this.postRecruitList2(this.data.page,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
     }
     if(this.data.rightActive==true){
-      this.getJobRecruitLists(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
+      this.getJobRecruitLists2(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
     }
   },
   cityXuanzFn:function(e){
@@ -224,10 +266,10 @@ Page({
       cityColor:false
     })
     if(this.data.leftActive==true){
-      this.postRecruitList(this.data.page,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
+      this.postRecruitList2(this.data.page,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
     }
     if(this.data.rightActive==true){
-      this.getJobRecruitLists(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
+      this.getJobRecruitLists2(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
     }
   },
   excssFn:function(e){
@@ -249,10 +291,10 @@ Page({
       showMask:false
     })
     if(this.data.leftActive==true){
-      this.postRecruitList(this.data.page,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
+      this.postRecruitList2(this.data.page,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
     }
     if(this.data.rightActive==true){
-      this.getJobRecruitLists(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
+      this.getJobRecruitLists2(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
     }
   },
   loadMore(){
@@ -265,8 +307,21 @@ Page({
     this.setData({
       page2:++this.data.page2
     })
-    this.postRecruitList(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
+    this.getJobRecruitLists(this.data.page2,this.data.ja_city_id,this.data.ja_type_id,this.data.ja_ex_id,this.data.ja_salary_id)
 
+  },
+  refresherFn:function(){
+    var that=this
+    this.setData({
+      page:1,
+      page2:1
+    },function(){
+      if(that.data.leftActive){
+        that.postRecruitList2(that.data.page,that.data.ja_city_id,that.data.ja_type_id,that.data.ja_ex_id,that.data.ja_salary_id)
+      }else if(that.data.rightActive){
+        that.getJobRecruitLists2(that.data.page2,that.data.ja_city_id,that.data.ja_type_id,that.data.ja_ex_id,that.data.ja_salary_id)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

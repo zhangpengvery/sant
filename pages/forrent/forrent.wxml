@@ -1,6 +1,5 @@
 <!--pages/forrent/forrent.wxml-->
-<navbar params="{{params}}" />
-<view class="weui-cell" style="margin-top:{{navH}}rpx">
+<view class="weui-cell">
   <view class="weui-cell__bd">
     <view class="weui-uploader">
       <view class="weui-uploader__bd">
@@ -20,7 +19,7 @@
 </view>
 <view class="content">
   <view class="box">
-    <view class="box-title">求租标题</view>
+    <view class="box-title">出租标题</view>
     <view class="box-inp">
       <input type="text" bindinput="bindTitle" placeholder="20字以内，必填" />
     </view>
@@ -53,7 +52,7 @@
     </view>
   </view>
   <view class="box box2">
-    <view class="box-title">自我描述</view>
+    <view class="box-title">出租详情</view>
     <view class="box-inp box-da">
       <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" />
     </view>

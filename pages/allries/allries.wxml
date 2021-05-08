@@ -18,6 +18,7 @@
 </view>
 <view class="showcity" wx:if="{{showCity}}">
   <view class="cityright">
+    <view class="right-box {{cate_id2==0?'rigAct':''}}" data-id="0" bindtap="rightBoxFn">全部</view>
     <block wx:for="{{cateList}}" wx:key="index">
       <view class="right-box {{cate_id2==item.cate_id?'rigAct':''}}" bindtap="rightBoxFn" data-id="{{item.cate_id}}">
         {{item.cate_name}}</view>

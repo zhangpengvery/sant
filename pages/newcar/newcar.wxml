@@ -57,7 +57,7 @@
     <block wx:for="{{getPartsList}}" wx:key="index">
       <view class="list-content">
         <navigator url="/pages/accedetail/accedetail?good_id={{item.good_id}}">
-          <image mode="aspectFit" src="{{item.good_image}}"></image>
+          <image src="{{item.good_image}}"></image>
         </navigator>
         <text class="list-name">{{item.good_name}}</text>
         <text class="list-price">{{item.good_price}}</text>

@@ -9,23 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"修改出售"
-    },
-    navH:0,
-    pics:null,
+    pics:"",
     imageList: [],
     province_list: null,
     province_name: null,
@@ -47,6 +31,50 @@ Page({
     hire_id:0,
     uc_id:0,
     getSaleInfo:[]
+  },
+  chooseImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count:4,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album'],
+      success: function (res) {
+        const tempFilePaths  = res.tempFilePaths
+        console.log(tempFilePaths[0]);
+        for(var i=0;i<res.tempFilePaths.length;i++){
+          var imageUrl=res.tempFilePaths[i];
+          that.up(imageUrl)
+        }
+      }
+    })
+  },
+  up(url){
+    var that=this
+    wx.uploadFile({
+      filePath: url,
+      name: 'file',
+      url: 'https://jbccs.com/index.php/Api/Utils/file_upload',
+      header:{
+        "content-type": "application/x-www-form-urlencoded",
+        'XX-Token':wx.getStorageSync('token')
+      },
+      success(res){
+        var data = JSON.parse(res.data)
+        var pic=[]
+        pic.push(data.datas.result)
+        that.setData({
+          pics:that.data.pics.concat(pic)
+        })
+      }
+    })
+  },
+  shanchu:function(e){
+    var list=this.data.pics;
+    var index=e.currentTarget.dataset.index
+    list.splice(index,1)
+    this.setData({
+      pics:list
+    })
   },
   //标题内容
   bindTitle: function (e) {
@@ -80,6 +108,7 @@ Page({
   },
   //出售信息
   async myHireInfo(hire_id){
+    var that=this
     wx.showLoading({
       title: '加载中...',
     })
@@ -91,7 +120,6 @@ Page({
     }
     this.setData({
       getSaleInfo:result.data.data,
-      pics:result.data.data.pics[0].image_url,
       selectProvinceId:result.data.data.province_id,
       selectCityId:result.data.data.city_id,
       selectAreaId:result.data.data.area_id,
@@ -105,11 +133,25 @@ Page({
       'addressCity[0]':result.data.data.province,
       'addressCity[1]':result.data.data.city,
       'addressCity[2]':result.data.data.area_name,
+    },function(){
+      that.pictext()
     })
     console.log(this.data.getSaleInfo);
   },
+  pictext(){
+    var pic=[]
+    for(var i=0;i<this.data.getSaleInfo.pics.length;i++){
+      pic.push(this.data.getSaleInfo.pics[i].img_url)
+    }
+    this.setData({
+      pics:pic
+    })
+  },
   //修改出售信息
   postEditHire(pics,province_id,city_id,area_id,hire_title,contact_name,contact_tel,hire_price,hire_message,hire_id,uc_id){
+    wx.showLoading({
+      title: '修改中...',
+    })
     requestApi1(app.globalData.base_url+"/editHire",{
       pics:pics,
       province_id:province_id,
@@ -123,16 +165,31 @@ Page({
       hire_id:hire_id,
       uc_id:uc_id
     }).then(res=>{
-      if(res.statusCode==200){
+      if(res.data.code==1){
         wx.showToast({
           title: '修改成功',
           icon: 'success',
-          duration: 2000
+          duration: 1500
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            url: '/pages/renlist/renlist'
+          })
+        }, 1500)
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '修改失败',
         })
       }
     })
   },
   bddhFn:function(){
+    this.zhenghe()
+  },
+  zhenghe:function(){
+    var url=[this.data.pics]
+    var s=url.join(',')
     this.postEditHire(this.data.pics,this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId,this.data.hire_title,this.data.contact_name,this.data.contact_tel,this.data.hire_price,this.data.hire_message,this.data.hire_id,this.data.uc_id)
   },
   //获取省份列表
@@ -267,13 +324,6 @@ Page({
     this.getProvince()
     console.log(options.hire_id);
     this.myHireInfo(options.hire_id)
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**

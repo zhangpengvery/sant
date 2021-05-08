@@ -21,10 +21,9 @@
       </view>
       <view class="user-zl">
         <view class="user-name">{{getSaleInfo.contact_name}}</view>
-        <view class="user-img">
-          <image src="/assets/images/ptvip.png"></image>
-          <text class="vip-text">v1普通会员</text>
-        </view>
+        <image src="/assets/images/ptvip.png" class="user-img">
+          <text class="vip-text">v1 普通会员</text>
+        </image>
       </view>
     </view>
     <view class="users-name">姓名：{{getSaleInfo.contact_name}}</view>
@@ -39,7 +38,7 @@
       <view class="content-box">
         <view class="content-title">{{item.safe_title}}</view>
         <view class="content-gs">{{item.safe_message}}</view>
-        <view class="content-jg">￥{{item.price}}万</view>
+        <view class="content-jg">￥{{item.price}}</view>
         <view class="content-time">{{item.add_time_text}}</view>
         <view class="content-dz">
           <view class="content-dz-box">{{item.province_name}}</view>

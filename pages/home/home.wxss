@@ -1,5 +1,8 @@
 /* pages/home/home.wxss */
 @import "/assets/fonts/iconfont.wxss";
+/* page{
+  background: #f4f4f4;
+} */
 .home-navimg{
   position: fixed;
   top: 0;
@@ -18,7 +21,7 @@
   position: relative;
   color: #fff;
   font-size: 30rpx;
-  z-index: 1;
+  z-index: 3;
 }
 .header image{
   width: 90%;
@@ -269,6 +272,9 @@
   color: #F9B236;
   font-size: 26rpx;
 }
+.options-left .iconzuo{
+  font-size: 30rpx;
+}
 .options-left .red{
   color: rgb(236,93,39);
 }
@@ -335,7 +341,7 @@
 .urgent{
   position: fixed;
   right: 0;
-  bottom: 200rpx;
+  bottom: 280rpx;
   height: 100rpx;
   width: 120rpx;
 }
@@ -354,7 +360,7 @@
 .service{
   position: fixed;
   right: 0;
-  bottom: 100rpx;
+  bottom: 180rpx;
   height: 100rpx;
   width: 120rpx;
 }
@@ -367,7 +373,6 @@
   margin-left: 10%;
   font-size: 40rpx;
 } */
-@import "/assets/fonts/iconfont.wxss";
 .list{
   width: 94%;
   height: auto;
@@ -440,4 +445,41 @@
   text-align: center;
   font-size: 24rpx;
   color: #ababab;
+  margin-bottom: 130rpx;
+}
+.tabbar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 118rpx;
+  background-image: url(https://jbccs.com/./Upload/image/2021-05-07/6094b55ac7b98.png);
+  background-repeat:no-repeat; 
+  background-size:100% 100%;
+}
+.tabbar-box{
+  width: 20%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.tabbar-img{
+  width: 54rpx;
+  height: 54rpx;
+}
+.tabbar-text{
+  font-size: 24rpx;
+}
+.tabbar-gif{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: -34rpx;
+  left: 50%;
+  margin-left: -50rpx;
 }

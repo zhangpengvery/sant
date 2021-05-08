@@ -12,7 +12,7 @@
     <view class="iconfont icon-shezhi shezhi" bindtap="gologinFn"></view>
   </view>
   <view style="margin-top:{{navH}}rpx" class="header" hidden="{{userInfor}}">
-    <image class="weideng" src="{{user.wechat_img}}"></image>
+    <image class="weideng" src="{{user.user_avatar}}"></image>
     <text class="user-name">{{user.user_name}}</text>
     <navigator url="/pages/setting/setting">
       <view class="iconfont icon-shezhi shezhi"></view>
@@ -26,18 +26,112 @@
     </view> -->
   </view>
   <view class="mindbody">
-    <block wx:for="{{getMindText}}" wx:key="index">
-      <view class="fater">
-        <view class="title">{{item.title}}</view>
-        <view class="content">
-          <block wx:for="{{item.items}}" wx:key="index">
-            <view class="content-img" data-url="{{item.url}}" bindtap="bindUrlFn">
-              <image mode="aspectFit" src="{{item.icon}}"></image>
-              <view class="content-text">{{item.text}}</view>
-            </view>
-          </block>
+    <view class="fater">
+      <view class="title">订单管理</view>
+      <view class="content">
+        <view class="content-img" data-url="/pages/order/order?good_type=2" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/xcdd.png"></image>
+          <view class="content-text">新车订单</view>
+        </view>
+        <view class="content-img" data-url="/pages/order/order?good_type=3" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/zxdd.png"></image>
+          <view class="content-text">资讯订单</view>
+        </view>
+        <view class="content-img" data-url="/pages/order/order?good_type=4" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/bydd.png"></image>
+          <view class="content-text">保养订单</view>
+        </view>
+        <view class="content-img" data-url="/pages/order/order?good_type=1" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/pjdd.png"></image>
+          <view class="content-text">配件订单</view>
         </view>
       </view>
-    </block>
+    </view>
+    <view class="fater">
+      <view class="title">信息管理</view>
+      <view class="content">
+        <view class="content-img" data-url="/pages/second/second" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/esgl.png"></image>
+          <view class="content-text">二手管理</view>
+        </view>
+        <view class="content-img" data-url="/pages/myrevie/myrevie" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/document.png"></image>
+          <view class="content-text">审车管理</view>
+        </view>
+        <view class="content-img" data-url="/pages/renlist/renlist" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/hire.png"></image>
+          <view class="content-text">租赁管理</view>
+        </view>
+        <view class="content-img" data-url="/pages/joblist/joblist" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/job.png"></image>
+          <view class="content-text">求职管理</view>
+        </view>
+      </view>
+    </view>
+    <view class="fater">
+      <view class="title">加盟三泰</view>
+      <view class="content">
+        <view class="content-img" data-url="/pages/join/join" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/servicer.png"></image>
+          <view class="content-text">服务管家</view>
+        </view>
+        <view class="content-img" data-url="/pages/jointow/jointow" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/fix-station.png"></image>
+          <view class="content-text">维修站</view>
+        </view>
+        <view class="content-img" data-url="/pages/jointhr/jointhr" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/financer.png"></image>
+          <view class="content-text">金融专员</view>
+        </view>
+        <view class="content-img" data-url="/pages/join/join" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/servicer.png"></image>
+          <view class="content-text">送车司机</view>
+        </view>
+      </view>
+    </view>
+    <view class="fater">
+      <view class="title">常用</view>
+      <view class="content">
+        <view class="content-img" data-url="/pages/address/address" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/address.png"></image>
+          <view class="content-text">收货地址</view>
+        </view>
+        <view class="content-img" data-url="/pages/setting/setting" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/setting.png"></image>
+          <view class="content-text">安全设置</view>
+        </view>
+        <view class="content-img" data-url="/pages/signin/signin" bindtap="bindyuangong">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/qiand.png"></image>
+          <view class="content-text">外勤签到</view>
+        </view>
+        <view class="content-img" data-url="/pages/clockin/clockin" bindtap="bindyuangong">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/check.png"></image>
+          <view class="content-text">日常考勤</view>
+        </view>
+      </view>
+    </view>
   </view>
 </scroll-view>
+<view class="tabbar">
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/home/home">
+    <image class="tabbar-img" src="/assets/images/sywx.png"></image>
+    <view class="tabbar-text">首页</view>
+  </view>
+  <view class="tabbar-box" data-url="/pages/accesshop2/accesshop2" bindtap="bindUrl">
+    <image class="tabbar-img" src="/assets/images/scwx.png"></image>
+    <view class="tabbar-text">商城</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
+    <image class="tabbar-gif" src="/assets/images/14.gif"></image>
+    <view class="tabbar-text">泰式服务</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">
+    <image class="tabbar-img" src="/assets/images/mdwx.png"></image>
+    <view class="tabbar-text">门店</view>
+  </view>
+  <view class="tabbar-box">
+    <image class="tabbar-img" src="/assets/images/wd.png"></image>
+    <view class="tabbar-text" style="color:#F9B236">我的</view>
+  </view>
+  <view class="biank"></view>
+</view>

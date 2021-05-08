@@ -51,7 +51,7 @@ Page({
       if(res.statusCode==200){
         wx.hideLoading()
       }
-      var  order_sn=res.data.more_sn
+      var order_sn=res.data.more_sn
       wx.request({
         url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
         method: "GET",
@@ -66,16 +66,25 @@ Page({
         success: function (e) {
           // 签权调起支付 
           wx.requestPayment({
-            'timeStamp': e.data.datas.timeStamp,
-            'nonceStr': e.data.datas.nonceStr,
-            'package': e.data.datas.package,
-            'signType': e.data.datas.signType,
-            'paySign': e.data.datas.paySign,
-            'success': function (res) {
+            timeStamp: e.data.datas.timeStamp,
+            nonceStr: e.data.datas.nonceStr,
+            package: e.data.datas.package,
+            signType: e.data.datas.signType,
+            paySign: e.data.datas.paySign,
+            success: function (res) {
               console.log(res, "成功")
+              wx.showToast({
+                title: '支付成功',
+                duration:1500,
+                mask:true
+              })
             },
-            'fail': function (res) {
+            fail: function (res) {
               console.log("支付失败", res)
+              wx.showToast({
+                title: '取消支付',
+                icon: 'error',
+              })
             },
           })
         }

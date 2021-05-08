@@ -60,10 +60,12 @@
                   <view class="body-title">{{item.order_good[0].good_name}}</view>
                 </block>
                 <block wx:else>
-                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
+                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
                 </block>
-                <view class="body-pj">三泰之家上装保养</view>
-                <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+                <!-- <block wx:if="{{item.}}"> -->
+                  <view class="body-pj"></view>
+                <!-- </block> -->
+                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}}<view class="body-sl">共{{item.jianshu}}件
                   </view>
                 </view>
               </view>
@@ -76,7 +78,7 @@
               <view wx:if="{{item.order_state=='TRADE_FINISH'}}">
                 <view class="footer-right">
                   <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella"
-                    class="payment">删除</view>
+                    class="payment">删除订单</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='WAIT_USER_PAY'}}">
@@ -87,7 +89,7 @@
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='SELLER_DELIVER'}}">
-                <view wx:if="{{return_type==2&&return_state==5}}">
+                <view wx:if="{{item.return_type==2&&item.return_state==5}}">
                   <view class="footer-right">
                     <view class="payment">确认收货</view>
                   </view>
@@ -96,7 +98,7 @@
                   <view class="footer-right">
                     <view data-index="{{index}}" class="cancella" bindtap="bindLess" data-order_sn="{{item.order_sn}}">
                       确认收货</view>
-                    <view class="payment">查看物流</view>
+                    <view class="payment" data-order_sn="{{item.order_sn}}" bindtap="lookwuliu">查看物流</view>
                   </view>
                 </view>
               </view>
@@ -108,14 +110,14 @@
                 </view>
                 <view wx:else>
                   <view class="footer-right">
-                    <view class="payment">订单详情</view>
+                    <view data-order_sn="{{item.order_sn}}" class="payment" bindtap="datelFn">订单详情</view>
                   </view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='TRADE_CLOSED'}}">
                 <view class="footer-right">
                   <view bindtap="deleteFn" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella"
-                    class="payment">删除</view>
+                    class="payment">删除订单</view>
                 </view>
               </view>
               <view wx:elif="{{item.order_state=='USER_HAVE_PAID'}}">
@@ -125,7 +127,7 @@
               </view>
               <view wx:elif="{{item.order_state=='SELLER_PICK'}}">
                 <view class="footer-right">
-                  <view class="payment">订单详情</view>
+                  <view data-order_sn="{{item.order_sn}}" class="payment" bindtap="datelFn">订单详情</view>
                 </view>
               </view>
             </view>
@@ -142,7 +144,8 @@
   </swiper-item>
   <!-- 待付款 -->
   <swiper-item>
-    <scroll-view bindscrolltolower="loadMore" scroll-y="true" style="height:{{scrollH}}rpx">
+    <scroll-view bindscrolltolower="loadMore2" scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
       <view class="content" wx:if="{{getOrderOne.length>0}}">
         <block wx:for="{{getOrderOne}}" wx:key="index">
           <view class="box">
@@ -160,10 +163,10 @@
                   <view class="body-title">{{item.order_good[0].good_name}}</view>
                 </block>
                 <block wx:else>
-                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
+                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
                 </block>
                 <view class="body-pj">三泰之家上装保养</view>
-                <view class="body-jg"><text class="body-pj">预定金：</text>￥{{item.order_amount}}<view class="body-sl">x1
+                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}}<view class="body-sl">共{{item.jianshu}}件
                   </view>
                 </view>
               </view>
@@ -193,49 +196,52 @@
   </swiper-item>
   <!-- 待发货 -->
   <swiper-item>
-    <view class="content" wx:if="{{getOrderTow.length>0}}">
-      <block wx:for="{{getOrderTow}}" wx:key="index">
-        <view class="box">
-          <view class="box-header">
-            <view class="iconfont icon-dingdanbianhao1"></view>
-            <view class="bianh">订单编号：{{item.order_sn}}</view>
-            <view class="zhuangt">待发货</view>
-          </view>
-          <view class="box-body">
-            <view class="body-img">
-              <image src="{{item.order_good[0].good_image}}"></image>
+    <scroll-view bindscrolltolower="loadMore3" scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <view class="content" wx:if="{{getOrderTow.length>0}}">
+        <block wx:for="{{getOrderTow}}" wx:key="index">
+          <view class="box">
+            <view class="box-header">
+              <view class="iconfont icon-dingdanbianhao1"></view>
+              <view class="bianh">订单编号：{{item.order_sn}}</view>
+              <view class="zhuangt">待发货</view>
             </view>
-            <view class="body-text">
-              <block wx:if="{{item.order_good.length==1}}">
-                <view class="body-title">{{item.order_good[0].good_name}}</view>
-              </block>
-              <block wx:else>
-                <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}件商品</view>
-              </block>
-              <view class="body-pj">三泰之家上装保养</view>
-              <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
+            <view class="box-body">
+              <view class="body-img">
+                <image src="{{item.order_good[0].good_image}}"></image>
+              </view>
+              <view class="body-text">
+                <block wx:if="{{item.order_good.length==1}}">
+                  <view class="body-title">{{item.order_good[0].good_name}}</view>
+                </block>
+                <block wx:else>
+                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
+                </block>
+                <view class="body-pj">三泰之家上装保养</view>
+                <view class="body-jg"><text class="body-pj">金额：</text>￥800 <view class="body-sl">共{{item.jianshu}}件</view>
+                </view>
+              </view>
+            </view>
+            <view class="box-footer">
+              <view>
+                <text class="footer-left">应付金额：</text>
+                <text class="body-jg">￥800</text>
+              </view>
+              <view class="footer-right">
+                <view class="cancella">删除订单</view>
+                <view class="payment">评价</view>
               </view>
             </view>
           </view>
-          <view class="box-footer">
-            <view>
-              <text class="footer-left">应付金额：</text>
-              <text class="body-jg">￥800</text>
-            </view>
-            <view class="footer-right">
-              <view class="cancella">删除订单</view>
-              <view class="payment">评价</view>
-            </view>
-          </view>
-        </view>
-      </block>
-    </view>
-    <view wx:else class="wushujucs">
-      <view class="wushu-img">
-        <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+        </block>
       </view>
-      <view>暂无数据</view>
-    </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
   </swiper-item>
   <swiper-item>
     <view class="wushujucs">
@@ -258,7 +264,7 @@
           <view class="body-text">
             <view class="body-title">三泰之家上装保养</view>
             <view class="body-pj">三泰之家上装保养</view>
-            <view class="body-jg"><text class="body-pj">预定金：</text>￥800 <view class="body-sl">x1</view>
+            <view class="body-jg"><text class="body-pj">金额：</text>￥800 <view class="body-sl">x1</view>
             </view>
           </view>
         </view>

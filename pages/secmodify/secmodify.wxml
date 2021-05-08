@@ -1,8 +1,18 @@
 <!--pages/secmodify/secmodify.wxml-->
-<navbar params="{{params}}" />
-<view class="content" style="margin-top:{{navH}}rpx">
+<view class="weui-cell">
+  <block wx:for="{{pics}}" wx:key="index">
+    <view class="weui-box">
+      <image src="https://jbccs.com/.{{pics[index]}}"></image>
+      <view class="chahao" bindtap="shanchu" data-index="{{index}}">
+        <image src="https://jbccs.com/./Upload/image/2021-04-22/60812ae9ce20b.png"></image>
+      </view>
+    </view>
+  </block>
+  <view class="tianjia" bindtap="chooseImage">+</view>
+</view>
+<view class="content">
   <view class="box">
-    <view class="box-title">求租标题</view>
+    <view class="box-title">出售标题</view>
     <view class="box-inp">
       <input type="text" bindinput="bindTitle" placeholder="20字以内，必填" value="{{getSaleInfo.sale_title}}" />
     </view>
@@ -35,7 +45,7 @@
     </view>
   </view>
   <view class="box box2">
-    <view class="box-title">自我描述</view>
+    <view class="box-title">出售详情</view>
     <view class="box-inp box-da">
       <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" value="{{getSaleInfo.sale_message}}" />
     </view>

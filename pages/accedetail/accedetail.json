@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "navbar":"/components/navbar/navbar"
-  },
-  "navigationStyle":"custom"
+  "navigationBarTitleText": "整车详情",
+  "usingComponents": {}
 }

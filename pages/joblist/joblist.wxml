@@ -1,6 +1,5 @@
 <!--pages/joblist/joblist.wxml-->
-<navbar params="{{params}}" />
-<view class="header" style="margin-top:{{navH}}rpx">
+<view class="header">
   <block wx:for="{{tabNavlists}}" wx:key="index">
     <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
       {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
@@ -8,59 +7,65 @@
   </block>
 </view>
 <swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
-  <swiper-item>
-    <view class="recruit-content" wx:if="{{myRecruitList.length>=1}}">
-      <block wx:for="{{myRecruitList}}" wx:key="index">
-        <view class="content-box">
-          <view class="content-title">{{item.recruit_title}}</view>
-          <view class="content-mes">{{item.recruit_message}}</view>
-          <view class="content-jg">{{item.salary_name}}</view>
-          <view class="content-dz">
-            <view class="content-dz-box">{{item.ex_name}}</view>
-            <view class="content-dz-box">{{item.province_name}}</view>
-            <view class="content-dz-box">{{item.city_name}}</view>
-            <view class="content-dz-box">{{item.area_name}}</view>
+  <swiper-item catchtouchmove="stopChange">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+      <view class="recruit-content" wx:if="{{myRecruitList.length>=1}}">
+        <block wx:for="{{myRecruitList}}" wx:key="index">
+          <view class="content-box">
+            <view class="content-title">{{item.recruit_title}}</view>
+            <view class="content-mes">{{item.recruit_message}}</view>
+            <view class="content-jg">{{item.salary_name}}</view>
+            <view class="content-dz">
+              <view class="content-dz-box">{{item.ex_name}}</view>
+              <view class="content-dz-box">{{item.province_name}}</view>
+              <view class="content-dz-box">{{item.city_name}}</view>
+              <view class="content-dz-box">{{item.area_name}}</view>
+            </view>
+            <view class="delete" data-jr_id="{{item.jr_id}}" bindtap="deleteFn" data-index="{{index}}">删除</view>
+            <navigator url="/pages/jobmodify/jobmodify?jr_id={{item.jr_id}}">
+              <view class="editor">编辑</view>
+            </navigator>
           </view>
-          <view class="delete" data-jr_id="{{item.jr_id}}" bindtap="deleteFn">删除</view>
-          <navigator url="/pages/jobmodify/jobmodify?jr_id={{item.jr_id}}">
-            <view class="editor">编辑</view>
-          </navigator>
-        </view>
-      </block>
-    </view>
-    <view wx:else class="wushujucs">
+        </block>
+      </view>
+      <view wx:else class="wushujucs">
         <view class="wushu-img">
           <image src="/assets/images/kong.png"></image>
         </view>
         <view>暂无数据</view>
       </view>
+    </scroll-view>
   </swiper-item>
-  <swiper-item>
-    <view class="recruit-content" wx:if="{{myApplyList.length>=1}}">
-      <block wx:for="{{myApplyList}}" wx:key="index">
-        <view class="content-box">
-          <view class="content-title">{{item.apply_title}}</view>
-          <view class="content-gs">{{item.apply_message}}</view>
-          <view class="content-jg">{{item.salary_name}}</view>
-          <view class="content-dz">
-            <view class="content-dz-box">{{item.ex_name}}</view>
-            <view class="content-dz-box">{{item.province_name}}</view>
-            <view class="content-dz-box">{{item.city_name}}</view>
-            <view class="content-dz-box">{{item.area_name}}</view>
+  <swiper-item catchtouchmove="stopChange">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore2" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+      <view class="recruit-content" wx:if="{{myApplyList.length>=1}}">
+        <block wx:for="{{myApplyList}}" wx:key="index">
+          <view class="content-box">
+            <view class="content-title">{{item.apply_title}}</view>
+            <view class="content-gs">{{item.apply_message}}</view>
+            <view class="content-jg">{{item.salary_name}}</view>
+            <view class="content-dz">
+              <view class="content-dz-box">{{item.ex_name}}</view>
+              <view class="content-dz-box">{{item.province_name}}</view>
+              <view class="content-dz-box">{{item.city_name}}</view>
+              <view class="content-dz-box">{{item.area_name}}</view>
+            </view>
+            <view class="delete" data-ja_id="{{item.ja_id}}" bindtap="delzpFn" data-index="{{index}}">删除</view>
+            <navigator url="/pages/offmodify/offmodify?ja_id={{item.ja_id}}">
+              <view class="editor">编辑</view>
+            </navigator>
           </view>
-          <view class="delete" data-ja_id="{{item.ja_id}}" bindtap="delzpFn">删除</view>
-          <navigator url="/pages/offmodify/offmodify?ja_id={{item.ja_id}}">
-            <view class="editor">编辑</view>
-          </navigator>
-        </view>
-      </block>
-    </view>
-    <view wx:else class="wushujucs">
+        </block>
+      </view>
+      <view wx:else class="wushujucs">
         <view class="wushu-img">
           <image src="/assets/images/kong.png"></image>
         </view>
         <view>暂无数据</view>
       </view>
+    </scroll-view>
   </swiper-item>
 </swiper>
 <view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>

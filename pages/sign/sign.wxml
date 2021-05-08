@@ -10,6 +10,7 @@
   <view class="box-text">签到地点</view>
   <view>{{title}}</view>
   <view class="mizi">*</view>
+  <view class="weitiao" bindtap="bindweit">地点微调</view>
 </view>
 <view class="box2">
   <view class="box2-text">拜访对象</view>

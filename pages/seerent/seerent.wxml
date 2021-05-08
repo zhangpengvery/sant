@@ -1,8 +1,7 @@
 <!--pages/seerent/seerent.wxml-->
-<navbar params="{{params}}" />
-<view class="content" style="margin-top:{{navH}}rpx">
+<view class="content">
   <view class="box box2">
-    <view class="box-title">自我描述</view>
+    <view class="box-title">求租详情</view>
     <view class="box-inp box-da">
       <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" />
     </view>

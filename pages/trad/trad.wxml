@@ -101,8 +101,10 @@
 <!-- 乘号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 商品列表 -->
-<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listLeft}}" bindscrolltolower="loadMore">
-  <view class="list">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listLeft}}"
+  bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+  <view class="list" wx:if="{{getAllSaleList.length>0}}">
     <block wx:for="{{getAllSaleList}}" wx:key="index">
       <view class="list-content">
         <navigator url="/pages/saledetail/saledetail?sale_id={{item.sale_id}}">
@@ -114,10 +116,18 @@
       </view>
     </block>
   </view>
+  <view wx:else class="wushujucs">
+    <view class="wushu-img">
+      <image src="/assets/images/kong.png"></image>
+    </view>
+    <view>暂无数据</view>
+  </view>
   <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
 </scroll-view>
-<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listRight}}" bindscrolltolower="loadMore2">
-  <view class="list-right" >
+<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listRight}}"
+  bindscrolltolower="loadMore2" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+  <view class="list-right" wx:if="{{getSaleforLists.length>0}}">
     <block wx:for="{{getSaleforLists}}" wx:key="index">
       <navigator url="/pages/reqdetail/reqdetail?sf_id={{item.sf_id}}">
         <view class="right-content">
@@ -135,6 +145,12 @@
         </view>
       </navigator>
     </block>
+  </view>
+  <view wx:else class="wushujucs">
+    <view class="wushu-img">
+      <image src="/assets/images/kong.png"></image>
+    </view>
+    <view>暂无数据</view>
   </view>
   <view wx:if="{{dixian2}}" class="dixian">我也是有底线的！</view>
 </scroll-view>

@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params: {
-      showBack: true,
-      navTitle: true,
-      navInput: false,
-      navAddress: false,
-      r: 255,
-      g: 255,
-      b: 255,
-      l: 50,
-      fz: 34,
-      fw: "bold",
-      navColor: 1,
-      col: "#000",
-      title: "发布求购"
-    },
-    navH: 0,
     province_list: null,
     province_name: null,
     city_list: null,
@@ -200,6 +184,9 @@ Page({
     })
   },
   postAddSaleFor(safe_title,contact_name,contact_tel,safe_message,price,area_id){
+    wx.showLoading({
+      title: '发布中...',
+    })
     requestApi1(app.globalData.base_url+"/addSaleFor",{
       safe_title:safe_title,
       contact_name:contact_name,
@@ -208,13 +195,24 @@ Page({
       price:price,
       area_id:area_id
     }).then(res=>{
-      if(res.statusCode==200){
+      if(res.data.code==1){
         wx.showToast({
-          title: '上传成功',
+          title: '发布成功',
           icon: 'success',
-          duration: 2000
+          duration: 1500
+        })
+        setTimeout(function () {
+          wx.redirectTo({
+            url: '/pages/trad/trad'
+          })
+        }, 1500)
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '发布失败',
         })
       }
+      console.log(res);
     })
   },
   bddhFn:function(){
@@ -262,13 +260,6 @@ Page({
    */
   onLoad: function (options) {
     this.getProvince()
-    wx.getSystemInfo({
-      success: (result) => {
-        this.setData({
-          navH: app.globalData.navbarHeight
-        })
-      },
-    })
   },
 
   /**

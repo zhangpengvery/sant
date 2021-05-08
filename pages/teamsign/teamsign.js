@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page:1,
     winH:0,
     active:1,
     getMarkList:[],
@@ -19,7 +20,8 @@ Page({
     null_nums:0,
     total_nums:0,
     latitude:0,
-    longitude:0
+    longitude:0,
+    dixian:false,
   },
   bindtab:function(e){
     this.setData({
@@ -30,6 +32,12 @@ Page({
     wx.navigateTo({
       url: '/pages/mysign/mysign',
     })
+  },
+  loadMore() {
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getMarkList(this.data.date,this.data.page)
   },
   gitdate(){
     var timestamp = Date.parse(new Date());
@@ -42,12 +50,37 @@ Page({
       date2:Y + '-'  + M
     })
   },
-  async getMarkList(mark_date) {
+  async getMarkList(mark_date,page) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     let result = await requestApi(app.globalData.post_url + "/index.php/api/mark/getMarkList",{
-      mark_date:mark_date
+      mark_date:mark_date,
+      page:page
+    })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
+    if(result.data.datas.mark_list.length==0&&this.data.page>1){
+      this.setData({
+        dixian:true
+      })
+    }
+    this.setData({
+      getMarkList:this.data.getMarkList.concat(result.data.datas.mark_list),
+      my_nums:result.data.datas.my_nums,
+      null_nums:result.data.datas.null_nums,
+      total_nums:result.data.datas.total_nums
+    })
+    console.log(result.data.datas);
+  },
+  async getMarkList2(mark_date,page) {
+    let result = await requestApi(app.globalData.post_url + "/index.php/api/mark/getMarkList",{
+      mark_date:mark_date,
+      page:page
     })
     this.setData({
-      getMarkList: result.data.datas.mark_list,
+      getMarkList:result.data.datas.mark_list,
       my_nums:result.data.datas.my_nums,
       null_nums:result.data.datas.null_nums,
       total_nums:result.data.datas.total_nums
@@ -64,10 +97,12 @@ Page({
     console.log(result);
   },
   bindDateChange: function(e) {
-    this.getMarkList(e.detail.value)
+    this.getMarkList2(e.detail.value,1)
     this.getFailLists(e.detail.value)
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      page:1,
+      dixian:false
     })
   },
   bindsign:function(){
@@ -94,7 +129,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMarkList(this.data.date)
+    this.getMarkList(this.data.date,this.data.page)
     this.getFailLists(this.data.date)
     this.gitdate()
     wx.getSystemInfo({

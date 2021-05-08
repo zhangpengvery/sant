@@ -122,8 +122,9 @@
 <!-- 乘号 -->
 <view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
 <!-- 求租列表 -->
-<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listLeft}}">
-  <view class="list-right">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" refresher-enabled="true"
+  wx:if="{{listLeft}}" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+  <view class="list-right" wx:if="{{getAllHireforLists.length>0}}">
     <block wx:for="{{getAllHireforLists}}" wx:key="index">
       <navigator url="/pages/rendetail/rendetail?hf_id={{item.hf_id}}">
         <view class="right-content">
@@ -142,10 +143,17 @@
       </navigator>
     </block>
   </view>
+  <view wx:else class="wushujucs">
+    <view class="wushu-img">
+      <image src="/assets/images/kong.png"></image>
+    </view>
+    <view>暂无数据</view>
+  </view>
 </scroll-view>
 <!-- 商品列表 -->
-<scroll-view scroll-y="true" bindscrolltolower="bindLanFn" style="height:{{winH}}rpx;background: #F4F4F4" wx:if="{{listRight}}">
-  <view class="list">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx;background: #F4F4F4" refresher-enabled="true"
+  wx:if="{{listRight}}" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+  <view class="list" wx:if="{{getAllHireLists.length>0}}">
     <block wx:for="{{getAllHireLists}}" wx:key="index">
       <view class="list-content">
         <navigator url="/pages/hiredetail/hiredetail?hire_id={{item.hire_id}}">
@@ -156,5 +164,11 @@
         </navigator>
       </view>
     </block>
+  </view>
+  <view wx:else class="wushujucs">
+    <view class="wushu-img">
+      <image src="/assets/images/kong.png"></image>
+    </view>
+    <view>暂无数据</view>
   </view>
 </scroll-view>

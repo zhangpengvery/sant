@@ -4,9 +4,7 @@
 <view class="content">
   <view class="title">
     <view class="title-text">{{getInfo.title}}</view>
-    <button open-type="share" hover-class="none" class="buntt-css" style="width:40rpx;margin:0">
-      <view class="iconfont icon-zhuanfa"></view>
-    </button>
+    <view class="iconfont icon-zhuanfa" bindtap="createdCode"></view>
   </view>
   <view class="time">
     <view class="time-box">
@@ -66,7 +64,7 @@
     <view class="iconfont icon-daohang huang"></view>
   </view>
 </view>
-<!-- <template is="wxParse" data="{{wxParseData:content.nodes}}"/> -->
+<template is="wxParse" data="{{wxParseData:content.nodes}}"/>
 <view class="guize">
   <view class="hdgz">活动规则</view>
   <view class="guize-text">*1.本次活动仅限在有效期内参与，过期无效</view>
@@ -74,3 +72,37 @@
   <view class="guize-text">*3.本次活动仅限在有效期内参与，过期无效</view>
   <view class="guize-text">*4.本次活动仅限在有效期内参与，过期无效本次活动仅限在有效期内参与，过期无效本次活动仅限在</view>
 </view>
+<view class="share" wx:if="{{share}}">
+  <view class="share-box">
+    <view class="share-left">
+      <button class="share-imgbox" style="width:80rpx" open-type="share">
+        <image src="https://jbccs.com/./Upload/image/2021-04-20/607e6fa985ad2.png"></image>
+      </button>
+      <button class="buntt-css" style="width:200rpx;margin:0" open-type="share">转发到好友</button>
+    </view>
+    <view class="share-left" bindtap="bindsaveImg">
+      <view class="share-imgbox">
+        <image src="https://jbccs.com/./Upload/image/2021-04-20/607e6facf300c.png"></image>
+      </view>
+      <view class="buntt-css">保存图片分享</view>
+    </view>
+  </view>
+  <view class="share-footer" bindtap="bindmarder">取消</view>
+</view>
+<view class='share-modal-bg' wx:if="{{share}}">
+  <image src='{{shareImg}}' class='share-img'></image>
+</view>
+<view class="marker" wx:if="{{share}}" bindtap="bindmarder"></view>
+<view class='open-seting-bg' wx:if='{{openSet}}' catchtap='cancleSet'>
+  <view class='open-set-inner'>
+    <view class='set-title'>是否打开授权设置？</view>
+    <view class='btn-openset'>
+      <view catchtap='cancleSet'>取消</view>
+      <view>
+        <button open-type='openSetting' class='button-style' catchtap='cancleSet' style="margin:0;width:100rpx">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+<canvas style="width: 286px;height: 380px;background:red;position: fixed;top: -10000px;"
+  canvas-id="shareFrends"></canvas>

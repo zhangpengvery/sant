@@ -161,19 +161,12 @@ Page({
     })
     console.log(this.data.getOrderTow);
   },
-  //订单详情
-  async getOrderInfo(order_sn){
-    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/getOrderInfo",{
-      order_sn:order_sn
-    })
-    this.setData({
-      getOrderInfo:result
-    })
-    console.log(this.data.getOrderInfo);
-  },
   datelFn:function(e){
-    var order_sn=e.currentTarget.dataset.order_sn
-    this.getOrderInfo(order_sn)
+    // var order_sn=e.currentTarget.dataset.order_sn
+    // this.getOrderInfo(order_sn)
+    wx.navigateTo({
+      url: '/pages/orddetail/orddetail?order_sn='+e.currentTarget.dataset.order_sn+'&&good_type='+this.data.good_type,
+    })
   },
   //取消订单
   cancleOrder(order_sn){
@@ -231,10 +224,22 @@ Page({
   },
   //确认收货
   userFinished(order_sn){
+    wx.showLoading({
+      title: '收货中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Order/userFinished",{
       order_sn:order_sn
     }).then(res=>{
-      console.log(res);
+      if(res.data.code==200){
+        wx.showToast({
+          title: '收货成功',
+        })
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '收货失败',
+        })
+      }
     })
   },
   //全部删除点击
@@ -280,6 +285,7 @@ Page({
     wx.navigateBack()
   },
   bindGoPin:function(e){
+    var that=this
     if(wx.getStorageSync('token') == []){
       wx.navigateTo({
         url: '/pages/login/login',
@@ -300,16 +306,25 @@ Page({
           console.log(e.data.datas);
           // 签权调起支付 
           wx.requestPayment({
-            'timeStamp': e.data.datas.timeStamp,
-            'nonceStr': e.data.datas.nonceStr,
-            'package': e.data.datas.package,
-            'signType': e.data.datas.signType,
-            'paySign': e.data.datas.paySign,
-            'success': function (res) {
-              console.log(res, "成功")
+            timeStamp: e.data.datas.timeStamp,
+            nonceStr: e.data.datas.nonceStr,
+            package: e.data.datas.package,
+            signType: e.data.datas.signType,
+            paySign: e.data.datas.paySign,
+            success: function (res) {
+              wx.showToast({
+                title: '支付成功',
+                duration:1500
+              })
+              setTimeout(function () {
+                that.getOrderList2(1,that.data.good_type)
+              }, 1500)
             },
-            'fail': function (res) {
-              console.log("支付失败", res)
+            fail: function (res) {
+              wx.showToast({
+                icon:'none',
+                title: '取消支付',
+              })
             },
           })
         }
@@ -341,6 +356,11 @@ Page({
       url: '/pages/order/order?good_type='+e.currentTarget.dataset.good_type,
     })
   },
+  lookwuliu:function(e){
+    wx.navigateTo({
+      url: '/pages/lookwl/lookwl?order_sn='+e.currentTarget.dataset.order_sn,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -348,7 +368,6 @@ Page({
     this.setData({
       good_type:options.good_type
     })
-    this.getOrderList(this.data.p,this.data.good_type)
     wx.getSystemInfo({
       success: (result) => {
         let clientHeight = result.windowHeight;
@@ -374,7 +393,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      p:1
+    })
+    this.getOrderList2(1,this.data.good_type)
   },
 
   /**

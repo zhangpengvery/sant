@@ -1,6 +1,5 @@
 <!--pages/releases/releases.wxml-->
-<navbar params="{{params}}" />
-<view class="weui-cell" style="margin-top:{{navH}}rpx">
+<view class="weui-cell">
   <view class="weui-cell__bd">
     <view class="weui-uploader">
       <view class="weui-uploader__bd">
@@ -53,7 +52,7 @@
     </view>
   </view>
   <view class="box box2">
-    <view class="box-title">自我描述</view>
+    <view class="box-title">出售详情</view>
     <view class="box-inp box-da">
       <textarea type="text" class="da-inp" bindinput="bindMess" placeholder="200字以内" maxlength="200" />
     </view>

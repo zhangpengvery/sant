@@ -1,5 +1,5 @@
 <!--pages/confirmed/confirmed.wxml-->
-<view class="header">
+<view class="header" wx:if="{{address!=[]}}">
   <view class="address">
     <view class="moren">默认</view>
     <view class="city">{{address.area_info}}</view>
@@ -12,6 +12,10 @@
     <view class="user-name">{{address.true_name}}</view>
     <view>{{address.phone}}</view>
   </view>
+</view>
+<view class="add" wx:else bindtap="bindNav">
+  <view>请添加收货地址</view>
+  <view class="iconfont icon-xiangyou"></view>
 </view>
 <block wx:for="{{preOrder}}" wx:key="index">
   <view class="comlist">
@@ -32,7 +36,21 @@
 <view class="zongj">
   <view class="message">
     <view class="message-text">购买留言</view>
-    <input type="text" placeholder="请输入购买留言" placeholder-style="font-size:28rpx" />
+    <input type="text" placeholder="请输入购买留言" placeholder-style="font-size:28rpx" bindinput="bindtext" />
+  </view>
+</view>
+<view class="youfei">
+  <view class="youfei-box">
+    <view>商品总价：</view>
+    <view>￥{{shangpin}}</view>
+  </view>
+  <view class="youfei-box">
+    <view>邮费：</view>
+    <view>￥{{youfei}}</view>
+  </view>
+  <view class="youfei-box">
+    <view>合计：</view>
+    <view style="color:#BA1515;font-size: 32rpx">￥{{totalPrice}}</view>
   </view>
 </view>
 <view class="footer">

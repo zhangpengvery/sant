@@ -11,11 +11,12 @@ page{
   background: linear-gradient(154deg, #FFC765 0%, #FC9E32 100%);
 }
 .back{
-  position: absolute;
+  position: fixed;
   height: 50rpx;
   line-height: 50rpx;
   left: 20rpx;
-  color: #fff;
+  color: #000;
+  z-index: 3;
 }
 .title{
   margin-top: 80rpx;
@@ -25,7 +26,7 @@ page{
 }
 .header-text{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 10rpx 13% 40rpx 13%;
 }
 .header-text .text-left{
@@ -51,13 +52,13 @@ page{
   height: 80rpx;
 }
 .con-text .text-top{
-  color: #333;
-  font-size: 28rpx;
-  font-weight: bold;
+  color: rgb(127, 127, 127);
+  font-size: 26rpx;
 }
 .con-text .text-btm{
-  margin-top: 10rpx;
-  font-size: 26rpx;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  font-weight: bold;
 }
 .dizhi{
   height: 50rpx;
@@ -106,7 +107,7 @@ page{
 .body{
   width: 90%;
   padding: 0 5%;
-  margin-top: 20rpx;
+  margin: 20rpx 0 120rpx 0;
   height: 510rpx;
   background: #fff;
   overflow: hidden;
@@ -143,11 +144,13 @@ page{
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 60%;
+  padding-left: 40%;
   height: 104rpx;
   background: #fff;
   text-align: center;
   align-items: center;
+  font-size: 28rpx;
 }
 .footer-left{
   width: 190rpx;
@@ -156,6 +159,7 @@ page{
   line-height: 72rpx;
   color: #999;
   border-radius: 94rpx;
+  margin-right: 20rpx;
 }
 .footer-right{
   width: 190rpx;
@@ -165,5 +169,5 @@ page{
   color: #fff;
   background: #F9B236;
   border-radius: 94rpx;
-  margin: 0 40rpx 0 20rpx;
+  margin-right: 20rpx;
 }

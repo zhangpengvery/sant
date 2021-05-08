@@ -39,6 +39,11 @@ Page({
     dixian:false,
     wuShuju:true,
   },
+  bindUrl:function(e){
+    wx.redirectTo({
+      url: e.currentTarget.dataset.url,
+    })
+  },
   leftNavFn:function(e){
     this.setData({
       dixian:false,

@@ -30,6 +30,18 @@ page{
   font-size: 24rpx;
   color: #333;
 }
+.add{
+  width: 90%;
+  margin: 20rpx 3%;
+  padding: 0 2%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+}
 .xiangq{
   height: 80rpx;
   width: 100%;
@@ -122,7 +134,6 @@ page{
   background: #fff;
   height: 100rpx;
   line-height: 100rpx;
-  margin-bottom: 150rpx;
   border-radius: 20rpx;
 }
 .message{
@@ -137,6 +148,21 @@ page{
   font-size: 28rpx;
   font-weight: bold;
   margin-right: 20rpx;
+}
+.youfei{
+  width: 88%;
+  margin: 20rpx 3% 100rpx 3%;
+  background: #fff;
+  padding: 20rpx 3%;
+  border-radius: 20rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+}
+.youfei-box{
+  height: 70rpx;
+  line-height: 70rpx;
+  display: flex;
+  justify-content: space-between;
 }
 .footer{
   display: flex;

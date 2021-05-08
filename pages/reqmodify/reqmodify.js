@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"修改求购"
-    },
-    navH:0,
     imageList: [],
     province_list: null,
     province_name: null,
@@ -113,11 +97,21 @@ Page({
       area_id:area_id,
       price:price,
     }).then(res=>{
-      if(res.statusCode==200){
+      if(res.data.code==1){
         wx.showToast({
           title: '修改成功',
           icon: 'success',
-          duration: 2000
+          duration: 1500
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            url: '/pages/second/second'
+          })
+        }, 1500)
+      }else{
+        wx.showToast({
+          icon:'error',
+          title: '修改失败',
         })
       }
     })
@@ -257,13 +251,6 @@ Page({
     this.getProvince()
     console.log(options.sf_id);
     this.mySaleforInfo(options.sf_id)
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
-    })
   },
 
   /**

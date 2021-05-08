@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "navbar":"/components/navbar/navbar"
-  },
-  "navigationStyle":"custom"
+  "navigationBarTitleText": "修改出售",
+  "usingComponents": {}
 }

@@ -1,7 +1,7 @@
 <!--pages/accedetail/accedetail.wxml-->
 <import src="/wxParse/wxParse.wxml"></import>
-<navbar params="{{params}}" />
-<swiper class="detail-swp" indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true" style="margin-top:{{navH}}rpx" indicator-color="rgba(255, 255, 255)" indicator-active-color="#F9B236">
+<swiper class="detail-swp" indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true"
+  indicator-color="rgba(255, 255, 255)" indicator-active-color="#F9B236">
   <block wx:for="{{imageList}}" wx:key="index">
     <swiper-item>
       <image mode="aspectFit" src="{{item.image_src}}"></image>
@@ -9,7 +9,8 @@
   </block>
 </swiper>
 <view class="details">
-  <view class="details-text">{{getPartsInfo.good_name}}<view class="iconfont icon-zhuanfa" bindtap="bindshare"></view></view>
+  <view class="details-text">{{getPartsInfo.good_name}}<view class="iconfont icon-zhuanfa" bindtap="createdCode"></view>
+  </view>
   <view class="details-jg">￥{{getPartsInfo.good_price}}</view>
   <view class="details-bzd">
     <view>累计销量：{{getPartsInfo.good_sort}}</view>
@@ -67,7 +68,7 @@
 <view class="cpxq-text">产品详情</view>
 <view class="footer">
   <view class="footer-box">
-    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
   </view>
 </view>
 <view class="footer-dw">
@@ -79,8 +80,8 @@
     <view>收藏</view>
   </view>
   <view class="footer-left" bindtap="bindCarFn">
-      <view class="iconfont icon-gouwuche"></view>
-      <view>购物车</view>
+    <view class="iconfont icon-gouwuche"></view>
+    <view>购物车</view>
   </view>
   <view class="footer-left" bindtap="bindPho">
     <view class="iconfont icon-jiaobanchexiangqingye-dianhua"></view>
@@ -94,17 +95,34 @@
 <view class="share" wx:if="{{share}}">
   <view class="share-box">
     <view class="share-left">
-      <view class="iconfont icon-shaixuan"></view>
+      <button class="share-imgbox" style="width:80rpx;" open-type="share">
+        <image src="https://jbccs.com/./Upload/image/2021-04-20/607e6fa985ad2.png"></image>
+      </button>
       <button class="buntt-css" style="width:200rpx;margin:0" open-type="share">转发到好友</button>
     </view>
-    <view class="share-left" bindtap="bindcanvas">
-      <view class="iconfont icon-shaixuan"></view>
-      <view>生成图片分享</view>
+    <view class="share-left" bindtap="bindsaveImg">
+      <view class="share-imgbox">
+        <image src="https://jbccs.com/./Upload/image/2021-04-20/607e6facf300c.png"></image>
+      </view>
+      <view class="buntt-css">保存图片分享</view>
     </view>
   </view>
-  <view class="share-footer">取消</view>
+  <view class="share-footer" bindtap="bindmarder">取消</view>
 </view>
-<view class='share-modal-bg'>
+<view class='share-modal-bg' wx:if="{{share}}">
   <image src='{{shareImg}}' class='share-img'></image>
 </view>
-<canvas  style="width: 286px;height: 480px;background:red;position: fixed;top: -10000px;" canvas-id="shareFrends"></canvas>
+<view class="marker" wx:if="{{share}}" bindtap="bindmarder"></view>
+<view class='open-seting-bg' wx:if='{{openSet}}' catchtap='cancleSet'>
+  <view class='open-set-inner'>
+    <view class='set-title'>是否打开授权设置？</view>
+    <view class='btn-openset'>
+      <view catchtap='cancleSet'>取消</view>
+      <view>
+        <button open-type='openSetting' class='button-style' catchtap='cancleSet' style="margin:0;width:100rpx">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+<canvas style="width: 286px;height: 380px;background:red;position: fixed;top: -10000px;"
+  canvas-id="shareFrends"></canvas>

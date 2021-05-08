@@ -10,52 +10,43 @@ Page({
    */
   data: {
     id: 0,
-    address_id: 0,
     totalPrice: 0,
     preOrderLength: 0,
     preOrder: [],
     address: [],
     order_sn: "",
+    order_mark:"",
+    youfei:0,
+    shangpin:0
   },
   async getPreOrder(id) {
-    wx.showLoading({
-      title: '加载中...',
-    })
     let result = await requestApi(app.globalData.base_url + "/preOrder", {
       id: id
     })
-    if (result.statusCode == 200) {
-      wx.hideLoading()
-    }
     this.setData({
-      address_id: result.data.data.address.address_id,
+      // address_id: result.data.data.address.address_id,
       address: result.data.data.address,
       preOrder: result.data.data.good_list[4].goods,
       preOrderLength: result.data.data.good_list[4].goods.length
     })
-    console.log(this.data.preOrder);
+    console.log(result);
     this.totalPrice()
   },
-  //计算运费
-  // totalFee(){
-  //   var preOrderli = this.data.preOrder;
-  //   var fee=0;
-  //   for(var i = 0; i < preOrderli.length; i++){
-  //     fee+=Number(preOrderli[i].deliver_fee);
-  //   }
-  //   this.setData({
-  //     deliver_fee:fee
-  //   })
-  // },
   //计算总价
   totalPrice() {
     var preOrder = this.data.preOrder;
     var total = 0
+    var youfei=0
+    var shangpin=0
     for (var i = 0; i < preOrder.length; i++) {
-      total += preOrder[i].good_price * preOrder[i].num;
+      total += preOrder[i].good_price * preOrder[i].num+Number(preOrder[i].deliver_fee);
+      youfei+=Number(preOrder[i].deliver_fee)
+      shangpin+=Number(preOrder[i].good_price)
     }
     this.setData({
-      totalPrice: total
+      totalPrice: total.toFixed(2),
+      youfei:youfei.toFixed(2),
+      shangpin:shangpin.toFixed(2)
     })
   },
   //点击+号
@@ -95,48 +86,72 @@ Page({
     })
   },
   //下单接口
-  cartOrderAdd(address_id, id) {
-    wx.showLoading({
-      title: '加载中...',
-    })
-    requestApi1(app.globalData.base_url + "/cartOrderAdd", {
-      address_id: address_id,
-      id: id
-    }).then(res => {
-      if(res.statusCode==200){
-        wx.hideLoading()
-      }
-      var  order_sn=res.data.data.more_sn
-      wx.request({
-        url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
-        method: "GET",
-        data: {
-          "open_id": wx.getStorageSync('openid'),
-          "order_sn": order_sn
-        },
-        header: {
-          "content-type": "application/json",
-          "XX-Token": wx.getStorageSync('token')
-        },
-        success: function (e) {
-          console.log(e.data.datas);
-          // 签权调起支付 
-          wx.requestPayment({
-            'timeStamp': e.data.datas.timeStamp,
-            'nonceStr': e.data.datas.nonceStr,
-            'package': e.data.datas.package,
-            'signType': e.data.datas.signType,
-            'paySign': e.data.datas.paySign,
-            'success': function (res) {
-              console.log(res, "成功")
-            },
-            'fail': function (res) {
-              console.log("支付失败", res)
-            },
-          })
-        }
+  cartOrderAdd(address_id, id,order_mark) {
+    var that=this
+    if(wx.getStorageSync('token') == []){
+      wx.navigateTo({
+        url: '/pages/login/login',
       })
-    })
+    }else{
+      wx.showLoading({
+        title: '加载中...',
+      })
+      requestApi1(app.globalData.base_url + "/cartOrderAdd", {
+        address_id: address_id,
+        id: id,
+        order_mark:order_mark
+      }).then(res => {
+        console.log(res);
+        if(res.statusCode==200){
+          wx.hideLoading()
+        }
+        var order_sn=res.data.data.more_sn
+        var order_sns=res.data.data.order_sns[0]
+        wx.request({
+          url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
+          method: "GET",
+          data: {
+            "open_id": wx.getStorageSync('openid'),
+            "order_sn": order_sn
+          },
+          header: {
+            "content-type": "application/json",
+            "XX-Token": wx.getStorageSync('token')
+          },
+          success: function (e) {
+            console.log(e.data.datas);
+            // 签权调起支付 
+            wx.requestPayment({
+              timeStamp: e.data.datas.timeStamp,
+              nonceStr: e.data.datas.nonceStr,
+              package: e.data.datas.package,
+              signType: e.data.datas.signType,
+              paySign: e.data.datas.paySign,
+              success: function (res) {
+                console.log(res, "成功")
+                wx.showToast({
+                  title: '支付成功',
+                  duration:1500,
+                  mask:true
+                })
+                setTimeout(function () {
+                  wx.navigateTo({
+                    url: '/pages/payment/payment?order_sn='+order_sns
+                  })
+                }, 1500)
+              },
+              fail: function (res) {
+                console.log("支付失败", res)
+                wx.showToast({
+                  title: '取消支付',
+                  icon: 'error',
+                })
+              },
+            })
+          }
+        })
+      })
+    }
   },
   //结算传值
   gobuyFn: function () {
@@ -147,11 +162,23 @@ Page({
       arr.push(preOrder[i].good_id + "|" + preOrder[i].num + "|" + 1)
       id = arr.join(",")
     }
-    this.cartOrderAdd(this.data.address_id, id)
+    if(this.data.address!=[]){
+      this.cartOrderAdd(this.data.address.address_id, id,this.data.order_mark)
+    }else{
+      wx.showToast({
+        icon:'none',
+        title: '请添加收货地址',
+      })
+    }
   },
   bindNav:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/address/address',
+    })
+  },
+  bindtext:function(e){
+    this.setData({
+      order_mark:e.detail.value
     })
   },
   /**
@@ -161,21 +188,19 @@ Page({
     this.setData({
       id: wx.getStorageSync('id')
     })
-    this.getPreOrder(this.data.id)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getPreOrder(this.data.id)
   },
 
   /**

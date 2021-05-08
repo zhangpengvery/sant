@@ -1,0 +1,27 @@
+<!--pages/payment/payment.wxml-->
+<view class="iconfont icon-ziyuan2 back" bindtap="backFn" style="top:{{navH-30}}rpx"></view>
+<view class="header">
+  <view class="header-box">
+    <view class="iconfont icon-zujian202"></view>
+    <view class="header-text">
+      <view class="text-one">支付成功</view>
+      <view class="text-tow">感谢您的购买</view>
+    </view>
+  </view>
+  <view class="xian"></view>
+</view>
+<view class="content">
+  <view class="con-jg">￥{{getOrderInfo.order_amount}}</view>
+  <view class="content-box">
+    <view class="box-left">订单编号：</view>
+    <view class="box-right">{{order_sn}}</view>
+  </view>
+  <view class="content-box">
+    <view class="box-left">创建时间：</view>
+    <view class="box-right">{{getOrderInfo.add_time_text}}</view>
+  </view>
+</view>
+<view class="footer">
+  <view class="footer-box" bindtap="naghome">返回首页</view>
+  <view class="footer-box" bindtap="nagdal">查看订单</view>
+</view>

@@ -61,6 +61,7 @@ Page({
     price_up:0,
     dixian:false,
     dixian2:false,
+    triggered:false
   },
   recruitFn:function(e){
     this.setData({
@@ -248,9 +249,9 @@ Page({
         showcity:false,
       })
       if(this.data.leftActive){
-        this.getAllSaleList(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleList2(this.data.page,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }else{
-        this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+        this.getAllSaleforLists2(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
       }
     },
     //出售列表
@@ -287,6 +288,30 @@ Page({
         getDischargeList:result.data.data.discharge_list
       })
     },
+    //出售列表
+    async getAllSaleList2(page,sale_brand_id,sale_age_id,sale_chassis_id,sale_drive_id,sale_source_id,sale_discharge_id,leng_up,price_up){
+      wx.showLoading({
+        title: '加载中...',
+      })
+      let result=await requestApi(app.globalData.base_url+"/getAllSaleLists",{
+        page:page,
+        sale_brand_id:sale_brand_id,
+        sale_age_id:sale_age_id,
+        sale_chassis_id:sale_chassis_id,
+        sale_drive_id:sale_drive_id,
+        sale_source_id:sale_source_id,
+        sale_discharge_id:sale_discharge_id,
+        leng_up:leng_up,
+        price_up:price_up
+      })
+      if(result.statusCode==200){
+        wx.hideLoading()
+      }
+      this.setData({
+        getAllSaleList:result.data.data.list,
+        triggered:false
+      })
+    },
     async getAllSaleforLists(page,salefor_brand_id,salefor_age_id,salefor_chassis_id,salefor_drive_id,salefor_source_id,salefor_discharge_id,age_up,price_up){
       wx.showLoading({
         title: '加载中...',
@@ -315,6 +340,29 @@ Page({
       })
       console.log(result);
     },
+    async getAllSaleforLists2(page,salefor_brand_id,salefor_age_id,salefor_chassis_id,salefor_drive_id,salefor_source_id,salefor_discharge_id,age_up,price_up){
+      wx.showLoading({
+        title: '加载中...',
+      })
+      let result=await requestApi(app.globalData.base_url+"/getAllSaleforLists",{
+        page:page,
+        salefor_brand_id:salefor_brand_id,
+        salefor_age_id:salefor_age_id,
+        salefor_chassis_id:salefor_chassis_id,
+        salefor_drive_id:salefor_drive_id,
+        salefor_source_id:salefor_source_id,
+        salefor_discharge_id:salefor_discharge_id,
+        age_up:age_up,
+        price_up:price_up
+      })
+      if(result.statusCode==200){
+        wx.hideLoading()
+      }
+      this.setData({
+        getSaleforLists:result.data.data.list,
+        triggered:false
+      })
+    },
     //滑动到底部
     loadMore(){
       this.setData({
@@ -327,6 +375,19 @@ Page({
         page2:++this.data.page2
       })
       this.getAllSaleforLists(this.data.page2,this.data.brandCss,this.data.ageCss,this.data.chassisCss,this.data.driveCss,this.data.sourceCss,this.data.dischargeCss,this.data.leng_up,this.data.price_up)
+    },
+    refresherFn:function(){
+      var that=this
+      this.setData({
+        page:1,
+        page2:1
+      },function(){
+        if(that.data.leftActive){
+          that.getAllSaleList2(that.data.page,that.data.brandCss,that.data.ageCss,that.data.chassisCss,that.data.driveCss,that.data.sourceCss,that.data.dischargeCss,that.data.leng_up,that.data.price_up)
+        }else if(that.data.rightActive){
+          that.getAllSaleforLists2(that.data.page2,that.data.brandCss,that.data.ageCss,that.data.chassisCss,that.data.driveCss,that.data.sourceCss,that.data.dischargeCss,that.data.leng_up,that.data.price_up)
+        }
+      })
     },
   /**
    * 生命周期函数--监听页面加载

@@ -36,3 +36,26 @@
     </scroll-view>
   </view>
 </view>
+<view class="tabbar">
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/home/home">
+    <image class="tabbar-img" src="/assets/images/sywx.png"></image>
+    <view class="tabbar-text">首页</view>
+  </view>
+  <view class="tabbar-box">
+    <image class="tabbar-img" src="/assets/images/sc.png"></image>
+    <view class="tabbar-text" style="color:#F9B236">商城</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
+    <image class="tabbar-gif" src="/assets/images/14.gif"></image>
+    <view class="tabbar-text">泰式服务</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">
+    <image class="tabbar-img" src="/assets/images/mdwx.png"></image>
+    <view class="tabbar-text">门店</view>
+  </view>
+  <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/mind/mind">
+    <image class="tabbar-img" src="/assets/images/wdwx.png"></image>
+    <view class="tabbar-text">我的</view>
+  </view>
+  <view class="biank"></view>
+</view>

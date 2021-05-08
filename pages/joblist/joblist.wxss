@@ -295,7 +295,7 @@ page{
   line-height: 36rpx;
 }
 .wushujucs{
-  margin-top: 300rpx;
+  padding-top: 300rpx;
   width: 100%;
   text-align: center;
   font-size: 24rpx;

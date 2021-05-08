@@ -1,6 +1,5 @@
 <!--pages/jobmodify/jobmodify.wxml-->
-<navbar params="{{params}}" />
-<view class="content" style="margin-top:{{navH}}rpx">
+<view class="content">
   <view class="box">
     <view class="box-title">求职标题</view>
     <view class="box-inp">
@@ -11,7 +10,7 @@
     <view  class="box-title">求职职位</view>
     <view class="box-inp">
       <picker bindchange="bindTypeChange" value="{{typeList['typeIndex']}}" range="{{typeList}}" range-key="{{'job_name'}}">
-        <view class="picker">{{typeList[typeIndex].job_name}}</view>
+        <view class="picker">{{jt_name}}</view>
         <view class="iconfont icon-tubiao2-14"></view>
       </picker>
     </view>
@@ -41,7 +40,7 @@
     <view class="box-title">薪资要求</view>
     <view class="box-inp">
       <picker bindchange="bindSalaryChange" value="{{salaryList['salaryIndex']}}" range="{{salaryList}}" range-key="{{'salary_name'}}">
-        <view class="picker">{{salaryList[salaryIndex].salary_name}}</view>
+        <view class="picker">{{js_name}}</view>
         <view class="iconfont icon-tubiao2-14"></view>
       </picker>
     </view>
@@ -50,7 +49,7 @@
     <view  class="box-title">我的经验</view>
     <view class="box-inp">
       <picker bindchange="bindExChange" value="{{exList['exIndex']}}" range="{{exList}}" range-key="{{'ex_name'}}">
-        <view class="picker">{{exList[exIndex].ex_name}}</view>
+        <view class="picker">{{je_name}}</view>
         <view class="iconfont icon-tubiao2-14"></view>
       </picker>
     </view>
@@ -62,7 +61,5 @@
     </view>
   </view>
 </view>
-<navigator url="/pages/joblist/joblist">
-  <view class="ljfb" bindtap="bddhFn">立即修改</view>
-</navigator>
+<view class="ljfb" bindtap="bddhFn">立即修改</view>
 
