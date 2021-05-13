@@ -197,7 +197,6 @@ Page({
       const detail = this.data.getInfo;
       const ctx = wx.createCanvasContext('shareFrends');    //绘图上下文
       const name = detail.title;     //绘图的标题  需要处理换行
-      // const explain = '￥'+detail.good_price;
       ctx.save()
       //背景图
       ctx.drawImage('/assets/images/baise-bg.png', 0, 0, 286, 380);
@@ -209,10 +208,6 @@ Page({
       //头像
       ctx.drawImage(this.data.avatar, 16, 200, 40, 44);
       ctx.restore();
-      //价格
-      // ctx.setFillStyle('red')
-      // ctx.setFontSize(20)
-      // ctx.fillText(explain, 16, 290);
       //物品
       ctx.setFillStyle('black')
       ctx.setFontSize(16)

@@ -1,32 +1,135 @@
 <!--pages/allding/allding.wxml-->
-<block wx:for="{{repairList}}" wx:key="index">
-  <view class="user-con" bindtap="bindonFn">
-    <view class="user">
-      <view class="user-img">
-        <image mode="aspectFill" src="{{item.avator}}"></image>
-      </view>
-      <view class="user-xx">
-        <view class="user-name">{{item.user_name}}</view>
-        <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
-      </view>
-      <view class="juli">{{item.create_time}}</view>
+<view class="header">
+  <block wx:for="{{tabNavlists}}" wx:key="index">
+    <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
+      {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
     </view>
-    <view class="goging">
-      <view class="gogingleft">
-        <view class="iconfont icon-mendian-dianhua icon"> <text  catchtap="bindPho" data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
-        </view>
-      </view>
-    </view>
-    <view class="user-pho" wx:if="{{item.s_status==null&&item.status!=0}}" catchtap="bindpinjFn" data-index="{{index}}" data-user_id="{{item.user_id}}" data-repair_id="{{item.id}}">评价</view>
-    <view wx:if="{{item.status>1||item.status==-1}}" class="user-dal" catchtap="binddalFn" data-id="{{item.id}}" data-index="{{index}}">删除</view>
-  </view>
-</block>
-<view class="wushujucs" wx:if="{{repairList.length==0}}">
-  <view class="wushu-img">
-    <image src="/assets/images/kong.png"></image>
-  </view>
-  <view>暂无数据</view>
+  </block>
 </view>
+<swiper bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
+  <swiper-item>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:for="{{repairList}}" wx:key="index">
+        <view class="list">
+          <view class="user-con" bindtap="bindxianq" data-id="{{item.id}}">
+            <view class="user">
+              <view class="user-img">
+                <image mode="aspectFill" src="{{item.avator}}"></image>
+              </view>
+              <view class="user-xx">
+                <view class="user-name">{{item.user_name}}</view>
+                <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+              </view>
+            </view>
+            <view class="goging">
+              <view class="gogingleft">
+                <view class="iconfont icon-mendian-dianhua icon"> <text catchtap="bindPho"
+                    data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
+                </view>
+              </view>
+              <view class="juli">{{item.create_time}}</view>
+            </view>
+            <view class="quxiao" wx:if="{{item.status==0}}" catchtap="bindquxiao"
+              data-index="{{index}}" data-id="{{item.id}}" data-repair_id="{{item.id}}">取消订单</view>
+            <view class="user-pho" wx:if="{{item.status==0||item.status==1}}" catchtap="bindPho" style="right:20rpx" data-pho="{{item.user_mobile}}">拨打电话</view>
+            <view class="user-pho" wx:if="{{item.status==2&&item.s_status==null}}" catchtap="bindpinjFn"
+              data-index="{{index}}" data-user_id="{{item.user_id}}" data-repair_id="{{item.id}}">评价</view>
+            <view class="user-pho" wx:if="{{item.status==2&&item.s_status==1}}">已评价</view>
+            <view wx:if="{{item.status==2||item.status==3||item.status==-1}}" class="user-dal" catchtap="binddalFn" data-id="{{item.id}}"
+              data-index="{{index}}">删除</view>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==0}}" src="/assets/images/jinxingyz.png">进行中</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==1}}" src="/assets/images/jinxingyz.png">进行中</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==2}}" src="/assets/images/wanchengyz.png">已完成</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==3}}" src="/assets/images/chaoshiyz.png">已超时</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==-1}}" src="/assets/images/quxiaoyz.png">已取消</image>
+          </view>
+        </view>
+      </block>
+      <view class="wushujucs" wx:if="{{repairList.length==0}}">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:for="{{repairList}}" wx:key="index">
+        <view class="list">
+          <view class="user-con" bindtap="bindxianq" data-id="{{item.id}}">
+            <view class="user">
+              <view class="user-img">
+                <image mode="aspectFill" src="{{item.avator}}"></image>
+              </view>
+              <view class="user-xx">
+                <view class="user-name">{{item.user_name}}</view>
+                <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+              </view>
+            </view>
+            <view class="goging">
+              <view class="gogingleft">
+                <view class="iconfont icon-mendian-dianhua icon"> <text catchtap="bindPho"
+                    data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
+                </view>
+              </view>
+              <view class="juli">{{item.create_time}}</view>
+            </view>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==0}}" src="/assets/images/jinxingyz.png">进行中</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==1}}" src="/assets/images/jinxingyz.png">进行中</image>
+            <view class="quxiao" wx:if="{{item.status==0}}" catchtap="bindquxiao"
+              data-index="{{index}}" data-id="{{item.id}}" data-repair_id="{{item.id}}">取消订单</view>
+            <view class="user-pho" catchtap="bindPho" style="right:20rpx" data-pho="{{item.user_mobile}}">拨打电话</view>
+          </view>
+        </view>
+      </block>
+      <view class="wushujucs" wx:if="{{repairList.length==0}}">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:for="{{repairList}}" wx:key="index">
+        <view class="list">
+          <view class="user-con" bindtap="bindxianq" data-id="{{item.id}}">
+            <view class="user">
+              <view class="user-img">
+                <image mode="aspectFill" src="{{item.avator}}"></image>
+              </view>
+              <view class="user-xx">
+                <view class="user-name">{{item.user_name}}</view>
+                <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+              </view>
+            </view>
+            <view class="goging">
+              <view class="gogingleft">
+                <view class="iconfont icon-mendian-dianhua icon"> <text catchtap="bindPho"
+                    data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
+                </view>
+              </view>
+              <view class="juli">{{item.create_time}}</view>
+            </view>
+            <view class="user-pho" wx:if="{{item.s_status==null&&item.status==2}}" catchtap="bindpinjFn"
+              data-index="{{index}}" data-user_id="{{item.user_id}}" data-repair_id="{{item.id}}">评价</view>
+            <view wx:if="{{item.status>1||item.status==-1}}" class="user-dal" catchtap="binddalFn" data-id="{{item.id}}"
+              data-index="{{index}}">删除</view>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==2}}" src="/assets/images/wanchengyz.png">已完成</image>
+          </view>
+        </view>
+      </block>
+      <view class="wushujucs" wx:if="{{repairList.length==0}}">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
 <view class="footer" style="bottom:{{footerbtm}}rpx">
   <view class="header-foot">
     <view class="fbpj">发表评价</view>
@@ -35,8 +138,7 @@
   <view class='assess-star'>
     <view class="text-left">服务质量</view>
     <view class='star-wrap'>
-      <image class='star-item' wx:for="{{stars}}" wx:key="index"
-        src="{{item.flag==1?item.lightImg:item.blackImg}}"
+      <image class='star-item' wx:for="{{stars}}" wx:key="index" src="{{item.flag==1?item.lightImg:item.blackImg}}"
         data-index="{{index}}" catchtap='starClick'></image>
     </view>
     <view class='star-desc'>{{starDesc}}</view>
@@ -44,8 +146,7 @@
   <view class='assess-star'>
     <view class="text-left">服务及时性</view>
     <view class='star-wrap'>
-      <image class='star-item' wx:for="{{stars2}}" wx:key="index"
-        src="{{item.flag==1?item.lightImg:item.blackImg}}"
+      <image class='star-item' wx:for="{{stars2}}" wx:key="index" src="{{item.flag==1?item.lightImg:item.blackImg}}"
         data-index="{{index}}" catchtap='starClick2'></image>
     </view>
     <view class='star-desc'>{{starDesc2}}</view>
@@ -53,14 +154,15 @@
   <view class='assess-star'>
     <view class="text-left">服务态度</view>
     <view class='star-wrap'>
-      <image class='star-item' wx:for="{{stars3}}" wx:key="index"
-        src="{{item.flag==1?item.lightImg:item.blackImg}}"
+      <image class='star-item' wx:for="{{stars3}}" wx:key="index" src="{{item.flag==1?item.lightImg:item.blackImg}}"
         data-index="{{index}}" catchtap='starClick3'></image>
     </view>
     <view class='star-desc'>{{starDesc3}}</view>
   </view>
   <view class="content">
-    <textarea fixed="true" bindinput="bindcontext" placeholder="感觉怎么样？跟大家分享一下吧~" value="{{content}}" adjust-position="false"></textarea>
+    <textarea fixed="true" bindinput="bindcontext" placeholder="感觉怎么样？跟大家分享一下吧~" value="{{content}}"
+      adjust-position="false" maxlength="200"></textarea>
     <view class="textnum"><text>{{content.length}}</text>/200</view>
   </view>
 </view>
+<view class="marker" bindtap="bindonFn" wx:if="{{marker}}"></view>

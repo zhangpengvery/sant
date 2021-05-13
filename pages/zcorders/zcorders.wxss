@@ -1,5 +1,4 @@
 /* pages/zcorders/zcorders.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background: #f4f4f4;
 }

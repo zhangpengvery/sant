@@ -1,5 +1,4 @@
 /* pages/joinsant/joinsant.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   height: 100%;
 }

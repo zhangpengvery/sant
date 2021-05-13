@@ -44,13 +44,14 @@
 <view class="user">
   <view class="user-box">
     <view class="user-name">姓名</view>
-    <input type="text" bindinput="bindname" placeholder="请输入" />
+    <input type="text" disabled="{{getInfo.days==0?true:false}}" bindinput="bindname" placeholder="请输入" />
   </view>
   <view class="user-box">
     <view class="user-name">手机号</view>
-    <input type="number" maxlength="11" bindinput="bindpho" placeholder="请输入" />
+    <input type="number" disabled="{{getInfo.days==0?true:false}}" maxlength="11" bindinput="bindpho" placeholder="请输入" />
   </view>
-  <view class="baoming" bindtap="bindbao">我要报名</view>
+  <view wx:if="{{getInfo.days>0}}" class="baoming" bindtap="bindbao">我要报名</view>
+  <view wx:else class="baoming baoming2">活动已到期</view>
 </view>
 <view class="dizhi">
   <view class="dizhi-box">

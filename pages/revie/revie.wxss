@@ -1,5 +1,4 @@
 /* pages/revie/revie.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background: #f6f6f6;
 }

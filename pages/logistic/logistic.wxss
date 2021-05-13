@@ -1,5 +1,4 @@
 /* pages/logistic/logistic.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   height: 100%;
 }

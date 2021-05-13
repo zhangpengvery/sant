@@ -1,6 +1,5 @@
 <!--pages/maintain/maintain.wxml-->
-<navbar params="{{params}}" />
-<view class="header-img" style="margin-top:{{navH}}rpx">
+<view class="header-img">
   <image src="https://www.jbccs.com/Public/Wap/image/by-banner.png"></image>
 </view>
 <view class="title">
@@ -49,4 +48,3 @@
 </view>
 <view class="lxdh">联系电话：400 900 7819</view>
 <view class="ljzf" bindtap="ljzfFn">立即支付</view>
-

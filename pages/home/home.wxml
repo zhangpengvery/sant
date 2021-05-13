@@ -10,16 +10,19 @@
   <swiper class="header" indicator-dots="true" autoplay="true" style="" indicator-color="rgba(255, 255, 255)"
     indicator-active-color="#C47C00" circular="true">
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-04-01/6065a28104fdf.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-05-12/609b20dc5c6bd.png"></image>
     </swiper-item>
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-04-01/6065a284b2fae.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-05-13/609cbe5ea4e45.png"></image>
     </swiper-item>
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-04-01/6065a2dbcbf84.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-05-12/609b210c42ee6.png"></image>
     </swiper-item>
     <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-03-31/606452c211da7.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-05-12/609b211576583.png"></image>
+    </swiper-item>
+    <swiper-item bindtap="bindMain">
+      <image src="https://jbccs.com/./Upload/image/2021-05-13/609cc62887fc5.png"></image>
     </swiper-item>
   </swiper>
   <!-- 小图标 -->

@@ -1,5 +1,4 @@
 /* pages/history/history.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .mapbox{
   position: relative;
   overflow: hidden;

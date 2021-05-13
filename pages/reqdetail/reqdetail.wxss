@@ -1,5 +1,4 @@
 /* pages/reqdetail/reqdetail.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .content{
   width: 94%;
   margin: 0 3%;
@@ -112,10 +111,8 @@
   margin-top: 10rpx ;
 }
 .user-img{
-  position: relative;
-  width: 80rpx;
-  height: 22rpx;
-  margin-top: 20rpx;
+  width: 100rpx;
+  height: 46rpx;
 }
 .user-img .vip-text{
   position: absolute;

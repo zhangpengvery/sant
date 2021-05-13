@@ -1,5 +1,4 @@
 /* pages/confirmed/confirmed.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background: #f6f6f6;
 }

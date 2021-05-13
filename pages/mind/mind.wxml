@@ -17,13 +17,15 @@
     <navigator url="/pages/setting/setting">
       <view class="iconfont icon-shezhi shezhi"></view>
     </navigator>
-    <view class="vip">
-      <image src="/assets/images/ptvip.png"></image>
-      <text>V1普通会员</text>
+    <view class="vip" wx:if="{{user.user_level<6}}">
+      <image mode="aspectFit" src="/assets/images/V1.png"></image>
     </view>
-    <!-- <view class="jdt-img">
-      <image src="/assets/images/jdt.png"></image>
-    </view> -->
+    <view class="vip" wx:if="{{user.user_level>=6&user.user_level<=12}}">
+      <image mode="aspectFit" src="/assets/images/V2.png"></image>
+    </view>
+    <view class="vip" wx:if="{{user.user_level>12}}">
+      <image mode="aspectFit" src="/assets/images/V3.png"></image>
+    </view>
   </view>
   <view class="mindbody">
     <view class="fater">

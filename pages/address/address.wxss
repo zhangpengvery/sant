@@ -1,5 +1,4 @@
 /* pages/address/address.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .content{
   width: 94%;
   height: auto;

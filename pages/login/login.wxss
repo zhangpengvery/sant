@@ -1,5 +1,4 @@
 /* pages/login/login.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .header{
   margin-left: 3%;
   color: #333;

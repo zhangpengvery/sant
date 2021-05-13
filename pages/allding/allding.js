@@ -6,11 +6,27 @@ let{
 Page({
 
   /**
-   * 页面的初始数据
+   * 页面的初始数据0 全部 1进行中 2完成 
    */
   data: {
+    tabNavlists:[
+    {
+       id:0,
+      title:"全部"
+    },{
+      id:1,
+      title:"处理中"
+    },{
+      id:2,
+      title:"已完成"
+    }],
+    page:1,
+    currentIndex:0,
+    scrollH:0,
+    type:0,
     List:[],
     repairList:[],
+    triggered:false,
     footerbtm:-650,
     starDesc: '待评价',
     starDesc2: '待评价',
@@ -22,6 +38,7 @@ Page({
     uid:0,
     index:0,
     repair_id:0,
+    marker:false,
     stars: [{
       lightImg: '/assets/images/xuanzxin.png',
       blackImg: '/assets/images/morenxin.png',
@@ -147,20 +164,94 @@ Page({
       fen:5
     }],
   },
-  async getRepairList() {
+  changeTab:function(e){
     var that=this
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairList")
     this.setData({
-      List:result.data.datas
+      currentIndex:e.detail.current,
+      page:1,
+      type:e.detail.current
+    },function(){
+      if(that.data.currentIndex==0){
+        that.getRepairList2(1,0)
+      }else if(that.data.currentIndex==1){
+        that.getRepairList2(1,1)
+      }else if(that.data.currentIndex==2){
+        that.getRepairList2(1,2)
+      }
+    })
+  },
+  changeSwiper:function(e){
+    this.setData({
+      currentIndex:e.currentTarget.dataset.current
+    })
+  },
+  async getRepairList(page,type) {
+    var that=this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairList",{
+      page:page,
+      type:type
+    })
+    console.log(result.data.datas);
+    this.setData({
+      List:this.data.List.concat(result.data.datas)
     }, function () {
       that.setData({
         repairList:that.getTimeFn()
       })
     })
   },
+  async getRepairList2(page,type) {
+    var that=this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairList",{
+      page:page,
+      type:type
+    })
+    console.log(result.data.datas);
+    this.setData({
+      List:result.data.datas,
+      triggered:false
+    }, function () {
+      that.setData({
+        repairList:that.getTimeFn()
+      })
+    })
+  },
+  cancleservice(id){
+    requestApi1(app.globalData.post_url+"/index.php/Api/Map/cancle_service",{
+      id:id
+    }).then(res=>{
+      if(res.data.datas==1){
+        if(this.data.currentIndex==0){
+          this.getRepairList2(1,0)
+        }else if(this.data.currentIndex==1){
+          this.getRepairList2(1,1)
+        }else if(this.data.currentIndex==2){
+          this.getRepairList2(1,2)
+        }
+        wx.showToast({
+          title: '取消成功',
+        })
+      }else{
+        wx.showToast({
+          icon:'none',
+          title: '取消失败',
+        })
+      }
+    })
+  },
+  bindquxiao:function(e){
+    var that = this
+    wx.showModal({
+      content: '是否取消订单',
+      success(res) {
+        if (res.confirm) {
+          that.cancleservice(e.currentTarget.dataset.id)
+        }
+      }
+    })
+  },
   getTimeFn() {
     let repairList = [];
-    console.log(this.data.List);
     for (let item of this.data.List){
       let getrepair=this.createList(item);
       repairList.push(getrepair)
@@ -261,10 +352,14 @@ Page({
       uid:e.currentTarget.dataset.user_id,
       footerbtm:0,
       index:e.currentTarget.dataset.index,
-      repair_id:e.currentTarget.dataset.repair_id
+      repair_id:e.currentTarget.dataset.repair_id,
+      marker:true
     })
   },
   Mapstar(star_o,star_t,star_th,uid,content,repair_id){
+    wx.showLoading({
+      title: '提交中...',
+    })
     requestApi1(app.globalData.post_url+"/index.php/Api/Map/star",{
       star_o:star_o,
       star_t:star_t,
@@ -273,10 +368,35 @@ Page({
       content:content,
       repair_id:repair_id
     }).then(res=>{
-      wx.showToast({
-        title: '评价成功',
-      })
       console.log(res);
+      if(res.data.datas==1){
+        if(this.data.currentIndex==0){
+          this.getRepairList2(1,0)
+        }else if(this.data.currentIndex==1){
+          this.getRepairList2(1,1)
+        }else if(this.data.currentIndex==2){
+          this.getRepairList2(1,2)
+        }
+        this.setData({
+          footerbtm:-650,
+          stars:this.data.stars4,
+          stars2:this.data.stars4,
+          stars3:this.data.stars4,
+          content:"",
+          starDesc:"待评价",
+          starDesc2:"待评价",
+          starDesc3:"待评价",
+          marker:false
+        })
+        wx.showToast({
+          title: '评价成功',
+        })
+      }else{
+        wx.showToast({
+          icon:'none',
+          title: '评价失败',
+        })
+      }
     })
   },
   bindgotj:function(){
@@ -295,37 +415,37 @@ Page({
         icon:'none',
         title: '请点击评价',
       })
-    }else if(this.data.content==""){
-      wx.showToast({
-        icon:'none',
-        title: '请填写评价',
-      })
     }else{
-      var index=this.data.index
-      var list =this.data.repairList
-      list[index].s_status=1
-      this.setData({
-        repairList:list,
-        footerbtm:-650,
-        stars:this.data.stars4,
-        stars2:this.data.stars4,
-        stars3:this.data.stars4,
-        content:"",
-        starDesc:"待评价",
-        starDesc2:"待评价",
-        starDesc3:"待评价"
-      })
       this.Mapstar(this.data.star_o,this.data.star_t,this.data.star_th,this.data.uid,this.data.content,this.data.repair_id)
     }
   },
   bindonFn:function(){
     this.setData({
-      footerbtm:-650
+      footerbtm:-650,
+      marker:false
     })
   },
   Mapdel(id){
     requestApi1(app.globalData.post_url+"/index.php/Api/Map/del",{
       id:id
+    }).then(res=>{
+      if(res.data.datas==1){
+        if (this.data.currentIndex==0) {
+          this.getRepairList2(1,0)
+        } else if(this.data.currentIndex==1) {
+          this.getRepairList2(1,1)
+        }else if(this.data.currentIndex==2){
+          this.getRepairList2(1,2)
+        }
+        wx.showToast({
+          title: '删除成功',
+        })
+      }else{
+        wx.showToast({
+          icon:'none',
+          title: '删除失败',
+        })
+      }
     })
   },
   binddalFn:function(e){
@@ -346,12 +466,45 @@ Page({
       }
     })
   },
+  bindxianq:function(e){
+    console.log(e.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '/pages/warranty/warranty?id='+e.currentTarget.dataset.id,
+    })
+  },
+  refresherFn:function(){
+    var that=this
+    this.setData({
+      page:1
+    },function(){
+      if (that.data.currentIndex==0) {
+        that.getRepairList2(1,0)
+      } else if(that.data.currentIndex==1) {
+        that.getRepairList2(1,1)
+      }else if(that.data.currentIndex==2){
+        that.getRepairList2(1,2)
+      }
+    })
+  },
+  loadMore(){
+    this.setData({
+      page:++this.data.page
+    })
+    this.getRepairList(this.data.page,this.data.type)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getRepairList()
+    this.getRepairList(this.data.page,this.data.type)
     // this.formatDate()
+    wx.getSystemInfo({
+      success: (result) => {
+         this.setData({
+          scrollH:result.windowHeight*(750/result.windowWidth)-100
+         })
+      },
+    })
   },
 
   /**

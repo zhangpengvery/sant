@@ -1,5 +1,4 @@
 /* pages/search/search.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .nav-fater{
   position: relative;
   width: 100%;

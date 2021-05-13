@@ -1,5 +1,4 @@
 /* pages/verifica/verifica.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .header{
   width: 92%;
   margin: 0 4%;

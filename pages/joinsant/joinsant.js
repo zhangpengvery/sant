@@ -334,9 +334,6 @@ Page({
     wx.reLaunch({
       url: '/pages/home/home',
     })
-    wx.showTabBar({
-      animation: true,
-    })
   },
   //判断是销售还是金融专业
   async getUserInfo() {

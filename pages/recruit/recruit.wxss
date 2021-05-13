@@ -1,5 +1,4 @@
 /* pages/recruit/recruit.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .header{
   position: relative;
   width: 40%;

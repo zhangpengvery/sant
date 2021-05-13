@@ -1,5 +1,4 @@
 /* pages/mind/mind.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .mind-navimg{
   position: fixed;
   top: 0;
@@ -45,10 +44,10 @@
 }
 .vip{
   position: absolute;
-  top: 40rpx;
+  top: 50rpx;
   left: 116rpx;
-  width: 80rpx;
-  height: 22rpx;
+  width: 100rpx;
+  height: 46rpx;
 }
 .vip image{
   width: 100%;

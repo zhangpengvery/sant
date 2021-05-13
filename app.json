@@ -1,6 +1,11 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/services/services",
+    "pages/allding/allding",
+    "pages/pushbx/pushbx",
+    "pages/ganhuo/ganhuo",
+    "pages/warranty/warranty",
     "pages/signin/signin",
     "pages/lookwl/lookwl",
     "pages/payment/payment",
@@ -27,7 +32,6 @@
     "pages/alldetail/alldetail",
     "pages/survey/survey",
     "pages/survey2/survey2",
-    "pages/allding/allding",
     "pages/counter/counter",
     "pages/myrevie/myrevie",
     "pages/xgrevie/xgrevie",
@@ -96,7 +100,6 @@
     "pages/saledetail/saledetail",
     "pages/verifica/verifica",
     "pages/index/index",
-    "pages/logs/logs",
     "pages/gzhgo/gzhgo"
   ],
   "window":{

@@ -1,5 +1,4 @@
 /* pages/stordetail/stordetail.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .header-img{
   width: 100%;
   height: 526rpx;

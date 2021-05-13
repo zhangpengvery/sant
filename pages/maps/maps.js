@@ -49,15 +49,7 @@ Page({
     starpageY: 0,
     chenpageY: 0,
     service_uid: 0,
-    //倒计时
-    hr: 0,
-    min: 0,
-    sec: 0,
-    end: 0,
-    userNo: false,
-    userOrder: true,
     service: 0,
-    seractive: 1,
     timer: '',
     typefwz: 2,
     liandian: 0,
@@ -99,7 +91,6 @@ Page({
             scrH: 1080,
             boxH: 720,
             scrY: true,
-            // showGao: true
           })
         } else if (sliding < -30) {
           var hig=this.data.winH-280
@@ -115,7 +106,6 @@ Page({
             scrH: 540,
             boxH: 180,
             scrY: false,
-            // showGao: false
           })
         }
       } else if (that.data.scrH == 280) {
@@ -211,9 +201,13 @@ Page({
       wx.navigateTo({
         url: '/pages/login/login',
       })
-    } else {
-      this.setData({
-        active: 2
+    } else if(this.data.service==1){
+      wx.navigateTo({
+        url: '/pages/services/services',
+      })
+    }else if(this.data.service==0){
+      wx.navigateTo({
+        url: '/pages/allding/allding',
       })
     }
   },
@@ -224,68 +218,8 @@ Page({
         url: '/pages/login/login',
       })
     } else {
-      this.setData({
-        service_uid: e.currentTarget.dataset.service_uid
-      })
-      this.checkRepair()
-    }
-  },
-  //一键报修
-  postRepair(service_uid) {
-    var that = this
-    requestApi1(app.globalData.post_url + "/index.php/Api/Map/repair", {
-      service_uid: service_uid
-    }).then(res => {
-      this.setData({
-        active: 2,
-        userOrder: true
-      }, function () {
-        that.getRepairInfo()
-      })
-      console.log(res);
-    })
-  },
-  checkRepair() {
-    requestApi1(app.globalData.post_url + "/index.php/Api/Map/checkRepair").then(res => {
-      if (res.data.code == 400) {
-        wx.showToast({
-          icon: 'error',
-          title: '有未完成的报修',
-        })
-        this.setData({
-          active: 2
-        })
-      } else {
-        this.postRepair(this.data.service_uid)
-      }
-    })
-  },
-  //获取当前订单
-  async getRepairInfo() {
-    var that = this
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairInfo")
-    if (result.data.hours >= 2 && result.data.status != -1) {
-      this.setData({
-        userNo: true
-      })
-    }
-    if (result.data.code == 400) {
-      this.setData({
-        userOrder: false
-      })
-    }
-    this.setData({
-      broList: result.data,
-      end: result.data.create_time
-    }, function () {
-      that.countdown()
-    })
-  },
-  async getRepairInfo2() {
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getRepairInfo")
-    if (result.data.hours >= 2 && result.data.status != -1) {
-      this.setData({
-        userNo: true
+      wx.navigateTo({
+        url: '/pages/pushbx/pushbx?service_uid='+e.currentTarget.dataset.service_uid+"&user_name="+e.currentTarget.dataset.name,
       })
     }
   },
@@ -576,6 +510,7 @@ Page({
         this.setData({
           repairList2: this.data.repairList2.concat(res.data.datas)
         })
+        console.log(res);
       }
     })
   },
@@ -584,7 +519,7 @@ Page({
       this.setData({
         page: ++this.data.page
       })
-      this.repairFn2(this.data.page,this.data.longitude,this.data.latitude,this.data.typefwz)
+      this.repairFn2(this.data.page,this.data.latitude,this.data.longitude,this.data.typefwz)
     }
   },
   bindgoDitu: function (e) {
@@ -610,132 +545,17 @@ Page({
       url: '/pages/home/home',
     })
   },
-  //设定倒计时
-  countdown() {
-    if (this.data.broList.status == 2 || this.data.getServiceInfo.status == 2) {
-      this.setData({
-        hr: "已",
-        min: "完",
-        sec: "成",
-      })
-      return
-    }
-    var end_time = this.data.end * 1000 + 7200000;
-    var msec = end_time - Date.parse(new Date());
-    if (msec > 0) {
-      let hr = parseInt((msec / 1000 / 60 / 60) % 24);
-      let min = parseInt((msec / 1000 / 60) % 60);
-      let sec = parseInt((msec / 1000) % 60);
-      this.hr = hr > 9 ? hr : "0" + hr;
-      this.min = min > 9 ? min : "0" + min;
-      this.sec = sec > 9 ? sec : "0" + sec;
-      const that = this;
-      setTimeout(function () {
-        that.countdown();
-      }, 1000);
-      this.setData({
-        hr: this.hr,
-        min: this.min,
-        sec: this.sec,
-      })
-    } else {
-      this.setData({
-        hr: "已",
-        min: "超",
-        sec: "时",
-      })
-      this.getRepairInfo2()
-    }
-  },
-  cancleService(id) {
-    requestApi1(app.globalData.post_url + "/index.php/Api/Map/cancle_service", {
-      id: id
-    }).then(res => {
-      wx.showToast({
-        title: '取消订单成功',
-      })
-      this.setData({
-        userNo: false,
-        userOrder: false
-      })
-      console.log(res);
-    })
-  },
   //判断是工作人员还是用户
   async getUserInfo() {
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
     this.setData({
       service: result.data.datas.user_info.user_is_service
     })
-    console.log(this.data.service);
-    if (result.data.datas.user_info.user_is_service == 0) {
-      this.getRepairInfo()
-    } else if (result.data.datas.user_info.user_is_service == 1) {
-      this.getServiceInfo()
-    }
-  },
-  bindNoFn: function (e) {
-    console.log(e.currentTarget.dataset.id);
-    var that = this
-    wx.showModal({
-      content: '是否取消订单',
-      success(res) {
-        if (res.confirm) {
-          that.cancleService(e.currentTarget.dataset.id)
-        }
-      }
-    })
-  },
-  bindSerFn: function () {
-    this.setData({
-      seractive: 1
-    })
-  },
-  bindSerFn2: function () {
-    this.setData({
-      seractive: 2
-    })
   },
   binduserPho: function (e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.pho,
     })
-  },
-  //服务人员当前订单
-  async getServiceInfo() {
-    var that = this
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Map/getServiceInfo")
-    this.setData({
-      getServiceInfo: result.data,
-      end: result.data.create_time
-    }, function () {
-      that.countdown()
-    })
-    console.log(this.data.getServiceInfo);
-  },
-  confirmService(id) {
-    requestApi1(app.globalData.post_url + "/index.php/Api/Map/confirmService", {
-      id: id
-    }).then(res => {
-      this.getServiceInfo()
-      console.log(res);
-    })
-  },
-  bindTaking: function (e) {
-    this.confirmService(e.currentTarget.dataset.id)
-  },
-  //用户确认完成
-  confirmFuwu(id) {
-    requestApi1(app.globalData.post_url + "/index.php/Api/Map/confirmFuwu", {
-      id: id
-    }).then(res => {
-      console.log(res);
-      this.getRepairInfo()
-    })
-  },
-  //用户点击完成
-  bindComplete: function (e) {
-    this.confirmFuwu(e.currentTarget.dataset.id)
   },
   //定时刷新计时器
   startSetInter: function () {
@@ -751,12 +571,6 @@ Page({
   endInter: function () {
     var that = this;
     clearInterval(that.data.timer)
-  },
-  //用户全部订单
-  bindAllddFn: function () {
-    wx.navigateTo({
-      url: '/pages/allding/allding',
-    })
   },
   bindmapjia: function () {
     if (this.data.showFwz == true) {
@@ -835,29 +649,18 @@ Page({
       })
     }
   },
+  binddingw:function(e){
+    this.setData({
+      latitude:e.currentTarget.dataset.lat,
+      longitude:e.currentTarget.dataset.lng
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getUserInfo()
     var that = this
-    wx.getLocation({
-      type: 'gcj02',
-      success: (res) => {
-        var lat = "points[" + 0 + "].latitude"
-        var lon = "points[" + 0 + "].longitude"
-        const latitude = res.latitude
-        const longitude = res.longitude
-        this.setData({
-          latitude: latitude,
-          longitude: longitude,
-          [lat]: latitude,
-          [lon]: longitude
-        }, function () {
-          that.userListFn()
-        })
-      }
-    })
     wx.getSystemInfo({
       success: (result) => {
         let clientHeight = result.windowHeight;
@@ -883,6 +686,29 @@ Page({
    */
   onShow: function () {
     var that = this
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+        var lat = "points[" + 0 + "].latitude"
+        var lon = "points[" + 0 + "].longitude"
+        const latitude = res.latitude
+        const longitude = res.longitude
+        this.setData({
+          active:1,
+          latitude: latitude,
+          longitude: longitude,
+          [lat]: latitude,
+          [lon]: longitude
+        }, function () {
+          that.userListFn()
+        })
+      },
+      fail:(res)=>{
+        this.setData({
+          active:2
+        })
+      }
+    })
     wx.startLocationUpdate({
       success: (res) => {
         wx.onLocationChange((res) => {

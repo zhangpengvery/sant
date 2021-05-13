@@ -1,0 +1,127 @@
+<!--pages/services/services.wxml-->
+<view class="header">
+  <block wx:for="{{tabNavlists}}" wx:key="index">
+    <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
+      {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
+    </view>
+  </block>
+</view>
+<swiper bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
+  <swiper-item>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:for="{{repairList}}" wx:key="index">
+        <view class="list">
+          <view class="user-con" bindtap="bindxianq" data-id="{{item.id}}">
+            <view class="user">
+              <view class="user-img">
+                <image mode="aspectFill" src="{{item.avator}}"></image>
+              </view>
+              <view class="user-xx">
+                <view class="user-name">{{item.user_name}}</view>
+              </view>
+            </view>
+            <view class="goging" catchtap="catgodizi">
+              <view class="gogingleft">
+                <view class="iconfont icon-mendian-dianhua icon"> <text catchtap="bindPho"
+                    data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
+                </view>
+              </view>
+              <view class="juli">订单号：{{item.order_id}}</view>
+              <view class="juli">{{item.create_time}}</view>
+            </view>
+            <view class="user-pho" catchtap="bindgodizhi" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-address="{{item.address}}">
+              <text class="iconfont icon-lijichufa mapgo-icon"></text>
+              <text class="text-margin">立即出发</text>
+            </view>
+            <view class="iconfont icon-lajitong shanchu" data-id="{{item.id}}" catchtap="binddalFn"></view>
+            <view class="junin">{{item.juli}}km</view>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==0}}" src="/assets/images/jinxingyz.png">进行中</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==1}}" src="/assets/images/jinxingyz.png">进行中</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==2}}" src="/assets/images/wanchengyz.png">已完成</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==3}}" src="/assets/images/chaoshiyz.png">已超时</image>
+          </view>
+        </view>
+      </block>
+      <view class="wushujucs" wx:if="{{repairList.length==0}}">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:for="{{repairList}}" wx:key="index">
+        <view class="list">
+          <view class="user-con" bindtap="bindxianq" data-id="{{item.id}}">
+            <view class="user">
+              <view class="user-img">
+                <image mode="aspectFill" src="{{item.avator}}"></image>
+              </view>
+              <view class="user-xx">
+                <view class="user-name">{{item.user_name}}</view>
+              </view>
+            </view>
+            <view class="goging">
+              <view class="gogingleft">
+                <view class="iconfont icon-mendian-dianhua icon"> <text catchtap="bindPho"
+                    data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
+                </view>
+              </view>
+              <view class="juli">订单号：{{item.order_id}}</view>
+              <view class="juli">{{item.create_time}}</view>
+            </view>
+            <view class="user-pho" catchtap="bindgodizhi" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-address="{{item.address}}">
+              <text class="iconfont icon-lijichufa mapgo-icon"></text>
+              <text class="text-margin">立即出发</text>
+            </view>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==0}}" src="/assets/images/jinxingyz.png">进行中</image>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==1}}" src="/assets/images/jinxingyz.png">进行中</image>
+          </view>
+        </view>
+      </block>
+      <view class="wushujucs" wx:if="{{repairList.length==0}}">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:for="{{repairList}}" wx:key="index">
+        <view class="list">
+          <view class="user-con" bindtap="bindxianq" data-id="{{item.id}}">
+            <view class="user">
+              <view class="user-img">
+                <image mode="aspectFill" src="{{item.avator}}"></image>
+              </view>
+              <view class="user-xx">
+                <view class="user-name">{{item.user_name}}</view>
+              </view>
+            </view>
+            <view class="goging">
+              <view class="gogingleft">
+                <view class="iconfont icon-mendian-dianhua icon">   <text catchtap="bindPho" data-pho="{{item.user_mobile}}" style="color:#F9B236">{{item.user_mobile}}</text>
+                </view>
+              </view>
+              <view class="juli">订单号：{{item.order_id}}</view>
+              <view class="juli">{{item.create_time}}</view>
+            </view>
+            <view class="iconfont icon-lajitong shanchu" data-id="{{item.id}}" catchtap="binddalFn"></view>
+            <view class="user-pho" catchtap="bindPho" data-pho="{{item.user_mobile}}">拨打电话</view>
+            <image class="status" mode="aspectFit" wx:if="{{item.status==2}}" src="/assets/images/wanchengyz.png">已完成</image>
+          </view>
+        </view>
+      </block>
+      <view class="wushujucs" wx:if="{{repairList.length==0}}">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

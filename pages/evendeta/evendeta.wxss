@@ -1,5 +1,4 @@
 /* pages/evendeta/evendeta.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background: #F6F6F6;
 }
@@ -120,6 +119,9 @@ page{
   font-size: 34rpx;
   line-height: 90rpx;
   text-align: center;
+}
+.baoming2{
+  background: #444443;
 }
 .dizhi{
   width: 92%;

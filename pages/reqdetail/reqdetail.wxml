@@ -21,8 +21,11 @@
       </view>
       <view class="user-zl">
         <view class="user-name">{{getSaleInfo.contact_name}}</view>
-        <image src="/assets/images/ptvip.png" class="user-img">
-          <text class="vip-text">v1 普通会员</text>
+        <image wx:if="{{getSaleInfo.user_level<6}}" src="/assets/images/V1.png" class="user-img">
+        </image>
+        <image wx:if="{{getSaleInfo.user_level>=6&getSaleInfo.user_level<=12}}" src="/assets/images/V2.png" class="user-img">
+        </image>
+        <image wx:if="{{getSaleInfo.user_level>12}}" src="/assets/images/V3.png" class="user-img">
         </image>
       </view>
     </view>

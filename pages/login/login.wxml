@@ -1,6 +1,5 @@
 <!--pages/login/login.wxml-->
-<navbar params="{{params}}" />
-<view class="header" style="margin-top:{{navH}}rpx">
+<view class="header">
   <text>请输入您的手机号</text>
 </view>
 <view class="content">

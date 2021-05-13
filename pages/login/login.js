@@ -6,22 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params: {
-      showBack: true,
-      navTitle: true,
-      navInput: false,
-      r: 255,
-      g: 255,
-      b: 255,
-      w: 20,
-      l: 20,
-      fz: 32,
-      fw: "",
-      col: "#000",
-      navColor: 1,
-      title: "三泰之家"
-    },
-    navH: 0,
     mobile: "",
     dian: false,
     btn: false,
@@ -132,14 +116,6 @@ Page({
           console.log('登录失败！' + res.errMsg)
         }
       }
-    })
-    wx.getSystemInfo({
-      success: (result) => {
-        this.setData({
-          widH: result.windowHeight - app.globalData.navbarHeight,
-          navH: app.globalData.navbarHeight
-        })
-      },
     })
   },
   /**

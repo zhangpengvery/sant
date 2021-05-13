@@ -1,0 +1,16 @@
+<!--pages/pushbx/pushbx.wxml-->
+<view class="header-box">
+  <view class="box">
+    <view class="box-title">服务人员</view>
+    <view class="box-inp">
+      <input type="text" disabled="true" value="{{name}}" />
+    </view>
+  </view>
+  <view class="box2">
+    <view class="box-title">具体问题</view>
+    <view class="box-inp3">
+      <textarea type="text" class="da-inp" bindinput="bindaddress" placeholder="200字以内" maxlength="200" />
+    </view>
+  </view>
+</view>
+<view class="ljfb" bindtap="bddhFn">提交</view>

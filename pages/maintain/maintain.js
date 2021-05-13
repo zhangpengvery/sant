@@ -9,22 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    params:{
-      showBack:true,
-      navTitle:true,
-      navInput:false,
-      navAddress:false,
-      r:255,
-      g:255,
-      b:255,
-      l:50,
-      fz:34,
-      fw:"bold",
-      navColor:1,
-      col:"#000",
-      title:"我要保养"
-    },
-    navH:0,
     maintain:1,
     realname:"",
     mobile:0
@@ -126,13 +110,6 @@ Page({
   onLoad: function (options) {
     this.setData({
       maintain:options.id
-    })
-    wx.getSystemInfo({
-      success: (result) => {
-         this.setData({
-          navH:app.globalData.navbarHeight
-         })
-      },
     })
   },
 

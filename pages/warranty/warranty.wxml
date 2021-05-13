@@ -1,0 +1,259 @@
+<!--pages/warranty/warranty.wxml-->
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" refresher-enabled="true" bindrefresherrefresh="refresherFn"
+  refresher-triggered="{{triggered}}">
+  <view class="order-content">
+    <view class="con-top">服务倒计时</view>
+    <view class="time-w">
+      <text class="time">{{hr}}</text>
+      <text class="time1">:</text>
+      <text class="time">{{min}}</text>
+      <text class="time1">:</text>
+      <text class="time">{{sec}}</text>
+    </view>
+    <view class="order-footer">
+      <view class="footer-box {{broList.status>=0?'okactive':''}}">
+        <view class="iconfont icon-fuwu"></view>
+        <view>待接单</view>
+      </view>
+      <view class="iconfont icon-taishifuwu-jiantou jiant2 {{broList.status>=1?'okactive':''}}"></view>
+      <view class="footer-box {{broList.status>=1?'okactive':''}}">
+        <view class="iconfont icon-taishifuwu-jinhangzhong-moren "></view>
+        <view>进行中</view>
+      </view>
+      <view class="iconfont icon-taishifuwu-jiantou jiant2 {{broList.status==2?'okactive':''}}"></view>
+      <view class="footer-box {{broList.status==2?'okactive':''}}">
+        <view class="iconfont icon-zujian202"></view>
+        <view>已完成</view>
+      </view>
+    </view>
+    <view class="user-con">
+      <view class="user">
+        <view class="user-img">
+          <image mode="aspectFill" src="{{broList.avator}}"></image>
+        </view>
+        <view class="user-xx">
+          <view class="user-name">{{broList.user_name}}</view>
+          <view class="user-pj">5.0分 ★ ★ ★ ★ ★</view>
+        </view>
+        <!-- <view class="juli">距您{{distance}}km</view> -->
+      </view>
+      <view class="goging">
+        <view class="gogingleft">
+          <view class="iconfont icon-mendian-dianhua icon"> <text style="color:#F9B236">{{broList.user_mobile}}</text>
+          </view>
+        </view>
+        <view class="juli">{{time}}</view>
+      </view>
+      <view class="user-pho" catchtap="bindPho" data-pho="{{broList.user_id}}">拨打电话</view>
+      <view class="user-pho" wx:if="{{broList.status==2&&broList.star==null}}" style="right:180rpx" catchtap="bindpinjFn">评价</view>
+    </view>
+  </view>
+  <view class="qrwc" bindtap="bindwanc" wx:if="{{broList.status==1}}">确认完成</view>
+  <view class="footer" wx:if="{{starlist!=null}}">
+    <view class="header-foot">
+      <view class="fbpj">评价</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_o==1}}">
+      <view class="text-left">服务质量</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>非常差</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_t==1}}">
+      <view class="text-left">服务及时性</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>非常差</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_th==1}}">
+      <view class="text-left">服务态度</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>非常差</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_o==2}}">
+      <view class="text-left">服务质量</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>较差</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_t==2}}">
+      <view class="text-left">服务及时性</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>较差</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_th==2}}">
+      <view class="text-left">服务态度</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>较差</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_o==3}}">
+      <view class="text-left">服务质量</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>一般</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_t==3}}">
+      <view class="text-left">服务及时性</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>一般</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_th==3}}">
+      <view class="text-left">服务态度</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>一般</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_o==4}}">
+      <view class="text-left">服务质量</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>好</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_t==4}}">
+      <view class="text-left">服务及时性</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>好</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_th==4}}">
+      <view class="text-left">服务态度</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/morenxin.png"></image>
+      </view>
+      <view class='star-desc'>好</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_o==5}}">
+      <view class="text-left">服务质量</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+      </view>
+      <view class='star-desc'>非常好</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_t==5}}">
+      <view class="text-left">服务及时性</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+      </view>
+      <view class='star-desc'>非常好</view>
+    </view>
+    <view class='assess-star' wx:if="{{starlist.star_th==5}}">
+      <view class="text-left">服务态度</view>
+      <view class='star-wrap'>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+        <image class='star-item' src="/assets/images/xuanzxin.png"></image>
+      </view>
+      <view class='star-desc'>非常好</view>
+    </view>
+    <view class="content">{{starlist.content}}</view>
+  </view>
+</scroll-view>
+<view class="footer2" style="bottom:{{footerbtm}}rpx">
+  <view class="header-foot">
+    <view class="fbpj">发表评价</view>
+    <view class="tjiao" bindtap="bindgotj">提交</view>
+  </view>
+  <view class='assess-star'>
+    <view class="text-left">服务质量</view>
+    <view class='star-wrap'>
+      <image class='star-item' wx:for="{{stars}}" wx:key="index" src="{{item.flag==1?item.lightImg:item.blackImg}}"
+        data-index="{{index}}" catchtap='starClick'></image>
+    </view>
+    <view class='star-desc'>{{starDesc}}</view>
+  </view>
+  <view class='assess-star'>
+    <view class="text-left">服务及时性</view>
+    <view class='star-wrap'>
+      <image class='star-item' wx:for="{{stars2}}" wx:key="index" src="{{item.flag==1?item.lightImg:item.blackImg}}"
+        data-index="{{index}}" catchtap='starClick2'></image>
+    </view>
+    <view class='star-desc'>{{starDesc2}}</view>
+  </view>
+  <view class='assess-star'>
+    <view class="text-left">服务态度</view>
+    <view class='star-wrap'>
+      <image class='star-item' wx:for="{{stars3}}" wx:key="index" src="{{item.flag==1?item.lightImg:item.blackImg}}"
+        data-index="{{index}}" catchtap='starClick3'></image>
+    </view>
+    <view class='star-desc'>{{starDesc3}}</view>
+  </view>
+  <view class="content">
+    <textarea fixed="true" bindinput="bindcontext" placeholder="感觉怎么样？跟大家分享一下吧~" value="{{content}}"
+      adjust-position="false" maxlength="200"></textarea>
+    <view class="textnum"><text>{{content.length}}</text>/200</view>
+  </view>
+</view>
+<view class="marker" bindtap="bindonFn" wx:if="{{marker}}"></view>

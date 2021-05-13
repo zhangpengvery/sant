@@ -1,5 +1,4 @@
 /* pages/join/join.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .header-img{
   width: 100%;
   height: 312rpx;

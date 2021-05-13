@@ -1,5 +1,4 @@
 /* pages/second/second.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background: #F6F6F6;
 }

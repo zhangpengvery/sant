@@ -1,5 +1,4 @@
 /* pages/allries/allries.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .aui-content{
   display: flex;
   width: 100%;

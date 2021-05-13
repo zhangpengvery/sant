@@ -22,6 +22,7 @@ Page({
     latitude:0,
     longitude:0,
     dixian:false,
+    user:[]
   },
   bindtab:function(e){
     this.setData({
@@ -30,7 +31,7 @@ Page({
   },
   bindmysign:function(){
     wx.navigateTo({
-      url: '/pages/mysign/mysign',
+      url: '/pages/mysign/mysign?user_id='+this.data.user.user_id,
     })
   },
   loadMore() {
@@ -73,6 +74,13 @@ Page({
       total_nums:result.data.datas.total_nums
     })
     console.log(result.data.datas);
+  },
+  async getUserInfo() {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
+    this.setData({
+      user: result.data.datas.user_info,
+    })
+    console.log(this.data.user);
   },
   async getMarkList2(mark_date,page) {
     let result = await requestApi(app.globalData.post_url + "/index.php/api/mark/getMarkList",{
@@ -132,6 +140,7 @@ Page({
     this.getMarkList(this.data.date,this.data.page)
     this.getFailLists(this.data.date)
     this.gitdate()
+    this.getUserInfo()
     wx.getSystemInfo({
       success: (result) => {
         let clientHeight = result.windowHeight;

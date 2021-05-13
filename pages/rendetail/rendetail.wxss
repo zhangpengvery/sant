@@ -1,5 +1,4 @@
 /* pages/rendetail/rendetail.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .content{
   width: 94%;
   margin: 0 3%;
@@ -112,21 +111,13 @@
   margin-top: 10rpx ;
 }
 .content-user .user-zl .user-img{
-  position: relative;
-  width: 80rpx;
-  height: 22rpx;
+  width: 100rpx;
+  height: 46rpx;
   margin-bottom: 30rpx;
 }
 .content-user .user-zl .user-img image{
   width: 100%;
   height: 100%;
-}
-.content-user .user-zl .user-img .vip-text{
-  position: absolute;
-  top: 12rpx;
-  left: 4rpx;
-  font-size: 14rpx;
-  color: #fff;
 }
 .users-name{
   width: 94%;

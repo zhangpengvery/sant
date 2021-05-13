@@ -1,5 +1,4 @@
 /* pages/docum/docum.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .gclc-icon{
   display: flex;
   justify-content: space-between;

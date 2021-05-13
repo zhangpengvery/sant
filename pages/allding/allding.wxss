@@ -1,16 +1,47 @@
 /* pages/allding/allding.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background: #F9F9F9;
 }
+.header{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  line-height: 100rpx;
+  background: #fff;
+}
+.nav-box{
+  position: relative;
+  font-size: 28rpx;
+}
+.active{
+  color: #F9B236;
+}
+.nav-xian{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translate(-50%);
+  width: 28rpx;
+  height: 4rpx;
+}
+.bgactive{
+  background: #F9B236;
+}
+.list{
+  width: 94%;
+  margin: 0 3%;
+  overflow: hidden;
+}
 .user-con{
   position: relative;
-  width: 90%;
-  height: 170rpx;
+  width: 96%;
+  height: 180rpx;
   padding: 30rpx 2% 0 2%;
-  margin: 20rpx 3% 0 3%;
+  margin: 20rpx 0 0 0;
   background: #fff;
   border-radius: 20rpx;
+  overflow: hidden;
 }
 .user-con .user{
   position: relative;
@@ -39,15 +70,12 @@ page{
   color: #F9B236;
 }
 .juli{
-  position: absolute;
   color: #999;
   font-size: 20rpx;
-  right: 20rpx;
-  top: 10rpx;
+  margin-top: 10rpx;
 }
 .goging{
   margin-left: 100rpx;
-  display: flex;
 }
 .gogingleft{
   width: 330rpx;
@@ -63,7 +91,7 @@ page{
 .user-pho{
   position: absolute;
   bottom: 30rpx;
-  right: 150rpx;
+  right: 180rpx;
   width: 120rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -72,6 +100,21 @@ page{
   font-size: 20rpx;
   border-radius: 308rpx;
   text-align: center;
+  border: 1rpx solid #F9B236;
+}
+.quxiao{
+  position: absolute;
+  bottom: 30rpx;
+  right: 180rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #fff;
+  color: #aaaaaa;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+  border: 1rpx solid #aaaaaa;
 }
 .user-dal{
   position: absolute;
@@ -80,24 +123,18 @@ page{
   width: 120rpx;
   height: 50rpx;
   line-height: 50rpx;
-  background: red;
-  color: #fff;
+  color: #aaa;
   font-size: 20rpx;
   border-radius: 308rpx;
   text-align: center;
+  border: 1rpx solid #aaa;
 }
-.taking{
+.status{
   position: absolute;
-  bottom: 90rpx;
-  right: 20rpx;
-  width: 120rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  background: #F9B236;
-  color: #fff;
-  font-size: 20rpx;
-  border-radius: 308rpx;
-  text-align: center;
+  top: -12rpx;
+  right: -10rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 .footer{
   position: fixed;
@@ -109,6 +146,7 @@ page{
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
   border-radius: 20rpx 20rpx 0px 0px;
   transition: all ease 0.3s;
+  z-index: 20;
 }
 .header-foot{
   width: 100%;
@@ -177,7 +215,7 @@ page{
   color: #F9B236;
 }
 .wushujucs{
-  margin-top: 300rpx;
+  padding-top: 300rpx;
   width: 100%;
   text-align: center;
   font-size: 24rpx;
@@ -191,4 +229,13 @@ page{
 .wushu-img image{
   width: 100%;
   height: 100%;
+}
+.marker{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.6;
 }

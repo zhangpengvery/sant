@@ -1,5 +1,4 @@
 /* pages/signdet/signdet.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .map-box{
   position: relative;
 }

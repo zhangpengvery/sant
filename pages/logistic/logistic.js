@@ -289,9 +289,6 @@ Page({
     wx.reLaunch({
       url: '/pages/home/home',
     })
-    wx.showTabBar({
-      animation: true,
-    })
   },
   //设定倒计时
   countdown() {

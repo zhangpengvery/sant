@@ -1,5 +1,4 @@
 /* pages/survey2/survey2.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background: #F4F4F4;
 }

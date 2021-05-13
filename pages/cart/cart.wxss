@@ -1,5 +1,4 @@
 /* pages/cart/cart.wxss */
-@import "/assets/fonts/iconfont.wxss";
 page{
   background-color: #f4f4f4;
 }

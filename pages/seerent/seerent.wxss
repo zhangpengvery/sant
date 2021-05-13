@@ -1,5 +1,4 @@
 /* pages/seerent/seerent.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .content{
   width: 90%;
   margin: 0 5%;

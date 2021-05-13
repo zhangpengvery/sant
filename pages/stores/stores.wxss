@@ -1,5 +1,4 @@
 /* pages/stores/stores.wxss */
-@import "/assets/fonts/iconfont.wxss";
 .aui-content{
   display: flex;
   position: fixed;
