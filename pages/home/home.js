@@ -313,24 +313,20 @@ Page({
         let clientWidth = result.windowWidth;
         let ratio = 750 / clientWidth;
         let ScrH =clientHeight * ratio
+        this.setData({
+          winH:ScrH-app.globalData.navbarHeight
+        })
         if(scene==1047){
           this.setData({
-            winH:ScrH-app.globalData.navbarHeight-164,
             account:true
           })
         }else if(scene==1124){
           this.setData({
-            winH:ScrH-app.globalData.navbarHeight-164,
             account:true
           })
         }else if(scene==1038){
           this.setData({
-            winH:ScrH-app.globalData.navbarHeight-164,
             account:true
-          })
-        }else{
-          this.setData({
-            winH:ScrH-app.globalData.navbarHeight
           })
         }
       },

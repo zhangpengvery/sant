@@ -5,11 +5,11 @@
 </view>
 <view class="iconfont icon-ziyuan2 home" style="top:{{TopH}}px" bindtap="bindGohome">首页</view>
 <view class="mapbox" hover-class="none" wx:if="{{showFwz}}" style="width: 100%; height: {{mapH}}rpx;">
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" show-location="true"
+  <map id="map" longitude="{{longitude3}}" latitude="{{latitude3}}" markers="{{markers}}" show-location="true"
     style="width: 100%; height: {{mapH}}rpx;" bindmarkertap="markertap" scale="{{scale}}"></map>
 </view>
 <view class="mapbox" hover-class="none" wx:else style="width: 100%; height: {{mapH}}rpx;">
-  <map id="map2" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers2}}" scale="{{scale1}}" show-location="true"
+  <map id="map2" longitude="{{longitude3}}" latitude="{{latitude3}}" markers="{{markers2}}" scale="{{scale1}}" show-location="true"
     style="width: 100%; height: {{mapH}}rpx;" bindmarkertap="repairtap"></map>
 </view>
 <view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx">
@@ -106,7 +106,7 @@
     </block>
     <block wx:if="{{showBox==false&&boxH==720}}">
       <block wx:for="{{repairList2}}" wx:key="index">
-        <view class="box-con" bindtap="binddingw" data-lat="{{item.lat}}" data-lng="{{item.lng}}">
+        <view class="box-con" bindtap="binddingw" data-lat="{{item.shop_lat}}" data-lng="{{item.shop_lng}}">
         <view class="user">
           <view class="user-xx">
             <view class="user-name">{{item.shop_name}}</view>

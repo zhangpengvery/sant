@@ -19,7 +19,7 @@
   </view>
 </view>
 <!-- 职位选择 -->
-<view class="showjuli" wx:if="{{showzhiwei}}">
+<view class="showjuli" wx:if="{{showzhiwei}}" style="top:{{navH+128}}rpx">
   <view class="type-select {{typeCss==0?'type-xuanz':''}}" bindtap="typeFn" data-id="0">不限</view>
   <block wx:for="{{postTypeList}}" wx:key="index">
     <view class="type-select {{typeCss==item.jt_id?'type-xuanz':''}}" bindtap="typeFn" data-id="{{item.jt_id}}">
@@ -27,7 +27,7 @@
   </block>
 </view>
 <!-- 城市选择 -->
-<view class="showchengs" wx:if="{{showcity}}">
+<view class="showchengs" wx:if="{{showcity}}" style="top:{{navH+128}}rpx">
   <scroll-view scroll-y="true" style="height:260rpx;">
     <view class="showcity-box">
       <view class="city-select {{cityCss==0?'city-xuanz':''}}" data-id="0" bindtap="cityXuanzFn">全部</view>
@@ -39,7 +39,7 @@
   </scroll-view>
 </view>
 <!-- 要求选择 -->
-<view class="showyaoqiu" wx:if="{{showyaoqiu}}">
+<view class="showyaoqiu" wx:if="{{showyaoqiu}}" style="top:{{navH+128}}rpx">
   <view class="showyaoqiu-text">经验</view>
   <view class="showyaoqiu-fater">
     <view class="showyaoqiu-box {{exCss==0?'exxuanz':''}}" data-id="0" bindtap="excssFn">全部</view>

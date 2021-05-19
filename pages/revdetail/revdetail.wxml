@@ -6,9 +6,17 @@
       </view>
       <view class="user-zl">
         <view class="user-name">{{getInfo.user_name}}</view>
-        <view class="user-img">
-          <image src="/assets/images/ptvip.png"></image>
-          <text class="vip-text">v1普通会员</text>
+        <view class="user-img" wx:if="{{getInfo.user_level<6}}">
+          <image src="/assets/images/V1.png">
+          </image>
+        </view>
+        <view class="user-img" wx:if="{{getInfo.user_level>=6&getInfo.user_level<=12}}">
+          <image src="/assets/images/V2.png">
+          </image>
+        </view>
+        <view class="user-img" wx:if="{{getInfo.user_level>12}}">
+          <image src="/assets/images/V3.png">
+          </image>
         </view>
       </view>
     </view>

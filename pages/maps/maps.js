@@ -18,6 +18,8 @@ Page({
     latitude: 0,
     longitude2: 0,
     latitude2: 0,
+    longitude3: 0,
+    latitude3: 0,
     scrH: 540,
     boxH: 180,
     scrY: false,
@@ -604,8 +606,9 @@ Page({
     }
   },
   bindmaphao: function () {
+    const mpCtx = wx.createMapContext("map");
+    const mpCtx2 = wx.createMapContext("map2");
     if (this.data.showFwz == true) {
-      const mpCtx = wx.createMapContext("map");
       mpCtx.getScale({
         success:(res)=>{
           var scal=res.scale-1
@@ -619,7 +622,6 @@ Page({
         }
       });
     } else {
-      const mpCtx2 = wx.createMapContext("map2");
       mpCtx2.getScale({
         success:(res)=>{
           var scal=res.scale-1
@@ -635,15 +637,16 @@ Page({
     }
   },
   includePoints:function(){
-    this.mapCtx1 = wx.createMapContext("map");
-    this.mapCtx2 = wx.createMapContext("map2");
+    var that=this
+    const mapCtx1 = wx.createMapContext("map");
+    const mapCtx2 = wx.createMapContext("map2");
     if(this.data.showFwz){
-      this.mapCtx1.includePoints({
+      mapCtx1.includePoints({
         padding: [ 80,],
         points: this.data.points
       })
     }else{
-      this.mapCtx2.includePoints({
+      mapCtx2.includePoints({
         padding: [ 80,],
         points: this.data.points
       })
@@ -651,8 +654,8 @@ Page({
   },
   binddingw:function(e){
     this.setData({
-      latitude:e.currentTarget.dataset.lat,
-      longitude:e.currentTarget.dataset.lng
+      latitude3:e.currentTarget.dataset.lat,
+      longitude3:e.currentTarget.dataset.lng
     })
   },
   /**
@@ -680,6 +683,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成wgs84
    */
   onReady: function () {
+
   },
   /**
    * 生命周期函数--监听页面显示
@@ -698,7 +702,9 @@ Page({
           latitude: latitude,
           longitude: longitude,
           [lat]: latitude,
-          [lon]: longitude
+          [lon]: longitude,
+          latitude3:res.latitude,
+          longitude3:res.longitude
         }, function () {
           that.userListFn()
         })

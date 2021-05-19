@@ -53,6 +53,9 @@
             </view>
             <view class="db-time">{{item.time}}</view>
             <view class="db-address">提交 {{item.cityname}}-{{item.area_name}} 的车辆年审服务</view>
+            <view class="status" wx:if="{{item.status==0}}">审核中</view>
+            <view class="status" wx:if="{{item.status==1}}">审核通过</view>
+            <view class="status" wx:if="{{item.status==2}}">审核失败</view>
             <view class="delete" data-index="{{index}}" data-id="{{item.id}}" bindtap="deleteFn">删除</view>
             <navigator url="/pages/gxrevie/gxrevie?id={{item.id}}">
               <view class="editor">编辑</view>

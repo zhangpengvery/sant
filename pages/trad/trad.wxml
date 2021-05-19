@@ -15,7 +15,7 @@
   </view>
 </view>
 <!-- 价格车龄选择 -->
-<view class="showjuli" wx:if="{{showJuli}}">
+<view class="showjuli" wx:if="{{showJuli}}" style="top:{{navH+128}}rpx">
   <view class="{{jiageActtiv==0?'jiagecss':''}}" bindtap="juliFn" data-id="0">综合排序</view>
   <view class="{{jiageActtiv==1?'jiagecss':''}}" bindtap="juliFn2" data-id="1">价格由高到低</view>
   <view class="{{jiageActtiv==2?'jiagecss':''}}" bindtap="juliFn3" data-id="2">价格由低到高</view>
@@ -23,7 +23,7 @@
   <view class="{{jiageActtiv==4?'jiagecss':''}}" bindtap="juliFn5" data-id="4">车龄由低到高</view>
 </view>
 <!-- 车型选择 -->
-<view class="showchengs" wx:if="{{showcity}}">
+<view class="showchengs" wx:if="{{showcity}}" style="top:{{navH+128}}rpx">
   <scroll-view scroll-y="true" style="height:500rpx;">
     <view class="showyaoqiu-text">品牌</view>
     <view class="showyaoqiu-fater">

@@ -174,6 +174,7 @@ Page({
     var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
     var time=YY+MM+DD+"  "+hh+mm+ss
     let marker = {
+      status:point.status,
       image_url: point.image_url,
       id: point.id,
       user_name: point.user_name,

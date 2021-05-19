@@ -3,12 +3,15 @@
 <view class="home-navimg" hidden="{{hidden}}">
   <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
 </view>
-<official-account wx:if="{{account}}" style="position: fixed;bottom: -120rpx;left: 0;z-index: 10;width: 100%;height: 164rpx;"></official-account>
+
 <scroll-view scroll-y="true" style="height:{{winH}}rpx;margin-top:{{navH}}rpx" bindscrolltolower="loadMore"
   bindscroll="scrollPage" refresher-enabled="true" bindrefresherrefresh="refresherFn"
   refresher-triggered="{{triggered}}">
   <swiper class="header" indicator-dots="true" autoplay="true" style="" indicator-color="rgba(255, 255, 255)"
     indicator-active-color="#C47C00" circular="true">
+    <swiper-item bindtap="bindMain">
+      <image src="https://jbccs.com/./Upload/image/2021-05-13/609cc62887fc5.png"></image>
+    </swiper-item>
     <swiper-item>
       <image src="https://jbccs.com/./Upload/image/2021-05-12/609b20dc5c6bd.png"></image>
     </swiper-item>
@@ -20,9 +23,6 @@
     </swiper-item>
     <swiper-item>
       <image src="https://jbccs.com/./Upload/image/2021-05-12/609b211576583.png"></image>
-    </swiper-item>
-    <swiper-item bindtap="bindMain">
-      <image src="https://jbccs.com/./Upload/image/2021-05-13/609cc62887fc5.png"></image>
     </swiper-item>
   </swiper>
   <!-- 小图标 -->
@@ -39,6 +39,8 @@
     </block>
   </view>
   <view class="layer"></view>
+  <official-account wx:if="{{account}}" style="width: 100%;height: 164rpx;"></official-account>
+  <view class="layer" wx:if="{{account}}"></view>
   <!-- 保养服务 -->
   <view class="home-options">
     <view class="iconfont icon-lujing534" style="color:#3DB988"></view>
