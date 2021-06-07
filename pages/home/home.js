@@ -27,7 +27,6 @@ Page({
       title: "三泰之家"
     },
     navH: 0,
-    city: "",
     winH: 0,
     page: 1,
     user_id: 0,
@@ -40,6 +39,7 @@ Page({
     getSwiperImages: [],
     listData: [],
     getHotActivity:[],
+    getXcxSwiperImage:[],
     triggered:false,
     account:false
   },
@@ -51,7 +51,7 @@ Page({
       })
     } else {
       var index = e.currentTarget.dataset.index;
-      var listData = this.data.listData
+      var listData = this.data.listData;
       var sale_id = listData[index].sale_id;
       listData[index].favor_data = sale_id;
       this.setData({
@@ -72,19 +72,6 @@ Page({
     console.log(favor_id);
     this.deleteMyFavor(favor_id)
   },
-  //获取用户地址
-  getProvinceName(latitude, longitude) {
-    wx.request({
-      url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + ',' + longitude + '&key=ZXJBZ-3FVRP-6BYD2-VAAXH-5GHMS-LHFHR',
-      data: {},
-      success: (res) => {
-        // console.log(res)
-        this.setData({
-          city: res.data.result.address_component.city
-        })
-      },
-    })
-  },
   async getIndexIcons() {
     let result = await requestApi(app.globalData.base_url + "/getIndexIcons")
     this.setData({
@@ -95,6 +82,12 @@ Page({
     let result = await requestApi(app.globalData.base_url + "/getSwiperImages")
     this.setData({
       getSwiperImages: result.data.data.pj_list
+    })
+  },
+  async getXcxSwiperImage() {
+    let result = await requestApi(app.globalData.base_url + "/getXcxSwiperImage")
+    this.setData({
+      getXcxSwiperImage: result.data.data
     })
   },
   async getHotActivity() {
@@ -279,10 +272,12 @@ Page({
       }
     })
   },
-  bindMain:function(){
-    wx.navigateTo({
-      url: '/pages/maintain/maintain?id=1',
-    })
+  bindMain:function(e){
+    if(e.currentTarget.dataset.index==0){
+      wx.navigateTo({
+        url: '/pages/maintain/maintain?id=1',
+      })
+    }
   },
   bindMain2:function(){
     wx.navigateTo({
@@ -298,6 +293,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getXcxSwiperImage()
     console.log(app.globalData.scene);
     this.getHotActivity()
     this.setData({
@@ -336,18 +332,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let _this = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        // console.log(res)
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
-        _this.getProvinceName(latitude, longitude)
-      }
-    })
   },
 
   /**

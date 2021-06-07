@@ -76,7 +76,7 @@
     <view class="tabbar-text">商城</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
-    <image class="tabbar-gif" src="/assets/images/14.gif"></image>
+    <image class="tabbar-gif" src="https://jbccs.com/./Upload/image/2021-05-31/60b48bc7ddf22.gif"></image>
     <view class="tabbar-text">泰式服务</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">

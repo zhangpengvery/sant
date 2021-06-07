@@ -1,0 +1,62 @@
+<!--pages/contracts/contracts.wxml-->
+<view class="header">
+  <block wx:for="{{tabNavlists}}" wx:key="index">
+    <view class="nav-box {{currentIndex==index?'active':''}}" data-current="{{index}}" bindtap="changeSwiper">
+      {{item.title}}<view class="nav-xian {{currentIndex==index?'bgactive':''}}"></view>
+    </view>
+  </block>
+</view>
+<swiper class="swiper-order" bindchange="changeTab" current="{{currentIndex}}" style="height:{{scrH}}rpx">
+  <swiper-item catchtouchmove="stopChange">
+    <scroll-view scroll-y="true" style="height:{{scrH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:if="{{getNoSignLists.length>=1}}">
+        <block wx:for="{{markers}}" wx:key="index">
+          <view class="content">
+            <view class="box" bindtap="bindQuer" data-code="{{item.contractcode}}">
+              <view class="title">购销合同</view>
+              <view class="box-hao">订单编号：{{item.order_sn}}</view>
+              <view class="box-hao">{{item.good_name}}</view>
+              <view class="iconfont icon-shijian1 box-hao"> {{item.time}}</view>
+              <view class="huang" catchtap="bindqian" data-url="{{item.signurl}}">继续签署</view>
+              <view class="look">查看合同</view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item catchtouchmove="stopChange">
+    <scroll-view scroll-y="true" style="height:{{scrH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <block wx:if="{{getSignLists.length>=1}}">
+        <block wx:for="{{markers2}}" wx:key="index">
+          <view class="content">
+            <view class="box">
+              <view class="title">购销合同</view>
+              <view class="box-hao">订单编号：{{item.order_sn}}</view>
+              <view class="box-hao">{{item.good_name}}</view>
+              <view class="iconfont icon-shijian1 box-hao"> {{item.time}}</view>
+              <view class="huang" catchtap="bindqian" data-url="{{item.viewpdfurl}}">查看合同</view>
+              <view class="look" catchtap="guidang" data-code="{{item.contractcode}}" wx:if="{{item.status==2}}">归档</view>
+              <image mode="aspectFit" class="yinzhang" src="/assets/images/wanchengyz.png" wx:if="{{item.status==4}}"></image>
+              <image mode="aspectFit" class="yinzhang" src="/assets/images/jinxingyz.png" wx:if="{{item.status==2}}"></image>
+            </view>
+          </view>
+        </block>
+      </block>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="/assets/images/kong.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

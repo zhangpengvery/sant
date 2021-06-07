@@ -240,7 +240,7 @@
   margin: 30rpx 3% 0 3%;
   height: 445rpx;
   text-align: center;
-  background: #FFBA43;
+  background: #F9B236;
   border-radius: 20rpx;
 }
 .options-header{
@@ -317,14 +317,14 @@
   font-size: 26rpx;
   height: 45rpx;
   line-height: 45rpx;
-  background: #FFBA43;
+  background: #F9B236;
   border-radius: 4rpx;
 }
 .options-child .options-price::before {
   content: "￥";
   color: #D90F0F;
 }
- .options-child .options-rm{
+.options-child .options-rm{
   position: absolute;
   top: 0;
   left: 0;

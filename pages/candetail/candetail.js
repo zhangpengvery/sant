@@ -11,7 +11,8 @@ Page({
   data: {
     alltime:"",
     allDay:"",
-    getForInfo:[]
+    getForInfo:[],
+    name:""
   },
   bddhFn:function(e){
     wx.makePhoneCall({
@@ -31,7 +32,6 @@ Page({
     }
     this.setData({
       getForInfo:result.data.datas,
-      // getSaleList:result.data.data.new_3,
       alltime:result.data.datas.create_time
     },function(){
       that.formatDate()
@@ -39,6 +39,10 @@ Page({
     console.log(this.data.getForInfo);
   },
   formatDate() {
+    var xing =this.data.getForInfo.user_name[0]
+    for(var i=1;i<this.data.getForInfo.user_name.length;i++){
+      xing+='*'
+    }
     var date = new Date(Number(this.data.alltime)*1000);
     var YY = date.getFullYear() + '-';
     var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
@@ -47,7 +51,8 @@ Page({
     var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
     var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
     this.setData({
-      allDay:YY+MM+DD+"  "+hh+mm+ss
+      allDay:YY+MM+DD+"  "+hh+mm+ss,
+      name:xing
     })
   },
   /**

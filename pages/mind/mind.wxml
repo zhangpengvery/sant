@@ -68,6 +68,10 @@
           <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/job.png"></image>
           <view class="content-text">求职管理</view>
         </view>
+        <view class="content-img" data-url="/pages/contracts/contracts" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-06-04/60b9bcd61f249.png"></image>
+          <view class="content-text">合同管理</view>
+        </view>
       </view>
     </view>
     <view class="fater">
@@ -124,7 +128,7 @@
     <view class="tabbar-text">商城</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
-    <image class="tabbar-gif" src="/assets/images/14.gif"></image>
+    <image class="tabbar-gif" src="https://jbccs.com/./Upload/image/2021-05-31/60b48bc7ddf22.gif"></image>
     <view class="tabbar-text">泰式服务</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">

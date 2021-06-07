@@ -5,7 +5,7 @@
         <image src="{{getForInfo.avatar}}"></image>
       </view>
       <view class="user-zl">
-        <view class="user-name">{{getForInfo.user_name}}</view>
+        <view class="user-name">{{name}}</view>
         <view class="user-img" wx:if="{{getForInfo.user_level<6}}">
           <image src="/assets/images/V1.png">
           </image>
@@ -20,7 +20,6 @@
         </view>
       </view>
     </view>
-    <view class="users-name">姓名：{{getForInfo.user_name}}</view>
     <view class="users-name">手机：{{getForInfo.mobile}}</view>
     <view class="users-name">地址：{{getForInfo.province}}{{getForInfo.cityname}}{{getForInfo.area_name}}</view>
     <view class="users-name">发布时间：{{allDay}}</view>

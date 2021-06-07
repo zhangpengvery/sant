@@ -1,0 +1,19 @@
+<!--pages/signature/signature.wxml-->
+<view class="zhifu" wx:if="{{active==1}}">
+  <image class="zhifu-img" src="/assets/images/qianshuok.png"></image>
+  <view class="zhifu-text1">签署成功</view>
+  <view class="zhifu-text2">感谢您对我们的信任 我们将全心全意为您服务</view>
+  <view class="zhifu-box">
+    <view class="zhifu-luke" bindtap="See_download">查看合同</view>
+    <view class="zhifu-luke zhifugo" bindtap="zhifuFn">下载合同</view>
+  </view>
+</view>
+<view class="zhifu" wx:if="{{active==0}}">
+  <image class="zhifu-img" src="/assets/images/qianshuok.png"></image>
+  <view class="zhifu-text1">签署失败</view>
+  <view class="zhifu-text2">{{content}}</view>
+  <view class="zhifu-box">
+    <view class="zhifu-luke" bindtap="See_download">查看合同</view>
+    <view class="zhifu-luke zhifugo" bindtap="zhifuFn">去支付</view>
+  </view>
+</view>

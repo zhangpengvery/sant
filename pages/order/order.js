@@ -220,6 +220,7 @@ Page({
     requestApi1(app.globalData.post_url+"/index.php/Api/Order/deleteOrder",{
       order_sn:order_sn
     }).then(res=>{
+      this.getOrderList2(1,this.data.good_type)
     })
   },
   //确认收货

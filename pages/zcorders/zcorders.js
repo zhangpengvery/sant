@@ -20,6 +20,37 @@ Page({
     getPartsInfo:[],
     imageList:[],
   },
+  generateApi(realname,mobile,order_id,order_sn){
+    requestApi1(app.globalData.base_url+"/generate",{
+      realname:realname,
+      mobile:mobile,
+      order_id:order_id,
+      order_sn:order_sn
+    }).then(res=>{
+      if(res.statusCode==200){
+        wx.hideLoading()
+      }
+      if(res.data.code!=0){
+        wx.showToast({
+          icon:'none',
+          title: res.data.description,
+        })
+      }else{
+        wx.setStorage({
+          data: res.data.data.signUrl,
+          key: 'url',
+        })
+        wx.setStorage({
+          data: res.data.contractCode,
+          key: 'contractCode',
+        })
+        wx.navigateTo({
+          url: '/pages/gzhgo/gzhgo',
+        })
+      }
+      console.log(res);
+    })
+  },
   async getPartsInfo(good_id){
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Entire/getGoodInfo",{
       good_id:good_id
@@ -27,8 +58,8 @@ Page({
     this.setData({
       getPartsInfo:result.data.datas,
     })
-    console.log(this.data.getPartsInfo);
   },
+
   addOrder(person_type,realname,id_number,company,company_id,city,mobile,id){
     wx.showLoading({
       title: '加载中...',
@@ -43,39 +74,9 @@ Page({
       mobile:mobile,
       id:id
     }).then(res=>{
-      if(res.statusCode==200){
-        wx.hideLoading()
-      }
-      var  order_sn=res.data.more_sn
-      wx.request({
-        url: app.globalData.post_url+"/index.php/index/MiniPay/getPay",
-        method: "GET",
-        data: {
-          "open_id": wx.getStorageSync('openid'),
-          "order_sn": order_sn
-        },
-        header: {
-          "content-type": "application/json",
-          "XX-Token": wx.getStorageSync('token')
-        },
-        success: function (e) {
-          console.log(e.data.datas);
-          // 签权调起支付 
-          wx.requestPayment({
-            'timeStamp': e.data.datas.timeStamp,
-            'nonceStr': e.data.datas.nonceStr,
-            'package': e.data.datas.package,
-            'signType': e.data.datas.signType,
-            'paySign': e.data.datas.paySign,
-            'success': function (res) {
-              console.log(res, "成功")
-            },
-            'fail': function (res) {
-              console.log("支付失败", res)
-            },
-          })
-        }
-      })
+      // console.log(res);
+      
+      this.generateApi(this.data.realname,this.data.mobile,res.data.order_id,res.data.more_sn)
     })
   },
   gerenFn:function(){

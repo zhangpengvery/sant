@@ -237,7 +237,7 @@ Page({
   getLingyuanMarkers2() {
     let markers2 = [];
       for (let item of this.data.getForLists) {
-        let marker = this.createMarker(item);
+        let marker = this.createMarker2(item);
         markers2.push(marker)
       }
     return markers2;
@@ -262,6 +262,10 @@ Page({
     return marker;
   },
   createMarker2(point) {
+    var xing =point.user_name[0]
+    for(var i=1;i<point.user_name.length;i++){
+      xing+='*'
+    }
     var date = new Date(Number(point.create_time)*1000);
     var YY = date.getFullYear() + '-';
     var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
@@ -273,7 +277,7 @@ Page({
     let marker = {
       image_url: point.image_url,
       id: point.id,
-      user_name: point.user_name,
+      user_name: xing,
       time: time,
       cityname: point.cityname,
       area_name:point.area_name

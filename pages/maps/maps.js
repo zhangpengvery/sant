@@ -23,7 +23,7 @@ Page({
     scrH: 540,
     boxH: 180,
     scrY: false,
-    active: 1,
+    active: 2,
     name: "",
     shop_name: "",
     distance: 0,
@@ -33,10 +33,7 @@ Page({
     shop_tel: "",
     shop_lat: "",
     shop_lng: "",
-    text: "",
     shop_address: "",
-    is_pay: 0,
-    showGao: true,
     showFwz: true,
     showBox: true,
     scrslid: true,
@@ -66,15 +63,16 @@ Page({
     scale1:14
   },
   //1重汽2陕汽
-  scrTopFn: function (e) {
-    this.setData({
-      scrslid: true
-    })
-  },
-  scrBtnFn: function () {
-    this.setData({
-      scrslid: false
-    })
+  scrBtnFn: function (e) {
+    if (e.detail.scrollTop > 30) {
+      this.setData({
+        scrslid:false
+      })
+    } else if(e.detail.scrollTop<30){
+      this.setData({
+        scrslid: true
+      })
+    }
   },
   bindstartFn: function (e) {
     this.setData({
@@ -128,14 +126,12 @@ Page({
         scrH: 1080,
         boxH: 720,
         scrY: true,
-        showGao: true,
       })
     } else if (this.data.scrH == 1080) {
       this.setData({
         scrH: 540,
         boxH: 180,
         scrY: false,
-        showGao: false,
       })
     } else if (this.data.scrH == 280) {
       var hig=this.data.winH-540
@@ -191,11 +187,6 @@ Page({
       type: 2
     })
     this.userListFn()
-  },
-  bindCygn: function () {
-    this.setData({
-      active: 1,
-    })
   },
   //订单管理点击
   bindDdgl: function () {
@@ -269,7 +260,7 @@ Page({
     let latitude = point.lat;
     let longitude = point.lng;
     let marker = {
-      iconPath: point.id == 0 ? "/assets/images/xg-quan.png" : "/assets/images/xg-on.png",
+      iconPath: point.id == 0 ? "https://jbccs.com/./Upload/image/2021-05-31/60b48a3d9b37c.png" : "https://jbccs.com/./Upload/image/2021-05-31/60b48b792b043.png",
       id: point.id || 0,
       latitude: latitude,
       longitude: longitude,
@@ -308,48 +299,34 @@ Page({
     return marker;
   },
   markertap: function (e) {
-    if (e.type == "markertap") {
-      var id = e.detail.markerId
-      var name = this.data.userList[id].user_name;
-      var distance = this.data.userList[id].distance;
-      var avator = this.data.userList[id].avator;
-      var user_mobile = this.data.userList[id].user_mobile;
-      var service_uid = this.data.userList[id].user_id
-      this.setData({
-        scrH: 540,
-        name: name,
-        distance: distance,
-        avator: avator,
-        user_mobile: user_mobile,
-        service_uid: service_uid
-      })
-    }
+    var id = e.detail.markerId
+    this.setData({
+      scrH: 540,
+      name: this.data.userList[id].user_name,
+      distance: this.data.userList[id].distance,
+      avator: this.data.userList[id].avator,
+      user_mobile: this.data.userList[id].user_mobile,
+      service_uid: this.data.userList[id].user_id
+    })
   },
   //服务站地图点击
   repairtap: function (e) {
     console.log(e.detail.markerId);
     var id = e.detail.markerId
-    var fwdistance = this.data.repairList[id].distance;
-    var shop_name = this.data.repairList[id].shop_name;
-    var shop_tel = this.data.repairList[id].shop_tel;
-    var shop_address = this.data.repairList[id].shop_address;
-    var shop_lat = this.data.repairList[id].shop_lat;
-    var shop_lng = this.data.repairList[id].shop_lng;
     this.setData({
       scrH: 540,
-      fwdistance: fwdistance,
-      shop_name: shop_name,
-      shop_tel: shop_tel,
-      shop_address: shop_address,
-      shop_lng: shop_lng,
-      shop_lat: shop_lat
+      fwdistance: this.data.repairList[id].distance,
+      shop_name: this.data.repairList[id].shop_name,
+      shop_tel: this.data.repairList[id].shop_tel,
+      shop_address: this.data.repairList[id].shop_address,
+      shop_lat: this.data.repairList[id].shop_lat,
+      shop_lng: this.data.repairList[id].shop_lng
     })
   },
   bindFwz: function () {
     var that = this
     this.setData({
       page:1,
-      showGao: false,
       showBox: false,
       showFwz: false,
       typefwz: 2,
@@ -364,7 +341,6 @@ Page({
     var that = this
     this.setData({
       page:1,
-      showGao: false,
       showBox: false,
       showFwz: false,
       typefwz: 1,
@@ -406,8 +382,6 @@ Page({
           distance: res.data.datas.user_list[0].distance,
           avator: res.data.datas.user_list[0].avator,
           user_mobile: res.data.datas.user_list[0].user_mobile,
-          text: res.data.datas.user_list[0].text,
-          is_pay: res.data.datas.user_list[0].is_pay,
           service_uid: res.data.datas.user_list[0].user_id,
           [lat2]:Number(res.data.datas.user_list[0].lat),
           [lng2]:Number(res.data.datas.user_list[0].lng),
@@ -658,12 +632,47 @@ Page({
       longitude3:e.currentTarget.dataset.lng
     })
   },
+  weizhi:function(){
+    var that = this
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+        var lat = "points[" + 0 + "].latitude"
+        var lon = "points[" + 0 + "].longitude"
+        this.setData({
+          active:1,
+          latitude: res.latitude,
+          longitude: res.longitude,
+          [lat]: res.latitude,
+          [lon]: res.longitude,
+          latitude3:res.latitude,
+          longitude3:res.longitude
+        }, function () {
+          that.userListFn()
+        })
+      },
+      fail:(res)=>{
+        wx.getSystemInfo({
+          success: (res) => {
+            if(res.locationEnabled){
+              this.setData({
+                active:3
+              })
+            }else{
+              this.setData({
+                active:2
+              })
+            }
+          },
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getUserInfo()
-    var that = this
     wx.getSystemInfo({
       success: (result) => {
         let clientHeight = result.windowHeight;
@@ -689,32 +698,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this
-    wx.getLocation({
-      type: 'gcj02',
-      success: (res) => {
-        var lat = "points[" + 0 + "].latitude"
-        var lon = "points[" + 0 + "].longitude"
-        const latitude = res.latitude
-        const longitude = res.longitude
-        this.setData({
-          active:1,
-          latitude: latitude,
-          longitude: longitude,
-          [lat]: latitude,
-          [lon]: longitude,
-          latitude3:res.latitude,
-          longitude3:res.longitude
-        }, function () {
-          that.userListFn()
-        })
-      },
-      fail:(res)=>{
-        this.setData({
-          active:2
-        })
-      }
-    })
+    this.weizhi()
     wx.startLocationUpdate({
       success: (res) => {
         wx.onLocationChange((res) => {

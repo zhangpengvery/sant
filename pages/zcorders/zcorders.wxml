@@ -26,7 +26,7 @@
   <view class="box" wx:if="{{person_type==1}}">
     <view class="box-title">证件号码</view>
     <view class="box-inp">
-      <input type="text" bindinput="bindname2" placeholder="请输入证件号码" />
+      <input type="idcard" bindinput="bindname2" placeholder="请输入证件号码" />
     </view>
   </view>
   <view class="box" wx:if="{{person_type==2}}">
@@ -50,7 +50,7 @@
   <view class="box">
     <view class="box-title">联系电话</view>
     <view class="box-inp">
-      <input type="text" bindinput="bindname4" placeholder="请输入联系电话" />
+      <input type="number" bindinput="bindname4" placeholder="请输入联系电话" />
     </view>
   </view>
 </view>
@@ -66,5 +66,5 @@
   <view class="footer-lfet">
     <view class="money">合计：<text>￥5000.00</text></view>
   </view>
-  <view class="gobuy" bindtap="gobuyFn">结算</view>
+  <view class="gobuy" bindtap="gobuyFn">签订合同</view>
 </view>

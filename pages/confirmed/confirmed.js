@@ -65,7 +65,7 @@ Page({
   },
   //点击-号
   jianCartNum(e) {
-    var index = e.currentTarget.dataset.index
+    var index = e.currentTarget.dataset.index;
     console.log(index);
     var preOrder = this.data.preOrder;
     var num = preOrder[index].num;

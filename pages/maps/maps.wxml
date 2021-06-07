@@ -28,8 +28,7 @@
     </view>
   </view>
   <view class="text">已为您匹配距离最近的服务管家</view>
-  <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" binddragging="scrTopFn"
-    bindscroll="scrBtnFn" bindscrolltolower="loadMore">
+  <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" bindscroll="scrBtnFn" bindscrolltolower="loadMore">
     <block wx:if="{{showBox==true&&boxH==720}}">
       <block wx:for="{{userList}}" wx:key="index">
         <view class="box-con" bindtap="binddingw" data-lat="{{item.lat}}" data-lng="{{item.lng}}">
@@ -52,8 +51,7 @@
               </view>
             </view>
           </view>
-          <view class="user-pho" data-pay="{{is_pay}}" catchtap="bindPho" data-pho="{{item.user_mobile}}">{{item.text}}
-          </view>
+          <view class="user-pho" catchtap="bindPho" data-pho="{{item.user_mobile}}">拨打电话</view>
           <view wx:if="{{type==1}}" data-service_uid="{{item.user_id}}" data-name="{{item.name}}" catchtap="bindYjbx" class="user-bx">一键报修</view>
         </view>
       </block>
@@ -79,7 +77,7 @@
             </view>
           </view>
         </view>
-        <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
+        <view class="user-pho" bindtap="bindPho" data-pho="{{user_mobile}}">拨打电话</view>
         <view wx:if="{{type==1}}" data-service_uid="{{service_uid}}" data-name="{{name}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
       </view>
     </block>
@@ -138,9 +136,14 @@
   <view class="iconfont icon-zu1665 yjbx " bindtap="bindDdgl"> 订单管理
   </view>
 </view>
-<view class="dingwei" wx:if="{{active==2}}">
-  <view class="dingwei-tit">请打开GPS或设置定位权限</view>
-  <view class="dingwei-box">
+<view class="dingwei" wx:if="{{active==2||active==3}}">
+  <view class="dingwei-tit" wx:if="{{active==2}}">请打开GPS后刷新</view>
+  <view class="dingwei-tit" wx:else>请设置定位权限</view>
+  <view class="dingwei-box" wx:if="{{active==2}}">
+    <view class="dingwei-left" bindtap="bindGohome">不打开</view>
+    <button class="dingweibtn" bindtap="weizhi" style="width:50%">刷新</button>
+  </view>
+  <view class="dingwei-box" wx:else>
     <view class="dingwei-left" bindtap="bindGohome">不设置</view>
     <button class="dingweibtn" open-type="openSetting" style="width:50%">去设置</button>
   </view>

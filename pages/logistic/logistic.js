@@ -180,7 +180,7 @@ Page({
     let latitude = point.lat;
     let longitude = point.lng;
     let marker = {
-      iconPath: "/assets/images/new_driver.png",
+      iconPath: "https://jbccs.com/./Upload/image/2021-05-31/60b48aed9f91e.png",
       id: point.id || 0,
       latitude: latitude,
       longitude: longitude,

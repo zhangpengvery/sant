@@ -3,27 +3,16 @@
 <view class="home-navimg" hidden="{{hidden}}">
   <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
 </view>
-
 <scroll-view scroll-y="true" style="height:{{winH}}rpx;margin-top:{{navH}}rpx" bindscrolltolower="loadMore"
   bindscroll="scrollPage" refresher-enabled="true" bindrefresherrefresh="refresherFn"
   refresher-triggered="{{triggered}}">
   <swiper class="header" indicator-dots="true" autoplay="true" style="" indicator-color="rgba(255, 255, 255)"
     indicator-active-color="#C47C00" circular="true">
-    <swiper-item bindtap="bindMain">
-      <image src="https://jbccs.com/./Upload/image/2021-05-13/609cc62887fc5.png"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-05-12/609b20dc5c6bd.png"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-05-13/609cbe5ea4e45.png"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-05-12/609b210c42ee6.png"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="https://jbccs.com/./Upload/image/2021-05-12/609b211576583.png"></image>
-    </swiper-item>
+    <block wx:for="{{getXcxSwiperImage}}" wx:key="index">
+      <swiper-item data-index="{{index}}" bindtap="bindMain">
+        <image src="{{getXcxSwiperImage[index]}}"></image>
+      </swiper-item>
+    </block>
   </swiper>
   <!-- 小图标 -->
   <view class="icon-fater">
@@ -197,7 +186,7 @@
     <view class="tabbar-text">商城</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
-    <image class="tabbar-gif" src="/assets/images/14.gif"></image>
+    <image class="tabbar-gif" src="https://jbccs.com/./Upload/image/2021-05-31/60b48bc7ddf22.gif"></image>
     <view class="tabbar-text">泰式服务</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">

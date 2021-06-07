@@ -13,8 +13,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      webSrc:options.url
+      webSrc:wx.getStorageSync('url')
     })
+    console.log(wx.getStorageSync('url'));
   },
 
   /**

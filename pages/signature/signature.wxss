@@ -1,0 +1,51 @@
+/* pages/signature/signature.wxss */
+.wanok-img{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 550rpx;
+  height: 800rpx;
+}
+.zhifu{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  padding: 0 10%;
+  background: #fff;
+  z-index: 1000;
+  text-align: center;
+}
+.zhifu-img{
+  width: 130rpx;
+  height: 120rpx;
+  margin: 30rpx auto;
+}
+.zhifu-text1{
+  font-size: 36rpx;
+  color: #F9B236;
+}
+.zhifu-text2{
+  font-size: 24rpx;
+  margin: 20rpx 0 50rpx 0;
+}
+.zhifu-box{
+  font-size: 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.zhifu-luke{
+  width: 240rpx;
+  height: 80rpx;
+  border-radius: 60rpx;
+  border: 2rpx solid #F9B236;
+  line-height: 80rpx;
+  color: #F9B236;
+}
+.zhifugo{
+  background: #F9B236;
+  color: #fff;
+}
