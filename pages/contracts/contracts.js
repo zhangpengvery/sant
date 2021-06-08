@@ -138,7 +138,9 @@ Page({
       contractcode: point.contractcode,
       time: time,
       signurl: point.signurl,
-      order_sn:point.order_sn
+      order_sn:point.order_sn,
+      status:point.status,
+      remark:point.remark
     };
     return marker;
   },

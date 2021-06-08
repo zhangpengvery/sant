@@ -1,22 +1,16 @@
 /* pages/signature/signature.wxss */
 .wanok-img{
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 550rpx;
   height: 800rpx;
 }
 .zhifu{
-  position: fixed;
   display: flex;
   flex-direction: column;
   top: 0;
   left: 0;
   width: 80%;
-  height: 100%;
   padding: 0 10%;
   background: #fff;
-  z-index: 1000;
   text-align: center;
 }
 .zhifu-img{
@@ -48,4 +42,42 @@
 .zhifugo{
   background: #F9B236;
   color: #fff;
+}
+.caopei{
+  position: fixed;
+  z-index: 30;
+  width: 80%;
+  height: 740rpx;
+  margin: 0 10%;
+  border-radius: 20rpx;
+  background: #fff;
+  top: 50%;
+  margin-top: -370rpx;
+  text-align: center;
+}
+.caopei-img{
+  width: 100%;
+  height: 420rpx;
+}
+.caopei-text{
+  margin: 40rpx 0 60rpx 0;
+}
+.lianjie{
+  width: 240rpx;
+  height: 60rpx;
+  border-radius: 40rpx;
+  background: #F9B236;
+  color: #fff;
+  line-height: 60rpx;
+  margin: 0 auto;
+}
+.marker{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 10;
+  opacity: 0.7;
 }

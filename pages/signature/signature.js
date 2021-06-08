@@ -12,6 +12,8 @@ Page({
 		active:1,
 		content:"",
 		pngurl:"",
+		caopei:false,
+		marker:false
 	},
 	//回签
 	autoSignApi(contractCode){
@@ -70,6 +72,45 @@ Page({
 					}
 				})
 			}
+		})
+	},
+	caoploadApi(){
+		wx.showLoading({
+			title: '复制中...',
+		})
+		requestApi1(app.globalData.base_url+"/download",{
+			contractCode:wx.getStorageSync('contractCode')
+		}).then(res=>{
+			console.log(res);
+			if(res.data.code==0){
+				wx.setClipboardData({
+					data: res.data.data.downloadUrl,
+					success: function (res) {
+						wx.showToast({
+							title: '复制成功',
+						});
+					},
+					fail(res){
+						wx.showToast({
+							icon:'error',
+							title: '复制失败',
+						})
+					}
+				});
+			}
+		})
+	},
+	//复制链接
+	zhifuFn:function(){
+		this.setData({
+			caopei:true,
+			marker:true
+		})
+	},
+	showmark:function(){
+		this.setData({
+			caopei:false,
+			marker:false
 		})
 	},
 	/**

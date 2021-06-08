@@ -79,6 +79,20 @@ page{
   font-size: 20rpx;
   border: 2rpx solid #FBB637;
 }
+.juqian{
+	width: 52%;
+	font-size: 20rpx;
+	position: absolute;
+	bottom: 24rpx;
+	right: 40rpx;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
 .wushujucs{
   padding-top: 300rpx;
   width: 100%;

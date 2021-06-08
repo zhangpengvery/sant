@@ -10,10 +10,16 @@
 </view>
 <view class="zhifu" wx:if="{{active==0}}">
   <image class="zhifu-img" src="/assets/images/qianshuok.png"></image>
-  <view class="zhifu-text1">签署失败</view>
+  <view class="zhifu-text1">归档失败</view>
   <view class="zhifu-text2">{{content}}</view>
   <view class="zhifu-box">
     <view class="zhifu-luke" bindtap="See_download">查看合同</view>
-    <view class="zhifu-luke zhifugo" bindtap="zhifuFn">去支付</view>
+    <view class="zhifu-luke zhifugo" bindtap="zhifuFn">下载合同</view>
   </view>
 </view>
+<view class="caopei" wx:if="{{caopei}}">
+  <image class="caopei-img" src="https://jbccs.com/./Upload/image/2021-06-08/60bf1bf534f09.png"></image>
+  <view class="caopei-text">复制链接在【浏览器】打开下载</view>
+  <view class="lianjie" bindtap="caoploadApi">复制链接</view>
+</view>
+<view class="marker" bindtap="showmark" wx:if="{{marker}}"></view>
