@@ -4,32 +4,14 @@
   <image class="jiajian-box" src="/assets/images/jianhao.png" bindtap="bindmaphao"></image>
 </view>
 <view class="iconfont icon-ziyuan2 home" style="top:{{TopH}}px" bindtap="bindGohome">首页</view>
-<view class="mapbox" hover-class="none" wx:if="{{showFwz}}" style="width: 100%; height: {{mapH}}rpx;">
+<view class="mapbox" hover-class="none" style="width: 100%; height: {{mapH}}rpx;">
   <map id="map" longitude="{{longitude3}}" latitude="{{latitude3}}" markers="{{markers}}" show-location="true"
     style="width: 100%; height: {{mapH}}rpx;" bindmarkertap="markertap" scale="{{scale}}"></map>
 </view>
-<view class="mapbox" hover-class="none" wx:else style="width: 100%; height: {{mapH}}rpx;">
-  <map id="map2" longitude="{{longitude3}}" latitude="{{latitude3}}" markers="{{markers2}}" scale="{{scale1}}" show-location="true"
-    style="width: 100%; height: {{mapH}}rpx;" bindmarkertap="repairtap"></map>
-</view>
 <view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx">
-  <view class="gclc-icon">
-    <view class="icon-left" catchtap="bindFwz">
-      <view class="iconfont icon-zu1889 yuan yuan4"></view>
-      <view class="xiandan">陕汽服务站</view>
-    </view>
-    <view class="icon-left" catchtap="bindFwgj">
-      <view class="iconfont icon-fuwuguanjia3 yuan yuan1"></view>
-      <view class="xiandan">服务管家</view>
-    </view>
-    <view class="icon-left" catchtap="bindFwzzq">
-      <view class="iconfont icon-zu1888 yuan yuan5"></view>
-      <view class="xiandan">重汽服务站</view>
-    </view>
-  </view>
   <view class="text">已为您匹配距离最近的服务管家</view>
   <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" bindscroll="scrBtnFn" bindscrolltolower="loadMore">
-    <block wx:if="{{showBox==true&&boxH==720}}">
+    <block wx:if="{{boxH==720}}">
       <block wx:for="{{userList}}" wx:key="index">
         <view class="box-con" bindtap="binddingw" data-lat="{{item.lat}}" data-lng="{{item.lng}}">
           <view class="user">
@@ -56,7 +38,7 @@
         </view>
       </block>
     </block>
-    <block wx:elif="{{showBox==true&&boxH==180}}">
+    <block wx:elif="{{boxH==180}}">
       <view class="box-con">
         <view class="user">
           <view class="user-img">
@@ -80,49 +62,6 @@
         <view class="user-pho" bindtap="bindPho" data-pho="{{user_mobile}}">拨打电话</view>
         <view wx:if="{{type==1}}" data-service_uid="{{service_uid}}" data-name="{{name}}" bindtap="bindYjbx" class="user-bx">一键报修</view>
       </view>
-    </block>
-    <block wx:elif="{{showBox==false&&boxH==180}}">
-      <view class="box-con">
-        <view class="user">
-          <view class="user-xx">
-            <view class="user-name">{{shop_name}}</view>
-            <view class="user-pj"></view>
-          </view>
-          <view class="juli">距您{{fwdistance}}km</view>
-        </view>
-        <view class="gofwz">
-          <view class="iconfont icon-mendian-dianhua icon"> <text data-pay="1" data-pho="{{shop_tel}}" bindtap="bindPho"
-              style="color:#F9B236">{{shop_tel}}</text>
-          </view>
-          <view class="iconfont icon-mendian-dizhi icon">
-            <text style="color:#F9B236">{{shop_address}}</text>
-          </view>
-        </view>
-        <view bindtap="bindgoDitu" data-name="{{shop_name}}" data-address="{{shop_address}}" data-lat="{{shop_lat}}"
-          data-lng="{{shop_lng}}" class="iconfont icon-mendian-lijichufa user-pho"> 路线</view>
-      </view>
-    </block>
-    <block wx:if="{{showBox==false&&boxH==720}}">
-      <block wx:for="{{repairList2}}" wx:key="index">
-        <view class="box-con" bindtap="binddingw" data-lat="{{item.shop_lat}}" data-lng="{{item.shop_lng}}">
-        <view class="user">
-          <view class="user-xx">
-            <view class="user-name">{{item.shop_name}}</view>
-            <view class="user-pj"></view>
-          </view>
-          <view class="juli">距您{{item.distance}}km</view>
-        </view>
-        <view class="gofwz">
-          <view class="iconfont icon-mendian-dianhua icon"> <text data-pay="1" data-pho="{{shop_tel}}" catchtap="bindPho" style="color:#F9B236">{{item.shop_tel}}</text>
-          </view>
-          <view class="iconfont icon-mendian-dizhi icon">
-            <text style="color:#F9B236">{{item.shop_address}}</text>
-          </view>
-        </view>
-        <view catchtap="bindgoDitu" data-name="{{item.shop_name}}" data-address="{{item.shop_address}}" data-lat="{{item.shop_lat}}"
-          data-lng="{{item.shop_lng}}" class="iconfont icon-mendian-lijichufa user-pho"> 路线</view>
-      </view>
-      </block>
     </block>
   </scroll-view>
   <cover-image class="gozhong" src="/assets/images/dqwz.png" bindtap='clickControl'></cover-image>

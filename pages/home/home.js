@@ -14,18 +14,19 @@ Page({
       navTitle: true,
       navInput: true,
       navAddress: true,
-      r: 249,
-      g: 176,
-      b: 49,
+      r: 255,
+      g: 255,
+      b: 255,
       w: 20,
       inpLeft: 105,
       l: 50,
       fz: 34,
       fw: "bold",
-      navColor: 0,
-      col: "#fff",
-      title: "三泰之家"
+      navColor: 1,
+      col: "#333",
+      title: "三泰汽车"
     },
+    city:"",
     navH: 0,
     winH: 0,
     page: 1,
@@ -72,6 +73,11 @@ Page({
     console.log(favor_id);
     this.deleteMyFavor(favor_id)
   },
+  peijdeFn:function(e){
+    wx.navigateTo({
+      url: '/pages/peijdetail/peijdetail?good_id='+e.currentTarget.dataset.good_id,
+    })
+  },
   async getIndexIcons() {
     let result = await requestApi(app.globalData.base_url + "/getIndexIcons")
     this.setData({
@@ -85,9 +91,9 @@ Page({
     })
   },
   async getXcxSwiperImage() {
-    let result = await requestApi(app.globalData.base_url + "/getXcxSwiperImage")
+    let result = await requestApi(app.globalData.base_url + "/getNewSwiperImage")
     this.setData({
-      getXcxSwiperImage: result.data.data
+      getXcxSwiperImage: result.data.data.dcd
     })
   },
   async getHotActivity() {
@@ -184,6 +190,20 @@ Page({
       }
     })
   },
+  binddaikuan:function(e){
+    console.log(e);
+    if(e.currentTarget.dataset.index==0){
+      wx.navigateTo({
+        url: '/pages/joinsant/joinsant',
+      })
+    }
+  },
+  bindshow:function(){
+    wx.showToast({
+      icon:'none',
+      title: '敬请期待！',
+    })
+  },
   loadMore() {
     this.setData({
       page: ++this.data.page
@@ -194,29 +214,10 @@ Page({
       this.postHomeBestList(this.data.page, this.data.user_id)
     }
   },
-  scrollPage: function (e) {
-    var s='params.navColor'
-    if (e.detail.scrollTop > 150) {
-      this.setData({
-        hidden: true,
-        [s]:1
-      })
-    } else if(e.detail.scrollTop<150){
-      this.setData({
-        hidden: false,
-        [s]:0
-      })
-    }
-  },
   //整车跳转
-  bindSanqFn:function(){
+  bindSanqFn:function(e){
     wx.navigateTo({
-      url: '/pages/newcar/newcar?brand_id=17',
-    })
-  },
-  bindJiefFn:function(){
-    wx.navigateTo({
-      url: '/pages/newcar/newcar?brand_id=15',
+      url: '/pages/newcar/newcar?brand_id='+e.currentTarget.dataset.brand_id,
     })
   },
   bindTangFn:function(){
@@ -255,6 +256,11 @@ Page({
       url: '/pages/allries/allries?cate_id2=0',
     })
   },
+  cityList:function(){
+    wx.navigateTo({
+      url: '/pages/city/city',
+    })
+  },
   bindevenFn:function(){
     wx.navigateTo({
       url: '/pages/evenlist/evenlist',
@@ -273,11 +279,9 @@ Page({
     })
   },
   bindMain:function(e){
-    if(e.currentTarget.dataset.index==0){
-      wx.navigateTo({
-        url: '/pages/maintain/maintain?id=1',
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/maintain/maintain?id=1',
+    })
   },
   bindMain2:function(){
     wx.navigateTo({
@@ -289,10 +293,104 @@ Page({
       url: e.currentTarget.dataset.url,
     })
   },
+  dizhi:function(){
+    var that=this
+    if(wx.getStorageSync('cityname')!=wx.getStorageSync('newcityname')&&wx.getStorageSync('newcityname')!=[]){
+      wx.showModal({
+        title:'温馨提示',
+        content:'您当前城市是'+wx.getStorageSync('newcityname')+'，是否切换到当前城市',
+        cancelText:'不切换',
+        confirmText:'切换',
+        success(res){
+          if (res.confirm) {
+            that.setData({
+              city:wx.getStorageSync('newcityname')
+            })
+            wx.setStorage({
+              data: wx.getStorageSync('newcityname'),
+              key: 'cityname',
+              success(res){
+                wx.removeStorageSync('newcityname')
+              }
+            })
+          }else if(res.cancel){
+            wx.setStorage({
+              data: 1,
+              key: 'newcityname',
+            })
+          }
+        }
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this
+    if(wx.getStorageSync('cityname')==[]){
+      wx.getLocation({
+        type:'wgs84',
+        success(res){
+            wx.request({
+              url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + res.latitude + ',' + res.longitude + '&key=ZXJBZ-3FVRP-6BYD2-VAAXH-5GHMS-LHFHR',
+              data:{},
+              success: (res)=> {
+                  that.setData({
+                    city:res.data.result.address_component.city
+                  })
+                  wx.setStorage({
+                    data: res.data.result.address_component.city,
+                    key: 'cityname',
+                  })
+              },
+            })
+        },
+        fail(res){
+          that.setData({
+            city:'郑州市'
+          })
+          wx.setStorage({
+            data: '郑州市',
+            key: 'cityname',
+          })
+        }
+      })
+    }
+    if(wx.getStorageSync('newcityname')==[]){
+      wx.getLocation({
+        type:'wgs84',
+        success(res){
+            wx.request({
+              url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + res.latitude + ',' + res.longitude + '&key=ZXJBZ-3FVRP-6BYD2-VAAXH-5GHMS-LHFHR',
+              data:{},
+              success: (res)=> {
+                if(res.data.result.address_component.city!=wx.getStorageSync('cityname')){
+                  wx.setStorage({
+                    data: res.data.result.address_component.city,
+                    key: 'newcityname',
+                  })
+                  that.dizhi()
+                }
+              },
+            })
+        },
+        fail(res){
+          that.setData({
+            city:'郑州市'
+          })
+          wx.setStorage({
+            data: '郑州市',
+            key: 'cityname',
+          })
+        }
+      })
+    }
+    if (wx.getStorageSync('user_id') == []) {
+      this.postHomeBestListNo2(this.data.page)
+    } else {
+      this.postHomeBestList2(this.data.page, this.data.user_id)
+    }
     this.getXcxSwiperImage()
     console.log(app.globalData.scene);
     this.getHotActivity()
@@ -332,17 +430,20 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    var that=this
+    this.setData({
+      city:wx.getStorageSync('cityname')
+    })
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('user_id') == []) {
-      this.postHomeBestListNo2(this.data.page)
-    } else {
-      this.postHomeBestList2(this.data.page, this.data.user_id)
-    }
+    this.setData({
+      city:wx.getStorageSync('cityname')
+    })
   },
 
   /**

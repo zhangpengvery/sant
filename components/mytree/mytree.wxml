@@ -1,0 +1,12 @@
+<!--components/mytree/mytree.wxml-->
+<view class="container">
+  <view style="padding:5rpx 0;" class="name-text">
+    <image wx:if='{{ model.node }}' bindtap='toggle' src="{{ open ? '/assets/images/321.png' : '/assets/images/123.png'}}"  class='item-sImg'></image>
+    <view class="item-sImg" wx:else></view>
+    <!-- <image wx:else src='/assets/images/321.png'  class='item-sImg'></image> -->
+    <text bindtap='tapItem' data-itemid='{{ model.id }}' data-value='{{ model.dep_name }}'>{{ model.dep_name }}</text>
+  </view>
+  <view style='padding-left: 25rpx;' wx:if='{{ model.node }}' hidden='{{ !open }}'>
+    <mytree wx:for='{{ model.node }}' wx:key='id' model='{{ item }}'></mytree>
+  </view>
+</view>

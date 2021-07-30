@@ -21,5 +21,6 @@
   <image class="caopei-img" src="https://jbccs.com/./Upload/image/2021-06-08/60bf1bf534f09.png"></image>
   <view class="caopei-text">复制链接在【浏览器】打开下载</view>
   <view class="lianjie" bindtap="caoploadApi">复制链接</view>
+  <view class="iconfont icon-guanbi cha" bindtap="showmark"></view>
 </view>
 <view class="marker" bindtap="showmark" wx:if="{{marker}}"></view>

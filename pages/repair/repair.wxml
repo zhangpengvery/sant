@@ -1,0 +1,83 @@
+<!--pages/repair/repair.wxml-->
+<view class="jiajian">
+  <image class="jiajian-box" src="/assets/images/jiahao.png" bindtap="bindmapjia"></image>
+  <image class="jiajian-box" src="/assets/images/jianhao.png" bindtap="bindmaphao"></image>
+</view>
+<view class="iconfont icon-ziyuan2 home" style="top:{{TopH}}px" bindtap="bindGohome">首页</view>
+<view class="mapbox" hover-class="none" style="width: 100%; height: {{mapH}}rpx;">
+  <map id="map2" longitude="{{longitude3}}" latitude="{{latitude3}}" markers="{{markers2}}" scale="{{scale1}}" show-location="true"
+    style="width: 100%; height: {{mapH}}rpx;" bindmarkertap="repairtap"></map>
+</view>
+<view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx">
+  <view class="gclc-icon">
+    <view class="icon-left" catchtap="bindFwz">
+      <view class="iconfont icon-zu1889 yuan yuan4"></view>
+      <view class="xiandan">陕汽服务站</view>
+    </view>
+    <view class="icon-left" catchtap="bindFwzzq">
+      <view class="iconfont icon-zu1888 yuan yuan5"></view>
+      <view class="xiandan">重汽服务站</view>
+    </view>
+  </view>
+  <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" bindscroll="scrBtnFn" bindscrolltolower="loadMore">
+    <block wx:if="{{boxH==180}}">
+      <view class="box-con">
+        <view class="user">
+          <view class="user-xx">
+            <view class="user-name">{{shop_name}}</view>
+            <view class="user-pj"></view>
+          </view>
+          <view class="juli">距您{{fwdistance}}km</view>
+        </view>
+        <view class="gofwz">
+          <view class="iconfont icon-mendian-dianhua icon"> <text data-pho="{{shop_tel}}" bindtap="bindPho"
+              style="color:#F9B236">{{shop_tel}}</text>
+          </view>
+          <view class="iconfont icon-mendian-dizhi icon">
+            <text style="color:#F9B236">{{shop_address}}</text>
+          </view>
+        </view>
+        <view bindtap="bindgoDitu" data-name="{{shop_name}}" data-address="{{shop_address}}" data-lat="{{shop_lat}}"
+          data-lng="{{shop_lng}}" class="iconfont icon-mendian-lijichufa user-pho"> 路线</view>
+      </view>
+    </block>
+    <block wx:if="{{boxH==720}}">
+      <block wx:for="{{repairList2}}" wx:key="index">
+        <view class="box-con" bindtap="binddingw" data-lat="{{item.shop_lat}}" data-lng="{{item.shop_lng}}">
+        <view class="user">
+          <view class="user-xx">
+            <view class="user-name">{{item.shop_name}}</view>
+            <view class="user-pj"></view>
+          </view>
+          <view class="juli">距您{{item.distance}}km</view>
+        </view>
+        <view class="gofwz">
+          <view class="iconfont icon-mendian-dianhua icon"> <text data-pho="{{shop_tel}}" catchtap="bindPho" style="color:#F9B236">{{item.shop_tel}}</text>
+          </view>
+          <view class="iconfont icon-mendian-dizhi icon">
+            <text style="color:#F9B236">{{item.shop_address}}</text>
+          </view>
+        </view>
+        <view catchtap="bindgoDitu" data-name="{{item.shop_name}}" data-address="{{item.shop_address}}" data-lat="{{item.shop_lat}}"
+          data-lng="{{item.shop_lng}}" class="iconfont icon-mendian-lijichufa user-pho"> 路线</view>
+      </view>
+      </block>
+    </block>
+  </scroll-view>
+  <cover-image class="gozhong" src="/assets/images/dqwz.png" bindtap='clickControl'></cover-image>
+  <view class="henggang-da" bindtap="bindTapFn">
+    <view class="henggang"></view>
+  </view>
+</view>
+<view class="dingwei" wx:if="{{active==2||active==3}}">
+  <view class="dingwei-tit" wx:if="{{active==2}}">请打开GPS后刷新</view>
+  <view class="dingwei-tit" wx:else>请设置定位权限</view>
+  <view class="dingwei-box" wx:if="{{active==2}}">
+    <view class="dingwei-left" bindtap="bindGohome">不打开</view>
+    <button class="dingweibtn" bindtap="weizhi" style="width:50%">刷新</button>
+  </view>
+  <view class="dingwei-box" wx:else>
+    <view class="dingwei-left" bindtap="bindGohome">不设置</view>
+    <button class="dingweibtn" open-type="openSetting" style="width:50%">去设置</button>
+  </view>
+</view>

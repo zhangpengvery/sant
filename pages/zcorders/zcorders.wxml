@@ -5,66 +5,139 @@
   </view>
   <view>
     <view class="good_name">{{getPartsInfo.good_name}}</view>
-    <view class="good_price">价格：{{getPartsInfo.good_price}}</view>
+    <view class="good_price">价格：￥{{getPartsInfo.good_price}}</view>
   </view>
 </view>
 <view class="body">
-  <view>购买信息</view>
+  <view class="da-title">购买信息</view>
   <view class="box">
-    <view class="box-title">购买类型</view>
+    <view class="box-title2">购买类型</view>
     <view bindtap="gerenFn" class="yuan {{person_type==1?'huang':''}}"></view>
     <view class="left">个人</view>
     <view bindtap="gongsFn" class="yuan {{person_type==2?'huang':''}}"></view>
     <view class="left">企业</view>
   </view>
   <view class="box">
-    <view class="box-title">购买人姓名</view>
+    <view class="box-title2">购买人姓名</view>
     <view class="box-inp">
       <input type="text" bindinput="bindname" placeholder="请输入姓名" />
     </view>
   </view>
   <view class="box" wx:if="{{person_type==1}}">
-    <view class="box-title">证件号码</view>
+    <view class="box-title2">证件号码</view>
     <view class="box-inp">
       <input type="idcard" bindinput="bindname2" placeholder="请输入证件号码" />
     </view>
   </view>
   <view class="box" wx:if="{{person_type==2}}">
-    <view class="box-title">企业名称</view>
+    <view class="box-title2">企业名称</view>
     <view class="box-inp">
       <input type="text" bindinput="bindname5" placeholder="请输入企业名称" />
     </view>
   </view>
   <view class="box" wx:if="{{person_type==2}}">
-    <view class="box-title">企业代码</view>
+    <view class="box-title2">企业代码</view>
     <view class="box-inp">
       <input type="text" bindinput="bindname6" placeholder="请输入企业代码" />
     </view>
   </view>
   <view class="box">
-    <view class="box-title">上牌城市</view>
-    <view class="box-inp">
-      <input type="text" bindinput="bindname3" placeholder="请输入城市" />
-    </view>
-  </view>
-  <view class="box">
-    <view class="box-title">联系电话</view>
+    <view class="box-title2">联系电话</view>
     <view class="box-inp">
       <input type="number" bindinput="bindname4" placeholder="请输入联系电话" />
     </view>
   </view>
-</view>
-<view class="footer1">
-  <view class="footer-box">
-    <view class="box-num">支付信息</view>
-    <view class="box-text">意向金</view>
-    <view class="iconfont icon-lujing1090"><text>  交5000购车时抵10000</text></view>
+  <view class="box">
+    <view class="box-title2">所在地</view>
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view style="font-size: 30rpx;">{{region[0]}}-{{region[1]}}-{{region[2]}}</view>
+    </picker>
   </view>
-  <view style="color:#BA1515">￥5000.00</view>
+  <textarea class="xq-city" bindinput="binxiangxidz" placeholder="请输入详细地址"></textarea>
 </view>
+<view class="body">
+  <view class="da-title">合同信息</view>
+  <view class="box">
+    <view class="box-title"><text style="color:#BA1515">*</text>销售经理</view>
+    <picker class="xhtext" bindchange="bindTypeChange" value="{{typeList['typeIndex']}}" range="{{typeList}}" range-key="{{'user_name'}}">
+      <view style="font-size:30rpx">{{typeList[typeIndex].user_name}}</view>
+      <view class="iconfont icon-tubiao2-14 jianto"></view>
+    </picker>
+  </view>
+  <view class="box">
+    <view class="box-title"><text style="color:#BA1515">*</text>产品型号</view>
+    <picker class="xhtext" bindchange="bindPickerChange" value="{{xhIndex}}" range="{{xhList}}">
+      <view style="font-size:30rpx">{{xhList[xhIndex]}}</view>
+      <view class="iconfont icon-tubiao2-14 jianto"></view>
+    </picker>
+  </view>
+  <view class="box">
+    <view class="box-title"><text style="color:#BA1515">*</text>产品数量</view>
+    <view class="box-inp">
+      <input type="number" bindinput="bindshuliang" placeholder="请输入数量" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-title"><text style="color:#BA1515">*</text>配置</view>
+  </view>
+  <textarea class="xq-city" bindinput="bindpeizi" placeholder="点此输入"></textarea>
+  <view class="box">
+    <view class="da-ziti"><text style="color:#BA1515">*</text>交货时间、地点：</view>
+  </view>
+  <view class="fill-item">
+    <text>本合同生效后</text>
+    <input class="fill-input" bindinput="bindsxday" type="number" />
+    <text>日内在</text>
+    <input class="fill-input" bindinput="bindsxadd" />
+    <text>交货，但卖方</text>
+    <text>有权在车款到达卖方帐户前拒交车辆。</text>
+  </view>
+  <view class="box">
+    <view class="box-title"><text style="color:#BA1515">*</text>交货方式</view>
+  </view>
+  <view class="active-box" bindtap="bindicon" data-icon="1">
+    <icon type="{{active==1?'success_circle':'circle'}}" color="{{active==1?'#F9B236':''}}"></icon>
+    <view>买方自提，运费自理</view>
+  </view>
+  <view class="active-box" bindtap="bindicon" data-icon="2">
+    <icon type="{{active==2?'success_circle':'circle'}}" color="{{active==2?'#F9B236':''}}"></icon>
+    <view class="fill-item">
+      <text>买方委托卖方代办运输至</text>
+      <input class="fill-input" style="width:280rpx" type="text" disabled="{{active==2?false:true}}" bindinput="bindads" />
+      <text>,运费</text>
+      <input class="fill-input" type="number" disabled="{{active==2?false:true}}" bindinput="bindyunfee" />
+      <text>元由买方直接支付给承运人（如</text>
+      <text>选择此运输方式，买方需与承运人签订代送协</text>
+      <view>议）。</view>
+    </view>
+  </view>
+  <view class="box">
+    <view class="da-ziti"><text style="color:#BA1515">*</text>付款方式及期限：</view>
+  </view>
+  <view class="fill-item">
+    <text>本合同签订当日支付定金</text>
+    <input class="fill-input" type="number" bindinput="bindfee" />
+    <text>万元，本合同生</text>
+    <text>效后</text>
+    <input class="fill-input" type="number" bindinput="bindpayday" />
+    <text>日内以现金/银行转账方式支付</text>
+    <text>首付款</text>
+    <input class="fill-input" type="number" bindinput="bindfp" />
+    <text>万元（含前述定金）；余款</text>
+    <input class="fill-input" type="number" bindinput="bindlp" />
+    <text>万元</text>
+    <text>（含前述定金）在提车前以现金/银行转账方式一</text>
+    <text>次性付清。</text>
+  </view>
+  <view class="box">
+    <view class="da-ziti">其他约定</view>
+  </view>
+  <textarea class="xq-city" bindinput="bindqtyd" placeholder="点此输入"></textarea>
+</view>
+<view class="kong"></view>
 <view class="footer">
   <view class="footer-lfet">
-    <view class="money">合计：<text>￥5000.00</text></view>
+    <view class="money">合计：<text>￥{{total}}</text></view>
   </view>
   <view class="gobuy" bindtap="gobuyFn">签订合同</view>
 </view>

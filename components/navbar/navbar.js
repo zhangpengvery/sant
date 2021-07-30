@@ -15,13 +15,18 @@ Component({
    */
   data: {
     navH:"",
-    city:"郑州市"
+    city:""
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    cityList:function(){
+      wx.navigateTo({
+        url: '/pages/city/city',
+      })
+    },
     back(){
       wx.navigateBack()
     },
@@ -37,6 +42,13 @@ Component({
     //   })
     // },
   },
+  pageLifetimes:{
+    show: function() {
+      this.setData({
+        city:wx.getStorageSync('cityname')
+      })
+    },
+  },
   attached(){
     // var that=this
     // wx.getLocation({
@@ -46,7 +58,8 @@ Component({
     //   }
     // })
     this.setData({
-      navH:app.globalData.navbarHeight
+      navH:app.globalData.navbarHeight,
+      // city:wx.getStorageSync('cityname')
     })
   },
 })

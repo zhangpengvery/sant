@@ -15,22 +15,15 @@ Page({
     latitude: 0,
     longitude2: 0,
     latitude2: 0,
-    scrH: 400,
+    scrH: 280,
     boxH: 180,
     scrY: false,
     active: 1,
     name: "",
-    shop_name: "",
     distance: 0,
-    fwdistance: 0,
     avator: "",
     user_mobile: "",
-    shop_tel: "",
-    shop_lat: "",
-    shop_lng: "",
     text: "",
-    shop_address: "",
-    is_pay: 0,
     showGao: false,
     showBox: true,
     scrslid: true,
@@ -42,11 +35,6 @@ Page({
     starpageY: 0,
     chenpageY: 0,
     user_id: 0,
-    //倒计时
-    hr: 0,
-    min: 0,
-    sec: 0,
-    end: 0,
     userNo: false,
     userOrder: true,
     service: 0,
@@ -75,51 +63,44 @@ Page({
     this.setData({
       chenpageY: e.changedTouches[0].pageY
     }, function () {
-      if (that.data.scrH == 400) {
+      if (that.data.scrH == 280) {
         var sliding = that.data.starpageY - that.data.chenpageY;
         if (sliding > 30) {
           that.setData({
-            scrH: 960,
+            scrH: 800,
             boxH: 720,
             scrY: true,
             showGao: true
           })
         } else if (sliding < -30) {
           that.setData({
-            scrH: 200,
+            scrH: 280,
           })
         }
-      } else if (that.data.scrH == 960) {
+      } else if (that.data.scrH == 800) {
         var sliding2 = that.data.chenpageY - that.data.starpageY;
         if (sliding2 > 30 && that.data.scrslid) {
           that.setData({
-            scrH: 400,
+            scrH: 280,
             boxH: 180,
             scrY: false,
             showGao: false
-          })
-        }
-      }else if(that.data.scrH==200){
-        var sliding3 = that.data.starpageY - that.data.chenpageY;
-        if (sliding3 > 30) {
-          that.setData({
-            scrH: 400
           })
         }
       }
     })
   },
   bindTapFn: function () {
-    if (this.data.scrH == 400) {
+    if (this.data.scrH == 280) {
       this.setData({
-        scrH: 960,
+        scrH: 800,
         boxH: 720,
         scrY: true,
         showGao: true
       })
-    } else if (this.data.scrH == 960) {
+    } else if (this.data.scrH == 800) {
       this.setData({
-        scrH: 400,
+        scrH: 280,
         boxH: 180,
         scrY: false,
         showGao: false
@@ -281,7 +262,6 @@ Page({
           avator: res.data.datas.user_list[0].avator,
           user_mobile: res.data.datas.user_list[0].user_mobile,
           text: res.data.datas.user_list[0].text,
-          is_pay: res.data.datas.user_list[0].is_pay,
           user_id: res.data.datas.user_list[0].user_id,
         }, function () {
           that.setData({
@@ -343,7 +323,7 @@ Page({
       scaner: result.data.datas.user_info.user_is_scaner,
       manager:result.data.datas.user_info.user_is_scaner_manager
     })
-    console.log(result.data.datas.user_info);
+    console.log(result);
   },
   binduserPho: function (e) {
     wx.makePhoneCall({

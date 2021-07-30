@@ -1,21 +1,14 @@
 <!--pages/releases/releases.wxml-->
 <view class="weui-cell">
-  <view class="weui-cell__bd">
-    <view class="weui-uploader">
-      <view class="weui-uploader__bd">
-        <view class="weui-uploader__files">
-          <block wx:for="{{imageList}}" wx:for-item="image" wx:key="index">
-            <view class="weui-uploader__file">
-              <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
-            </view>
-          </block>
-        </view>
-        <view class="weui-uploader__input-box">
-          <view class="weui-uploader__input" bindtap="chooseImage"></view>
-        </view>
+  <block wx:for="{{pics}}" wx:key="index">
+    <view class="weui-box">
+      <image src="https://jbccs.com/.{{pics[index]}}"></image>
+      <view class="chahao" bindtap="shanchu" data-index="{{index}}">
+        <image src="https://jbccs.com/./Upload/image/2021-04-22/60812ae9ce20b.png"></image>
       </view>
     </view>
-  </view>
+  </block>
+  <view class="tianjia" wx:if="{{pics.length<7}}" bindtap="chooseImage">+</view>
 </view>
 <view class="content">
   <view class="box">

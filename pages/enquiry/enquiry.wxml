@@ -1,0 +1,39 @@
+<!--pages/enquiry/enquiry.wxml-->
+<view class="content">
+  <view class="con-box">
+    <view class="con-text">{{carno}}</view>
+    <view class="con-btn" bindtap="towweizhang">再次查询</view>
+  </view>
+  <view class="con-footer" wx:if="{{active==1}}"  bindtap="enqudatel">
+    <view class="footer-box">
+      <view class="footer-num">{{weizhangList.vio_total}}</view>
+      <view class="footer-text">违章(次)</view>
+    </view>
+    <view class="footer-box">
+      <view class="footer-num">{{weizhangList.find_total}}</view>
+      <view class="footer-text">罚款(次)</view>
+    </view>
+    <view class="footer-box">
+      <view class="footer-num">{{weizhangList.score_total}}</view>
+      <view class="footer-text">扣分(次)</view>
+    </view>
+    <view class="iconfont icon-xiangyou" style="color: #AAAAAA;"></view>
+  </view>
+  <view class="con-footer" wx:else>{{msgdata}}</view>
+  <block v-if="{{showlist}}" wx:for="{{neirongList}}" wx:key="index">
+    <view class="enqcon">
+      <view class="enqcon-header">
+        <view class="">{{item.vio_time}}</view>
+        <view class="header-num">扣{{item.vio_score}}分 罚{{item.vio_fine}}元</view>
+      </view>
+      <view class="enqcon-box">
+        <view class="box-text">违章地点</view>
+        <view class="box-name">{{item.vio_address}}</view>
+      </view>
+      <view class="enqcon-box">
+        <view class="box-text">违章行为</view>
+        <view class="box-name">{{item.vio_action}}</view>
+      </view>
+    </view>
+  </block>
+</view>

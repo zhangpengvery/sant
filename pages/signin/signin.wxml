@@ -1,7 +1,7 @@
 <!--pages/signin/signin.wxml-->
 <view class="header">
   <view class="header-time"><text class="iconfont icon-shijian"></text> {{getMark.show_date}}</view>
-  <view class="header-time"><text class="iconfont icon-qiye"></text> 当前企业：郑州三泰实业有限公司</view>
+  <view class="header-time"><text class="iconfont icon-qiye"></text> 当前企业：三泰汽车集团</view>
 </view>
 <view class="map-box">
   <view class="map-header">

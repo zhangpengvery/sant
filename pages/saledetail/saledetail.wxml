@@ -4,7 +4,7 @@
   <view class="lunbonum">{{current}}/{{getSaleImg.length}}</view>
   <swiper class="header-img" autoplay="true" circular="true" bindchange="chengtab">
     <swiper-item wx:for="{{getSaleImg}}" wx:key="index">
-      <image src="{{item.image_url}}"></image>
+      <image mode="aspectFill" data-img="{{item.image_url}}" bindtap="catbagImg" src="{{item.image_url}}"></image>
     </swiper-item>
   </swiper>
   <view class="content-detail">

@@ -9,8 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pics:"",
+    pics:[],
     imageList: [],
+    num:6,
     province_list: null,
     province_name: null,
     city_list: null,
@@ -32,25 +33,23 @@ Page({
   chooseImage: function () {
     var that = this;
     wx.chooseImage({
-      count:4,
-      sizeType: ['original', 'compressed'],
+      count:this.data.num,
+      sizeType: ['compressed'],
       sourceType: ['album'],
       success: function (res) {
         const tempFilePaths  = res.tempFilePaths
-        that.setData({
-          imageList: res.tempFilePaths
-        })
         console.log(tempFilePaths[0]);
-        var arr=[]
         for(var i=0;i<res.tempFilePaths.length;i++){
-          console.log(i);
           var imageUrl=res.tempFilePaths[i];
-          that.up(imageUrl,i)
+          that.up(imageUrl)
         }
       }
     })
   },
-  up(url,index){
+  up(url){
+    this.setData({
+      num:this.data.num-1
+    })
     var that=this
     wx.uploadFile({
       filePath: url,
@@ -62,24 +61,21 @@ Page({
       },
       success(res){
         var data = JSON.parse(res.data)
-        var pic=data.datas.result
-        if(index==(that.data.imageList.length-1)){
-          that.setData({
-            pics:that.data.pics+pic
-          })
-        }else{
-          that.setData({
-            pics:that.data.pics+pic+','
-          })
-        }
+        var pic=[]
+        pic.push(data.datas.result)
+        that.setData({
+          pics:that.data.pics.concat(pic)
+        })
       }
     })
   },
-  previewImage: function (e) {
-    var current = e.target.dataset.src
-    wx.previewImage({
-      current: current,
-      urls: this.data.imageList
+  shanchu:function(e){
+    var list=this.data.pics;
+    var index=e.currentTarget.dataset.index
+    list.splice(index,1)
+    this.setData({
+      pics:list,
+      num:this.data.num+1
     })
   },
   //标题内容
@@ -113,6 +109,9 @@ Page({
     })
   },
   postAddHire(pics,province_id,city_id,area_id,hire_title,contact_name,contact_tel,hire_price,hire_message){
+    wx.showLoading({
+      title: '发布中...',
+    })
     requestApi1(app.globalData.base_url+"/addHire",{
       pics:pics,
       province_id:province_id,
@@ -185,8 +184,13 @@ Page({
         title: '请输入留言',
       })
     }else{
-      this.postAddHire(this.data.pics,this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId,this.data.hire_title,this.data.contact_name,this.data.contact_tel,this.data.hire_price,this.data.hire_message)
+      this.zhenghe()
     }
+  },
+  zhenghe:function(){
+    var url=[this.data.pics]
+    var s=url.join(',')
+    this.postAddHire(s,this.data.selectProvinceId,this.data.selectCityId,this.data.selectAreaId,this.data.hire_title,this.data.contact_name,this.data.contact_tel,this.data.hire_price,this.data.hire_message)
   },
   //获取省份列表
   getProvince: function () {

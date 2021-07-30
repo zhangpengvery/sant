@@ -59,7 +59,7 @@
       </view>
     </view>
     <view class="footer-box">
-      <image src="https://jbccs.com/./Upload/image/2021-04-15/6077fc486f751.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-06-17/60cab6118d802.png"></image>
       <view class="box-right">
         <view class="box-text">调查机构</view>
         <picker disabled="true" bindchange="bindPickerdcjg" value="{{arrayjrjgIndex}}" range="{{arrayjrjg}}"

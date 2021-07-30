@@ -193,7 +193,7 @@
 }
 .wushujucs{
   width: 100%;
-  margin-top: 200rpx;
+  padding-top: 200rpx;
   text-align: center;
   font-size: 24rpx;
   color: #ababab;

@@ -42,12 +42,13 @@
       <view>联系客服</view>
       <view class="iconfont icon-xiangyou gobuy"></view>
     </view>
-    <navigator url="/pages/suggest/suggest">
+    <!-- <navigator url="/pages/suggest/suggest"> -->
       <view class="box">
-        <view>建议反馈</view>
+        <!-- <view>建议反馈</view> -->
+        <button class="feedback" open-type="feedback">建议反馈</button>
         <view class="iconfont icon-xiangyou gobuy"></view>
       </view>
-    </navigator>
+    <!-- </navigator> -->
   </view>
 </view>
 <view class="ljzf" bindtap="ljzfFn">退出登录</view>

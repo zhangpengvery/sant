@@ -25,18 +25,20 @@ Page({
     markers:[],
     markers2:[],
     triggered:false,
-    timer:""
+    timer:"",
+    dixian:false
   },
-
   changeTab:function(e){
     var that=this
     this.setData({
-      currentIndex:e.detail.current
+      page:1,
+      currentIndex:e.detail.current,
+      dixian:false
     },function(){
       if(that.data.currentIndex==0){
-        that.getNoSignLists(1)
+        that.getNoSignLists2(1)
       }else if(that.data.currentIndex==1){
-        that.getSignLists(1)
+        that.getSignLists2(1)
       }
     })
   },
@@ -64,11 +66,54 @@ Page({
       })
     })
   },
+  deleteFn: function(e) {
+    var that = this
+    var id = e.currentTarget.dataset.id
+    var index = e.currentTarget.dataset.index
+    var list = this.data.markers
+    list.splice(index, 1)
+    wx.showModal({
+      title: '是否删除该订单',
+      success(res) {
+        if (res.confirm) {
+          that.setData({
+            markers:list
+          })
+          that.LetSigndel(id)
+        }
+      }
+    })
+  },
+  LetSigndel(id){
+    wx.showLoading({
+      title:'删除中...'
+    })
+    requestApi1(app.globalData.post_url+"/index.php/Api/LetSign/del",{
+      id:id
+    }).then(res=>{
+      if(res.data.datas==1){
+        wx.showToast({
+          title:'删除成功'
+        })
+      }else{
+        wx.showToast({
+          icon:'none',
+          title:'删除失败'
+        })
+      }
+      console.log(res)
+      this.getNoSignLists(1)
+    })
+  }, 
   bindqian:function(e){
     console.log(e.currentTarget.dataset.url);
     wx.setStorage({
       data:e.currentTarget.dataset.url,
       key: 'url',
+    })
+    wx.setStorage({
+      data:e.currentTarget.dataset.code,
+      key: 'contractCode',
     })
     wx.navigateTo({
       url: '/pages/gzhgo/gzhgo',
@@ -78,6 +123,25 @@ Page({
     this.queryApi(e.currentTarget.dataset.code)
   },
   async getNoSignLists(page) {
+    var that=this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/LetSign/getNoSignLists",{
+      page:page
+    })
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }
+    this.setData({
+      getNoSignLists:this.data.getNoSignLists.concat(result.data.datas.list)
+    },function(){
+      that.setData({
+        markers:that.getLingyuanMarkers()
+      })
+    })
+    console.log(result);
+  },
+  async getNoSignLists2(page) {
     var that=this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/LetSign/getNoSignLists",{
       page:page
@@ -93,6 +157,25 @@ Page({
     console.log(result);
   },
   async getSignLists(page) {
+    var that=this
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/LetSign/getSignLists",{
+      page:page
+    })
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }
+    this.setData({
+      getSignLists:this.data.getSignLists.concat( result.data.datas.list)
+    },function(){
+      that.setData({
+        markers2:that.getLingyuanMarkers2()
+      })
+    })
+    console.log(result);
+  },
+  async getSignLists2(page) {
     var that=this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/LetSign/getSignLists",{
       page:page
@@ -176,7 +259,10 @@ Page({
 		}).then(res=>{
 			console.log(res);
 			if(res.data.status==4){
-        this.getSignLists(1)
+        this.getSignLists2(1)
+        this.setData({
+          page:1
+        })
 				wx.showToast({
           title: '归档成功',
         })
@@ -223,14 +309,26 @@ Page({
       page:1
     },function(){
       if(that.data.currentIndex==0){
-        that.getNoSignLists(1)
+        that.getNoSignLists2(1)
       }else if(that.data.currentIndex==1){
-        that.getSignLists(1)
+        that.getSignLists2(1)
       }
     })
   },
   stopChange(){
     return false
+  },
+  loadMore(){
+    this.setData({
+      page:++this.data.page
+    })
+		this.getNoSignLists(this.data.page)
+  },
+  loadMore2(){
+    this.setData({
+      page:++this.data.page
+    })
+		this.getSignLists(this.data.page)
   },
   /**
    * 生命周期函数--监听页面加载

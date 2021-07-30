@@ -1,0 +1,22 @@
+<!--pages/carlist/carlist.wxml-->
+<view class="containers">
+  <!-- 城市列表 -->
+  <view class='list-city'>
+    <!-- 全部 -->
+    <view class='item' wx:for="{{cartData}}" wx:key="index">
+      <view class='py py{{item.zimu}}'>{{item.zimu}}</view>
+      <view class="fullname" wx:for="{{item.goods}}" wx:key="index" data-brand_id="{{item.good_id}}"
+        data-fullname="{{item.good_name}}" bindtap='selectCity'>
+        <image class="fullname-img" src="{{item.good_img}}" mode=""></image>
+        <view class="">{{item.good_name}}</view>
+      </view>
+    </view>
+    <!-- 首字母 -->
+    <view class='city-py'>
+      <view wx:for="{{pyabc}}" data-id="{{item}}" data-index="{{index}}" wx:key="index" bindtap="binddingwei"
+        id="{{item}}">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>

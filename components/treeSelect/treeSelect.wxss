@@ -1,0 +1,67 @@
+@import "/assets/fonts/iconfont.wxss";
+.com-selectBox{
+  width: 500rpx;
+}
+.com-sContent{
+  width: 250rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: white;
+  position: relative;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.com-sImg{
+  width: 40rpx;
+  height: 40rpx;
+}
+.com-sTxt{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.com-sList{
+  background: white;
+  width: 430rpx;
+  position: absolute;
+  box-sizing: border-box;
+  top: 80rpx;
+  z-index: 3;
+  height: 400rpx;
+  overflow: auto;
+  padding: 15rpx;
+  border-radius: 20rpx;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.com-jiant{
+  position: absolute;
+  top: 62rpx;
+  left: 30rpx;
+  width: 0;
+  height: 0;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  border-bottom: 20rpx solid #fff;
+  z-index: 4;
+}
+.com-sItem{
+  height: 30px;
+  line-height: 30px;
+  border-top: 1px solid #e2e2e2;
+  padding: 0 6px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.com-sItem:first-child{
+  border-top: none;
+}
+
+.item-sImg{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}

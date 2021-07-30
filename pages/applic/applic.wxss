@@ -36,7 +36,7 @@ scroll-view ::-webkit-scrollbar{
   padding: 0 3%;
   display: flex;
   justify-content: space-between;
-  background: rgba(249, 178, 54, 0.07);
+  background: rgba(75, 149, 247, 0.07);
   border-radius: 20rpx;
   align-items: center;
   margin-bottom: 20rpx;

@@ -1,17 +1,17 @@
 <!--pages/mind/mind.wxml-->
 <navbar params="{{params}}" />
+<view class="mind-navimg" hidden="{{hiddens}}">
+  <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+</view>
 <scroll-view scroll-y="true" bindscroll="scrollPage" style="height:{{winH}}rpx">
-  <view class="mind-navimg" hidden="{{hidden}}">
-    <image src="/assets/images/sybj.png"></image>
-  </view>
-  <view style="margin-top:{{navH}}rpx" class="header" hidden="{{login}}">
+  <view style="padding-top:{{navH}}rpx" class="header" hidden="{{login}}">
     <navigator url="/pages/login/login">
       <image class="weideng" src="/assets/images/mrdltx.png"></image>
       <view class="dl-text">未登录</view>
     </navigator>
     <view class="iconfont icon-shezhi shezhi" bindtap="gologinFn"></view>
   </view>
-  <view style="margin-top:{{navH}}rpx" class="header" hidden="{{userInfor}}">
+  <view style="padding-top:{{navH}}rpx" class="header" hidden="{{userInfor}}">
     <image class="weideng" src="{{user.user_avatar}}"></image>
     <text class="user-name">{{user.user_name}}</text>
     <navigator url="/pages/setting/setting">
@@ -71,6 +71,15 @@
         <view class="content-img" data-url="/pages/contracts/contracts" bindtap="bindUrlFn">
           <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-06-04/60b9bcd61f249.png"></image>
           <view class="content-text">合同管理</view>
+          <view class="signnum" v-if="getNoSignTotal>0">{{getNoSignTotal}}</view>
+        </view>
+        <view class="content-img" data-url="/pages/openht/openht" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-06-04/60b9bcd61f249.png"></image>
+          <view class="content-text">发起合同</view>
+        </view>
+        <view class="content-img" data-url="/pages/launch/launch" bindtap="bindUrlFn">
+          <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-06-04/60b9bcd61f249.png"></image>
+          <view class="content-text">我的发起</view>
         </view>
       </view>
     </view>
@@ -98,6 +107,10 @@
     <view class="fater">
       <view class="title">常用</view>
       <view class="content">
+        <view class="content-img" data-url="/pages/signin/signin" bindtap="bindyuangong">
+          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/qiand.png"></image>
+          <view class="content-text">外勤签到</view>
+        </view>
         <view class="content-img" data-url="/pages/address/address" bindtap="bindUrlFn">
           <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/address.png"></image>
           <view class="content-text">收货地址</view>
@@ -106,10 +119,6 @@
           <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/setting.png"></image>
           <view class="content-text">安全设置</view>
         </view>
-        <view class="content-img" data-url="/pages/signin/signin" bindtap="bindyuangong">
-          <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/qiand.png"></image>
-          <view class="content-text">外勤签到</view>
-        </view>
         <view class="content-img" data-url="/pages/clockin/clockin" bindtap="bindyuangong">
           <image mode="aspectFit" src="http://api.jbccs.com/upload/default/icon/check.png"></image>
           <view class="content-text">日常考勤</view>
@@ -117,6 +126,7 @@
       </view>
     </view>
   </view>
+  <view class="dixian"></view>
 </scroll-view>
 <view class="tabbar">
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/home/home">
@@ -125,11 +135,11 @@
   </view>
   <view class="tabbar-box" data-url="/pages/accesshop2/accesshop2" bindtap="bindUrl">
     <image class="tabbar-img" src="/assets/images/scwx.png"></image>
-    <view class="tabbar-text">商城</view>
+    <view class="tabbar-text">分类</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
     <image class="tabbar-gif" src="https://jbccs.com/./Upload/image/2021-05-31/60b48bc7ddf22.gif"></image>
-    <view class="tabbar-text">泰式服务</view>
+    <view class="tabbar-text">服务管家</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">
     <image class="tabbar-img" src="/assets/images/mdwx.png"></image>

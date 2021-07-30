@@ -24,13 +24,14 @@ Page({
       id: id
     })
     this.setData({
-      // address_id: result.data.data.address.address_id,
       address: result.data.data.address,
       preOrder: result.data.data.good_list[4].goods,
-      preOrderLength: result.data.data.good_list[4].goods.length
+      preOrderLength: result.data.data.good_list[4].goods.length,
+      shangpin:result.data.data.good_price.toFixed(2),
+      youfei:result.data.data.deliver_fee.toFixed(2),
+      totalPrice:result.data.data.order_amount.toFixed(2)
     })
     console.log(result);
-    this.totalPrice()
   },
   //计算总价
   totalPrice() {

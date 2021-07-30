@@ -1,0 +1,15 @@
+/* pages/components/mytree/mytree.wxss */
+.container{
+  font-size: 30rpx;
+  color: #333;
+}
+.name-text{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.item-sImg{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}

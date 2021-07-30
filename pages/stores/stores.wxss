@@ -50,7 +50,6 @@
   width: 94%;
   margin: 0 3%;
   overflow: hidden;
-  margin-bottom: 120rpx;
 }
 .content .fater{
   position: relative;
@@ -83,7 +82,7 @@
 }
 .stores-pho{
   height: 32rpx;
-  line-height: 32rpx;
+  line-height: 28rpx;
 }
 .stores-pho .text-dianhua{
   color: #F9B236;
@@ -178,6 +177,7 @@
   text-align: center;
   font-size: 24rpx;
   color: #ababab;
+  padding-bottom: 130rpx;
 }
 .tabbar{
   width: 100%;

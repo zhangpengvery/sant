@@ -39,12 +39,12 @@
 }
 .header .shezhi{
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
 }
 .vip{
   position: absolute;
-  top: 50rpx;
+  bottom: 0;
   left: 116rpx;
   width: 100rpx;
   height: 46rpx;
@@ -93,12 +93,26 @@
   flex-wrap: wrap;
 }
 .content-img{
+  position: relative;
   width: 25%;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   margin-bottom: 20rpx;
+}
+.signnum{
+  position: absolute;
+  top: -10rpx;
+  right: 60rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background: #FF0000;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 30rpx;
+  color: #fff;
 }
 .content-img image{
   width: 25px;
@@ -145,4 +159,7 @@
   top: -34rpx;
   left: 50%;
   margin-left: -50rpx;
+}
+.dixian{
+  padding-top: 150rpx;
 }

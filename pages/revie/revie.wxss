@@ -1,52 +1,77 @@
 /* pages/revie/revie.wxss */
-page{
-  background: #f6f6f6;
-}
 .header{
-  width: 94%;
+  width: 92%;
   height: 100rpx;
-  padding: 0 3%;
+  padding: 0 4%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   line-height: 100rpx;
   background: #fff;
   align-items: center;
 }
-.nav-box{
-  position: relative;
-  font-size: 30rpx;
+.navber-content{
+	position: relative;
+  width: 350rpx;
+  font-size: 24rpx;
 }
-.active{
-  color: #F9B236;
+.navber-content input{
+  padding-left: 60rpx;
+  border-radius: 136rpx;
+  width: 260rpx;
+  height: 60rpx;
+  background: #f5f5f5;
+  font-size: 26rpx;
 }
-.nav-xian{
+.navber-content .searchicon{
   position: absolute;
-  bottom: 20rpx;
-  left: 50%;
-  transform: translate(-50%);
-  width: 28rpx;
-  height: 4rpx;
+  bottom: -20rpx;
+  left: 20rpx;
+  color: #1A1311;
+  font-size: 24rpx;
 }
-.bgactive{
-  background: #F9B236;
+.sosuo{
+	width: 100rpx;
+	height: 60rpx;
+	border-radius: 30rpx;
+	line-height: 60rpx;
+  margin-left: 10rpx;
+  color: #333;
+  font-size: 28rpx;
+  text-align: center;
+  background: #F4F4F4;
+}
+.picbox{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .city{
   font-size: 26rpx;
 }
+.title-box{
+	display: flex;
+	width: 92%;
+	padding: 0 4%;
+	height: 48rpx;
+	background: #F4F4F4;
+	justify-content: space-between;
+	font-size: 24rpx;
+	align-items: center;
+}
 .content{
-  width: 94%;
-  height: 230rpx;
-  margin: 20rpx 3% 0 3%;
-  border-radius: 20rpx;
-  background: #fff;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  width: 92%;
+  height: 88rpx;
+  margin: 0 4%;
+  border-bottom: 2rpx solid #E6E6E6;
+  font-size: 24rpx;
+  align-items: center;
 }
 .user-tx{
   display: flex;
-  justify-content: end;
-  margin-left: 20rpx;
+  justify-content: flex-start;
   align-items: center;
-  margin-top: 30rpx;
 }
 .yuan{
   width: 50rpx;
@@ -59,81 +84,40 @@ page{
   border-radius: 50%;
 }
 .user-name{
-  font-size: 32rpx;
+  font-size: 24rpx;
   color: #333;
-  margin-left: 10rpx;
+}
+.user-text{
+	color: #777777;
+	margin: 0 10rpx 0 4rpx;
 }
 .db-time{
-  color: #B4B4B4;
-  font-size: 26rpx;
-  margin: 20rpx 0 20rpx 85rpx;
+  color: #333;
+  font-size: 24rpx;
 }
 .db-address{
   color: #333;
-  font-size: 30rpx;
-  font-weight: 500;
-  margin-left: 85rpx;
 }
- /* 加号 */
- .jiahao{
-  position: fixed;
-  bottom: 40rpx;
-  left: 50%;
-  margin-left: -46rpx;
-  width: 92rpx;
-  height: 92rpx;
-  border-radius: 50%;
-  background: #F9B236;
-  color: #fff;
-  text-align: center;
-  line-height: 82rpx;
-  font-size: 60rpx;
-  z-index: 10;
+.footer{
+	width: 100%;
+	height: 120rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	box-shadow: 0px -3px 6px rgba(0, 0, 0, 0.06);
 }
-.mask-jiahao{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 450rpx;
-  background: #fff;
-  z-index: 20;
-  border-radius: 60rpx 60rpx 0px 0px;
-}
-.chahao{
- position: fixed;
- bottom: 40rpx;
- left: 50%;
- transform: translate(-50%);
- color: #F9B236;
- font-size: 90rpx;
- z-index: 30;
-}
-.mask-title{
-  text-align: center;
-  font-size: 36rpx;
-  color: #333;
-  margin: 20rpx 0;
-}
-.mask-icon{
-  width: 100%;
-  height: 200rpx;
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-}
-.mask-icon .iconfont{
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
-  background: #F9B236;
-  color: #fff;
-  line-height: 120rpx;
-  font-size: 50rpx;
-  margin-bottom: 20rpx;
-}
-.mask-icon text{
-  font-size: 28rpx;
+.footer-btn{
+	width: 360rpx;
+	height: 88rpx;
+	border-radius: 44rpx;
+	background: #F9B236;
+	text-align: center;
+	line-height: 88rpx;
+	font-size: 34rpx;
+	color: #fff;
 }
 .wushujucs{
   margin-top: 300rpx;

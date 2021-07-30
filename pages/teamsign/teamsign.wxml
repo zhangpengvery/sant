@@ -9,17 +9,17 @@
     <view>{{total_nums}}</view>
     <view>最新签到</view>
   </view>
-  <view class="header-box {{active==2?'active':''}}" data-id="2" bindtap="bindtab">
+  <!-- <view class="header-box {{active==2?'active':''}}" data-id="2" bindtap="bindtab">
     <view>{{null_nums}}</view>
     <view>未签到</view>
-  </view>
+  </view> -->
   <view class="boxdal" bindtap="bindmysign">
     <view>我的</view>
   </view>
   <view class="sanjiao" wx:if="{{active==1}}"></view>
   <view class="sanjiao sanjiao2" wx:if="{{active==2}}"></view>
 </view>
-<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{active==1}}" bindscrolltolower="loadMore">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{active==1}}" bindscrolltolower="loadMore" refresher-enabled="true"  bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
   <view class="list" wx:if="{{getMarkList.length>0}}">
     <block wx:for="{{getMarkList}}" wx:key="index">
       <view class="list-box" data-user_id="{{item.user_id}}" bindtap="bindgomy">
@@ -40,6 +40,8 @@
             wx:if="{{item.pic.length>0}}" src="{{item.pic}}"></image>
           <view class="list-title" style="margin-top:20rpx">拜访对象</view>
           <view class="list-text">{{item.client_name}}</view>
+          <view class="list-title" wx:if="{{item.remark.length>0}}" style="margin-top:20rpx">备注</view>
+          <view class="list-text" wx:if="{{item.remark.length>0}}">{{item.remark}}</view>
         </view>
       </view>
     </block>
@@ -52,7 +54,7 @@
   </view>
   <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
 </scroll-view>
-<scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{active==2}}">
+<!-- <scroll-view scroll-y="true" style="height:{{winH}}rpx" wx:if="{{active==2}}">
   <view class="nulllist">
     <block wx:for="{{getFailLists}}" wx:key="index">
       <view class="nulllist-box">
@@ -65,9 +67,9 @@
       </view>
     </block>
   </view>
-</scroll-view>
-<view class="footer" bindtap="bindsign">
-  <view class="footer-box">
+</scroll-view> -->
+<view class="footer">
+  <view class="footer-box" bindtap="bindsign">
     <image class="footer-img" mode="aspectFit" src="/assets/images/qiandaoweixuan.png"></image>
     <view>签到</view>
   </view>
@@ -76,13 +78,16 @@
     <view>统计</view>
   </view>
 </view>
-<view class="gittime">
+<view class="gittime" style="top:150rpx">
   <picker mode="date" value="{{date}}" bindchange="bindDateChange">
     <view class="gittime-box">
       <view class="iconfont icon-shijian"></view>
       <view class="picker">{{date}}</view>
-      <view class="iconfont icon-tubiao2-14"></view>
+      <view class="iconfont icon-jiantou-down"></view>
     </view>
   </picker>
+</view>
+<view class="gittime">
+  <treeSelect model='{{selectArray}}' bind:tapitem='tapItem'></treeSelect>
 </view>
 <view class="history" bindtap="historyFn">签到历史分布 <text class="iconfont icon-xiangyou"></text></view>

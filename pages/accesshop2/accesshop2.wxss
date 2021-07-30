@@ -74,7 +74,7 @@
   text-align: center;
   font-size: 24rpx;
   color: #ababab;
-  margin-bottom: 130rpx;
+  padding-bottom: 130rpx;
 }
 .wushujucs{
   width: 100%;

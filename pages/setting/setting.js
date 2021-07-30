@@ -23,6 +23,7 @@ Page({
   toxiangFn: function () {
     var that = this
     wx.chooseImage({
+      sizeType:['compressed'],
       success(res) {
         const tempFilePaths = res.tempFilePaths
         console.log(tempFilePaths);

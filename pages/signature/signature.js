@@ -13,7 +13,8 @@ Page({
 		content:"",
 		pngurl:"",
 		caopei:false,
-		marker:false
+		marker:false,
+		timer:""
 	},
 	//回签
 	autoSignApi(contractCode){
@@ -38,10 +39,38 @@ Page({
 			console.log(res);
 		})
 	},
+	checkStatus() {
+		requestApi1(app.globalData.base_url + "/checkStatus", {
+			contractCode: wx.getStorageSync('contractCode')
+		}).then(res => {
+			console.log(res);
+			if (res.data.status == 4) {
+				this.downloadApi()
+				this.endInter()
+			}
+		})
+	},
+	startSetInter: function() {
+		var that = this;
+		//将计时器赋值给setInter
+		that.timer = setInterval(
+			function() {
+				that.checkStatus()
+			}, 3000);
+	},
+	endInter: function() {
+		var that = this;
+		clearInterval(that.timer)
+	},
 	//查看并下载
-  See_download() {
-		this.downloadApi()
-  },
+	See_download() {
+		this.checkStatus()
+		wx.showLoading({
+			title: '打开中..',
+			mask: true
+		})
+		this.startSetInter()
+	},
 	//查看合同
 	downloadApi(contractCode){
 		wx.showLoading({

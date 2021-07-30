@@ -84,7 +84,8 @@ Page({
         console.log(res);
         this.setData({
           name: res.data.result.formatted_addresses.recommend,
-          address: res.data.result.address
+          address: res.data.result.address,
+          active:1
         })
       },
     })
@@ -122,8 +123,7 @@ Page({
       success: (res) => {
         that.setData({
           latitude: res.latitude,
-          longitude: res.longitude,
-          active: 1
+          longitude: res.longitude
         }, function () {
           that.getProvinceName(res.latitude, res.longitude)
         })

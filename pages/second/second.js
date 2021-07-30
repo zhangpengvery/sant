@@ -66,7 +66,6 @@ Page({
     })
   },
   //出售列表
-  
   mySaleList(page){
     wx.showLoading({
       title: '加载中',
@@ -204,14 +203,42 @@ Page({
   },
   //出售删除
   deleteSale(uc_id){
+    wx.showLoading({
+      title: '删除中...',
+    })
     requestApi1(app.globalData.base_url+"/deleteSale",{
       uc_id:uc_id
+    }).then(res=>{
+      if(res.data.code==1){
+        wx.showToast({
+          title: '删除成功',
+        })
+      }else{
+        wx.showToast({
+          title: '删除失败',
+          icon:'error'
+        })
+      }
     })
   },
   //求购删除
   deleteSaleFor(sf_id){
+    wx.showLoading({
+      title: '删除中...',
+    })
     requestApi1(app.globalData.base_url+"/deleteSaleFor",{
       sf_id:sf_id
+    }).then(res=>{
+      if(res.data.code==1){
+        wx.showToast({
+          title: '删除成功',
+        })
+      }else{
+        wx.showToast({
+          title: '删除失败',
+          icon:'error'
+        })
+      }
     })
   },
   loadMore(){

@@ -1,93 +1,53 @@
 <!--pages/revie/revie.wxml-->
 <view class="header">
-  <view class="nav-box {{currentIndex==0?'active':''}}" data-current="0" bindtap="changeSwiper">
-    我要审车<view class="nav-xian {{currentIndex==0?'bgactive':''}}"></view>
+  <view class="picbox">
+    <view class="navber-content">
+      <input type="text" placeholder="请输入关键字" placeholder-style="font-size: 26rpx" bindinput="bindkey" />
+      <view class="iconfont icon-lujing46 searchicon"></view>
+    </view>
+    <view class="sosuo" bindtap="binscrh">搜索</view>
   </view>
-  <view class="nav-box {{currentIndex==1?'active':''}}" data-current="1" bindtap="changeSwiper">
-    我能审车<view class="nav-xian {{currentIndex==1?'bgactive':''}}"></view>
-  </view>
-  <picker bindchange="changeRegin" bindcolumnchange="bindRegionColumnChange" mode="multiSelector" value="{{region}}"
-    range='{{multiArray}}'>
-    <view class="city">城市切换</view>
-  </picker>
-</view>
-<swiper class="swiper-order" current="{{currentIndex}}" style="height:{{scrollH}}rpx">
-  <!-- 我要代办 -->
-  <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
-      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
-      <view wx:if="{{markers.length>0}}" >
-        <block wx:for="{{markers}}" wx:key="index">
-          <navigator url="/pages/revdetail/revdetail?id={{item.id}}">
-            <view class="content">
-              <view class="user-tx">
-                <view class="yuan">
-                  <image src="{{item.image_url}}"></image>
-                </view>
-                <view class="user-name">{{item.user_name}}</view>
-              </view>
-              <view class="db-time">{{item.time}}</view>
-              <view class="db-address">提交 {{item.cityname}}-{{item.area_name}} 的车辆年审需求</view>
-            </view>
-          </navigator>
-        </block>
-      </view>
-      <view wx:else class="wushujucs">
-        <view class="wushu-img">
-          <image src="/assets/images/kong.png"></image>
-        </view>
-        <view>暂无数据</view>
-      </view>
-    </scroll-view>
-  </swiper-item>
-  <!-- 我能代办 -->
-  <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
-      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
-      <view wx:if="{{markers2.length>0}}">
-        <block wx:for="{{markers2}}" wx:key="index">
-          <navigator url="/pages/candetail/candetail?id={{item.id}}">
-            <view class="content">
-              <view class="user-tx">
-                <view class="yuan">
-                  <image src="{{item.image_url}}"></image>
-                </view>
-                <view class="user-name">{{item.user_name}}</view>
-              </view>
-              <view class="db-time">{{item.time}}</view>
-              <view class="db-address">提交 {{item.cityname}}-{{item.area_name}} 的车辆年审服务</view>
-            </view>
-          </navigator>
-        </block>
-      </view>
-      <view wx:else class="wushujucs">
-        <view class="wushu-img">
-          <image src="/assets/images/kong.png"></image>
-        </view>
-        <view>暂无数据</view>
-      </view>
-    </scroll-view>
-  </swiper-item>
-</swiper>
-<!-- 加号 -->
-<view class="jiahao" bindtap="jiahaoFn">+</view>
-<view class="mask-jiahao" wx:if="{{showJiahao}}">
-  <view class="mask-title">发布</view>
-  <view class="mask-icon">
-    <navigator url="/pages/addshen/addshen">
-      <view>
-        <view class="iconfont icon-quanminjingjiren icon-left"></view>
-        <text>我要审车</text>
-      </view>
-    </navigator>
-    <navigator url="/pages/addban/addban">
-      <view>
-        <view class="iconfont icon-qiuzhiguanli icon-right"></view>
-        <text>我能审车</text>
-      </view>
-    </navigator>
+  <view class="picbox">
+    <picker mode="multiSelector" bindchange="bindRegionChange" bindcolumnchange="bindRegionColumnChange" range='{{multiArray}}'>
+      <view class="city">{{addressCity[1]}}</view>
+    </picker>
+    <view class="iconfont icon-jiantou-down"></view>
   </view>
 </view>
-<!-- 乘号 -->
-<view class="iconfont icon-dizhi chahao" bindtap="chahaoFn" wx:if="{{showChahao}}"></view>
-<view class="max-mask" wx:if="{{showMaxmaks}}" bindtap="maxmaskFn"></view>
+<view class="title-box">
+  <view class="">服务商</view>
+  <view class="">手机号</view>
+  <view class="">地区</view>
+</view>
+<scroll-view scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
+  bindrefresherrefresh="refresherFn" refresher-triggered="triggered" bindrefresherrestore="refresherrestore"
+  bindrefresherabort="refresherabort" bindscrolltolower="loadMore">
+  <view wx:if="markers.length>0">
+    <block wx:for="{{markers}}" wx:key="index">
+      <navigator url="/pages/candetail/candetail?id={{item.id}}">
+        <view class="content">
+          <view class="user-tx">
+            <view class="yuan">
+              <image src="{{item.image_url}}"></image>
+            </view>
+            <view class="user-text">上牌审车</view>
+            <view class="user-name">{{item.user_name}}</view>
+          </view>
+          <view class="db-time">{{item.mobile}}</view>
+          <view class="db-address">{{item.province}}{{item.cityname}}</view>
+        </view>
+      </navigator>
+    </block>
+  </view>
+  <view wx:else class="wushujucs">
+    <view class="wushu-img">
+      <image src="/assets/images/kong.png"></image>
+    </view>
+    <view>暂无数据</view>
+  </view>
+</scroll-view>
+<view class="footer">
+  <navigator url="/pages/addban/addban">
+    <view class="footer-btn">我要入驻</view>
+  </navigator>
+</view>

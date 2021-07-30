@@ -21,7 +21,7 @@ Page({
   },
   bindname:function(e){
     this.setData({
-      client_name:e.detail.value
+      client_name:e.detail.value.replace(/\s+/g, "")
     })
   },
   bindbeizu:function(e){
@@ -66,6 +66,11 @@ Page({
         icon:'none',
         title: '请输入拜访对象',
       })
+    }else if(this.data.pic==""){
+      wx.showToast({
+        title: '请拍摄签到图片',
+        icon:'none'
+      })
     }else{
       this.MarkAdd(this.data.lat,this.data.lng,this.data.address,this.data.client_name,this.data.pic,this.data.title,this.data.remark)
     }
@@ -74,7 +79,8 @@ Page({
     var that = this
     wx.chooseImage({
       count:'1',
-      sourceType:'camera',
+      sourceType:['camera'],
+      sizeType:['compressed'],
       success(res) {
         const tempFilePaths = res.tempFilePaths
         console.log(tempFilePaths);

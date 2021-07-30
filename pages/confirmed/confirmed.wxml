@@ -25,11 +25,7 @@
     <view class="text-box">
       <view class="text-name">{{item.good_name}}</view>
       <view class="text-pic">￥{{item.good_price}}</view>
-      <view class="goods-num">
-        <button bindtap="jianCartNum" data-index="{{index}}">-</button>
-        <input type="text" disabled="true" adjust-position="true" value="{{item.num}}" bindinput="inputNum" />
-        <button bindtap="addCartNum" data-index="{{index}}">+</button>
-      </view>
+      <view class="goods-num">x{{item.num}}</view>
     </view>
   </view>
 </block>
@@ -41,7 +37,7 @@
 </view>
 <view class="youfei">
   <view class="youfei-box">
-    <view>商品总价：</view>
+    <view>商品金额：</view>
     <view>￥{{shangpin}}</view>
   </view>
   <view class="youfei-box">

@@ -1,0 +1,51 @@
+/* pages/enquiry/enquiry.wxss */
+page{
+	background: #F6F6F6;
+}
+.content{
+	width: 94%;
+	margin: 0 3%;
+	background: #fff;
+	border-radius: 20rpx;
+}
+.con-box{
+	width: 94%;
+	padding: 0 3%;
+	height: 120rpx;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2rpx solid #F4F4F4;
+	align-items: center;
+}
+.con-text{
+	font-size: 34rpx;
+	font-weight: 500;
+}
+.con-btn{
+	width: 144rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	text-align: center;
+	font-size: 24rpx;
+	border-radius: 30rpx;
+	background: #FFCC32;
+}
+.con-footer{
+	width: 94%;
+	margin: 0 3%;
+	height: 160rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.footer-box{
+	text-align: center;
+}
+.footer-num{
+	font-size: 56rpx;
+	color: #E28921;
+}
+.footer-text{
+	font-size: 30rpx;
+	color: #777;
+}

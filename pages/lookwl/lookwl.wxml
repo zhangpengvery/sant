@@ -3,7 +3,12 @@
 <view class="home-navimg">
   <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
 </view>
-<view class="iconfont icon-daiwancheng textyun" style="margin-top:{{navH}}rpx">   运输中</view>
+<view class="iconfont icon-daiwancheng textyun" style="margin-top:{{navH}}rpx" wx:if="{{deliverystatus==0}}"> 揽收中</view>
+<view class="iconfont icon-daiwancheng textyun" style="margin-top:{{navH}}rpx" wx:if="{{deliverystatus==1}}"> 在途中</view>
+<view class="iconfont icon-daiwancheng textyun" style="margin-top:{{navH}}rpx" wx:if="{{deliverystatus==2}}"> 派件中</view>
+<view class="iconfont icon-daiwancheng textyun" style="margin-top:{{navH}}rpx" wx:if="{{deliverystatus==3}}"> 已签收</view>
+<view class="iconfont icon-daiwancheng textyun" style="margin-top:{{navH}}rpx" wx:if="{{deliverystatus==4}}"> 派送失败
+</view>
 <view class="car">
   <image src="https://jbccs.com/./Upload/image/2021-04-29/608a5c5811e29.png"></image>
 </view>
@@ -21,5 +26,21 @@
   <view class="footer-box">
     <view>运单号：</view>
     <view>{{getOrderInfo.order_deliver_serial}}</view>
+    <view class="iconfont icon-fuzhi" bindtap="fuzhiFn" data-id="{{getOrderInfo.order_deliver_serial}}"></view>
   </view>
 </view>
+<view class="wuliu" wx:if="{{deliverystatus>0}}">
+  <block wx:for="{{express}}" wx:key="index">
+    <view class="wuliu-box">
+      <view class="wuliu-left">
+        <view class="qiuqiu"></view>
+        <view class="xianxian"></view>
+      </view>
+      <view class="wuliu-right">
+        <view class="wuliu-time">{{item.time}}</view>
+        <view class="wuliu-add">{{item.status}}</view>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="wuliu" wx:else>{{msg}}</view>

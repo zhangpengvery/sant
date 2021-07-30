@@ -57,8 +57,8 @@
 }
 .xz2{
   padding: 6rpx 12rpx;
-  border: 2rpx solid #E6A23C;
-  color: #E6A23C;
+  border: 2rpx solid #F9B236;
+  color: #F9B236;
   background: #FDF6EC;
   font-size: 20rpx;
   margin-right: 10rpx;

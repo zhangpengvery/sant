@@ -7,20 +7,6 @@
 <view class="footer" bindtouchstart="bindstartFn" bindtouchend="bindchendFn" style="height:{{scrH}}rpx"
   wx:if="{{active==1}}">
   <view class="iconfont icon-xiala jiant" bindtap="bindTapFn"></view>
-  <view class="gclc-icon">
-    <view class="icon-left" bindtap="bindJrzy">
-      <view class="iconfont icon-taishifuwu-jinrongzhuanyuan yuan yuan3"></view>
-      <view class="xiandan">金融专员</view>
-    </view>
-    <view class="icon-left" bindtap="bindCxzy">
-      <view class="iconfont icon-taishifuwu-chexianzhuanyuan yuan yuan4"></view>
-      <view class="xiandan">车险专员</view>
-    </view>
-    <!-- <view class="icon-left" bindtap="bindJsq">
-      <view class="iconfont icon-zu1919 yuan yuan2"></view>
-      <view class="xiandan">计算器</view>
-    </view> -->
-  </view>
   <scroll-view class="scrbox" scroll-y="{{scrY}}" style="height:{{boxH}}rpx" enhanced="true" binddragging="scrTopFn"
     bindscroll="scrBtnFn">
     <block wx:if="{{showGao}}">
@@ -28,6 +14,9 @@
         <view class="box-con">
           <view class="user">
             <view class="user-img">
+              <view class="renzheng">
+              <image src="https://jbccs.com/./Upload/image/2021-04-26/60868e84dcac9.png"></image>
+            </view>
               <image mode="aspectFill" src="{{item.avator}}"></image>
             </view>
             <view class="user-xx">
@@ -52,6 +41,9 @@
       <view class="box-con">
         <view class="user">
           <view class="user-img">
+            <view class="renzheng">
+              <image src="https://jbccs.com/./Upload/image/2021-04-26/60868e84dcac9.png"></image>
+            </view>
             <image mode="aspectFill" src="{{avator}}"></image>
           </view>
           <view class="user-xx">
@@ -66,8 +58,7 @@
             </view>
           </view>
         </view>
-        <view class="user-pho" data-pay="{{is_pay}}" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
-        <!-- <view wx:if="{{service==1&&type==3}}" data-user_id="{{user_id}}" bindtap="bindYjpd" data-index="0" class="user-bx">派单</view> -->
+        <view class="user-pho" bindtap="bindPho" data-pho="{{user_mobile}}">{{text}}</view>
       </view>
     </block>
   </scroll-view>

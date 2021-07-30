@@ -36,7 +36,7 @@
   height: 60rpx;
   line-height: 60rpx;
   padding: 0 2%;
-  background: #FFF7E8;
+  background: #e8f3ff;
   font-size: 26rpx;
   color: #F9B236;
   margin: 0 5% 50rpx 5%;

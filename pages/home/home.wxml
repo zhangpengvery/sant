@@ -1,56 +1,216 @@
 <!--pages/home/home.wxml-->
-<navbar params="{{params}}" />
-<view class="home-navimg" hidden="{{hidden}}">
-  <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+<view class="search-wipe" style="background:rgba(255,255,255,1);height:{{navH}}rpx;color:#333">
+  <view class="nav-fater">
+    <!-- 地址 -->
+    <view class="address" bindtap="cityList">
+      <text class="iconfont icon-dingwei"></text>
+      <text>{{city}}</text>
+    </view>
+    <!-- 输入框父盒子 -->
+    <view class="navber-content" style="width:20%;left:105rpx">
+      <!-- 输入框 -->
+      <navigator url="/pages/search/search">
+        <view class="input"><text class="iconfont icon-lujing46 search-icon"></text></view>
+      </navigator>
+    </view>
+    <!-- 网站名 -->
+    <view class="nav-title" wx:if="{{params.navTitle}}" style="left:50%;font-size:34rpx;font-weight:bold">三泰汽车</view>
+  </view>
 </view>
 <scroll-view scroll-y="true" style="height:{{winH}}rpx;margin-top:{{navH}}rpx" bindscrolltolower="loadMore"
-  bindscroll="scrollPage" refresher-enabled="true" bindrefresherrefresh="refresherFn"
-  refresher-triggered="{{triggered}}">
-  <swiper class="header" indicator-dots="true" autoplay="true" style="" indicator-color="rgba(255, 255, 255)"
+  refresher-enabled="true" bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+  <swiper class="header" indicator-dots="true" autoplay="true" indicator-color="rgba(255, 255, 255)"
     indicator-active-color="#C47C00" circular="true">
     <block wx:for="{{getXcxSwiperImage}}" wx:key="index">
-      <swiper-item data-index="{{index}}" bindtap="bindMain">
+      <swiper-item data-index="{{index}}" bindtap="binddaikuan">
         <image src="{{getXcxSwiperImage[index]}}"></image>
       </swiper-item>
     </block>
   </swiper>
   <!-- 小图标 -->
-  <view class="icon-fater">
-    <block wx:for="{{getIndexIcons}}" wx:key="index">
-      <view class="icon-conent">
-        <navigator url="{{item.url}}">
-          <view class="icon-img">
-            <image mode="aspectFit" src="{{item.icon}}"></image>
-          </view>
-        </navigator>
-        <text>{{item.text}}</text>
+  <swiper class="icon-swiper" indicator-dots="true">
+    <swiper-item>
+      <view class="icon-fater">
+        <view class="icon-conent">
+          <navigator url="/pages/maintain/maintain">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/wyby.png">
+              </image>
+            </view>
+          </navigator>
+          <text>预约保养</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/trad/trad">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/esc.png">
+              </image>
+            </view>
+          </navigator>
+          <text>二手车</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/recruit/recruit">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/sjzp.png">
+              </image>
+            </view>
+          </navigator>
+          <text>司机招聘</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/revie/revie">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/spsc.png">
+              </image>
+            </view>
+          </navigator>
+          <text>上牌审车</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/rental/rental">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/yhzc.png">
+              </image>
+            </view>
+          </navigator>
+          <text>有活找车</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/accesshop/accesshop">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/stsc.png">
+              </image>
+            </view>
+          </navigator>
+          <text>三泰商城</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/repair/repair">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/fwwd.png"></image>
+            </view>
+          </navigator>
+          <text>服务网点</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/joinsant/joinsant">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/jrdk.png">
+              </image>
+            </view>
+          </navigator>
+          <text>金融贷款</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/logistic/logistic">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/scfw.png">
+              </image>
+            </view>
+          </navigator>
+          <text>送车服务</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/jointow/jointow">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/rzst.png">
+              </image>
+            </view>
+          </navigator>
+          <text>入驻三泰</text>
+        </view>
       </view>
-    </block>
-  </view>
-  <view class="layer"></view>
+    </swiper-item>
+    <swiper-item>
+      <view class="icon-fater">
+        <view class="icon-conent">
+          <button class="icon-img" open-type="feedback"
+            style="padding:0;width: 80rpx;background: rgba(255, 255, 255, 0);height: 80rpx;">
+            <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/yhty.png">
+            </image>
+          </button>
+          <text>体验反馈</text>
+          <!-- pages/suggest/suggest -->
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/violation/violation">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/wzcx.png">
+              </image>
+            </view>
+          </navigator>
+          <text>违章查询</text>
+        </view>
+        <view class="icon-conent">
+          <navigator url="/pages/carlist/carlist">
+            <view class="icon-img">
+              <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/czfw.png">
+              </image>
+            </view>
+          </navigator>
+          <text>选择车辆</text>
+        </view>
+        <!-- <view class="icon-conent" bindtap="bindshow">
+          <navigator url="/pages/logistic/logistic">
+          <view class="icon-img">
+            <image mode="aspectFit" src="http://api.jbccs.com/upload/default/dcd-icon/czfw.png">
+            </image>
+          </view>
+          </navigator>
+          <text>车主服务</text>
+        </view> -->
+      </view>
+    </swiper-item>
+  </swiper>
   <official-account wx:if="{{account}}" style="width: 100%;height: 164rpx;"></official-account>
-  <view class="layer" wx:if="{{account}}"></view>
   <!-- 保养服务 -->
   <view class="home-options">
     <view class="iconfont icon-lujing534" style="color:#3DB988"></view>
-    <text>上门服务</text>
+    <text>保养服务</text>
   </view>
   <!-- 蓝粉双图 -->
   <view class="bp-fater">
     <view class="bp-img" bindtap="bindMain">
       <view class="img-title">上装保养</view>
       <view class="img-text">齿轮油+液压油+液压滤芯</view>
-      <image src="/assets/images/1627.png"></image>
+      <image class="bg-left" mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-07-16/60f171403797d.png">
+      </image>
     </view>
+    <view class="heixian"></view>
     <view class="bp-img" bindtap="bindMain2">
       <view class="img-title">底盘保养</view>
       <view class="img-text">1个18L机油+2个4L机油+2个机油滤芯</view>
-      <image src="/assets/images/1628.png"></image>
+      <image class="bg-left" mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-07-16/60f17143e61ab.png">
+      </image>
     </view>
   </view>
-  <view class="layer2"></view>
+  <view class="peijian-far">
+    <view class="peijian-box">
+      <view class="peijian-title">
+        <view class="peijian-icon">
+          <view class="iconfont icon-lujing533" style="color:#EF543C"></view>
+          <view class="peijian-text">热卖配件</view>
+        </view>
+        <view class="peijian-icon" style="width:100rpx" bindtap="bindAddFn">
+          <view>更多</view>
+          <view class="iconfont icon-gengduo1" style="color:rgb(236,93,39)"></view>
+        </view>
+      </view>
+      <view class="peiijan-dabox">
+        <block wx:for="{{getSwiperImages}}" wx:key="index">
+          <view class="peijian-con" data-good_id="{{item.good_id}}" bindtap="peijdeFn">
+            <image class="peijian-img" mode="aspectFit" src="{{item.good_image}}"></image>
+            <view class="peijian-name">{{item.good_name}}</view>
+            <view class="peijian-price">￥{{item.good_price}}</view>
+            <view class="peijian-left">TOP{{index+1}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
   <!-- 热门活动 -->
-  <view class="home-flex">
+  <!-- <view class="home-flex">
     <view class="options-left">
       <view class="iconfont icon-huodong iconzuo" style="color:#F9B236"></view>
       <view class="options-rmpj">热门活动</view>
@@ -64,81 +224,75 @@
     <navigator url="/pages/evendeta/evendeta?id={{getHotActivity.id}}">
       <image src="https://jbccs.com/.{{getHotActivity.img}}"></image>
     </navigator>
-  </view>
-  <view class="layer2"></view>
+  </view> -->
+  <!-- <view class="layer2"></view> -->
   <!-- 热卖配件 -->
   <view class="options-fater">
     <view class="options-header">
+      <view class="options-gengduo" bindtap="bindSanqFn" data-brand_id="0">
+        <view>更多</view>
+        <view class="iconfont icon-gengduo1" style="color:#F8D444"></view>
+      </view>
       <view class="options-left">
-        <view class="iconfont icon-lujing533 iconzuo" style="color:#EF543C"></view>
-        <view class="options-rmpj">热卖配件</view>
-      </view>
-      <view class="options-left" bindtap="bindAddFn">
-        <view class="options-gd">更多</view>
-        <view class="iconfont icon-gengduo1 red"></view>
+        <view class="iconfont icon-lujing535 iconzuo" style="color:#F8D444"></view>
+        <view class="options-rmpj">限时促销</view>
       </view>
     </view>
-    <view class="options-new">
-      <block wx:for="{{getSwiperImages}}" wx:key="index">
+    <!-- <block wx:for="{{getSwiperImages}}" wx:key="index">
         <view class="options-child">
-          <navigator url="/pages/peijdetail/peijdetail?good_id={{item.good_id}}">
-            <view class="img-box">
-              <image mode="aspectFit" src="{{item.good_image}}"></image>
-            </view>
-          </navigator>
+          <image class="img-box" mode="aspectFit"
+            src="https://www.jbccs.com/Upload//Pictures/2021-07-13/60ed6aeb83c30.png"></image>
           <view class="child-footer">
+            <view class="options-sq">陕汽S版</view>
+            <view class="optionshuang">价格面议</view>
+            <view class="options-price">交五千抵<text style="font-size: 30rpx">一万</text></view>
             <view class="options-name">{{item.good_name}}</view>
-            <view class="options-price">{{item.good_price}}</view>
           </view>
-          <view class="options-rm">TOP{{index+1}}</view>
         </view>
-      </block>
+      </block> -->
+    <view class="options-child" bindtap="bindSanqFn" data-brand_id="17">
+      <image class="img-box" src="https://www.jbccs.com/Upload//Pictures/2021-07-13/60ed6aeb83c30.png"></image>
+      <view class="child-footer">
+        <view class="options-falex options-falex2">
+          <view class="options-cz">超值</view>
+          <view class="options-sq">陕汽重卡搅拌车</view>
+        </view>
+        <view class="options-falex" style="margin:20rpx 0;">
+          <view class="optionshuang">价格面议</view>
+          <view class="options-price">轻量化制造</view>
+        </view>
+        <view class="options-xdj">询底价</view>
+      </view>
+    </view>
+    <view class="options-child" bindtap="bindSanqFn" data-brand_id="15">
+      <image class="img-box" src="https://www.jbccs.com/Upload//Pictures/2021-07-24/60fb68599beb4.png"></image>
+      <view class="child-footer">
+        <view class="options-falex options-falex2">
+          <view class="options-cz">超值</view>
+          <view class="options-sq">解放牌搅拌车</view>
+        </view>
+        <view class="options-falex" style="margin:20rpx 0;">
+          <view class="optionshuang">价格面议</view>
+          <view class="options-price">轻量化制造</view>
+        </view>
+        <view class="options-xdj">询底价</view>
+      </view>
+    </view>
+    <view class="options-child" bindtap="bindSanqFn" data-brand_id="15">
+      <image class="img-box" src="https://www.jbccs.com/Upload//Pictures/2021-07-24/60fb696865e3c.png"></image>
+      <view class="child-footer">
+        <view class="options-falex options-falex2">
+          <view class="options-cz">超值</view>
+          <view class="options-sq">粉粒物料运输车</view>
+        </view>
+        <view class="options-falex" style="margin:20rpx 0;">
+          <view class="optionshuang">价格面议</view>
+          <view class="options-price">轻量化制造</view>
+        </view>
+        <view class="options-xdj">询底价</view>
+      </view>
     </view>
   </view>
-  <view class="layer2"></view>
-  <!-- 限时促销 -->
-  <view class="home-options">
-    <view class="iconfont icon-lujing535" style="color:#F8D444"></view>
-    <text>限时促销</text>
-  </view>
-  <!-- 红黄蓝三图 -->
-  <view class="hhl-fater">
-    <view class="hhl-box" bindtap="bindSanqFn">
-      <view class="hhl-cz">超值</view>
-      <view class="hhl-text">
-        <view class="hhl-name">陕汽重卡搅拌车</view>
-        <view class="hhl-con">轻量化制造</view>
-        <view class="hhl-qkk">去看看</view>
-      </view>
-      <view class="hhl-footer">
-        <view style="font-size:14rpx">价格</view>
-        <view style="font-size:28rpx">面议</view>
-      </view>
-      <view class="hhl-img">
-        <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-04-19/607d465733dad.png"></image>
-      </view>
-      <view class="hhl-ftext">交五千抵一万</view>
-      <image src="/assets/images/1631.png"></image>
-    </view>
-    <view class="hhl-box" bindtap="bindJiefFn">
-      <view class="hhl-cz">超值</view>
-      <view class="hhl-text">
-        <view class="hhl-name">解放牌搅拌车12方</view>
-        <view class="hhl-con">轻量化制造</view>
-        <view class="hhl-qkk">去看看</view>
-      </view>
-      <view class="hhl-footer">
-        <view style="font-size:14rpx">价格</view>
-        <view style="font-size:28rpx">面议</view>
-      </view>
-      <view class="hhl-img">
-        <image mode="aspectFit" src="https://jbccs.com/./Upload/image/2021-04-19/607d462a70071.jpg"></image>
-      </view>
-      <view class="hhl-ftext">交五千抵一万</view>
-      <image src="/assets/images/1632.png"></image>
-    </view>
-  </view>
-  <view class="layer2"></view>
   <!-- 二手车推荐 -->
   <view class="home-options">
     <view class="iconfont icon-jianqu24" style="color:#F39B35"></view>
@@ -187,7 +341,7 @@
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/maps/maps">
     <image class="tabbar-gif" src="https://jbccs.com/./Upload/image/2021-05-31/60b48bc7ddf22.gif"></image>
-    <view class="tabbar-text">泰式服务</view>
+    <view class="tabbar-text">服务管家</view>
   </view>
   <view class="tabbar-box" bindtap="bindUrl" data-url="/pages/stores/stores">
     <image class="tabbar-img" src="/assets/images/mdwx.png"></image>

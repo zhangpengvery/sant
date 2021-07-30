@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "团队签到统计",
-  "usingComponents": {}
+  "usingComponents": {
+    "treeSelect": "/components/treeSelect/treeSelect"
+  }
 }

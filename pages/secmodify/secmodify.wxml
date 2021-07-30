@@ -8,7 +8,7 @@
       </view>
     </view>
   </block>
-  <view class="tianjia" bindtap="chooseImage">+</view>
+  <view class="tianjia" wx:if="{{pics.length<7}}" bindtap="chooseImage">+</view>
 </view>
 <view class="content">
   <view class="box">

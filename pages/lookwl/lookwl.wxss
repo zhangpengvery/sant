@@ -41,11 +41,11 @@ page{
   line-height: 66rpx;
 }
 .footer{
-  width: 85%;
+  width: 84%;
   margin: 30rpx 5% 0 5%;
   border-radius: 20rpx;
   background: #fff;
-  padding-left: 5%
+  padding:0 3%;
 }
 .title{
   height: 100rpx;
@@ -53,8 +53,60 @@ page{
   font-size: 34rpx;
 }
 .footer-box{
+  position: relative;
   display: flex;
   justify-content: end;
   height: 60rpx;
   font-size: 28rpx;
+}
+.footer-box .iconfont{
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+  color: #777;
+}
+.wuliu{
+  width: 84%;
+  margin: 30rpx 5% 0 5%;
+  border-radius: 20rpx;
+  background: #fff;
+  padding:30rpx 3%;
+}
+.wuliu-box{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.wuliu-left{
+  position: relative;
+  height: 100rpx;
+}
+.wuliu-right{
+  margin-left: 50rpx;
+}
+.qiuqiu{
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #CDCDCD;
+  z-index: 10;
+}
+.xianxian{
+  position: absolute;
+  top: 10rpx;
+  left: 16rpx;
+  width: 0;
+  height: 100rpx;
+  border-left: 2rpx solid #E6E6E6;
+}
+.wuliu-time{
+  color: #777;
+  font-size: 26rpx;
+}
+.wuliu-add{
+  font-size: 24rpx;
+  color: #333;
 }

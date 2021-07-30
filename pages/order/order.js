@@ -49,15 +49,17 @@ Page({
     left_content:true,
     left_header:true,
     p:1,
-    p2:1,
     type:"all",
     good_type:0,
     right_con:false,
     getOrderList:[],
     getOrderOne:[],
     getOrderTow:[],
+    getOrderthr:[],
     getOrderInfo:[],
-    triggered:false
+    getOrderfor:[],
+    triggered:false,
+    dixian:false
   },
   navLeftFn:function(){
     this.setData({
@@ -83,16 +85,21 @@ Page({
     })
   },
   changeSwiper:function(e){
-    var a=e.currentTarget.dataset.current
     this.setData({
       currentIndex:e.currentTarget.dataset.current,
-      getOrderList:[],
-      getOrderOne:[],
+      p:1,
+      dixian:false
     })
-    if(a==0){
-      this.getOrderList(this.data.p,this.data.good_type)
-    }else if(a==1){
-      this.getOrderOne(this.data.p2,this.data.good_type)
+    if(e.currentTarget.dataset.current==0){
+      this.getOrderList2(1,this.data.good_type)
+    }else if(e.currentTarget.dataset.current==1){
+      this.getOrderOne2(1,this.data.good_type)
+    }else if(e.currentTarget.dataset.current==2){
+      this.getOrderTow2(1,this.data.good_type)
+    }else if(e.currentTarget.dataset.current==3){
+      this.getOrderthr2(1,this.data.good_type)
+    }else if(e.currentTarget.dataset.current==4){
+      this.getOrderfor2(1,this.data.good_type)
     }
   },
   //订单列表
@@ -107,6 +114,11 @@ Page({
     })
     if(result.statusCode==200){
       wx.hideLoading()
+    }
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
     }
     this.setData({
       getOrderList:this.data.getOrderList.concat(result.data.datas.list)
@@ -144,8 +156,26 @@ Page({
     if(result.statusCode==200){
       wx.hideLoading()
     }
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }
     this.setData({
       getOrderOne:this.data.getOrderOne.concat(result.data.datas.list)
+    })
+    console.log(this.data.getOrderOne);
+  },
+  //代付款订单
+  async getOrderOne2(p,good_type){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
+      p:p,
+      type:"waitpay",
+      good_type:good_type
+    })
+    this.setData({
+      getOrderOne:result.data.datas.list,
+      triggered:false
     })
     console.log(this.data.getOrderOne);
   },
@@ -153,13 +183,91 @@ Page({
   async getOrderTow(p,good_type){
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
       p:p,
-      type:"waitpay",
+      type:"waitsend",
+      good_type:good_type
+    })
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }
+    this.setData({
+      getOrderTow:this.data.getOrderTow.concat(result.data.datas.list)
+    })
+    console.log(this.data.getOrderTow);
+  },
+  //代发货订单
+  async getOrderTow2(p,good_type){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
+      p:p,
+      type:"waitsend",
       good_type:good_type
     })
     this.setData({
-      getOrderTow:result.data.datas.list
+      getOrderTow:result.data.datas.list,
+      triggered:false
     })
     console.log(this.data.getOrderTow);
+  },
+  //代发货订单
+  async getOrderthr(p,good_type){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
+      p:p,
+      type:"receiving",
+      good_type:good_type
+    })
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }
+    this.setData({
+      getOrderthr:this.data.getOrderthr.concat(result.data.datas.list)
+    })
+    console.log(this.data.getOrderthr);
+  },
+  //代发货订单
+  async getOrderthr2(p,good_type){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
+      p:p,
+      type:"receiving",
+      good_type:good_type
+    })
+    this.setData({
+      getOrderthr:result.data.datas.list,
+      triggered:false
+    })
+    console.log(this.data.getOrderthr);
+  },
+  //已完成订单
+  async getOrderfor(p,good_type){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
+      p:p,
+      type:"complete",
+      good_type:good_type
+    })
+    if(result.data.datas.list.length==0){
+      this.setData({
+        dixian:true
+      })
+    }
+    this.setData({
+      getOrderfor:this.data.getOrderfor.concat(result.data.datas.list)
+    })
+    console.log(this.data.getOrderfor);
+  },
+  //已完成订单
+  async getOrderfor2(p,good_type){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/order_list",{
+      p:p,
+      type:"complete",
+      good_type:good_type
+    })
+    this.setData({
+      getOrderfor:result.data.datas.list,
+      triggered:false
+    })
+    console.log(this.data.getOrderfor);
   },
   datelFn:function(e){
     // var order_sn=e.currentTarget.dataset.order_sn
@@ -263,6 +371,26 @@ Page({
     })
     console.log(index);
   },
+  //删除点击
+  deleteFn2:function(e){
+    var that=this
+    var order_sn=e.currentTarget.dataset.order_sn
+    var index=e.currentTarget.dataset.index
+    var list=this.data.getOrderfor
+    list.splice(index,1)
+    wx.showModal({
+      title:'是否删除该订单',
+      success(res){
+        if(res.confirm){
+          that.setData({
+            getOrderfor:list
+          })
+          that.deleteOrder(order_sn)
+        }
+      }
+    })
+    console.log(index); 
+  },
   //确认收货点击
   bindLess:function(e){
     var that=this
@@ -276,6 +404,25 @@ Page({
         if(res.confirm){
           that.setData({
             getOrderList:list
+          })
+          that.userFinished(order_sn)
+        }
+      }
+    })
+  },
+  //确认收货点击
+  bindLess2:function(e){
+    var that=this
+    var order_sn=e.currentTarget.dataset.order_sn
+    var index=e.currentTarget.dataset.index
+    var list=this.data.getOrderthr
+    list.splice(index,1)
+    wx.showModal({
+      title:'是否确认收货',
+      success(res){
+        if(res.confirm){
+          that.setData({
+            getOrderthr:list
           })
           that.userFinished(order_sn)
         }
@@ -340,16 +487,44 @@ Page({
   },
   loadMore2(){
     this.setData({
-      p2: ++this.data.p2
+      p: ++this.data.p
     })
-    this.getOrderOne(this.data.p2,this.data.good_type)
+    this.getOrderOne(this.data.p,this.data.good_type)
+  },
+  loadMore3(){
+    this.setData({
+      p: ++this.data.p
+    })
+    this.getOrderTow(this.data.p,this.data.good_type)
+  },
+  loadMore4(){
+    this.setData({
+      p: ++this.data.p
+    })
+    this.getOrderthr(this.data.p,this.data.good_type)
+  },
+  loadMore5(){
+    this.setData({
+      p: ++this.data.p
+    })
+    this.getOrderfor(this.data.p,this.data.good_type)
   },
   refresherFn:function(){
     var that=this
     this.setData({
       p:1,
     },function(){
-      that.getOrderList2(that.data.p,that.data.good_type)
+      if(that.data.currentIndex==0){
+        that.getOrderList2(1,that.data.good_type)
+      }else if(that.data.currentIndex==1){
+        that.getOrderOne2(1,that.data.good_type)
+      }else if(that.data.currentIndex==2){
+        that.getOrderTow2(1,that.data.good_type)
+      }else if(that.data.currentIndex==3){
+        that.getOrderthr2(1,that.data.good_type)
+      }else if(that.data.currentIndex==4){
+        that.getOrderfor2(1,that.data.good_type)
+      }
     })
   },
   bindnavFn:function(e){
@@ -359,7 +534,7 @@ Page({
   },
   lookwuliu:function(e){
     wx.navigateTo({
-      url: '/pages/lookwl/lookwl?order_sn='+e.currentTarget.dataset.order_sn,
+      url: '/pages/lookwl/lookwl?order_sn='+e.currentTarget.dataset.order_sn+"&mobile="+e.currentTarget.dataset.mobile,
     })
   },
   /**

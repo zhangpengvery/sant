@@ -109,23 +109,7 @@ page{
   display: flex;
   justify-content: start;
   text-align: center;
-}
-.text-box .goods-num button{
-  width: 50rpx;
-  height: 50rpx;
-  padding: 0;
-  text-align: center;
-  line-height: 50rpx;
-  margin: 0;
-}
-.text-box .goods-num input{
-  width: 100rpx;
-  height: 50rpx;
-  border: 2rpx solid #f4f4f4;
-  font-size: 26rpx;
-  text-align: center;
-  line-height: 50rpx;
-  box-sizing: border-box;
+  font-size: 28rpx;
 }
 .zongj{
   width: 94%;
@@ -150,7 +134,7 @@ page{
 }
 .youfei{
   width: 88%;
-  margin: 20rpx 3% 100rpx 3%;
+  margin: 20rpx 3% 130rpx 3%;
   background: #fff;
   padding: 20rpx 3%;
   border-radius: 20rpx;
@@ -175,6 +159,7 @@ page{
   line-height: 120rpx;
   background: #fff;
   align-items: center;
+  z-index: 10;
 }
 .footer-lfet{
   display: flex;

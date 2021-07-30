@@ -20,17 +20,10 @@ Page({
     scrY: false,
     active: 1,
     name: "",
-    shop_name: "",
     distance: 0,
-    fwdistance: 0,
     avator: "",
     user_mobile: "",
-    shop_tel: "",
-    shop_lat: "",
-    shop_lng: "",
     text: "",
-    shop_address: "",
-    is_pay: 0,
     showGao: false,
     showBox: true,
     scrslid: true,
@@ -41,11 +34,6 @@ Page({
     starpageY: 0,
     chenpageY: 0,
     service_uid: 0,
-    //倒计时
-    hr: 0,
-    min: 0,
-    sec: 0,
-    end: 0,
     userNo: false,
     userOrder: true,
     service: 0,
@@ -236,7 +224,6 @@ Page({
           avator: res.data.datas.user_list[0].avator,
           user_mobile: res.data.datas.user_list[0].user_mobile,
           text: res.data.datas.user_list[0].text,
-          is_pay: res.data.datas.user_list[0].is_pay,
           service_uid: res.data.datas.user_list[0].user_id,
         }, function () {
           that.setData({
@@ -340,14 +327,6 @@ Page({
       console.log(res);
     })
   },
-  //判断是工作人员还是用户
-  async getUserInfo() {
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
-    this.setData({
-      service: result.data.datas.user_info.user_is_service
-    })
-    console.log(this.data.service);
-  },
   bindSerFn: function () {
     this.setData({
       seractive: 1
@@ -393,7 +372,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserInfo()
     var that = this
     wx.getLocation({
       type: 'gcj02',

@@ -9,8 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pics:"",
+    pics:[],
     imageList: [],
+    num:6,
     province_list: null,
     province_name: null,
     city_list: null,
@@ -35,8 +36,8 @@ Page({
   chooseImage: function () {
     var that = this;
     wx.chooseImage({
-      count:4,
-      sizeType: ['original', 'compressed'],
+      count:this.data.num,
+      sizeType: ['compressed'],
       sourceType: ['album'],
       success: function (res) {
         const tempFilePaths  = res.tempFilePaths
@@ -49,6 +50,9 @@ Page({
     })
   },
   up(url){
+    this.setData({
+      num:this.data.num-1
+    })
     var that=this
     wx.uploadFile({
       filePath: url,
@@ -73,7 +77,8 @@ Page({
     var index=e.currentTarget.dataset.index
     list.splice(index,1)
     this.setData({
-      pics:list
+      pics:list,
+      num:this.data.num+1
     })
   },
   //标题内容
@@ -144,7 +149,8 @@ Page({
       pic.push(this.data.getSaleInfo.pics[i].img_url)
     }
     this.setData({
-      pics:pic
+      pics:pic,
+      num:this.data.num-this.data.getSaleInfo.pics.length
     })
   },
   //修改出售信息

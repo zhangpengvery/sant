@@ -20,18 +20,19 @@ Page({
       l:50,
       fz:34,
       fw:"bold",
-      navColor:1,
+      navColor:0,
       col:"#fff",
       title:"我的"
     },
     navH:0,
     winH:0,
-    hidden:false,
+    hiddens:false,
     login:true,
     userInfor:false,
     loginData:[],
     getMindText:[],
-    user:[]
+    user:[],
+    getNoSignTotal:0
   },
   async getMindIcons(){
     let result=await requestApi(app.globalData.base_url+"/getMyIcons")
@@ -40,15 +41,25 @@ Page({
     })
     console.log(result);
   },
-  
+  async getNoSignListsApi(page) {
+    let result = await requestApi(app.globalData.post_url + "/index.php/Api/LetSign/getNoSignLists", {
+      page: page
+    })
+    this.setData({
+      getNoSignTotal:result.data.datas.total
+    })
+  },
   scrollPage:function(e){
+    var s='params.navColor'
     if(e.detail.scrollTop>50){
       this.setData({
-        hidden:true
+        hiddens:true,
+        [s]:1
       })
-    }else{
+    }else if(e.detail.scrollTop<50){
       this.setData({
-        hidden:false
+        hiddens:false,
+        [s]:0
       })
     }
   },
@@ -100,6 +111,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getNoSignListsApi(1)
     // this.getMindIcons()
     // this.setData({
     //   user:wx.getStorageSync('user')

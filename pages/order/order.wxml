@@ -63,9 +63,10 @@
                   <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
                 </block>
                 <!-- <block wx:if="{{item.}}"> -->
-                  <view class="body-pj"></view>
+                <view class="body-pj"></view>
                 <!-- </block> -->
-                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}}<view class="body-sl">共{{item.jianshu}}件
+                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}}<view class="body-sl">
+                    共{{item.jianshu}}件
                   </view>
                 </view>
               </view>
@@ -98,7 +99,7 @@
                   <view class="footer-right">
                     <view data-index="{{index}}" class="cancella" bindtap="bindLess" data-order_sn="{{item.order_sn}}">
                       确认收货</view>
-                    <view class="payment" data-order_sn="{{item.order_sn}}" bindtap="lookwuliu">查看物流</view>
+                    <view class="payment" data-order_sn="{{item.order_sn}}" bindtap="lookwuliu" data-mobile="{{item.address_tel}}">查看物流</view>
                   </view>
                 </view>
               </view>
@@ -140,6 +141,7 @@
         </view>
         <view>暂无数据</view>
       </view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
     </scroll-view>
   </swiper-item>
   <!-- 待付款 -->
@@ -154,7 +156,7 @@
               <view class="bianh">订单编号：{{item.order_sn}}</view>
               <view class="zhuangt">待付款</view>
             </view>
-            <view class="box-body">
+            <view class="box-body" data-order_sn="{{item.order_sn}}" bindtap="datelFn">
               <view class="body-img">
                 <image src="{{item.order_good[0].good_image}}"></image>
               </view>
@@ -165,8 +167,9 @@
                 <block wx:else>
                   <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
                 </block>
-                <view class="body-pj">三泰之家上装保养</view>
-                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}}<view class="body-sl">共{{item.jianshu}}件
+                <!-- <view class="body-pj"></view> -->
+                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}}<view class="body-sl">
+                    共{{item.jianshu}}件
                   </view>
                 </view>
               </view>
@@ -192,6 +195,7 @@
         </view>
         <view>暂无数据</view>
       </view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
     </scroll-view>
   </swiper-item>
   <!-- 待发货 -->
@@ -206,7 +210,7 @@
               <view class="bianh">订单编号：{{item.order_sn}}</view>
               <view class="zhuangt">待发货</view>
             </view>
-            <view class="box-body">
+            <view class="box-body" data-order_sn="{{item.order_sn}}" bindtap="datelFn">
               <view class="body-img">
                 <image src="{{item.order_good[0].good_image}}"></image>
               </view>
@@ -217,19 +221,120 @@
                 <block wx:else>
                   <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
                 </block>
-                <view class="body-pj">三泰之家上装保养</view>
-                <view class="body-jg"><text class="body-pj">金额：</text>￥800 <view class="body-sl">共{{item.jianshu}}件</view>
+                <view class="body-pj"></view>
+                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}} <view class="body-sl">
+                    共{{item.jianshu}}件</view>
                 </view>
               </view>
             </view>
             <view class="box-footer">
               <view>
                 <text class="footer-left">应付金额：</text>
-                <text class="body-jg">￥800</text>
+                <text class="body-jg">￥{{item.order_amount}}</text>
               </view>
               <view class="footer-right">
-                <view class="cancella">删除订单</view>
-                <view class="payment">评价</view>
+                <view data-order_sn="{{item.order_sn}}" class="payment" bindtap="datelFn">订单详情</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view bindscrolltolower="loadMore4" scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <view class="content" wx:if="{{getOrderthr.length>0}}">
+        <block wx:for="{{getOrderthr}}" wx:key="index">
+          <view class="box">
+            <view class="box-header">
+              <view class="iconfont icon-dingdanbianhao1"></view>
+              <view class="bianh">订单编号：{{item.order_sn}}</view>
+              <view class="zhuangt">待收货</view>
+            </view>
+            <view class="box-body" data-order_sn="{{item.order_sn}}" bindtap="datelFn">
+              <view class="body-img">
+                <image src="{{item.order_good[0].good_image}}"></image>
+              </view>
+              <view class="body-text">
+                <block wx:if="{{item.order_good.length==1}}">
+                  <view class="body-title">{{item.order_good[0].good_name}}</view>
+                </block>
+                <block wx:else>
+                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
+                </block>
+                <view class="body-pj"></view>
+                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}} <view class="body-sl">
+                    共{{item.jianshu}}件</view>
+                </view>
+              </view>
+            </view>
+            <view class="box-footer">
+              <view>
+                <text class="footer-left">应付金额：</text>
+                <text class="body-jg">￥{{item.order_amount}}</text>
+              </view>
+              <view class="footer-right">
+                <view data-index="{{index}}" class="cancella" bindtap="bindLess2" data-order_sn="{{item.order_sn}}">
+                  确认收货</view>
+                <view class="payment" data-order_sn="{{item.order_sn}}" bindtap="lookwuliu">查看物流</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view wx:else class="wushujucs">
+        <view class="wushu-img">
+          <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
+        </view>
+        <view>暂无数据</view>
+      </view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view bindscrolltolower="loadMore5" scroll-y="true" style="height:{{scrollH}}rpx" refresher-enabled="true"
+      bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
+      <view class="content" wx:if="{{getOrderfor.length>0}}">
+        <block wx:for="{{getOrderfor}}" wx:key="index">
+          <view class="box">
+            <view class="box-header">
+              <view class="iconfont icon-dingdanbianhao1"></view>
+              <view class="bianh">订单编号：{{item.order_sn}}</view>
+              <view class="zhuangt">交易完成</view>
+            </view>
+            <view class="box-body" data-order_sn="{{item.order_sn}}" bindtap="datelFn">
+              <view class="body-img">
+                <image src="{{item.order_good[0].good_image}}"></image>
+              </view>
+              <view class="body-text">
+                <block wx:if="{{item.order_good.length==1}}">
+                  <view class="body-title">{{item.order_good[0].good_name}}</view>
+                </block>
+                <block wx:else>
+                  <view class="body-title">{{item.order_good[0].good_name}}等{{item.order_good.length}}种商品</view>
+                </block>
+                <view class="body-pj"></view>
+                <view class="body-jg"><text class="body-pj">金额：</text>￥{{item.order_amount}} <view class="body-sl">
+                    共{{item.jianshu}}件</view>
+                </view>
+              </view>
+            </view>
+            <view class="box-footer">
+              <view>
+                <text class="footer-left">应付金额：</text>
+                <text class="body-jg">￥{{item.order_amount}}</text>
+              </view>
+              <view class="footer-right">
+                <view bindtap="deleteFn2" data-order_sn="{{item.order_sn}}" data-index="{{index}}" class="cancella"
+                    class="payment">删除订单</view>
               </view>
             </view>
           </view>
@@ -242,50 +347,6 @@
         <view>暂无数据</view>
       </view>
     </scroll-view>
-  </swiper-item>
-  <swiper-item>
-    <view class="wushujucs">
-      <view class="wushu-img">
-        <image src="https://jbccs.com/./Upload/image/2021-03-26/605d2c7b5d610.png"></image>
-      </view>
-      <view>暂无数据</view>
-    </view>
-    <!-- <text>待收货</text> -->
-  </swiper-item>
-  <swiper-item>
-    <!-- <view class="content">
-      <view class="box">
-        <view class="box-header">
-          <view class="iconfont icon-dingdanbianhao1"></view>
-          <view class="bianh">订单编号：ST203940392039499</view>
-          <view class="zhuangt">已完成</view>
-        </view>
-        <view class="box-body">
-          <view class="body-text">
-            <view class="body-title">三泰之家上装保养</view>
-            <view class="body-pj">三泰之家上装保养</view>
-            <view class="body-jg"><text class="body-pj">金额：</text>￥800 <view class="body-sl">x1</view>
-            </view>
-          </view>
-        </view>
-        <view class="box-footer">
-          <view>
-            <text class="footer-left">应付金额：</text>
-            <text class="body-jg">￥800</text>
-          </view>
-          <view class="footer-right">
-            <view class="cancella">删除订单</view>
-            <view class="payment">评价</view>
-          </view>
-        </view>
-      </view>
-    </view> -->
-    <view class="wushujucs">
-      <view class="wushu-img">
-        <image src="/assets/images/kong.png"></image>
-      </view>
-      <view>暂无数据</view>
-    </view>
   </swiper-item>
 </swiper>
 <view class="right-box" wx:if="{{right_con}}">

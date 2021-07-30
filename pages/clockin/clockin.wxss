@@ -102,8 +102,8 @@ page{
   width: 250rpx;
   height: 250rpx;
   border-radius: 50%;
-  background: linear-gradient(180deg, #FFCD77 0%, #F9B236 100%);
-  box-shadow: 0px 6px 6px rgba(249, 178, 54, 0.34);
+  background: linear-gradient(180deg, #FFCE7A 0%, #F9B236 100%);
+  box-shadow: 0px 6px 6px rgba(75, 149, 247, 0.34);
   margin: 200rpx auto 40rpx auto;
   color: #fff;
   text-align: center;

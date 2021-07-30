@@ -3,9 +3,9 @@
     <!-- 返回 -->
     <view class="iconfont icon-ziyuan2 back" bindtap="back" wx:if="{{params.showBack}}"></view>
     <!-- 地址 -->
-    <view class="address" wx:if="{{params.navAddress}}" >
+    <view class="address" bindtap="cityList" wx:if="{{params.navAddress}}" >
       <text class="iconfont icon-dingwei"></text>
-      <text>郑州市</text>
+      <text>{{city}}</text>
     </view>
     <!-- 输入框父盒子 -->
     <view class="navber-content" wx:if="{{params.navInput}}" style="width:{{params.w}}%;left:{{params.inpLeft}}rpx">

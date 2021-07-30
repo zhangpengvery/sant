@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentIndex: 0,
+    page:1,
     scrollH: 0,
     province_list: null,
     province_name: null,
@@ -17,38 +17,16 @@ Page({
     city_name: null,
     area_list: null,
     area_name: null,
-    addressCity: null,
+    addressCity: ['城市','城市','城市'],
     multiArray: [],  // 三维数组数据
     multiIndex: [0, 0, 0], // 默认的下标,
     selectProvinceId: null,
     selectCityId: null,
     selectAreaId: null,
-    showJiahao:false,
-    showChahao:false,
-    getLists:[],
     getForLists:[],
     markers:[],
-    markers2:[],
-    showMaxmaks:false,
-    triggered:false
-  },
-  changeSwiper: function (e) {
-    var that=this
-    if(e.currentTarget.dataset.current==0){
-      this.setData({
-        getLists:[],
-        currentIndex: e.currentTarget.dataset.current,
-      },function(){
-        that.getLists()
-      })
-    }else if(e.currentTarget.dataset.current==1){
-      this.setData({
-        getForLists:[],
-        currentIndex: e.currentTarget.dataset.current,
-      },function(){
-        that.getForLists()
-      })
-    }
+    triggered:false,
+    textkey:""
   },
   //获取省份列表
   getProvince: function () {
@@ -143,15 +121,10 @@ Page({
         selectProvinceId: this.data.province_list[e.detail.value[0]].area_id,
         selectCityId: this.data.city_list[e.detail.value[1]].area_id,
         selectAreaId: this.data.area_list[e.detail.value[2]].area_id,
-        getLists:[],
       })
     }
     console.log(this.data.selectCityId)
-    if(this.data.currentIndex==0){
-      this.getLists(this.data.selectCityId)
-    }else if(this.data.currentIndex==1){
-      this.getForLists(this.data.selectCityId)
-    }
+    this.getForLists(1,this.data.selectCityId,this.data.textkey)
   },
   //滑动地区组件
   bindRegionColumnChange: function (e) {
@@ -181,68 +154,33 @@ Page({
     }
     that.setData(data)  //更新数据
   },
-  //底部加号
-  jiahaoFn:function(){
+  bindkey:function(e){
     this.setData({
-      showJiahao:true,
-      showChahao:true,
-      showMaxmaks:true
+      textkey:e.detail.value
     })
   },
-  //底部叉号
-  chahaoFn:function(){
+  binscrh:function(){
     this.setData({
-      showChahao:false,
-      showJiahao:false,
-      showMaxmaks:false
+      page:1
     })
-  },
-  maxmaskFn:function(){
-    this.setData({
-      showJiahao:false,
-      showMaxmaks:false,
-      showChahao:false
-    })
-  },
-  //我要审车
-  async getLists(city_id) {
-    wx.showLoading({
-      title: '加载中...',
-    })
-    var that=this
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/Shen/getLists",{
-      city_id:city_id
-    })
-    if(result.statusCode==200){
-      wx.hideLoading()
-    }
-    this.setData({
-      getLists: result.data.datas.list,
-      triggered:false
-    }, function () {
-      that.setData({
-        markers: that.getLingyuanMarkers()
-      })
-    })
-    console.log(result);
+    this.getForLists(1,this.data.selectCityId,this.data.textkey)
   },
   getLingyuanMarkers() {
     let markers = [];
-      for (let item of this.data.getLists) {
+      for (let item of this.data.getForLists) {
         let marker = this.createMarker(item);
         markers.push(marker)
       }
     return markers;
   },
-  getLingyuanMarkers2() {
-    let markers2 = [];
-      for (let item of this.data.getForLists) {
-        let marker = this.createMarker2(item);
-        markers2.push(marker)
-      }
-    return markers2;
-  },
   createMarker(point) {
+    var xing =point.user_name;
+		var jianqie=""
+		if(xing.length>2){
+			for(var i=0;i<3;i++){
+				jianqie+=xing[i]
+			}
+		}
     var date = new Date(Number(point.create_time)*1000);
     var YY = date.getFullYear() + '-';
     var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
@@ -254,44 +192,24 @@ Page({
     let marker = {
       image_url: point.image_url,
       id: point.id,
-      user_name: point.user_name,
+      user_name: jianqie,
       time: time,
       cityname: point.cityname,
-      area_name:point.area_name
-    };
-    return marker;
-  },
-  createMarker2(point) {
-    var xing =point.user_name[0]
-    for(var i=1;i<point.user_name.length;i++){
-      xing+='*'
-    }
-    var date = new Date(Number(point.create_time)*1000);
-    var YY = date.getFullYear() + '-';
-    var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-    var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
-    var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-    var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-    var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-    var time=YY+MM+DD+"  "+hh+mm+ss
-    let marker = {
-      image_url: point.image_url,
-      id: point.id,
-      user_name: xing,
-      time: time,
-      cityname: point.cityname,
-      area_name:point.area_name
+      area_name:point.area_name,
+      mobile:point.mobile
     };
     return marker;
   },
   //我能审车
-  async getForLists(city_id) {
+  async getForLists(page,city_id,keyword) {
     wx.showLoading({
       title: '加载中...',
     })
     var that=this
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/Shen/getForLists",{
-      city_id:city_id
+      page:page,
+      city_id:city_id,
+      keyword:keyword
     })
     if(result.statusCode==200){
       wx.hideLoading()
@@ -301,7 +219,7 @@ Page({
       triggered:false
     }, function () {
       that.setData({
-        markers2: that.getLingyuanMarkers2()
+        markers: that.getLingyuanMarkers()
       })
     })
     console.log(result);
@@ -311,25 +229,21 @@ Page({
     this.setData({
       page:1,
     },function(){
-      if(that.data.currentIndex==0){
-        that.getLists()
-      }else if(that.data.currentIndex==1){
-        that.getForLists()
-      }
+      that.getForLists(1,that.data.selectCityId,that.data.textkey)
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getLists()
+    this.getForLists(1,0,this.data.textkey)
     this.getProvince()
     wx.getSystemInfo({
       success: (result) => {
         let clientHeight = result.windowHeight;
         let clientWidth = result.windowWidth;
         let ratio = 750 / clientWidth;
-        let ScrH = (clientHeight * ratio) - 100
+        let ScrH = (clientHeight * ratio) - 268
         this.setData({
           scrollH: ScrH
         })

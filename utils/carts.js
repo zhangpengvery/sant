@@ -1,0 +1,32 @@
+module.exports = {
+	"cart":[
+		{
+			"zimu":"J",
+			"goods":[
+				{
+					"good_id":"15",
+					"good_name":"解放",
+					"good_img":"/assets/images/jiefangpei.png"
+				}
+			]
+		},{
+			"zimu":"Y",
+			"goods":[
+				{
+					"good_id":"7",
+					"good_name":"亚特",
+					"good_img":"/assets/images/zongqipai.png"
+				}
+			]
+		},{
+			"zimu":"S",
+			"goods":[
+				{
+					"good_id":"17",
+					"good_name":"陕汽",
+					"good_img":"/assets/images/shanqipai.png"
+				}
+			]
+		}
+	]
+}

@@ -14,6 +14,9 @@
         <view class="box-con">
           <view class="user">
             <view class="user-img">
+              <view class="renzheng">
+                <image src="https://jbccs.com/./Upload/image/2021-04-26/60868e84dcac9.png"></image>
+              </view>
               <image mode="aspectFill" src="{{item.avator}}"></image>
             </view>
             <view class="user-xx">
@@ -38,6 +41,9 @@
       <view class="box-con">
         <view class="user">
           <view class="user-img">
+            <view class="renzheng">
+              <image src="https://jbccs.com/./Upload/image/2021-04-26/60868e84dcac9.png"></image>
+            </view>
             <image mode="aspectFill" src="{{avator}}"></image>
           </view>
           <view class="user-xx">

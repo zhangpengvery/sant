@@ -27,7 +27,11 @@ Page({
     },
     order_sn:"",
     navH:0,
-    getOrderInfo:[]
+    getOrderInfo:[],
+    express:"",
+    deliverystatus:0,
+    mobile:"",
+    msg:""
   },
   async getOrderInfo(order_sn){
     wx.showLoading({
@@ -35,14 +39,49 @@ Page({
     })
     let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/getOrderInfo",{
       order_sn:order_sn
+    }).then(result=>{
+      if(result.statusCode==200){
+        wx.hideLoading()
+      }
+      this.setData({
+        getOrderInfo:result.data.datas
+      })
+      this.express(result.data.datas.order_deliver_serial,this.data.mobile)
     })
-    if(result.statusCode==200){
-      wx.hideLoading()
+    
+  },
+  async express(id,mobile){
+    let result=await requestApi(app.globalData.post_url+"/index.php/Api/Order/express",{
+      id:id,
+      mobile:mobile
+    })
+    if(result.data.datas.status>200){
+      this.setData({
+        msg:result.data.datas.msg
+      })
+    }else{
+      this.setData({
+        express:result.data.datas.result.list,
+        deliverystatus:result.data.datas.result.deliverystatus
+      })
     }
-    this.setData({
-      getOrderInfo:result.data.datas
-    })
-    console.log(this.data.getOrderInfo);
+    console.log(result);
+  },
+  fuzhiFn:function(e){
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.id,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+        });
+      },
+      fail(res){
+        wx.showToast({
+          icon:'error',
+          title: '复制失败',
+        })
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -51,7 +90,8 @@ Page({
     this.getOrderInfo(options.order_sn)
     this.setData({
       order_sn:options.order_sn,
-      navH:app.globalData.navbarHeight
+      navH:app.globalData.navbarHeight,
+      mobile:options.mobile
     })
   },
 

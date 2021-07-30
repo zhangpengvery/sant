@@ -32,6 +32,16 @@ Page({
     getSaleImg:[],
     current:1
   },
+  catbagImg:function(e){
+    var str=[];
+    for(var i=0;i<this.data.getSaleImg.length;i++){
+      str.push(this.data.getSaleImg[i].image_url)
+    }
+    wx.previewImage({
+      current:e.currentTarget.dataset.img,
+      urls: str
+    })
+  },
   chengtab:function(e){
     this.setData({
       current:e.detail.current+1

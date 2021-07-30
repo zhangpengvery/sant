@@ -1,0 +1,42 @@
+<!--pages/violation/violation.wxml-->
+<navbar params="{{params}}" />
+<view class="header">
+  <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
+</view>
+<view class="content" style="margin-top:{{navH}}rpx">
+  <view class="content-box" bindtap="xingszFn">
+    <view class="iconfont icon-xiangce"></view>
+    <view class="cont-text">扫描行驶证自动识别</view>
+  </view>
+  <view class="box">
+    <view class="box-left">车牌号码：</view>
+    <view class="shengfen-box">
+      <view class="" bindtap="shengshow">{{shengfen}} <text class="iconfont icon-jiantou-down"></text></view>
+      <input style="color: #333;" bindinput="bindchepai" type="text" value="{{carno}}" placeholder="请输入完整车牌号" />
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-left">总质量：</view>
+    <input type="text" bindinput="bindzzl" value="{{total_quality}}" placeholder="请输入总质量" />
+  </view>
+  <view class="box">
+    <view class="box-left">车架号：</view>
+    <input type="text" bindinput="bindcjh" value="{{frameno}}" placeholder="请输入车架号后6位" />
+  </view>
+  <view class="box">
+    <view class="box-left">发动机号：</view>
+    <input type="text" bindinput="bindfdj" value="{{engineno}}" placeholder="请输入发动机号后6位" />
+  </view>
+</view>
+<view class="jianxie" wx:if="{{rightbox}}">
+  <scroll-view scroll-y="true" style="height:100%">
+    <block wx:for="{{provinceData}}" wx:key="index">
+      <view class="jianxie-box" bindtap="shengqiehuan" data-sf="{{item.jiancheng}}">
+        <view class="jianxie-da">{{item.jiancheng}}</view>
+        <view class="jianxie-xiao">{{item.province}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<view class="marker" bindtap="showmarker" wx:if="{{rightbox}}"></view>
+<view class="chaxun" bindtap="chaxunFn">查询</view>

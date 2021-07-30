@@ -1,0 +1,132 @@
+/* pages/launch/launch.wxss */
+page{
+  background: #f6f6f6;
+}
+.header{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  line-height: 100rpx;
+  background: #fff;
+}
+.nav-box{
+  position: relative;
+  font-size: 28rpx;
+}
+.active{
+  color: #F9B236;
+}
+.nav-xian{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translate(-50%);
+  width: 28rpx;
+  height: 4rpx;
+}
+.bgactive{
+  background: #F9B236;
+}
+.content{
+  width: 90%;
+  margin: 0 5%;
+  overflow: hidden;
+}
+.box{
+  position: relative;
+  width: 90%;
+  padding: 30rpx 5%;
+  height: 150rpx;
+  margin-top: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.box .shanchu{
+	position: absolute;
+	right: 20rpx;
+	top: 20rpx;
+	color: #ababab;
+}
+.title{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.box-hao{
+  font-size: 22rpx;
+  color: #aaa;
+  margin-top: 8rpx;
+}
+.huang{
+  position: absolute;
+  bottom: 24rpx;
+  right: 40rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  background: #F9B236;
+  color: #fff;
+  font-size: 20rpx;
+  border: 2rpx solid #F9B236;
+}
+.look{
+  position: absolute;
+  bottom: 24rpx;
+  right: 200rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  background: #fff;
+  color: #F9B236;
+  font-size: 20rpx;
+  border: 2rpx solid #F9B236;
+}
+.juqian{
+	width: 52%;
+	font-size: 20rpx;
+	position: absolute;
+	bottom: 24rpx;
+	right: 40rpx;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.wushujucs{
+  padding-top: 300rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+}
+.wushu-img{
+  width: 44%;
+  margin: 0 28%;
+  height: 180rpx;
+}
+.wushu-img image{
+  width: 100%;
+  height: 100%;
+}
+.yinzhang{
+  position: absolute;
+  top: 0;
+  right: 60rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+.dixian{
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+  line-height: 50rpx;
+}

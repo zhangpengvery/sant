@@ -1,0 +1,204 @@
+/* pages/repair/repair.wxss */
+page{
+  height: 100%;
+}
+.jiajian{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  right: 20rpx;
+  top: 20%;
+  z-index: 20;
+  width: 70rpx;
+  height: 160rpx;
+}
+.jiajian-box{
+  width: 70rpx;
+  height: 70rpx;
+}
+.home{
+  position: fixed;
+  left: 30rpx;
+  z-index: 100;
+  align-items: center;
+  font-size: 34rpx;
+  text-align: center;
+  color: #333;
+}
+.home image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.mapbox{
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  transition:all linear .3s;
+  border-radius: 20rpx 20rpx 0 0;
+  z-index: 8;
+}
+.gclc-icon{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 180rpx;
+}
+.icon-left{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.icon-left .yuan{
+  font-size: 80rpx;
+  -webkit-background-clip:text;
+  color: transparent;
+}
+.icon-left .yuan4{
+  background-image: linear-gradient(-45deg,#003F73,#125D94);
+}
+.icon-left .yuan5{
+  background-image: linear-gradient(-45deg,#3B7C45,#61AA6C);
+}
+.icon-left .xiandan{
+  color: #333;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.scrbox{
+  width: 94%;
+  margin: 0 3%;
+  transition:all linear .3s;
+}
+.scrbox .box-con{
+  position: relative;
+  width: 94%;
+  height: 180rpx;
+  padding: 0 3%;
+  background: #f9f9f9;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.box-con .user{
+  display: flex;
+  width: 80%;
+  margin-top: 20rpx;
+}
+.user-xx{
+  width: 100%;
+  margin-left: 20rpx;
+}
+.user-name{
+  width: 100%;
+  font-size: 30prx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.user-pj{
+  font-size: 20rpx;
+  color: #F9B236;
+}
+.juli{
+  position: absolute;
+  color: #999;
+  font-size: 20rpx;
+  right: 20rpx;
+  top: 30rpx;
+}
+.user-pho{
+  position: absolute;
+  bottom: 30rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #F9B236;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 308rpx;
+  text-align: center;
+}
+.gofwz{
+  width: 70%;
+  margin-left: 20rpx;
+}
+.gofwz .icon{
+  font-size: 24rpx;
+  color: #ACACAC;
+}
+.gofwz .icon text{
+  color: #666;
+}
+.gozhong{
+  width: 70rpx;
+  height: 70rpx;
+  position: absolute;
+  right: 30rpx;
+  top: -140rpx;
+}
+.henggang-da{
+  width: 64rpx;
+  height: 20rpx;
+  position: absolute;
+  top: -30rpx;
+  left: 50%;
+  transform: translate(-50%);
+}
+.henggang{
+  width: 64rpx;
+  height: 8rpx;
+  background: rgb(126, 126, 126);
+  border-radius: 20rpx;
+}
+.dingwei{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 450rpx;
+  /* height: 200rpx; */
+  border-radius: 20rpx;
+  background: #fff;
+  text-align: center;
+}
+.dingwei-tit{
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+.dingwei-box{
+  display: flex;
+  height: 120rpx;
+  background: #fff;
+  border-radius: 0 0 20rpx 20rpx;
+}
+.dingwei-left{
+  width: 50%;
+  border-right: 1rpx solid #f4f4f4;
+  line-height: 100rpx;
+  height: 100rpx;
+}
+.dingweibtn{
+  background: #fff;
+  font-weight: 400;
+  border-left: 1rpx solid #f4f4f4;
+  padding: 0;
+  line-height: 100rpx;
+  border-radius: 0;
+  height: 100rpx;
+}

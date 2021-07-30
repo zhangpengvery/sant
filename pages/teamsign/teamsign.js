@@ -13,16 +13,41 @@ Page({
     winH:0,
     active:1,
     getMarkList:[],
-    getFailLists:[],
     date:"",
     date2:"",
-    my_nums:0,
-    null_nums:0,
     total_nums:0,
     latitude:0,
     longitude:0,
     dixian:false,
-    user:[]
+    user:[],
+    selectArray: {},
+    dep:1,
+    triggered:false
+  },
+  refresherFn:function(){
+    var that=this
+    this.setData({
+      page:1,
+    },function(){
+      that.getMarkList2(that.data.date,1,that.data.dep)
+    })
+  },
+  async getCatalogTree() {
+    let result = await requestApi(app.globalData.post_url + "/index.php/api/department/getCatalogTree")
+    this.setData({
+      selectArray: result.data
+    })
+  },
+  tapItem: function (e) {
+    this.getMarkList2(this.data.date,1,e.detail.itemid)
+    this.setData({
+      dep:e.detail.itemid,
+      page:1,
+      dixian:false
+    })
+    // var itemid = e.detail.itemid;
+    // var itemval = e.detail.value;
+    // console.log("所选中的分区编号：" + itemid + "， 名称：" + itemval);
   },
   bindtab:function(e){
     this.setData({
@@ -38,7 +63,7 @@ Page({
     this.setData({
       page: ++this.data.page
     })
-    this.getMarkList(this.data.date,this.data.page)
+    this.getMarkList(this.data.date,this.data.page,this.data.dep)
   },
   gitdate(){
     var timestamp = Date.parse(new Date());
@@ -51,13 +76,14 @@ Page({
       date2:Y + '-'  + M
     })
   },
-  async getMarkList(mark_date,page) {
+  async getMarkList(mark_date,page,dep) {
     wx.showLoading({
       title: '加载中...',
     })
     let result = await requestApi(app.globalData.post_url + "/index.php/api/mark/getMarkList",{
       mark_date:mark_date,
-      page:page
+      page:page,
+      dep:dep
     })
     if(result.statusCode==200){
       wx.hideLoading()
@@ -69,8 +95,6 @@ Page({
     }
     this.setData({
       getMarkList:this.data.getMarkList.concat(result.data.datas.mark_list),
-      my_nums:result.data.datas.my_nums,
-      null_nums:result.data.datas.null_nums,
       total_nums:result.data.datas.total_nums
     })
     console.log(result.data.datas);
@@ -82,31 +106,27 @@ Page({
     })
     console.log(this.data.user);
   },
-  async getMarkList2(mark_date,page) {
+  async getMarkList2(mark_date,page,dep) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     let result = await requestApi(app.globalData.post_url + "/index.php/api/mark/getMarkList",{
       mark_date:mark_date,
-      page:page
+      page:page,
+      dep:dep
     })
+    if(result.statusCode==200){
+      wx.hideLoading()
+    }
     this.setData({
       getMarkList:result.data.datas.mark_list,
-      my_nums:result.data.datas.my_nums,
-      null_nums:result.data.datas.null_nums,
-      total_nums:result.data.datas.total_nums
+      total_nums:result.data.datas.total_nums,
+      triggered:false
     })
     console.log(result.data.datas);
   },
-  async getFailLists(mark_date) {
-    let result = await requestApi(app.globalData.post_url + "/index.php/Api/mark/getFailLists",{
-      mark_date:mark_date
-    })
-    this.setData({
-      getFailLists: result.data.datas.null_list,
-    })
-    console.log(result);
-  },
   bindDateChange: function(e) {
-    this.getMarkList2(e.detail.value,1)
-    this.getFailLists(e.detail.value)
+    this.getMarkList2(e.detail.value,1,this.data.dep)
     this.setData({
       date: e.detail.value,
       page:1,
@@ -137,8 +157,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMarkList(this.data.date,this.data.page)
-    this.getFailLists(this.data.date)
+    this.getCatalogTree()
+    this.getMarkList2(this.data.date,this.data.page,this.data.dep)
     this.gitdate()
     this.getUserInfo()
     wx.getSystemInfo({

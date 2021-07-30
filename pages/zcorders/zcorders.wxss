@@ -37,19 +37,34 @@ page{
   background: #fff;
   border-radius: 20rpx;
 }
+.da-title{
+  font-size: 34rpx;
+  font-weight: bold;
+}
 .box{
+  position: relative;
   display: flex;
   height: 60rpx;
-  margin-top: 30rpx;
+  margin-top: 20rpx;
   align-items: center;
 }
 .box .box-inp{
   border-bottom: 2rpx solid #DCDCDC;
 }
-.box-title{
-  width: 22%;
+.box-title2{
+  width: 28%;
   color: #333;
   font-size: 30rpx;
+}
+.box-title{
+  font-weight: bold;
+  width: 28%;
+  color: #333;
+  font-size: 30rpx;
+}
+.da-ziti{
+  font-size: 30rpx;
+  font-weight: bold;
 }
 .box-inp{
   width: 78%;
@@ -72,36 +87,61 @@ page{
   margin-left: 5rpx;
   line-height: 60rpx;
 }
-.footer1{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 88%;
-  height: 150rpx;
-  margin: 0 3%;
-  margin-top: 20rpx;
-  padding: 20rpx 3%;
-  background: #fff;
-  border-radius: 20rpx;
-  overflow: hidden;
-}
-.footer-box{
+.xq-city{
+  width: 94%;
+  height: 120rpx;
+  background: #F4F4F4;
+  border-radius: 12rpx;
+  padding: 10rpx 3%;
   font-size: 30rpx;
 }
-.footer-box .iconfont{
-  color: rgb(214,214,214);
-  font-size: 22rpx;
+.xhtext{
+  width: 60%;
 }
-.footer-box .iconfont text{
-  font-size: 22rpx;
+.jianto{
+  position: absolute;
+  right: 10rpx;
+  top: 20rpx;
   color: #F9B236;
+  font-size: 24rpx;
 }
-.box-num{
-  font-weight: bold;
+.changtext{
+  display: flex;align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
 }
-.box-text{
-  margin: 20rpx 0 10rpx 0;
+.fill-item {
+  font-size: 30rpx;
+  color: #333333;
+  letter-spacing: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
+.fill-item text{
+  line-height: 46rpx;
+  height: 46rpx;
+}
+ .fill-input {
+   width: 100rpx;
+   height: 46rpx;
+   background: #FFFFFF;
+   border-bottom: 2rpx solid #333;
+   font-size: 30rpx;
+   letter-spacing: 0;
+   display: inline-block;
+   vertical-align: middle;
+   text-align: center;
+   line-height: 50rpx;
+ }
+ .active-box{
+   margin-top: 10rpx;
+   display: flex;
+ }
+ .kong{
+   width: 100%;
+   height: 150rpx;
+ }
 .footer{
   display: flex;
   justify-content: space-between;
@@ -114,6 +154,7 @@ page{
   line-height: 120rpx;
   background: #fff;
   align-items: center;
+  z-index: 10;
 }
 .footer-lfet{
   display: flex;

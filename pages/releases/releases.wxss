@@ -1,74 +1,43 @@
 /* pages/releases/releases.wxss */
-page {
-  line-height: 1.6;
-  font-family: -apple-system-font, "Helvetica Neue", sans-serif;
-}
-icon {
-  vertical-align: middle;
-}
-.weui-cell {
-  padding: 10px 15px;
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
+.weui-cell{
+  width: 90%;
+  margin: 0 5%;
   display: flex;
+  justify-content: end;
   align-items: center;
+  flex-wrap: wrap;
 }
-.weui-cell_input {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.weui-uploader__info {
-  color: #b2b2b2;
-}
-.weui-uploader__bd {
-  margin-bottom: -4px;
-  margin-right: -9px;
-  overflow: hidden;
-}
-.weui-uploader__file {
-  float: left;
-  margin-right: 9px;
-  margin-bottom: 9px;
-}
-.weui-uploader__img {
-  display: block;
-  width: 79px;
-  height: 79px;
-}
-.weui-uploader__input-box {
-  float: left;
+.weui-box{
   position: relative;
-  margin-right: 9px;
-  margin-bottom: 9px;
-  width: 77px;
-  height: 77px;
-  border: 1px solid #d9d9d9;
+  width: 140rpx;
+  height: 140rpx;
+  margin: 20rpx 10rpx 0;
+  border: 1rpx solid #fff;
 }
-.weui-uploader__input-box:before, .weui-uploader__input-box:after {
-  content: " ";
+.weui-box .chahao{
+  width: 32rpx;
+  height: 32rpx;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #d9d9d9;
+  right: -16rpx;
+  bottom: -16rpx;
 }
-.weui-uploader__input-box:before {
-  width: 2px;
-  height: 39.5px;
-}
-.weui-uploader__input-box:after {
-  width: 39.5px;
-  height: 2px;
-}
-.weui-uploader__input {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
+.weui-box .chahao image{
   width: 100%;
   height: 100%;
-  opacity: 0;
+}
+.weui-box image{
+  width: 100%;
+  height: 100%;
+}
+.tianjia{
+  margin: 20rpx 10rpx 0;
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #d9d9d9;
+  text-align: center;
+  line-height: 140rpx;
+  color: #d9d9d9;
+  font-size: 60rpx;
 }
 .content{
   width: 90%;

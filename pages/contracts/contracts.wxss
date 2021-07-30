@@ -42,6 +42,12 @@ page{
   background: #fff;
   border-radius: 20rpx;
 }
+.box .shanchu{
+	position: absolute;
+	right: 20rpx;
+	top: 20rpx;
+	color: #ababab;
+}
 .title{
   font-size: 30rpx;
   font-weight: bold;
@@ -60,10 +66,10 @@ page{
   line-height: 50rpx;
   text-align: center;
   border-radius: 40rpx;
-  background: #FBB637;
+  background: #F9B236;
   color: #fff;
   font-size: 20rpx;
-  border: 2rpx solid #FBB637;
+  border: 2rpx solid #F9B236;
 }
 .look{
   position: absolute;
@@ -75,9 +81,9 @@ page{
   text-align: center;
   border-radius: 40rpx;
   background: #fff;
-  color: #FBB637;
+  color: #F9B236;
   font-size: 20rpx;
-  border: 2rpx solid #FBB637;
+  border: 2rpx solid #F9B236;
 }
 .juqian{
 	width: 52%;
@@ -112,7 +118,15 @@ page{
 .yinzhang{
   position: absolute;
   top: 0;
-  right: 0;
+  right: 60rpx;
   width: 100rpx;
   height: 100rpx;
+}
+.dixian{
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ababab;
+  line-height: 50rpx;
 }

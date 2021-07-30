@@ -18,11 +18,13 @@
               <view class="box-hao">订单编号：{{item.order_sn}}</view>
               <view class="box-hao">{{item.good_name}}</view>
               <view class="iconfont icon-shijian1 box-hao"> {{item.time}}</view>
-              <view class="huang" wx:if="{{item.status==1}}" catchtap="bindqian" data-url="{{item.signurl}}">继续签署</view>
-              <view class="look" wx:if="{{item.status==1}}">查看合同</view>
+              <view class="huang" wx:if="{{item.status==1}}" catchtap="bindqian" data-url="{{item.signurl}}" data-code="{{item.contractcode}}">继续签署</view>
+              <view class="look" wx:if="{{item.status>=0}}">查看合同</view>
               <view class="juqian" wx:if="{{item.status==-1}}">拒签理由：{{item.remark}}</view>
               <image mode="aspectFit" class="yinzhang" src="/assets/images/quxiaoyz.png" wx:if="{{item.status==-1}}"></image>
               <image mode="aspectFit" class="yinzhang" src="/assets/images/jinxingyz.png" wx:if="{{item.status==1}}"></image>
+              <image mode="aspectFit" class="yinzhang" src="/assets/images/shenhezhong.png" wx:if="{{item.status==0}}"></image>
+              <view class="iconfont icon-lajitong shanchu" data-id="{{item.id}}" data-index="{{index}}" catchtap="deleteFn"></view>
             </view>
           </view>
         </block>
@@ -33,10 +35,11 @@
         </view>
         <view>暂无数据</view>
       </view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
     </scroll-view>
   </swiper-item>
   <swiper-item catchtouchmove="stopChange">
-    <scroll-view scroll-y="true" style="height:{{scrH}}rpx" bindscrolltolower="loadMore" refresher-enabled="true"
+    <scroll-view scroll-y="true" style="height:{{scrH}}rpx" bindscrolltolower="loadMore2" refresher-enabled="true"
       bindrefresherrefresh="refresherFn" refresher-triggered="{{triggered}}">
       <block wx:if="{{getSignLists.length>=1}}">
         <block wx:for="{{markers2}}" wx:key="index">
@@ -60,6 +63,7 @@
         </view>
         <view>暂无数据</view>
       </view>
+      <view wx:if="{{dixian}}" class="dixian">我也是有底线的！</view>
     </scroll-view>
   </swiper-item>
 </swiper>

@@ -54,7 +54,7 @@ page{
   color: rgb(127, 127, 127);
   font-size: 26rpx;
 }
-.con-text .text-btm{
+.text-btm{
   margin-bottom: 10rpx;
   font-size: 28rpx;
   font-weight: bold;

@@ -20,38 +20,23 @@ Page({
     latitude2: 0,
     longitude3: 0,
     latitude3: 0,
-    scrH: 540,
+    scrH: 380,
     boxH: 180,
     scrY: false,
     active: 2,
     name: "",
-    shop_name: "",
     distance: 0,
-    fwdistance: 0,
     avator: "",
     user_mobile: "",
-    shop_tel: "",
-    shop_lat: "",
-    shop_lng: "",
-    shop_address: "",
-    showFwz: true,
-    showBox: true,
     scrslid: true,
     markers: [],
-    markers2: [],
     userList: [],
     userList2: [],
-    repairList: [],
-    repairList2: [],
-    broList: [],
-    getServiceInfo: [],
     starpageY: 0,
     chenpageY: 0,
     service_uid: 0,
     service: 0,
     timer: '',
-    typefwz: 2,
-    liandian: 0,
     points: [{
       latitude: 0,
       longitude: 0
@@ -59,8 +44,7 @@ Page({
       latitude: 0,
       longitude: 0
     }],
-    scale:16,
-    scale1:14
+    scale:16
   },
   //1重汽2陕汽
   scrBtnFn: function (e) {
@@ -84,109 +68,41 @@ Page({
     this.setData({
       chenpageY: e.changedTouches[0].pageY
     }, function () {
-      if (that.data.scrH == 540) {
+      if (that.data.scrH == 380) {
         var sliding = that.data.starpageY - that.data.chenpageY;
         if (sliding > 30) {
           that.setData({
-            scrH: 1080,
+            scrH: 900,
             boxH: 720,
             scrY: true,
           })
-        } else if (sliding < -30) {
-          var hig=this.data.winH-280
-          that.setData({
-            scrH: 280,
-            mapH:hig
-          })
         }
-      } else if (that.data.scrH == 1080) {
+      } else if (that.data.scrH == 900) {
         var sliding2 = that.data.chenpageY - that.data.starpageY;
         if (sliding2 > 30 && that.data.scrslid) {
           that.setData({
-            scrH: 540,
+            scrH: 380,
             boxH: 180,
             scrY: false,
-          })
-        }
-      } else if (that.data.scrH == 280) {
-        var sliding3 = that.data.starpageY - that.data.chenpageY;
-        var hig=this.data.winH-540
-        if (sliding3 > 30) {
-          that.setData({
-            scrH: 540,
-            mapH:hig
           })
         }
       }
     })
   },
   bindTapFn: function () {
-    if (this.data.scrH == 540) {
+    if (this.data.scrH == 380) {
       this.setData({
-        scrH: 1080,
+        scrH: 900,
         boxH: 720,
         scrY: true,
       })
-    } else if (this.data.scrH == 1080) {
+    } else if (this.data.scrH == 900) {
       this.setData({
-        scrH: 540,
+        scrH: 380,
         boxH: 180,
         scrY: false,
       })
-    } else if (this.data.scrH == 280) {
-      var hig=this.data.winH-540
-      this.setData({
-        scrH: 540,
-        mapH:hig
-      })
     }
-  },
-  getMapDatas() {
-    wx.showLoading({
-      title: '加载中...',
-    })
-    wx.request({
-      url: 'https://jbccs.com/index.php/Api/Map/getMapDatas',
-      data: {
-        lng: this.data.longitude,
-        lat: this.data.latitude,
-        type: this.data.type
-      },
-      header: {
-        "content-type": "application/json",
-      },
-      method: "GET",
-      success: (res) => {
-        if (res.statusCode == 200) {
-          wx.hideLoading()
-        }
-        this.setData({
-          userList: res.data.datas.user_list,
-        })
-      }
-    })
-  },
-  bindFwgj: function () {
-    if (this.data.showFwz == false) {
-      this.startSetInter()
-    }
-    this.setData({
-      showFwz: true,
-      showBox: true,
-      type: 1
-    })
-    this.userListFn()
-  },
-  bindCmsc: function () {
-    if (this.data.showFwz == false) {
-      this.startSetInter()
-    }
-    this.setData({
-      showFwz: true,
-      showBox: true,
-      type: 2
-    })
-    this.userListFn()
   },
   //订单管理点击
   bindDdgl: function () {
@@ -217,13 +133,13 @@ Page({
     }
   },
   bindPho: function (e) {
-    if (e.currentTarget.dataset.pay == 1) {
-      wx.makePhoneCall({
-        phoneNumber: e.currentTarget.dataset.pho,
-      })
-    } else if (wx.getStorageSync('token') == []) {
+    if (wx.getStorageSync('token') == []) {
       wx.navigateTo({
         url: '/pages/login/login',
+      })
+    }else{
+      wx.makePhoneCall({
+        phoneNumber: e.currentTarget.dataset.pho,
       })
     }
   },
@@ -233,25 +149,6 @@ Page({
     for (let item of this.data.userList2) {
       let marker = this.createMarker(item);
       markers.push(marker)
-    }
-    return markers;
-  },
-  //服务站
-  getrepairMarkers() {
-    let markers = [];
-    let index
-    if (this.data.typefwz == 1) {
-      for (index in this.data.repairList) {
-        let marker = this.repairMarker(this.data.repairList[index], index);
-        markers.push(marker)
-      }
-      wx.hideLoading()
-    } else {
-      for (index in this.data.repairList) {
-        let marker = this.repairMarker2(this.data.repairList[index], index);
-        markers.push(marker)
-      }
-      wx.hideLoading()
     }
     return markers;
   },
@@ -269,86 +166,15 @@ Page({
     };
     return marker;
   },
-  //服务站markers
-  repairMarker(point, index) {
-    let latitude = point.shop_lat;
-    let longitude = point.shop_lng;
-    let marker = {
-      iconPath:index==0?"/assets/images/zq-one.png":"/assets/images/zq.png",
-      id: Number(index),
-      latitude: latitude,
-      longitude: longitude,
-      width:index==0?48:40,
-      height:index==0?48:40,
-      joinCluster: true
-    };
-    return marker;
-  },
-  repairMarker2(point, index) {
-    let latitude = point.shop_lat;
-    let longitude = point.shop_lng;
-    let marker = {
-      iconPath: index==0?"/assets/images/sq-one.png":"/assets/images/sq.png",
-      id: Number(index),
-      latitude: latitude,
-      longitude: longitude,
-      width:index==0?48:40,
-      height:index==0?48:40,
-      joinCluster: true
-    };
-    return marker;
-  },
   markertap: function (e) {
     var id = e.detail.markerId
     this.setData({
-      scrH: 540,
+      scrH: 380,
       name: this.data.userList[id].user_name,
       distance: this.data.userList[id].distance,
       avator: this.data.userList[id].avator,
       user_mobile: this.data.userList[id].user_mobile,
       service_uid: this.data.userList[id].user_id
-    })
-  },
-  //服务站地图点击
-  repairtap: function (e) {
-    console.log(e.detail.markerId);
-    var id = e.detail.markerId
-    this.setData({
-      scrH: 540,
-      fwdistance: this.data.repairList[id].distance,
-      shop_name: this.data.repairList[id].shop_name,
-      shop_tel: this.data.repairList[id].shop_tel,
-      shop_address: this.data.repairList[id].shop_address,
-      shop_lat: this.data.repairList[id].shop_lat,
-      shop_lng: this.data.repairList[id].shop_lng
-    })
-  },
-  bindFwz: function () {
-    var that = this
-    this.setData({
-      page:1,
-      showBox: false,
-      showFwz: false,
-      typefwz: 2,
-      markers2: [],
-    }, function () {
-      that.repairFn()
-      that.endInter()
-      that.repairFn2(that.data.page,that.data.latitude,that.data.longitude,that.data.typefwz)
-    })
-  },
-  bindFwzzq: function () {
-    var that = this
-    this.setData({
-      page:1,
-      showBox: false,
-      showFwz: false,
-      typefwz: 1,
-      markers2: [],
-    }, function () {
-      that.repairFn()
-      that.endInter()
-      that.repairFn2(that.data.page,that.data.latitude,that.data.longitude,that.data.typefwz)
     })
   },
   userListFn: function () {
@@ -422,74 +248,6 @@ Page({
       }
     })
   },
-  //服务站信息
-  repairFn: function () {
-    var that = this
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
-    wx.request({
-      url: 'https://jbccs.com/index.php/Api/Map/getStationDatas',
-      data: {
-        page: 0,
-        lng: this.data.longitude,
-        lat: this.data.latitude,
-        type: this.data.typefwz,
-      },
-      header: {
-        "content-type": "application/json",
-        'XX-Token': wx.getStorageSync('token'),
-      },
-      method: "GET",
-      success: (res) => {
-        var lat2 = "points[" + 1 + "].latitude"
-        var lng2 = "points[" + 1 + "].longitude"
-        var lat3 = "points[" + 2 + "].latitude"
-        var lng3 = "points[" + 2 + "].longitude"
-        this.setData({
-          repairList: res.data.datas,
-          shop_name: res.data.datas[0].shop_name,
-          fwdistance: res.data.datas[0].distance,
-          shop_tel: res.data.datas[0].shop_tel,
-          shop_address: res.data.datas[0].shop_address,
-          shop_lat: res.data.datas[0].shop_lat,
-          shop_lng: res.data.datas[0].shop_lng,
-          [lat2]:Number(res.data.datas[0].shop_lat),
-          [lng2]:Number(res.data.datas[0].shop_lng),
-          [lat3]:Number(res.data.datas[1].shop_lat),
-          [lng3]:Number(res.data.datas[1].shop_lng),
-        }, function () {
-          that.includePoints()
-          that.setData({
-            markers2: that.getrepairMarkers()
-          })
-        })
-      }
-    })
-  },
-  repairFn2: function (page,lat,lng,type) {
-    wx.request({
-      url: 'https://jbccs.com/index.php/Api/Map/getStationDatas',
-      data: {
-        page: page,
-        lat: lat,
-        lng: lng,
-        type: type
-      },
-      header: {
-        "content-type": "application/json",
-        'XX-Token': wx.getStorageSync('token'),
-      },
-      method: "GET",
-      success: (res) => {
-        this.setData({
-          repairList2: this.data.repairList2.concat(res.data.datas)
-        })
-        console.log(res);
-      }
-    })
-  },
   loadMore() {
     if (this.data.showBox == false) {
       this.setData({
@@ -498,23 +256,9 @@ Page({
       this.repairFn2(this.data.page,this.data.latitude,this.data.longitude,this.data.typefwz)
     }
   },
-  bindgoDitu: function (e) {
-    wx.openLocation({
-      latitude: Number(e.currentTarget.dataset.lat),
-      longitude: Number(e.currentTarget.dataset.lng),
-      scale: 18,
-      name: e.currentTarget.dataset.name,
-      address: e.currentTarget.dataset.address
-    })
-  },
   clickControl: function () {
-    if (this.data.showFwz == true) {
       const mpCtx = wx.createMapContext("map");
       mpCtx.moveToLocation();
-    } else {
-      const mpCtx2 = wx.createMapContext("map2");
-      mpCtx2.moveToLocation();
-    }
   },
   bindGohome: function () {
     wx.reLaunch({
@@ -526,11 +270,6 @@ Page({
     let result = await requestApi(app.globalData.post_url + "/index.php/Api/User/getUserInfo")
     this.setData({
       service: result.data.datas.user_info.user_is_service
-    })
-  },
-  binduserPho: function (e) {
-    wx.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.pho,
     })
   },
   //定时刷新计时器
@@ -549,7 +288,6 @@ Page({
     clearInterval(that.data.timer)
   },
   bindmapjia: function () {
-    if (this.data.showFwz == true) {
       const mpCtx = wx.createMapContext("map");
       mpCtx.getScale({
         success:(res)=>{
@@ -563,26 +301,9 @@ Page({
           }
         }
       });
-    } else {
-      const mpCtx2 = wx.createMapContext("map2");
-      mpCtx2.getScale({
-        success:(res)=>{
-          var scal=res.scale+1
-          if(scal>19){
-            return
-          }else{
-            this.setData({
-              scale1:scal
-            })
-          }
-        }
-      });
-    }
   },
   bindmaphao: function () {
     const mpCtx = wx.createMapContext("map");
-    const mpCtx2 = wx.createMapContext("map2");
-    if (this.data.showFwz == true) {
       mpCtx.getScale({
         success:(res)=>{
           var scal=res.scale-1
@@ -595,36 +316,14 @@ Page({
           }
         }
       });
-    } else {
-      mpCtx2.getScale({
-        success:(res)=>{
-          var scal=res.scale-1
-          if(scal<4){
-            return
-          }else{
-            this.setData({
-              scale1:scal
-            })
-          }
-        }
-      });
-    }
   },
   includePoints:function(){
     var that=this
     const mapCtx1 = wx.createMapContext("map");
-    const mapCtx2 = wx.createMapContext("map2");
-    if(this.data.showFwz){
       mapCtx1.includePoints({
         padding: [ 80,],
         points: this.data.points
       })
-    }else{
-      mapCtx2.includePoints({
-        padding: [ 80,],
-        points: this.data.points
-      })
-    }
   },
   binddingw:function(e){
     this.setData({
@@ -682,7 +381,7 @@ Page({
         this.setData({
           winH:ScrH+app.globalData.navbarHeight-result.statusBarHeight,
           TopH: result.statusBarHeight + 10,
-          mapH:ScrH-540+app.globalData.navbarHeight-result.statusBarHeight
+          mapH:ScrH-280+app.globalData.navbarHeight-result.statusBarHeight
         })
       },
     })

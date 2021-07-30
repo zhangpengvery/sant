@@ -61,10 +61,11 @@
   </view>
   <view class="header-con">
     <view class="iconfont icon-dengdaifukuan-weizhi"></view>
-    <view class="con-text">
+    <view class="con-text" wx:if="{{getOrderInfo.address_name!=null}}">
       <view class="text-btm">{{getOrderInfo.address_name}}：{{getOrderInfo.address_tel}}</view>
       <view class="text-top">{{getOrderInfo.address_info}}</view>
     </view>
+    <view wx:else class="text-btm">无</view>
   </view>
 </view>
 <view class="product" wx:for="{{getOrderInfo.order_good}}" wx:key="index">

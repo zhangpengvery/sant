@@ -198,14 +198,42 @@ Page({
   },
   //出租删除
   deleteHire(hire_id){
+    wx.showLoading({
+      title: '删除中...',
+    })
     requestApi1(app.globalData.base_url+"/deleteHire",{
       hire_id:hire_id
+    }).then(res=>{
+      if(res.data.code==1){
+        wx.showToast({
+          title: '删除成功',
+        })
+      }else{
+        wx.showToast({
+          title: '删除失败',
+          icon:'error'
+        })
+      }
     })
   },
   //求购删除
   deleteHireFor(hf_id){
+    wx.showLoading({
+      title: '删除中...',
+    })
     requestApi1(app.globalData.base_url+"/deleteHireFor",{
       hf_id:hf_id
+    }).then(res=>{
+      if(res.data.code==1){
+        wx.showToast({
+          title: '删除成功',
+        })
+      }else{
+        wx.showToast({
+          title: '删除失败',
+          icon:'error'
+        })
+      }
     })
   },
   loadMore(){

@@ -42,6 +42,7 @@ page{
   color: #F9B236;
 }
 .box2{
+  position: relative;
   width: 90%;
   height: 84rpx;
   padding: 0 5%;
@@ -75,6 +76,7 @@ page{
   font-size: 32rpx;
 }
 .box4{
+  position: relative;
   width: 90%;
   height: 84rpx;
   padding: 0 5%;

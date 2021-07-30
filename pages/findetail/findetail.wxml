@@ -1,6 +1,6 @@
 <!--pages/findetail/findetail.wxml-->
 <navbar params="{{params}}" />
-<scroll-view scroll-y="true" style="height:{{winH}}rpx"  bindscroll="scrollPage">
+<scroll-view scroll-y="true" style="height:{{winH}}rpx" bindscroll="scrollPage">
   <view class="home-navimg">
     <image src="https://jbccs.com/./Upload/image/2021-03-11/6049e75d5c98b.png"></image>
   </view>
@@ -37,7 +37,8 @@
       <view class="iconfont icon-wancheng {{status==3?'huang':''}}"></view>
       <view class="box-right">
         <view class="box-text">调查状态</view>
-        <picker bindchange="bindPickerChange" value="{{arrayIndex}}" range="{{array}}" range-key="{{'text'}}" mode="selector">
+        <picker bindchange="bindPickerChange" value="{{arrayIndex}}" range="{{array}}" range-key="{{'text'}}"
+          mode="selector">
           <view>{{arraytype}}</view>
           <view wx:if="{{status==3}}">{{time2}}</view>
         </picker>
@@ -45,12 +46,13 @@
       </view>
     </view>
     <view class="footer-box">
-      <image src="https://jbccs.com/./Upload/image/2021-04-15/6077fc486f751.png"></image>
+      <image src="https://jbccs.com/./Upload/image/2021-06-17/60cab6118d802.png"></image>
       <view class="box-right">
         <view class="box-text">调查机构</view>
-        <picker bindchange="bindPickerdcjg" value="{{arrayjrjgIndex}}" range="{{arrayjrjg}}" range-key="{{'text'}}" mode="selector">
-        <view class="diaocjgtext">{{arrayjrjgtype}}</view>
-      </picker>
+        <picker bindchange="bindPickerdcjg" value="{{arrayjrjgIndex}}" range="{{arrayjrjg}}" range-key="{{'text'}}"
+          mode="selector">
+          <view class="diaocjgtext">{{arrayjrjgtype}}</view>
+        </picker>
         <view class="iconfont icon-xiangyou xiala"></view>
       </view>
     </view>

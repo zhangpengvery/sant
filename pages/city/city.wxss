@@ -1,0 +1,39 @@
+/* pages/city/city.wxss */
+.containers {
+  box-sizing: border-box;
+  height: 100%;
+}
+.list-city {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background: #fff;
+}
+.py {
+  box-sizing: border-box;
+  background: #eee;
+  font-size: 23rpx;
+  color: #aaa;
+  padding: 10rpx 25rpx;
+}
+.fullname {
+  box-sizing: border-box;
+  font-size: 30rpx;
+  color: #555;
+  padding: 25rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.city-py {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  margin-top: -360rpx;
+}
+.city-py view {
+  font-size: 25rpx;
+  width: 60rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  text-align: center;
+  color: #555;
+}

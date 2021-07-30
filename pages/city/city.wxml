@@ -1,0 +1,22 @@
+<!--pages/city/city.wxml-->
+<view class="containers">
+  <!-- 城市列表 -->
+  <view class='list-city'>
+    <view class='item'>
+      <view class='fullname'>当前定位城市：{{city}}</view>
+    </view>
+    <!-- 全部 -->
+    <view class='item' wx:for="{{cityData}}" wx:for-index="idx" wx:for-item="group" wx:key="key">
+      <view class='py py{{idx}}' id="{{idx}}">{{idx}}</view>
+      <view class="fullname" wx:for="{{group}}" wx:key="key" data-fullname="{{item.fullname}}" bindtap='selectCity'>
+        {{item.fullname}}
+      </view>
+    </view>
+    <!-- 首字母 -->
+    <view class='city-py'>
+      <view wx:for="{{_py}}" data-id="{{item}}" wx:key="key" bindtap="binddingwei" id="{{item}}">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>

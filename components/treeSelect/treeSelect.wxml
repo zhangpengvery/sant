@@ -1,0 +1,12 @@
+<view class='com-selectBox'>
+    <view class='com-sContent' bindtap='selectToggle'>
+        <view class='com-sTxt'>{{nowText}}</view>
+        <view class="iconfont icon-jiantou-down"></view>
+    </view>
+    <view class='com-sList' wx:if="{{selectShow}}">
+      <view wx:if='{{ isBranch }}' hidden='{{ !open }}'>
+        <mytree wx:for='{{ model.node }}' wx:key='id' model='{{ item }}'  bind:tapitem='tapItem'></mytree>
+      </view>
+    </view>
+    <view class="com-jiant" wx:if="{{selectShow}}"></view>
+</view>
